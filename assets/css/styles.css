@@ -17,3 +17,21 @@
   border-color: #a3978a;
 }
 
+.card{
+  margin: 0 3vw
+}
+
+.card-body{
+  font-size: large;
+}
+
+.card-header{
+  cursor: pointer;
+  text-align: center;
+}
+
+.card-header.collapsed {
+  background:#1D539F;
+  color: #fff;
+
+}

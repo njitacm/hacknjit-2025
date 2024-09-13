@@ -15,6 +15,7 @@
       <img id="ywcc-logo" src="../assets/Logos/NJIT_white.png" />
     </div>
     <aside>
+      <hr />
       <a href="acm.njit.edu" target="_blank">Main ACM Site</a>
       <hr />
       <a href="https://www.acm.org/" target="_blank">ACM National</a>
@@ -32,6 +33,7 @@
         target="_blank"
         >MLH Code of Conduct</a
       >
+      <hr />
     </aside>
   </footer>
 </template>
@@ -57,6 +59,9 @@ aside {
   justify-content: center;
   gap: 1rem;
   padding: 0.75rem 0;
+}
+aside {
+  flex-wrap: wrap;
 }
 div.line {
   display: flex;
@@ -91,5 +96,19 @@ nav img {
 }
 a {
   color: inherit;
+}
+@media (max-width: 600px) {
+  nav img {
+    width: 40px;
+    height: 40px;
+  }
+  aside {
+    font-size: 0.75rem;
+  }
+}
+@media (max-width: 500px) {
+  nav img {
+    width: 35px;
+  }
 }
 </style>

@@ -36,4 +36,25 @@ img {
     transform: rotate(360deg);
   }
 }
+@media (max-width: 1000px) {
+  img {
+    width: 40px;
+  }
+}
+@media (max-width: 750px) {
+  img {
+    width: 32.5px;
+    margin: 1px;
+  }
+}
+@media (max-width: 600px) {
+  img {
+    width: 25.5px;
+  }
+}
+@media (max-width: 500px) {
+  img {
+    width: 20.5px;
+  }
+}
 </style>

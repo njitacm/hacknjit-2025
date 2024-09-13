@@ -1,194 +1,41 @@
 <template>
-  <div class="outer-container">
-    <div class="title">
-      <img src="../assets/HackNJIT2024/gears/gear4.svg" />
+  <div ref="container" class="outer-container">
+    <div class="title" v-intersection-observer="[onIntersectionObserver]">
+      <img class="title-svg" src="../assets/HackNJIT2024/gears/gear4.svg" />
       <h1 class="title">Our Sponsors</h1>
       <!-- @click="
           window.open(
             'https://cdn.discordapp.com/attachments/1193704838010253323/1275603312468557877/HackNJIT_2024_Sponsorship_Packet.pdf?ex=66d3aca9&is=66d25b29&hm=acccbe5ad986f1124a1da9bc6aa7c65d2666a07f36caae3209df5fbbb9644fdc&'
           )
         " -->
-      <h2 @click="toggleSponsors">Sponsor Packet</h2>
-      <img src="../assets/HackNJIT2024/gears/gear4.svg" />
+      <!-- <h2 @click="toggleSponsors">Sponsor Packet</h2> -->
+      <img class="title-svg" src="../assets/HackNJIT2024/gears/gear4.svg" />
     </div>
-    <Transition>
-      <div class="sponsors" v-if="showSponsors">
-        <h1>Title Sponsor</h1>
+    <div class="sponsors" v-intersection-observer="[onIntersectionObserver]">
+      <!-- <h1>Title Sponsor</h1>
         <h1>Gold Sponsor</h1>
         <h1>Silver Sponsor</h1>
-        <h1>Bronze Sponsor</h1>
-      </div>
-      <div class="sponsors" v-else>
-        <table>
-          <thead>
-            <th></th>
-            <th>Bronze</th>
-            <th>Silver</th>
-            <th>Gold</th>
-            <th>Title</th>
-          </thead>
-          <tbody>
-            <tr class="row-title">
-              <td>Event</td>
-              <td class="row-span"></td>
-            </tr>
-            <tr>
-              <td>Company table at the event</td>
-              <td>
-                <img
-                  class="bronze-gear"
-                  src="../assets/HackNJIT2024/gears/gear3.svg"
-                />
-              </td>
-              <td>
-                <img
-                  class="silver-gear"
-                  src="../assets/HackNJIT2024/gears/gear3.svg"
-                />
-              </td>
-              <td>
-                <img
-                  class="gold-gear"
-                  src="../assets/HackNJIT2024/gears/gear3.svg"
-                />
-              </td>
-              <td>
-                <img
-                  class="title-gear"
-                  src="../assets/HackNJIT2024/gears/gear3.svg"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Provide a challenge and/or an API to be hacked on</td>
-              <td></td>
-              <td></td>
-              <td>
-                <img
-                  class="gold-gear"
-                  src="../assets/HackNJIT2024/gears/gear3.svg"
-                />
-              </td>
-              <td>
-                <img
-                  class="title-gear"
-                  src="../assets/HackNJIT2024/gears/gear3.svg"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Provide two judges to serve in the final presentations</td>
-              <td></td>
-              <td></td>
-              <td>
-                <img
-                  class="gold-gear"
-                  src="../assets/HackNJIT2024/gears/gear3.svg"
-                />
-              </td>
-              <td>
-                <img
-                  class="title-gear"
-                  src="../assets/HackNJIT2024/gears/gear3.svg"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Provide two judges to serve in the final presentations</td>
-              <td></td>
-              <td>
-                <img
-                  class="silver-gear"
-                  src="../assets/HackNJIT2024/gears/gear3.svg"
-                />
-              </td>
-              <td>
-                <img
-                  class="gold-gear"
-                  src="../assets/HackNJIT2024/gears/gear3.svg"
-                />
-              </td>
-              <td>
-                <img
-                  class="title-gear"
-                  src="../assets/HackNJIT2024/gears/gear3.svg"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Side event or workshop</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <img
-                  class="title-gear"
-                  src="../assets/HackNJIT2024/gears/gear3.svg"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Present a tech talk or demo during the event</td>
-            </tr>
-            <tr>
-              <td>Speak at the opening ceremony</td>
-            </tr>
-            <tr>
-              <td>Bring mentors to the event</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr class="row-title">
-              <td>Recruiting</td>
-              <td class="row-span"></td>
-            </tr>
-            <tr>
-              <td>
-                Access to email addresses, LinkedIn and Github profiles of all
-                attendees
-              </td>
-            </tr>
-            <tr>
-              <td>Access to virtual breakout rooms</td>
-            </tr>
-            <tr>
-              <td>Access to resumes</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr class="row-title">
-              <td>Branding</td>
-              <td class="row-span"></td>
-            </tr>
-            <tr>
-              <td>Social media promotion</td>
-            </tr>
-            <tr>
-              <td>Logo on site, program, and presentation</td>
-            </tr>
-            <tr>
-              <td>Logo on t-shirt</td>
-            </tr>
-            <tr>
-              <td>Distribute promo items</td>
-            </tr>
-            <tr>
-              <td>
-                Title sponsorship of HackNJIT (ex: “Powered by [Company Name]”)
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </Transition>
+        <h1>Bronze Sponsor</h1> -->
+      <h1>Sponsor Info Coming Soon</h1>
+    </div>
   </div>
 </template>
 
+<script setup>
+import { vIntersectionObserver } from "@vueuse/components";
+
+function onIntersectionObserver([{ isIntersecting, target }]) {
+  if (isIntersecting) {
+    console.log(target);
+    target.classList.add("fade-in");
+  }
+}
+</script>
 <script>
 export default {
   data() {
     return {
-      showSponsors: false,
+      showSponsors: true,
     };
   },
   methods: {
@@ -233,17 +80,21 @@ h2:hover::after {
 div.title {
   display: grid;
   grid-template-columns: 30% 1fr 30%;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 100%;
   justify-content: center;
-  gap: 1rem;
+  column-gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 div.title h1 {
   grid-column: 2;
+  grid-row: 1/2;
+  align-self: center;
 }
 div.title h2 {
   grid-column: 2;
 }
 div.title img {
+  width: 6rem;
   animation-name: gearSpin;
   animation-duration: 4s;
   animation-iteration-count: infinite;
@@ -321,5 +172,60 @@ td:last-of-type {
 .bronze-gear {
   filter: brightness(0) saturate(100%) invert(25%) sepia(44%) saturate(548%)
     hue-rotate(5deg) brightness(100%) contrast(93%);
+}
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s linear;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+.fade-in {
+  animation-name: fade-in;
+  animation-duration: 5s;
+  /* animation-delay: 1.5s; */
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@media (max-width: 1250px) {
+  div.title img {
+    width: 9rem;
+  }
+}
+@media (max-width: 800px) {
+  div.title img {
+    width: 7rem;
+  }
+}
+@media (max-width: 550px) {
+  .title-svg {
+    display: none;
+  }
+  .outer-container {
+    width: 100%;
+  }
+  div.title h1.title {
+    display: inherit;
+  }
+  h1.title {
+    width: 90vw;
+    justify-self: center;
+    text-align: center;
+    font-size: 3rem;
+  }
+  h1 {
+    font-size: 2.5rem;
+  }
 }
 </style>

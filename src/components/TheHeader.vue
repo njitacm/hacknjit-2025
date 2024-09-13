@@ -2,6 +2,7 @@
   <Transition>
     <header ref="pageHeader" v-show="showHeader">
       <nav class="main">
+        <h1 class="alternate">Coming Soon....</h1>
         <h1 class="tertiary"><a href="#Team">Meet The Team</a></h1>
         <h1 class="secondary"><a href="#Intro">About Us</a></h1>
         <h1 class="primary" @click="toTop()">HackNJIT</h1>
@@ -10,7 +11,6 @@
           <a href="#Sponsors">Sponsors</a>
         </h1>
       </nav>
-      <nav></nav>
     </header>
   </Transition>
 </template>
@@ -54,13 +54,14 @@ export default {
 .fake-header {
   height: 40px;
 }
+h1.alternate {
+  display: none;
+}
 
 header {
   color: white;
   display: flex;
   width: 100%;
-  /* background: var(--edge-colors); */
-  /* background: #d3b28ed8; */
   z-index: 100;
   padding: 0.5rem 0;
   position: absolute;
@@ -104,6 +105,9 @@ h1 {
   padding: 5px;
   text-align: center;
 }
+h1.alternate {
+  font-size: 3rem;
+}
 h1.primary {
   font-size: 2.75rem;
   font-weight: bold;
@@ -130,5 +134,59 @@ h1::after {
 }
 h1:hover::after {
   width: 100%;
+}
+@media (max-width: 1500px) {
+  header {
+    grid-template-columns: 10% auto 10%;
+  }
+}
+@media (max-width: 1250px) {
+  h1.primary {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  h1.secondary {
+    font-size: 1.5rem;
+  }
+  h1.tertiary {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 1000px) {
+  h1 {
+    display: none;
+  }
+  h1.primary {
+    display: none;
+  }
+  h1.alternate {
+    display: inherit;
+  }
+}
+@media (max-width: 650px) {
+  h1 {
+    width: 100%;
+    text-align: center;
+  }
+  h1::after {
+    content: unset;
+    width: unset;
+    height: unset;
+    display: block;
+    background: white;
+  }
+  h1:hover::after {
+    width: unset;
+  }
+}
+@media (max-width: 600px) {
+  h1.alternate {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 600px) {
+  h1.alternate {
+    display: none;
+  }
 }
 </style>

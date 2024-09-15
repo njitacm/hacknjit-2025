@@ -16,15 +16,15 @@
     </div>
     <aside>
       <hr />
-      <a href="acm.njit.edu" target="_blank">Main ACM Site</a>
+      <a href="https://acm.njit.edu" target="_blank">Main ACM Site</a>
       <hr />
       <a href="https://www.acm.org/" target="_blank">ACM National</a>
       <hr />
       <a href="https://computing.njit.edu/" target="_blank"
         >NJIT Ying Wu College of Computing</a
       >
-      <hr />
-      <a href="acm.njit.edu" target="_blank">Sponsor Packet</a>
+      <!-- <hr />
+      <a href="https://acm.njit.edu" target="_blank">Sponsor Packet</a> -->
       <hr />
       <a href="mailto:hacknjit@njit.edu" target="_blank">Email Us</a>
       <hr />

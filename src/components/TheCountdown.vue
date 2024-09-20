@@ -156,6 +156,11 @@ export default {
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
+@media (max-height: 630px) {
+  .hatguy-container {
+    left: 90%;
+  }
+}
 .gradient {
   background: url("../assets/HackNJIT2024/repeating-bg.webp");
   animation-name: fade-in;

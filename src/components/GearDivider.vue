@@ -16,8 +16,11 @@ import { vIntersectionObserver } from "@vueuse/components";
 
 function onIntersectionObserver([{ isIntersecting, target }]) {
   if (isIntersecting) {
-    console.log(target);
-    target.classList.add("fade-in");
+    if (target.classList.contains("gearSpinInverted")) {
+      target.classList.add("fade-in-reverse");
+    } else {
+      target.classList.add("fade-in");
+    }
   }
 }
 </script>
@@ -55,6 +58,10 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
 }
 .fade-in {
   animation: gearSpin 1s linear infinite normal none,
+    fadeIn 0.5s linear 1 normal forwards;
+}
+.fade-in-reverse {
+  animation: gearSpin 1s linear infinite reverse none,
     fadeIn 0.5s linear 1 normal forwards;
 }
 @keyframes fadeIn {

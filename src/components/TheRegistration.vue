@@ -1,10 +1,21 @@
 <template>
-  <div ref="container">
+  <div ref="container" class="container">
     <GearDivider />
     <h1 v-intersection-observer="[onIntersectionObserver]">
-      Registration Coming Soon
+      Registration Is Open!
     </h1>
-    <GearDivider />
+    <p><a href="https://forms.gle/y9YzP376uPTueiqK7">Sign up now!</a></p>
+    <!-- <GearDivider /> -->
+    <img
+      id="gear5"
+      class="floating-gear gear-fade-in"
+      src="../assets/HackNJIT2024/gears/gear5.svg"
+    />
+    <img
+      id="gear6"
+      class="floating-gear gear-fade-in"
+      src="../assets/HackNJIT2024/gears/gear6.svg"
+    />
   </div>
 </template>
 
@@ -30,6 +41,27 @@ export default {
 
 
 <style scoped>
+#gear6 {
+  right: 15%;
+  top: 0;
+  width: 25vw;
+  max-width: 782px;
+}
+#gear5 {
+  left: 0%;
+  width: 47vw;
+  max-width: 782px;
+}
+.floating-gear {
+  position: absolute;
+  z-index: -100;
+  opacity: 0.55;
+  animation-name: gear-fade-in;
+  animation-duration: 0.75s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
 .fade-in {
   animation-name: fade-in;
   animation-duration: 0.5s;
@@ -52,6 +84,14 @@ div {
 h1 {
   font-size: 5rem;
   margin: 1rem 0;
+}
+p {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+a {
+  color: inherit;
+  text-decoration: underline;
 }
 .v-enter-active,
 .v-leave-active {
@@ -79,5 +119,8 @@ h1 {
     width: 80%;
     font-size: 2.75rem;
   }
+}
+.container {
+  position: relative;
 }
 </style>

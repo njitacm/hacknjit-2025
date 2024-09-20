@@ -9,12 +9,17 @@ export default {};
 <style scoped>
 img {
   z-index: -2;
-  width: 100%;
+  width: 40vh;
 }
 @media (max-width: 750px) {
   img {
     width: unset;
     max-height: 42.5vh;
+  }
+}
+@media (max-height: 800px) {
+  img {
+    width: 30vh;
   }
 }
 </style>

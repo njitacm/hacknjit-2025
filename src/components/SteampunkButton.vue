@@ -14,7 +14,7 @@ export default {
 <style scoped>
 .steampunk-button {
   /* background-color: var(--main-bg-color); */
-  background-color: #ad8e70;
+  background-color: transparent;
   color: var(--color4);
   cursor: pointer;
   /* border: 0.25rem solid #d4b490; */

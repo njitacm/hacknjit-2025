@@ -49,7 +49,7 @@ export default {
         {
           Question: "When and Where is HackNJIT?",
           Answer:
-            "HackNJIT 2023 will be happening November 4th-5th; check in will start at 9am. It will be at the NJIT Campus Center (150 Bleeker St, Newark, NJ 07102).",
+            "HackNJIT 2024 will be happening November 2nd-3rd; check in will start at 9am. It will be at the NJIT Campus Center (150 Bleeker St, Newark, NJ 07102).",
         },
         {
           Question: "Who can sign up to compete?",

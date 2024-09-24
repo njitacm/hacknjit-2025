@@ -54,7 +54,7 @@ export default {
         {
           Question: "Who can sign up to compete?",
           Answer:
-            "Any undergraduate or graduate student at any college in the US, or any recent (within 6 months) graduate from a college, may register as long as they are 18 years or older.",
+            "Any undergraduate or graduate student at any college in the US, or any recent (within 12 months) graduate from a college, may register as long as they are 18 years or older.",
         },
         {
           Question: "Do I have to register as a team?",

@@ -2,12 +2,26 @@
   <footer>
     <nav>
       <hr />
-      <img src="../assets/Logos/discord.svg" />
-      <img src="../assets/Logos/github-white.svg" />
-      <img src="../assets/Logos/instagram.svg" />
-      <img src="../assets/Logos/linkedin.svg" />
-      <img src="../assets/Logos/twitter.svg" />
-      <img src="../assets/Logos/youtube.svg" />
+      <!-- <a href="https://discord.com" target="_blank"
+        ><img src="../assets/Logos/discord.svg"
+      /></a>
+      <a href="https://github.com" target="_blank"
+        ><img src="../assets/Logos/github-white.svg"
+      /></a> -->
+      <a href="https://www.instagram.com/NJITACM/" target="_blank"
+        ><img src="../assets/Logos/instagram.svg"
+      /></a>
+      <a href="https://www.linkedin.com/company/njit-acm" target="_blank"
+        ><img src="../assets/Logos/linkedin.svg"
+      /></a>
+      <a href="https://x.com/NJITACM" target="_blank"
+        ><img src="../assets/Logos/twitter.svg"
+      /></a>
+      <a
+        href="https://https://www.youtube.com/channel/UC3stSn7UK5-IX6mNnlWlRLw"
+        target="_blank"
+        ><img src="../assets/Logos/youtube.svg"
+      /></a>
       <hr />
     </nav>
     <div class="NJIT_logos">

@@ -1,9 +1,26 @@
 <template>
-  <img src="../assets/HackNJIT2024/hatguy/hatguy0.png" />
+  <img ref="hatguyimg" src="../assets/HackNJIT2024/hatguy/hatguy0.png" />
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      hats: [
+        require("../assets/HackNJIT2024/hatguy/hatguy0.png"),
+        require("../assets/HackNJIT2024/hatguy/hatguy1.png"),
+        require("../assets/HackNJIT2024/hatguy/hatguy2.png"),
+        require("../assets/HackNJIT2024/hatguy/hatguy3.png"),
+        require("../assets/HackNJIT2024/hatguy/hatguy4.png"),
+      ],
+    };
+  },
+  mounted() {
+    console.log(this.$refs.hatguyimg.src);
+    this.$refs.hatguyimg.src = this.hats[Math.floor(5 * Math.random(0))];
+    console.log(this.$refs.hatguyimg.src);
+  },
+};
 </script>
 
 <style scoped>

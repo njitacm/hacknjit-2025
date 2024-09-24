@@ -68,6 +68,8 @@ html {
   font-size: 16px;
   background: #170800;
   z-index: -100;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 * {

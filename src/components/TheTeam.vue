@@ -41,7 +41,7 @@
       >
         <img src="../assets/eboard/event_master.png" />
         <h2>Priya Patel</h2>
-        <h3>Event Master</h3>
+        <h3>ACM Event Master</h3>
       </div>
       <div
         class="member"

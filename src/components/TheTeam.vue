@@ -31,7 +31,7 @@
         ref="member3"
       >
         <img src="../assets/eboard/treasurer.png" />
-        <h2>Logan Kriebal</h2>
+        <h2>Logan Kriebel</h2>
         <h3>ACM Treasurer</h3>
       </div>
       <div

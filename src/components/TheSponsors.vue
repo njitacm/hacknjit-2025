@@ -16,7 +16,29 @@
         <h1>Gold Sponsor</h1>
         <h1>Silver Sponsor</h1>
         <h1>Bronze Sponsor</h1> -->
-      <h1>Sponsor Info Coming Soon</h1>
+      <div class="sponsor-row">
+        <img
+          class="sponsor"
+          src="../assets/HackNJIT2024/Sponsors/AntlionAudio.png"
+          alt="Antlion Audio"
+        />
+        <img
+          class="sponsor"
+          src="../assets/HackNJIT2024/Sponsors/Merck.png"
+          alt="Merck"
+        />
+        <img
+          class="sponsor"
+          src="../assets/HackNJIT2024/Sponsors/ISACA_nobg.png"
+          alt="Isaca"
+        />
+        <img
+          class="sponsor"
+          id="standoutStickers"
+          src="../assets/HackNJIT2024/Sponsors/StandOut-Stickers-Logo.png"
+          alt="Isaca"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -47,6 +69,27 @@ export default {
 </script>
 
 <style scoped>
+.sponsor-row {
+  display: grid;
+  grid-template-columns: 33% 34% 33%;
+  grid-template-rows: 475px;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-around;
+  background: #8f3d0655;
+  border: 8px solid var(--main-bg-color);
+  border-radius: 32px;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+.sponsor {
+  width: 100%;
+  aspect-ratio: 1/1;
+  flex: 1;
+}
+#standoutStickers {
+  grid-column: 2;
+}
 div.outer-container {
   width: 70%;
   margin-top: 2rem;
@@ -175,7 +218,7 @@ td:last-of-type {
 }
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.5s linear;
+  transition: opacity 0.25s linear;
 }
 
 .v-enter-from,
@@ -184,7 +227,7 @@ td:last-of-type {
 }
 .fade-in {
   animation-name: fade-in;
-  animation-duration: 5s;
+  animation-duration: 0.75s;
   /* animation-delay: 1.5s; */
   animation-iteration-count: 1;
   animation-timing-function: linear;

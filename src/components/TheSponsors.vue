@@ -84,8 +84,8 @@ export default {
 }
 .sponsor {
   width: 100%;
-  aspect-ratio: 1/1;
-  flex: 1;
+  height: 100%;
+  object-fit: contain;
 }
 #standoutStickers {
   grid-column: 2;

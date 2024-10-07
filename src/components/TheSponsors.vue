@@ -1,7 +1,7 @@
 <template>
   <div ref="container" class="outer-container">
     <div class="title" v-intersection-observer="[onIntersectionObserver]">
-      <img class="title-svg" src="../assets/HackNJIT2024/gears/gear4.svg" />
+      <!-- <img class="title-svg" src="../assets/HackNJIT2024/gears/gear4.svg" /> -->
       <h1 class="title">Our Sponsors</h1>
       <!-- @click="
           window.open(
@@ -9,19 +9,14 @@
           )
         " -->
       <!-- <h2 @click="toggleSponsors">Sponsor Packet</h2> -->
-      <img class="title-svg" src="../assets/HackNJIT2024/gears/gear4.svg" />
+      <!-- <img class="title-svg" src="../assets/HackNJIT2024/gears/gear4.svg" /> -->
     </div>
     <div class="sponsors" v-intersection-observer="[onIntersectionObserver]">
       <!-- <h1>Title Sponsor</h1>
         <h1>Gold Sponsor</h1>
         <h1>Silver Sponsor</h1>
         <h1>Bronze Sponsor</h1> -->
-      <div class="sponsor-row">
-        <img
-          class="sponsor"
-          src="../assets/HackNJIT2024/Sponsors/AntlionAudio.png"
-          alt="Antlion Audio"
-        />
+      <div class="sponsor-grid">
         <img
           class="sponsor"
           src="../assets/HackNJIT2024/Sponsors/Merck.png"
@@ -31,6 +26,12 @@
           class="sponsor"
           src="../assets/HackNJIT2024/Sponsors/ISACA_nobg.png"
           alt="Isaca"
+        />
+        <img
+          class="sponsor"
+          style="width: 85%; height: 85%"
+          src="../assets/HackNJIT2024/Sponsors/AntlionAudio.png"
+          alt="Antlion Audio"
         />
         <img
           class="sponsor"
@@ -69,16 +70,17 @@ export default {
 </script>
 
 <style scoped>
-.sponsor-row {
+.sponsor-grid {
   display: grid;
-  grid-template-columns: 33% 34% 33%;
-  grid-template-rows: 475px;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: repeat(2, 400px);
   flex-wrap: wrap;
   align-content: center;
   justify-content: space-around;
-  background: #8f3d0655;
-  border: 8px solid var(--main-bg-color);
-  border-radius: 32px;
+  background: #8f3d0625;
+  /* border: 8px solid var(--main-bg-color); */
+  border-bottom: 4px solid var(--main-bg-color);
+  /* border-radius: 32px; */
   gap: 0.5rem;
   padding: 1rem;
 }
@@ -86,16 +88,17 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  align-self: center;
+  justify-self: center;
 }
 #standoutStickers {
   grid-column: 2;
 }
 div.outer-container {
-  width: 70%;
+  width: 100%;
   margin-top: 2rem;
   margin-left: auto;
   margin-right: auto;
-  padding: 1.5rem;
 }
 h1.title {
   font-size: 4rem;
@@ -121,12 +124,14 @@ h2:hover::after {
   width: 100%;
 }
 div.title {
+  padding-top: 1.5rem;
+  border-top: 4px solid var(--main-bg-color);
+  background: #8f3d0625;
   display: grid;
   grid-template-columns: 30% 1fr 30%;
   grid-template-rows: 100%;
   justify-content: center;
   column-gap: 1rem;
-  margin-bottom: 1.5rem;
 }
 div.title h1 {
   grid-column: 2;

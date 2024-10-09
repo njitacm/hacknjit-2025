@@ -33,12 +33,13 @@
           src="../assets/HackNJIT2024/Sponsors/AntlionAudio.png"
           alt="Antlion Audio"
         />
-        <img
-          class="sponsor"
-          id="standoutStickers"
-          src="../assets/HackNJIT2024/Sponsors/StandOut-Stickers-Logo.png"
-          alt="Isaca"
-        />
+        <a href="http://hackp.ac/mlh-StandOutStickers-hackathons">
+          <img
+            class="sponsor"
+            id="standoutStickers"
+            src="../assets/HackNJIT2024/Sponsors/StandOut-Stickers-Logo.png"
+            alt="Isaca"
+        /></a>
       </div>
     </div>
   </div>

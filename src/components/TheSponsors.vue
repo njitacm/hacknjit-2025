@@ -17,27 +17,39 @@
         <h1>Silver Sponsor</h1>
         <h1>Bronze Sponsor</h1> -->
       <div class="sponsor-grid">
-        <img
-          class="sponsor"
-          src="../assets/HackNJIT2024/Sponsors/Merck.png"
-          alt="Merck"
-        />
-        <img
-          class="sponsor"
-          src="../assets/HackNJIT2024/Sponsors/ISACA_nobg.png"
-          alt="Isaca"
-        />
-        <img
-          class="sponsor"
-          style="width: 85%; height: 85%"
-          src="../assets/HackNJIT2024/Sponsors/AntlionAudio.png"
-          alt="Antlion Audio"
-        />
+        <a href="https://www.merck.com/">
+          <img
+            class="sponsor"
+            src="../assets/HackNJIT2024/Sponsors/Merck.png"
+            alt="Merck"
+        /></a>
+        <a href="https://www.isaca.org/">
+          <img
+            class="sponsor"
+            src="../assets/HackNJIT2024/Sponsors/ISACA_nobg.png"
+            alt="Isaca"
+        /></a>
+        <a href="https://antlionaudio.com/">
+          <img
+            class="sponsor"
+            style="width: 85%; height: 85%"
+            src="../assets/HackNJIT2024/Sponsors/AntlionAudio.png"
+            alt="Antlion Audio"
+          />
+        </a>
         <a href="http://hackp.ac/mlh-StandOutStickers-hackathons">
           <img
             class="sponsor"
             id="standoutStickers"
             src="../assets/HackNJIT2024/Sponsors/StandOut-Stickers-Logo.png"
+            alt="Isaca"
+        /></a>
+        <a href="https://starmicronics.com/">
+          <img
+            class="sponsor"
+            style="width: 80%"
+            id="standoutStickers"
+            src="../assets/HackNJIT2024/Sponsors/Star_Micronics_logo.svg"
             alt="Isaca"
         /></a>
       </div>

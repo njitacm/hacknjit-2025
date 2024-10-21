@@ -15,6 +15,11 @@
 </template>
 
 <script>
+if (window.location.pathname == "/register") {
+  window.location.href = "https://forms.gle/MnPFuMQoVA5PCphp7";
+} else if (window.location.pathname == "/discord") {
+  window.location.href = "https://discord.gg/jDErKCXvjP";
+}
 import MLHBanner from "./components/MLHBanner.vue";
 import TheCountdown from "./components/TheCountdown.vue";
 import TheFAQ from "./components/TheFAQ.vue";

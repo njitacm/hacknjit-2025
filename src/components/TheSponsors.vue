@@ -17,40 +17,48 @@
         <h1>Silver Sponsor</h1>
         <h1>Bronze Sponsor</h1> -->
       <div class="sponsor-grid">
-        <a href="https://www.merck.com/">
+        <a href="https://starmicronics.com/" id="starmicronics">
           <img
-            class="sponsor"
+            class="sponsor-img"
+            style="width: 80%"
+            src="../assets/HackNJIT2024/Sponsors/Star_Micronics_logo.svg"
+            alt="Star Micronics"
+        /></a>
+        <a href="https://www.merck.com/" id="merck">
+          <img
+            class="sponsor-img"
             src="../assets/HackNJIT2024/Sponsors/Merck.png"
             alt="Merck"
         /></a>
-        <a href="https://www.isaca.org/">
+        <a href="https://www.isaca.org/" id="isaca">
           <img
-            class="sponsor"
+            class="sponsor-img"
             src="../assets/HackNJIT2024/Sponsors/ISACA_nobg.png"
             alt="Isaca"
         /></a>
-        <a href="https://antlionaudio.com/">
+
+        <a href="https://hyperswitch.io/" id="hyperswitch">
           <img
-            class="sponsor"
+            class="sponsor-img"
+            src="../assets/HackNJIT2024/Sponsors/hyperswitch_logo.png"
+            alt="Hyperswitch"
+        /></a>
+        <a href="https://antlionaudio.com/" id="antlion">
+          <img
+            class="sponsor-img"
             style="width: 85%; height: 85%"
             src="../assets/HackNJIT2024/Sponsors/AntlionAudio.png"
             alt="Antlion Audio"
           />
         </a>
-        <a href="http://hackp.ac/mlh-StandOutStickers-hackathons">
+        <a
+          href="http://hackp.ac/mlh-StandOutStickers-hackathons"
+          id="standoutStickers"
+        >
           <img
-            class="sponsor"
-            id="standoutStickers"
+            class="sponsor-img"
             src="../assets/HackNJIT2024/Sponsors/StandOut-Stickers-Logo.png"
-            alt="Isaca"
-        /></a>
-        <a href="https://starmicronics.com/">
-          <img
-            class="sponsor"
-            style="width: 80%"
-            id="standoutStickers"
-            src="../assets/HackNJIT2024/Sponsors/Star_Micronics_logo.svg"
-            alt="Isaca"
+            alt="StandOutStickers"
         /></a>
       </div>
     </div>
@@ -62,7 +70,7 @@ import { vIntersectionObserver } from "@vueuse/components";
 
 function onIntersectionObserver([{ isIntersecting, target }]) {
   if (isIntersecting) {
-    console.log(target);
+    // console.log(target);
     target.classList.add("fade-in");
   }
 }
@@ -83,21 +91,52 @@ export default {
 </script>
 
 <style scoped>
+#starmicronics {
+  grid-column: 1/7;
+  grid-row: 1;
+}
+#starmicronics img {
+  max-width: 40vw;
+}
+#hyperswitch {
+  grid-column: 5/7;
+  grid-row: 2;
+}
+#isaca {
+  grid-column: 3/5;
+  grid-row: 2;
+}
+#merck {
+  grid-column: 1/3;
+  grid-row: 2;
+}
+#antlion {
+  grid-column: 4/6;
+  grid-row: 3;
+}
+#standoutStickers {
+  grid-column: 2/3;
+  grid-row: 3;
+}
+.bronze {
+  width: 75%;
+}
 .sponsor-grid {
   display: grid;
-  grid-template-columns: repeat(2, 50%);
-  grid-template-rows: repeat(2, 400px);
+  grid-template-columns: repeat(6, 16.67%);
+  grid-template-rows: repeat(3, 300px);
   flex-wrap: wrap;
   align-content: center;
   justify-content: space-around;
-  background: #8f3d0625;
+  /* background: #8f3d0625; */
   /* border: 8px solid var(--main-bg-color); */
-  border-bottom: 4px solid var(--main-bg-color);
+  /* border-bottom: 4px solid var(--main-bg-color); */
   /* border-radius: 32px; */
-  gap: 0.5rem;
+  row-gap: 0.5rem;
+  /* column-gap: 0.5rem; */
   padding: 1rem;
 }
-.sponsor {
+.sponsor-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -114,7 +153,7 @@ div.outer-container {
   margin-right: auto;
 }
 h1.title {
-  font-size: 4rem;
+  font-size: 9rem;
   font-weight: bold;
   /* border-bottom: 8px solid white; */
   margin-bottom: 0.75rem;
@@ -138,11 +177,10 @@ h2:hover::after {
 }
 div.title {
   padding-top: 1.5rem;
-  border-top: 4px solid var(--main-bg-color);
-  background: #8f3d0625;
+  /* border-top: 4px solid var(--main-bg-color); */
+  /* background: #8f3d0625; */
   display: grid;
-  grid-template-columns: 30% 1fr 30%;
-  grid-template-rows: 100%;
+
   justify-content: center;
   column-gap: 1rem;
 }
@@ -259,14 +297,51 @@ td:last-of-type {
     opacity: 1;
   }
 }
+@media (max-width: 1500px) {
+  .sponsor-grid {
+    grid-template-rows: repeat(3, 200px);
+  }
+}
 @media (max-width: 1250px) {
   div.title img {
     width: 9rem;
   }
+  h1.title {
+    font-size: 8rem;
+  }
+}
+@media (max-width: 1000px) {
+  .sponsor-grid {
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(6, auto);
+  }
+  #starmicronics,
+  #hyperswitch,
+  #isaca,
+  #merck,
+  #antlion,
+  #standoutStickers {
+    grid-column: unset;
+    grid-row: unset;
+  }
+  .sponsor-img {
+    max-width: 75% !important;
+  }
+  h1.title {
+    font-size: 7rem;
+  }
 }
 @media (max-width: 800px) {
+  h1.title {
+    font-size: 5rem;
+  }
   div.title img {
     width: 7rem;
+  }
+}
+@media (max-width: 600px) {
+  h1.title {
+    font-size: 4rem;
   }
 }
 @media (max-width: 550px) {
@@ -287,6 +362,11 @@ td:last-of-type {
   }
   h1 {
     font-size: 2.5rem;
+  }
+}
+@media (max-width: 400px) {
+  h1.title {
+    font-size: 3rem;
   }
 }
 </style>

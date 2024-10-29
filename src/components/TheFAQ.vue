@@ -36,7 +36,7 @@ import { vIntersectionObserver } from "@vueuse/components";
 
 function onIntersectionObserver([{ isIntersecting, target }]) {
   if (isIntersecting) {
-    console.log(target);
+    // console.log(target);
     target.classList.add("fade-in");
   }
 }

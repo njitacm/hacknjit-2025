@@ -4,7 +4,6 @@
   <TheHeader />
   <TheCountdown />
   <TheIntro id="Intro" />
-  <TheRegistration id="Registration" />
   <TheSponsors id="Sponsors" />
   <TheTeam id="Team" />
   <TheFAQ id="FAQ" />
@@ -19,6 +18,8 @@ if (window.location.pathname == "/register") {
   window.location.href = "https://forms.gle/MnPFuMQoVA5PCphp7";
 } else if (window.location.pathname == "/discord") {
   window.location.href = "https://discord.gg/jDErKCXvjP";
+} else if (window.location.pathname == "/devpost") {
+  window.location.href = "https://hacknjit-2024.devpost.com";
 }
 import MLHBanner from "./components/MLHBanner.vue";
 import TheCountdown from "./components/TheCountdown.vue";
@@ -26,7 +27,6 @@ import TheFAQ from "./components/TheFAQ.vue";
 import TheFooter from "./components/TheFooter.vue";
 import TheHeader from "./components/TheHeader.vue";
 import TheIntro from "./components/TheIntro.vue";
-import TheRegistration from "./components/TheRegistration.vue";
 import TheSponsors from "./components/TheSponsors.vue";
 import TheTeam from "./components/TheTeam.vue";
 export default {
@@ -38,7 +38,6 @@ export default {
     TheTeam,
     TheFAQ,
     TheFooter,
-    TheRegistration,
     TheSponsors,
     TheIntro,
   },

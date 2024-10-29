@@ -2,13 +2,15 @@
   <Transition>
     <header ref="pageHeader" v-show="showHeader">
       <nav class="main">
-        <h1 class="alternate">Coming Soon....</h1>
+        <h1 class="alternate">Welcome to HackNJIT!</h1>
         <h1 class="tertiary"><a href="#Team">Meet The Team</a></h1>
         <h1 class="secondary"><a href="#Intro">About Us</a></h1>
         <h1 class="primary" @click="toTop()">HackNJIT</h1>
-        <h1 class="secondary"><a href="#Registration">Registration</a></h1>
-        <h1 class="tertiary">
+        <h1 class="secondary">
           <a href="#Sponsors">Sponsors</a>
+        </h1>
+        <h1 class="tertiary">
+          <a href="#FAQ">FAQ</a>
         </h1>
       </nav>
     </header>
@@ -54,20 +56,17 @@ export default {
 .fake-header {
   height: 40px;
 }
-h1.alternate {
-  display: none;
-}
 
 header {
   color: white;
   display: flex;
-  width: 100%;
+  width: 100vw;
   z-index: 100;
   padding: 0.5rem 0;
   position: absolute;
   top: 0;
-  display: grid;
-  grid-template-columns: 20% auto 20%;
+  display: flex;
+  justify-content: center;
   position: fixed;
 }
 
@@ -106,7 +105,7 @@ h1 {
   text-align: center;
 }
 h1.alternate {
-  font-size: 3rem;
+  display: none;
 }
 h1.primary {
   font-size: 2.75rem;
@@ -137,30 +136,34 @@ h1:hover::after {
 }
 @media (max-width: 1500px) {
   header {
-    grid-template-columns: 10% auto 10%;
+    margin-top: 30px;
   }
 }
-@media (max-width: 1250px) {
+@media (max-width: 1100px) {
   h1.primary {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
   }
   h1.secondary {
     font-size: 1.5rem;
   }
   h1.tertiary {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }
 @media (max-width: 1000px) {
-  h1 {
+  h1.tertiary {
     display: none;
   }
-  h1.primary {
+}
+@media (max-width: 750px) {
+  h1.primary,
+  h1.secondary {
     display: none;
   }
   h1.alternate {
     display: inherit;
+    font-size: 3rem;
   }
 }
 @media (max-width: 650px) {
@@ -181,12 +184,29 @@ h1:hover::after {
 }
 @media (max-width: 600px) {
   h1.alternate {
-    font-size: 3rem;
+    display: inherit;
+    font-size: 2.75rem;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 550px) {
   h1.alternate {
-    display: none;
+    display: inherit;
+    font-size: 2.5rem;
+  }
+}
+@media (max-width: 500px) {
+  header {
+    margin-top: 0;
+  }
+  h1.alternate {
+    width: 75%;
+    font-size: 2.25rem;
+  }
+}
+@media (max-width: 375px) {
+  h1.alternate {
+    display: inherit;
+    font-size: 2rem;
   }
 }
 </style>

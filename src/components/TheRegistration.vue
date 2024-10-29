@@ -1,6 +1,5 @@
 <template>
   <div ref="container" class="container">
-    <GearDivider />
     <h1 v-intersection-observer="[onIntersectionObserver]">
       Registration Is Open!
     </h1>
@@ -24,21 +23,16 @@ import { vIntersectionObserver } from "@vueuse/components";
 
 function onIntersectionObserver([{ isIntersecting, target }]) {
   if (isIntersecting) {
-    console.log(target);
+    // console.log(target);
     target.classList.add("fade-in");
   }
 }
 </script>
 <script>
-import GearDivider from "./GearDivider.vue";
-
 export default {
-  components: {
-    GearDivider,
-  },
+  components: {},
 };
 </script>
-
 
 <style scoped>
 #gear6 {

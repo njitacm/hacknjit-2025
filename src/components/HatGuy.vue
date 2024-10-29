@@ -16,9 +16,8 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$refs.hatguyimg.src);
+    // console.log(this.$refs.hatguyimg.src);
     this.$refs.hatguyimg.src = this.hats[Math.floor(5 * Math.random(0))];
-    console.log(this.$refs.hatguyimg.src);
   },
 };
 </script>
@@ -26,17 +25,24 @@ export default {
 <style scoped>
 img {
   z-index: -2;
-  width: 40vh;
+  /* width: 40vh; */
+}
+@media (max-width: 1500px) {
+  img {
+    width: unset;
+    max-height: 37.5vh;
+  }
 }
 @media (max-width: 750px) {
   img {
     width: unset;
-    max-height: 42.5vh;
+    max-height: 32.5vh;
   }
 }
-@media (max-height: 800px) {
+@media (max-width: 500px) {
   img {
-    width: 30vh;
+    width: unset;
+    max-height: 27.5vh;
   }
 }
 </style>

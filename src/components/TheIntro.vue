@@ -6,7 +6,7 @@
 
     <main>
       <img
-        src="../assets/Slides/hacknjit_1.jpg"
+        src="../assets/HackNJIT2024/clock_man.svg"
         class="inner_img"
         v-intersection-observer="[onIntersectionObserver]"
       />
@@ -54,13 +54,13 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
 }
 .outer-container {
   position: relative;
-  width: 60%;
+  width: 95%;
   margin: 0rem auto;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
   /* color: var(--color3); */
 }
 h1 {
-  font-size: 4rem;
+  font-size: 8rem;
   margin: 1.75rem 0;
   font-weight: bold;
 }
@@ -72,16 +72,16 @@ main {
 }
 p {
   flex: 1;
-  font-size: 2rem;
+  font-size: 2.5rem;
+  height: -moz-fit-content;
   height: fit-content;
   align-self: center;
-  font-weight: bold;
-  text-align: left;
+  text-align: right;
 }
 img {
   max-width: 50%;
   /* border: 4px var(--color3) solid; */
-  border: 4px white solid;
+  /* border: 4px white solid; */
   border-radius: 30px;
   flex: 1;
 }
@@ -117,34 +117,85 @@ img {
 
 @media (max-width: 1750px) {
   .outer-container {
-    width: 70%;
+    /* width: 70%; */
   }
 }
-@media (max-width: 1500px) {
+@media (max-width: 1550px) {
   .outer-container {
-    width: 77.5%;
+    /* width: 77.5%; */
+  }
+  p {
+    font-size: 2.25rem;
   }
 }
+@media (max-width: 1350px) {
+  .outer-container {
+    /* width: 77.5%; */
+  }
+  p {
+    font-size: 2rem;
+  }
+}
+
 @media (max-width: 1200px) {
   main {
     display: flex;
     flex-wrap: wrap;
   }
   img {
-    min-width: 100%;
+    min-width: 55%;
+    margin: 0 auto;
   }
-  .inner_text {
-    min-width: 60%;
-  }
-}
-@media (max-width: 750px) {
   p {
     font-size: 1.75rem;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 1100px) {
+  p {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 900px) {
   h1 {
-    font-size: 3rem;
+    font-size: 6rem;
+  }
+  img {
+    min-width: 50%;
+    margin: 0 auto;
+  }
+  p {
+    font-size: 1.25rem;
+  }
+}
+@media (max-width: 750px) {
+  h1 {
+    display: none;
+  }
+  main {
+    margin-top: 3rem;
+  }
+  p {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 700px) {
+  main {
+    flex-direction: column;
+  }
+  img {
+    max-width: 75%;
+  }
+  p {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+  .outer-container {
+    width: 90%;
+  }
+}
+@media (max-width: 450px) {
+  p {
+    font-size: 1rem;
   }
 }
 </style>

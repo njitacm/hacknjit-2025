@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     handleSlideStart() {
-      console.log("Start!");
+      // console.log("Start!");
       this.startTime = new Date();
       this.clickedArrows = true;
     },

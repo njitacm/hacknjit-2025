@@ -1,51 +1,75 @@
 <template>
-  <button class="steampunk-button" :class="{ large: isLarge }">
-    <img class="svg" src="../assets/HackNJIT2024/conveyorbelt.svg" />
-    <p><slot></slot></p>
-  </button>
+  <div ref="container">
+    <Transition>
+      <button v-show="containerIsVisible" @click="$emit('click-emit')">
+        <slot></slot>
+      </button>
+    </Transition>
+  </div>
 </template>
 
-<script>
-export default {
-  props: ["isLarge"],
-};
+<script setup>
+import { ref } from "vue";
+import { useIntersectionObserver } from "@vueuse/core";
+
+const container = ref(null);
+const containerIsVisible = ref(false);
+
+useIntersectionObserver(container, ([{ isIntersecting }]) => {
+  containerIsVisible.value = isIntersecting;
+});
 </script>
 
 <style scoped>
-.steampunk-button {
-  /* background-color: var(--main-bg-color); */
-  background-color: transparent;
-  color: var(--color4);
-  cursor: pointer;
-  /* border: 0.25rem solid #d4b490; */
-  border: none;
-  border-radius: 1000rem;
-  min-width: 15.625rem;
+button {
   position: relative;
-  display: flex;
-  align-content: center;
-  padding: 0rem 0rem;
-  gap: 0.5rem;
-}
-.svg {
-  width: 400px;
-  height: 65px;
-}
-.large .svg {
-  width: 500px;
-  height: 75px;
-}
-p {
-  display: block;
-  position: absolute;
+  z-index: 1;
+  padding: 0.5rem;
   font-size: 2rem;
-  left: 5rem;
-  align-self: center;
-  /* color: #361200; */
-  color: var(--color4);
-  width: 240px;
+  background-color: var(--main-bg-color);
+  border-radius: 0.5rem;
+  border-color: var(--main-fg-color);
+  border-width: 4px;
+  z-index: 2;
 }
-.large p {
-  width: 340px;
+@media (max-width: 1500px) {
+  button {
+    font-size: 1.8rem;
+  }
+}
+@media (max-width: 1000px) {
+  button {
+    font-size: 1.6rem;
+  }
+}
+@media (max-width: 750px) {
+  button {
+    font-size: 1.4rem;
+  }
+}
+@media (max-width: 600px) {
+  button {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 500px) {
+  button {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 420px) {
+  button {
+    font-size: 0.75rem;
+  }
+}
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 5s linear;
+  transition-delay: 2s;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

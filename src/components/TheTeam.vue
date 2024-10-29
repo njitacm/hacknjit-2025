@@ -70,15 +70,6 @@
         <h2>Ananya Tyagi</h2>
         <h3>ACM Secretary</h3>
       </div>
-      <div
-        class="member"
-        v-intersection-observer="[onIntersectionObserver]"
-        ref="member8"
-      >
-        <img src="../assets/eboard/public_relations.png" />
-        <h2>Darren Bonifacio</h2>
-        <h3>ACM Public Relations</h3>
-      </div>
     </main>
   </div>
 </template>
@@ -88,7 +79,7 @@ import { vIntersectionObserver } from "@vueuse/components";
 
 function onIntersectionObserver([{ isIntersecting, target }]) {
   if (isIntersecting) {
-    console.log(target);
+    // console.log(target);
     target.classList.add("fade-in");
   }
 }
@@ -96,7 +87,7 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
 <script>
 export default {
   mounted() {
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 7; i++) {
       var increase = i <= 4 ? i / 4 : (i - 4) / 4;
       this.$refs["member" + i].style["transition-delay"] = increase + "s";
     }

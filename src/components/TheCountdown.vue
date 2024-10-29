@@ -1,6 +1,6 @@
 <template>
-  <div ref="gradient" class="gradient"></div>
-  <div class="outer-container" ref="container">
+  <!-- <div ref="gradient" class="gradient"></div> -->
+  <div class="outer-container gradient" ref="container">
     <Transition>
       <header v-show="containerIsVisible">
         <h1>{{ format(days) }}</h1>
@@ -17,12 +17,18 @@
       {{ format(tweened_day.toFixed(0)) }} /
       {{ tweened_year.toFixed(0) }}
     </h3>
+    <div class="button-div">
+      <SteampunkButton @click-emit="window.open('/register')"
+        >Register Here!</SteampunkButton
+      >
+      <SteampunkButton @click-emit="window.open('/devpost')"
+        >See Our Devpost!</SteampunkButton
+      >
+    </div>
     <div class="hatguy-container">
       <HatGuy />
     </div>
   </div>
-
-  <div class="countdown-gradient"></div>
 </template>
 
 <script setup>
@@ -33,7 +39,7 @@ import { useIntersectionObserver } from "@vueuse/core";
 const container = ref(null);
 const containerIsVisible = ref(false);
 
-useIntersectionObserver(container, ([{ isIntersecting }], _) => {
+useIntersectionObserver(container, ([{ isIntersecting }]) => {
   containerIsVisible.value = isIntersecting;
 });
 </script>
@@ -41,6 +47,7 @@ useIntersectionObserver(container, ([{ isIntersecting }], _) => {
 <script>
 import GearColon from "./GearColon.vue";
 import HatGuy from "./HatGuy.vue";
+import SteampunkButton from "./SteampunkButton.vue";
 export default {
   data() {
     return {
@@ -74,6 +81,7 @@ export default {
   components: {
     GearColon,
     HatGuy,
+    SteampunkButton,
   },
   methods: {
     setTime() {
@@ -136,7 +144,7 @@ export default {
   color: white;
   height: fit-content;
   width: 75%;
-  height: calc(100vh);
+  /* height: calc(100vh); */
   margin: 0 auto;
   padding-top: 3.5rem;
   width: fit-content;
@@ -144,10 +152,6 @@ export default {
   overflow: hidden;
 }
 .hatguy-container {
-  position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
   animation-name: fade-in;
   opacity: 0;
   animation-delay: 4s;
@@ -168,16 +172,17 @@ export default {
   animation-iteration-count: 1;
   animation-timing-function: linear;
   width: 100%;
-  height: 100vh;
-  position: absolute;
+  /* height: 100vh; */
+  /* position: absolute;
   z-index: -10;
-  top: 0;
+  top: 0; */
 }
 header {
   margin: 0 auto;
   display: flex;
   gap: 0.5rem;
   align-content: center;
+  justify-content: center;
 }
 .gear-colon {
   align-self: center;
@@ -235,29 +240,29 @@ h3 {
 }
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 5.5s linear;
-  transition-delay: 1s;
+  transition: opacity 5s linear;
+  transition-delay: 0.5s;
 }
 
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
 }
+.button-div {
+  display: flex;
+  justify-content: space-between;
+  width: fit-content;
+  margin: 1rem auto;
+  gap: 3.5rem;
+}
 @media (max-width: 1500px) {
   h1 {
     font-size: 8.75rem;
   }
-  .outer-container {
-    height: calc(85vh);
-  }
-  .gradient {
-    height: calc(85vh);
-  }
+
   .countdown-gradient {
     height: calc(85vh);
   }
-}
-@media (max-width: 1500px) {
   header {
     margin-top: 77px;
   }
@@ -282,7 +287,7 @@ h3 {
     font-size: 4.5rem;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   h1 {
     font-size: 4.5rem;
     z-index: 100;
@@ -292,12 +297,10 @@ h3 {
     font-size: 4rem;
     z-index: 100;
   }
-  .outer-container {
-    height: calc(75vh);
+  .button-div {
+    gap: 2.5rem;
   }
-  .gradient {
-    height: calc(75vh);
-  }
+
   .countdown-gradient {
     height: calc(75vh);
   }
@@ -316,6 +319,12 @@ h3 {
   }
   h3 {
     font-size: 2.5rem;
+  }
+  .button-div {
+    gap: 2rem;
+  }
+  header {
+    gap: 0.2rem;
   }
 }
 </style>

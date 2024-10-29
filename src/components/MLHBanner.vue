@@ -21,9 +21,9 @@
   width: 10%;
   z-index: 10000;
 }
-@media (max-width: 450px) {
+@media (max-width: 700px) {
   .banner {
-    right: 20%;
+    right: 5px;
   }
 }
 </style>

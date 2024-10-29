@@ -32,6 +32,10 @@ button {
   border-width: 4px;
   z-index: 2;
 }
+button * {
+  color: black;
+  text-decoration: none;
+}
 @media (max-width: 1500px) {
   button {
     font-size: 1.8rem;

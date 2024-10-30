@@ -18,10 +18,14 @@
       {{ tweened_year.toFixed(0) }}
     </h3>
     <div class="button-div">
-      <SteampunkButton @click-emit="window.open('/register')"
+      <SteampunkButton
+        @click-emit="window.open('/register')"
+        style="color: black"
         >Register Here!</SteampunkButton
       >
-      <SteampunkButton @click-emit="window.open('/devpost')"
+      <SteampunkButton
+        @click-emit="window.open('/devpost')"
+        style="color: black"
         >See Our Devpost!</SteampunkButton
       >
     </div>

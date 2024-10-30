@@ -99,13 +99,7 @@ export default {
         {
           Question: "What should I bring?",
           Answer:
-            "Bring a form of identification, proof of COVID vaccination and whatever you need to hack. This includes your laptop, your charger, and any hardware you'll need for your project. Note that we'll be running a hardware table, so you can borrow hardware (Pis, Arduinos, sensors, etc.) from us at any time during the event.",
-        },
-        {
-          Question:
-            "If I am not vacinnated or cannot find my COVID card can I still attend?",
-          Answer:
-            "Yes, as long you provide proof of a negative result within 3 days of the event (earliest being November 1st) and show it during entry, you are all set to go! ",
+            "Bring a form of identification and whatever you need to hack. This includes your laptop, your charger, and any hardware you'll need for your project. Note that we'll be running a hardware table, so you can borrow hardware (Pis, Arduinos, sensors, etc.) from us at any time during the event.",
         },
         {
           Question: "What shouldn't I bring?",
@@ -116,6 +110,66 @@ export default {
           Question: "Do you offer travel reimbursements?",
           Answer:
             "Unfortunately, we do not offer travel reimbursements at this time.",
+        },
+        {
+          Question: "How many people can be in one team?",
+          Answer: "We allow up to four people per team.",
+        },
+        {
+          Question: "Can a member of our team be at the event virtually?",
+          Answer:
+            "No, all team members are required to check in at the start of the event.",
+        },
+        {
+          Question: "Do we need to stay the full duration of the event?",
+          Answer:
+            "You are not required to stay on-site for the full event, however you are required to be present at check-in and during judging if you are submitting a project.",
+        },
+        {
+          Question: "How long does the Hackathon last?",
+          Answer:
+            "HackNJIT is unique in that it occurs during daylight savings time, which means it is technically a 25 hour Hackathon! Make good use of that extra hour!",
+        },
+        {
+          Question: "What are the start and end times for the event?",
+          Answer:
+            "Check-in starts at 9:00 Saturday and hacking starts at noon the same day. You are required to submit your project by noon on Sunday.",
+        },
+        {
+          Question: "Where do I submit my project?",
+          Answer: "You submit your project on our Devpost! (linked above)",
+        },
+        {
+          Question: "Where is the full rule list?",
+          Answer:
+            "You can find the full list of rules on our Devpost! (linked above)",
+        },
+        {
+          Question:
+            "What is the theme for the event? Do I need to make a project pertaining to that theme?",
+          Answer:
+            'Our theme is "Steampunk" but you aren\'t required to make a themed hack, there is a separate prize category for "Best Themed Hack".',
+        },
+        {
+          Question: "What projects are allowed?",
+          Answer:
+            "Anything you can think of! We accept any software project from websites to phone app to video games and more!",
+        },
+        {
+          Question:
+            "I don't have any programming experience, can I still compete?",
+          Answer:
+            "Of course! HackNJIT is an amazing opportunity to learn more about programming and we heavily encourage you attend regardless of your skill level. Even if you don't submit a project, we will be hosting numerous educational workshops that you can attend to pick up new skills.",
+        },
+        {
+          Question: "Do I need to be a programmer to be compete?",
+          Answer:
+            "Not at all! Every team needs a good business major to lead their pitch, or an artist to make project mockups! The best teams consist of individuals with a diverse array of skills working together to create something none could do alone!",
+        },
+        {
+          Question: "How can I form a team?",
+          Answer:
+            "If you don't have a team already, join our discord to meet new people and find others looking for a team!",
         },
         {
           Question: "You guys haven’t answered my question.",

@@ -19,7 +19,10 @@ if (window.location.pathname == "/register") {
 } else if (window.location.pathname == "/discord") {
   window.location.href = "https://discord.gg/jDErKCXvjP";
 } else if (window.location.pathname == "/devpost") {
-  window.location.href = "https://hacknjit-2024.devpost.com";
+  window.open("https://hacknjit-2024.devpost.com");
+} else if (window.location.pathname != "/") {
+  window.location.href = "";
+  console.log(window.location.pathname);
 }
 import MLHBanner from "./components/MLHBanner.vue";
 import TheCountdown from "./components/TheCountdown.vue";

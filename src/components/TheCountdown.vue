@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     setTime() {
-      var timeLeft = new Date("2024/11/02 10:00:00") - new Date();
+      var timeLeft = new Date("2024/11/02 12:00:00") - new Date();
 
       var daysLeft = timeLeft / 8.64e7;
       var hoursLeft = (timeLeft / 3.6e6) % 24;

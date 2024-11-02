@@ -104,6 +104,9 @@ export default {
       this.days = daysLeft;
     },
     format(number) {
+      if (number < 0) {
+        number = 0;
+      }
       var s = "" + Math.floor(number);
       return s.padStart(2, "0");
     },

@@ -24,7 +24,7 @@
         >Register Here!</SteampunkButton
       >
       <SteampunkButton
-        @click-emit="window.open('/devpost')"
+        @click-emit="window.open('https://hacknjit-2024.devpost.com')"
         style="color: black"
         >See Our Devpost!</SteampunkButton
       >

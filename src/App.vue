@@ -1,12 +1,12 @@
 <template>
   <!-- <div class="gradient"></div> -->
   <MLHBanner />
-  <TheHeader />
-  <TheCountdown />
+  <!-- <TheHeader /> -->
+  <!-- <TheCountdown /> -->
   <TheIntro id="Intro" />
-  <TheSponsors id="Sponsors" />
-  <TheTeam id="Team" />
-  <TheFAQ id="FAQ" />
+  <!-- <TheSponsors id="Sponsors" /> -->
+  <!-- <TheTeam id="Team" /> -->
+  <!-- <TheFAQ id="FAQ" /> -->
   <TheFooter />
   <!-- <GearDivider />
   <NewCountdown />

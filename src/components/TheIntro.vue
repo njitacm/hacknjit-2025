@@ -1,8 +1,6 @@
 <template>
   <div class="outer-container">
-    <h1 v-intersection-observer="[onIntersectionObserver]">
-      Welcome to HackNJIT!
-    </h1>
+    <h1 v-intersection-observer="[onIntersectionObserver]">HackNJIT</h1>
 
     <main>
       <img
@@ -13,10 +11,17 @@
       <p class="inner_text" v-intersection-observer="[onIntersectionObserver]">
         HackNJIT is a 24-hour hackathon at the New Jersey Institute of
         Technology, run by its ACM student chapter in conjunction with the Ying
+        Wu College of Computing. 
+        <br>
+        Stay tuned, we'll return in November 2025!
+      </p>
+      <!-- <p class="inner_text" v-intersection-observer="[onIntersectionObserver]">
+        HackNJIT is a 24-hour hackathon at the New Jersey Institute of
+        Technology, run by its ACM student chapter in conjunction with the Ying
         Wu College of Computing. Students break into small teams of up to 4,
         work together over 24 hours to create a tech project, and at the end
         present it to our judges!
-      </p>
+      </p> -->
     </main>
     <img
       id="gear1"
@@ -60,7 +65,7 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
   /* color: var(--color3); */
 }
 h1 {
-  font-size: 8rem;
+  font-size: 5rem;
   margin: 1.75rem 0;
   font-weight: bold;
 }
@@ -124,17 +129,17 @@ img {
   .outer-container {
     /* width: 77.5%; */
   }
-  p {
-    font-size: 2.25rem;
-  }
+  /* p {
+    font-size: 1.5rem;
+  } */
 }
 @media (max-width: 1350px) {
   .outer-container {
     /* width: 77.5%; */
   }
-  p {
-    font-size: 2rem;
-  }
+  /* p {
+    font-size: 1rem;
+  } */
 }
 
 @media (max-width: 1200px) {
@@ -147,36 +152,33 @@ img {
     margin: 0 auto;
   }
   p {
-    font-size: 1.75rem;
-  }
-}
-@media (max-width: 1100px) {
-  p {
     font-size: 1.5rem;
   }
 }
+@media (max-width: 1100px) {
+  /* p {
+    font-size: 1.5rem;
+  } */
+}
 @media (max-width: 900px) {
-  h1 {
-    font-size: 6rem;
-  }
   img {
     min-width: 50%;
     margin: 0 auto;
   }
-  p {
+  /* p {
     font-size: 1.25rem;
-  }
+  } */
 }
 @media (max-width: 750px) {
   h1 {
-    display: none;
+    font-size: 3rem;
   }
   main {
     margin-top: 3rem;
   }
-  p {
+  /* p {
     font-size: 1.2rem;
-  }
+  } */
 }
 @media (max-width: 700px) {
   main {
@@ -186,7 +188,7 @@ img {
     max-width: 75%;
   }
   p {
-    font-size: 1.25rem;
+    /* font-size: 1.25rem; */
     text-align: center;
   }
   .outer-container {
@@ -194,8 +196,11 @@ img {
   }
 }
 @media (max-width: 450px) {
-  p {
+  /* p {
     font-size: 1rem;
+  } */
+  h1 {
+    font-size: 2.25rem;
   }
 }
 </style>

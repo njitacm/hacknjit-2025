@@ -3,11 +3,11 @@
     <h1 v-intersection-observer="[onIntersectionObserver]">HackNJIT</h1>
 
     <main>
-      <img
+      <!-- <img
         src="../assets/HackNJIT2024/clock_man.svg"
         class="inner_img"
         v-intersection-observer="[onIntersectionObserver]"
-      />
+      /> -->
       <p class="inner_text" v-intersection-observer="[onIntersectionObserver]">
         HackNJIT is a 24-hour hackathon at the New Jersey Institute of
         Technology, run by its ACM student chapter in conjunction with the Ying
@@ -23,11 +23,11 @@
         present it to our judges!
       </p> -->
     </main>
-    <img
+    <!-- <img
       id="gear1"
       class="floating-gear"
       src="../assets/HackNJIT2024/gears/gear1.svg"
-    />
+    /> -->
   </div>
 </template>
 
@@ -66,7 +66,7 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
 }
 h1 {
   font-size: 5rem;
-  margin: 1.75rem 0;
+  margin: 5rem 0 1.75rem 0;
   font-weight: bold;
 }
 main {
@@ -81,7 +81,7 @@ p {
   height: -moz-fit-content;
   height: fit-content;
   align-self: center;
-  text-align: right;
+  text-align: center;
 }
 img {
   max-width: 50%;

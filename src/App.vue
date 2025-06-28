@@ -1,16 +1,24 @@
 <template>
-  <!-- <div class="gradient"></div> -->
-  <MLHBanner />
-  <!-- <TheHeader /> -->
-  <!-- <TheCountdown /> -->
-  <TheIntro id="Intro" />
-  <!-- <TheSponsors id="Sponsors" /> -->
-  <!-- <TheTeam id="Team" /> -->
-  <!-- <TheFAQ id="FAQ" /> -->
-  <TheFooter />
-  <!-- <GearDivider />
-  <NewCountdown />
-  <TheOldIntro /> -->
+  <div id="main-container">
+    <!-- <div class="gradient"></div> -->
+    <MLHBanner />
+    <!-- <TheHeader /> -->
+    <!-- <TheCountdown /> -->
+    <TheIntro id="Intro" />
+    <div id="past-pics">
+      <img src="./assets/PastPictures/hacknjit2024_1.jpg" />
+      <img src="./assets/PastPictures/hacknjit2024_2.jpg" />
+      <img src="./assets/PastPictures/hacknjit2024_3.jpg" />
+      <img src="./assets/PastPictures/hacknjit2024_4.jpg" />
+    </div>
+    <!-- <TheSponsors id="Sponsors" /> -->
+    <!-- <TheTeam id="Team" /> -->
+    <!-- <TheFAQ id="FAQ" /> -->
+    <TheFooter />
+    <!-- <GearDivider />
+    <NewCountdown />
+    <TheOldIntro /> -->
+  </div>
 </template>
 
 <script>
@@ -64,6 +72,7 @@ export default {
   --mlh-banner-transparent2: #f7f7f7ab;
   --edge-colors: #d3b28eb2;
 }
+
 html {
   scroll-behavior: smooth;
   font-family: sans-serif;
@@ -83,5 +92,35 @@ html {
   margin: 0;
   padding: 0;
   font-weight: 500;
+}
+
+#main-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  place-content: center;
+  place-items: center;
+}
+
+#past-pics {
+  max-width: min(1500px, 90lvw);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  place-items: center;
+  place-content: center;
+}
+
+#past-pics img {
+  width: 100%;
+  aspect-ratio: 1.5;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid white;
+}
+
+@media(max-width: 1000px) {
+  #past-pics {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

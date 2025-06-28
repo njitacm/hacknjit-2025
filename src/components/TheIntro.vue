@@ -1,6 +1,6 @@
 <template>
   <div class="outer-container">
-    
+
     <main>
       <h1 v-intersection-observer="[onIntersectionObserver]">HackNJIT</h1>
       <!-- <img
@@ -13,7 +13,7 @@
         Technology, run by its ACM student chapter in conjunction with the Ying
         Wu College of Computing.
       </p>
-      <p>
+      <p v-intersection-observer="[onIntersectionObserver]">
         Stay tuned, we'll return in November 2025!
       </p>
       <!-- <p class="inner_text" v-intersection-observer="[onIntersectionObserver]">
@@ -24,7 +24,10 @@
         present it to our judges!
       </p> -->
     </main>
-    <div id="view-hint"><span>View last year's photos</span><span>&#x1F863;</span></div>
+    <div id="view-hint" ref="viewHint" v-intersection-observer="[onIntersectionObserver]">
+      <span>View last year's photos</span>
+      <span>&#x1F863;</span>
+    </div>
     <!-- <img
       id="gear1"
       class="floating-gear"
@@ -38,9 +41,19 @@ import { vIntersectionObserver } from "@vueuse/components";
 
 function onIntersectionObserver([{ isIntersecting, target }]) {
   if (isIntersecting) {
-    target.classList.add("fade-in");
+    const viewHint = document.getElementById("view-hint");
+
+    if (target == viewHint) {
+      const timeout = setTimeout(function () {
+        target.classList.add("fade-in");
+        clearInterval(timeout);
+      }, 1000);
+    } else {
+      target.classList.add("fade-in");
+    }
   }
 }
+
 </script>
 
 <style scoped>
@@ -102,6 +115,7 @@ p {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+  opacity: 0;
 }
 
 img {

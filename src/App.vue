@@ -86,6 +86,11 @@ html {
   z-index: -100;
   overflow-x: hidden;
   width: 100%;
+  height: 100%;
+}
+
+body {
+  height: 100%;
 }
 
 * {
@@ -96,7 +101,7 @@ html {
 
 #main-container {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 100lvh 1fr auto;
   place-content: center;
   place-items: center;
 }

@@ -1,8 +1,8 @@
 <template>
   <div class="outer-container">
-    <h1 v-intersection-observer="[onIntersectionObserver]">HackNJIT</h1>
-
+    
     <main>
+      <h1 v-intersection-observer="[onIntersectionObserver]">HackNJIT</h1>
       <!-- <img
         src="../assets/HackNJIT2024/clock_man.svg"
         class="inner_img"
@@ -11,8 +11,9 @@
       <p class="inner_text" v-intersection-observer="[onIntersectionObserver]">
         HackNJIT is a 24-hour hackathon at the New Jersey Institute of
         Technology, run by its ACM student chapter in conjunction with the Ying
-        Wu College of Computing. 
-        <br>
+        Wu College of Computing.
+      </p>
+      <p>
         Stay tuned, we'll return in November 2025!
       </p>
       <!-- <p class="inner_text" v-intersection-observer="[onIntersectionObserver]">
@@ -23,6 +24,7 @@
         present it to our judges!
       </p> -->
     </main>
+    <div id="view-hint"><span>View last year's photos</span><span>&#x1F863;</span></div>
     <!-- <img
       id="gear1"
       class="floating-gear"
@@ -57,32 +59,51 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
+
 .outer-container {
+  height: 100lvh;
   position: relative;
   width: 95%;
   margin: 0rem auto;
   margin-bottom: 2rem;
   /* color: var(--color3); */
 }
+
+
 h1 {
   font-size: 5rem;
   margin: 5rem 0 1.75rem 0;
   font-weight: bold;
 }
+
 main {
-  display: flex;
-  gap: 2rem;
-  justify-content: space-between;
-  align-content: center;
+  display: grid;
+  gap: 30px;
+  width: 90%;
+  max-width: 1500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -62.5%);
 }
+
 p {
-  flex: 1;
   font-size: 2.5rem;
   height: -moz-fit-content;
   height: fit-content;
   align-self: center;
   text-align: center;
 }
+
+#view-hint {
+  display: grid;
+  gap: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 img {
   max-width: 50%;
   /* border: 4px var(--color3) solid; */
@@ -90,6 +111,7 @@ img {
   border-radius: 30px;
   flex: 1;
 }
+
 .fade-in {
   animation-name: fade-in;
   animation-duration: 0.75s;
@@ -98,6 +120,7 @@ img {
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
+
 .fade {
   animation: fade-in 0.5s linear 1 normal forwards;
 }
@@ -106,6 +129,7 @@ img {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -115,6 +139,7 @@ img {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 0.55;
   }
@@ -125,18 +150,22 @@ img {
     /* width: 70%; */
   }
 }
+
 @media (max-width: 1550px) {
   .outer-container {
     /* width: 77.5%; */
   }
+
   /* p {
     font-size: 1.5rem;
   } */
 }
+
 @media (max-width: 1350px) {
   .outer-container {
     /* width: 77.5%; */
   }
+
   /* p {
     font-size: 1rem;
   } */
@@ -147,55 +176,69 @@ img {
     display: flex;
     flex-wrap: wrap;
   }
+
   img {
     min-width: 55%;
     margin: 0 auto;
   }
+
   p {
     font-size: 1.5rem;
   }
 }
+
 @media (max-width: 1100px) {
   /* p {
     font-size: 1.5rem;
   } */
 }
+
 @media (max-width: 900px) {
   img {
     min-width: 50%;
     margin: 0 auto;
   }
+
   /* p {
     font-size: 1.25rem;
   } */
 }
+
 @media (max-width: 750px) {
   h1 {
     font-size: 3rem;
   }
+
   main {
     margin-top: 3rem;
   }
+
   /* p {
     font-size: 1.2rem;
   } */
 }
+
 @media (max-width: 700px) {
   main {
     flex-direction: column;
   }
+
   img {
     max-width: 75%;
   }
+
   p {
     /* font-size: 1.25rem; */
     text-align: center;
   }
+
   .outer-container {
     width: 90%;
   }
 }
+
 @media (max-width: 450px) {
+
   /* p {
     font-size: 1rem;
   } */

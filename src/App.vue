@@ -5,11 +5,11 @@
     <!-- <TheHeader /> -->
     <!-- <TheCountdown /> -->
     <TheIntro id="Intro" />
-    <div id="past-pics">
-      <img src="./assets/PastPictures/hacknjit2024_1.jpg" />
-      <img src="./assets/PastPictures/hacknjit2024_2.jpg" />
-      <img src="./assets/PastPictures/hacknjit2024_3.jpg" />
-      <img src="./assets/PastPictures/hacknjit2024_4.jpg" />
+    <div id="past-pics" ref="past-pics">
+      <img src="./assets/PastPictures/hacknjit2024_1.jpg" v-intersection-observer="[onIntersectionObserver]" />
+      <img src="./assets/PastPictures/hacknjit2024_2.jpg" v-intersection-observer="[onIntersectionObserver]" />
+      <img src="./assets/PastPictures/hacknjit2024_3.jpg" v-intersection-observer="[onIntersectionObserver]" />
+      <img src="./assets/PastPictures/hacknjit2024_4.jpg" v-intersection-observer="[onIntersectionObserver]" />
     </div>
     <!-- <TheSponsors id="Sponsors" /> -->
     <!-- <TheTeam id="Team" /> -->
@@ -20,6 +20,17 @@
     <TheOldIntro /> -->
   </div>
 </template>
+
+<script setup>
+import { vIntersectionObserver } from "@vueuse/components";
+
+function onIntersectionObserver([{ isIntersecting, target }]) {
+  if (isIntersecting) {
+    console.log(target);
+    target.classList.add("visible");
+  }
+}
+</script>
 
 <script>
 if (window.location.pathname == "/register") {
@@ -52,6 +63,11 @@ export default {
     TheSponsors,
     TheIntro,
   },
+  mounted() {
+    [...document.getElementById("past-pics").children].forEach((img, index) => {
+      img.style.transitionDelay = `${index * 100}ms`;
+    });
+  }
 };
 </script>
 
@@ -107,6 +123,7 @@ body {
 }
 
 #past-pics {
+  padding: 20px;
   max-width: min(1500px, 90lvw);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -121,6 +138,12 @@ body {
   object-fit: cover;
   border-radius: 10px;
   border: 1px solid white;
+  opacity: 0;
+  transition: opacity linear 1s;
+}
+
+#past-pics img.visible {
+  opacity: 1;
 }
 
 @media(max-width: 1000px) {

@@ -22,16 +22,6 @@
 </template>
 
 <script>
-if (window.location.pathname == "/register") {
-  window.location.href = "https://forms.gle/MnPFuMQoVA5PCphp7";
-} else if (window.location.pathname == "/discord") {
-  window.location.href = "https://discord.gg/jDErKCXvjP";
-} else if (window.location.pathname == "/devpost") {
-  window.open("https://hacknjit-2024.devpost.com");
-} else if (window.location.pathname != "/") {
-  window.location.href = "";
-  console.log(window.location.pathname);
-}
 import MLHBanner from "./components/MLHBanner.vue";
 import TheCountdown from "./components/TheCountdown.vue";
 import TheFAQ from "./components/TheFAQ.vue";
@@ -51,11 +41,6 @@ export default {
     TheFooter,
     TheSponsors,
     TheIntro,
-  },
-  mounted() {
-    [...document.getElementById("past-pics").children].forEach((img, index) => {
-      img.style.transitionDelay = `${index * 100}ms`;
-    });
   }
 };
 </script>

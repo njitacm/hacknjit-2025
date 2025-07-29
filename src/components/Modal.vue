@@ -44,10 +44,10 @@ onClickOutside(target, () => emit("modalClose"));
 }
 
 .Modal .container {
-  width: 95%;
-  height: 95%;
-  max-width: fit-content;
-  max-height: fit-content;
+  max-width: 95%;
+  max-height: 95%;
+  width: fit-content;
+  height: fit-content;
   margin: 0 auto;
   background-color: white;
   color: black;
@@ -79,7 +79,9 @@ onClickOutside(target, () => emit("modalClose"));
 }
 
 .Modal .body {
-  overflow-y: auto;
+  /* overflow-y: auto; */
+  overflow: hidden;
+  height: fit-content;
 }
 
 @keyframes fade-in {

@@ -6,10 +6,10 @@
     <!-- <TheCountdown /> -->
     <TheIntro id="Intro" />
     <div id="past-pics" ref="past-pics">
-      <img src="./assets/PastPictures/hacknjit2024_1.jpg" v-intersection-observer="[onIntersectionObserver]" />
-      <img src="./assets/PastPictures/hacknjit2024_2.jpg" v-intersection-observer="[onIntersectionObserver]" />
-      <img src="./assets/PastPictures/hacknjit2024_3.jpg" v-intersection-observer="[onIntersectionObserver]" />
-      <img src="./assets/PastPictures/hacknjit2024_4.jpg" v-intersection-observer="[onIntersectionObserver]" />
+      <img src="./assets/PastPictures/hacknjit2024_1.jpg" />
+      <img src="./assets/PastPictures/hacknjit2024_2.jpg" />
+      <img src="./assets/PastPictures/hacknjit2024_3.jpg" />
+      <img src="./assets/PastPictures/hacknjit2024_4.jpg" />
     </div>
     <!-- <TheSponsors id="Sponsors" /> -->
     <!-- <TheTeam id="Team" /> -->
@@ -20,16 +20,6 @@
     <TheOldIntro /> -->
   </div>
 </template>
-
-<script setup>
-import { vIntersectionObserver } from "@vueuse/components";
-
-function onIntersectionObserver([{ isIntersecting, target }]) {
-  if (isIntersecting) {
-    target.classList.add("visible");
-  }
-}
-</script>
 
 <script>
 if (window.location.pathname == "/register") {
@@ -137,8 +127,6 @@ body {
   object-fit: cover;
   border-radius: 10px;
   border: 1px solid white;
-  opacity: 0;
-  transition: opacity linear 1s;
 }
 
 #past-pics img.visible {

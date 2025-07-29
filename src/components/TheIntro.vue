@@ -2,18 +2,18 @@
   <div class="outer-container">
 
     <main>
-      <h1 v-intersection-observer="[onIntersectionObserver]">HackNJIT</h1>
+      <h1>HackNJIT</h1>
       <!-- <img
         src="../assets/HackNJIT2024/clock_man.svg"
         class="inner_img"
         v-intersection-observer="[onIntersectionObserver]"
       /> -->
-      <p class="inner_text" v-intersection-observer="[onIntersectionObserver]">
+      <p class="inner_text">
         HackNJIT is a 24-hour hackathon at the New Jersey Institute of
         Technology, run by its ACM student chapter in conjunction with the Ying
         Wu College of Computing.
       </p>
-      <p v-intersection-observer="[onIntersectionObserver]">
+      <p>
         Stay tuned, we'll return in November 2025!
       </p>
       <!-- <p class="inner_text" v-intersection-observer="[onIntersectionObserver]">
@@ -31,13 +31,16 @@
           <span>Receive Email Updates</span>
         </template>
         <template #body>
-          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?embedded=true" width="640" height="450" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?embedded=true"
+            width="640" height="450" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
           <!-- <div>Hello</div> -->
         </template>
       </Modal>
     </main>
-    <div id="view-hint" ref="viewHint" v-intersection-observer="[onIntersectionObserver]">
+    <div id="view-hint" ref="viewHint">
       <span>View last year's photos</span>
+      <br />
       <span>&#x1F863;</span>
     </div>
     <!-- <img
@@ -49,7 +52,6 @@
 </template>
 
 <script setup>
-import { vIntersectionObserver } from "@vueuse/components";
 import { ref } from "vue";
 import Modal from './Modal.vue';
 
@@ -63,21 +65,6 @@ const openModal = () => {
 const closeModal = () => {
   isModalOpen.value = false;
   console.log("modal closed");
-}
-
-function onIntersectionObserver([{ isIntersecting, target }]) {
-  if (isIntersecting) {
-    const viewHint = document.getElementById("view-hint");
-
-    if (target == viewHint) {
-      const timeout = setTimeout(function () {
-        target.classList.add("fade-in");
-        clearInterval(timeout);
-      }, 1000);
-    } else {
-      target.classList.add("fade-in");
-    }
-  }
 }
 
 </script>
@@ -111,6 +98,9 @@ button.email-signup {
 }
 
 .outer-container {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 32px;
   align-content: center;
   height: 100lvh;
   width: 95%;
@@ -132,6 +122,12 @@ main {
   width: 90%;
   max-width: 1500px;
   justify-items: center;
+  align-content: center; 
+  align-items: center;
+}
+
+main > * {
+  height: min-content;
 }
 
 p {
@@ -143,13 +139,18 @@ p {
 }
 
 #view-hint {
-  display: grid;
-  gap: 10px;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
+  align-content: center;
+  /* display: grid; */
+  /* gap: 10px; */
+  /* position: absolute; */
+  /* bottom: 0; */
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+  /* opacity: 0; */
+}
+
+#view-hint * {
+  margin: 0 auto;
 }
 
 img {

@@ -23,6 +23,19 @@
         work together over 24 hours to create a tech project, and at the end
         present it to our judges!
       </p> -->
+      <button class="email-signup" @click="isModalOpen = true; console.log(isModalOpen)"
+        @modalClosed="isModelOpen = false; console.log(isModalOpen)">
+        Sign up for email updates
+      </button>
+      <Modal :is-open="isModalOpen">
+        <template #title>
+          <h1>Receive Email Updates</h1>
+        </template>
+        <template #body>
+          <!-- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?embedded=true" width="640" height="450" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> -->
+          <div>Hello </div>
+        </template>
+      </Modal>
     </main>
     <div id="view-hint" ref="viewHint" v-intersection-observer="[onIntersectionObserver]">
       <span>View last year's photos</span>
@@ -36,8 +49,21 @@
   </div>
 </template>
 
+<script>
+
+export default {
+  // components: { Modal },
+  data() {
+    return {
+      isModalOpen: false,
+    }
+  }
+}
+</script>
+
 <script setup>
 import { vIntersectionObserver } from "@vueuse/components";
+import Modal from './Modal.vue';
 
 function onIntersectionObserver([{ isIntersecting, target }]) {
   if (isIntersecting) {
@@ -57,6 +83,17 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
 </script>
 
 <style scoped>
+button.email-signup {
+  border-radius: 100px;
+  background-color: white;
+  color: #170800;
+  padding: 12px 16px;
+  border: none;
+  font-weight: bold;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
 .floating-gear {
   position: absolute;
   top: 0%;
@@ -97,11 +134,12 @@ main {
   position: absolute;
   top: 50%;
   left: 50%;
+  justify-items: center;
   transform: translate(-50%, -62.5%);
 }
 
 p {
-  font-size: 2.5rem;
+  font-size: 2rem;
   height: -moz-fit-content;
   height: fit-content;
   align-self: center;

@@ -26,7 +26,6 @@ import { vIntersectionObserver } from "@vueuse/components";
 
 function onIntersectionObserver([{ isIntersecting, target }]) {
   if (isIntersecting) {
-    console.log(target);
     target.classList.add("visible");
   }
 }

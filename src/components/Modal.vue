@@ -56,13 +56,13 @@ onClickOutside(target, () => emit("modalClose"));
 }
 
 .Modal .top {
-  padding: 16px;
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 8px;
 }
 
 .Modal .title * {
+  display: block;
+  padding: 16px;
   font-weight: bold;
 }
 

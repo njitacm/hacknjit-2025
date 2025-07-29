@@ -47,12 +47,13 @@ onClickOutside(target, () => emit("modalClose"));
   width: 95%;
   height: 95%;
   max-width: fit-content;
-  max-height: 400px;
+  max-height: fit-content;
   margin: 0 auto;
   background-color: white;
   color: black;
   border-radius: 1rem;
   animation: drop-in ease-out var(--anim-dur);
+  padding-bottom: 12px;
 }
 
 .Modal .top {

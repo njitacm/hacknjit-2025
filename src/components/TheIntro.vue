@@ -31,8 +31,8 @@
           <span>Receive Email Updates</span>
         </template>
         <template #body>
-          <!-- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?embedded=true" width="640" height="450" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> -->
-          <div>Hello</div>
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?embedded=true" width="640" height="450" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+          <!-- <div>Hello</div> -->
         </template>
       </Modal>
     </main>

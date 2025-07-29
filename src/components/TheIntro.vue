@@ -77,12 +77,10 @@ const isModalOpen = ref(false);
 
 const openModal = () => {
   isModalOpen.value = true;
-  console.log("modal opened");
 }
 
 const closeModal = () => {
   isModalOpen.value = false;
-  console.log("modal closed");
 }
 
 </script>

@@ -1,43 +1,43 @@
 <template>
-  <div :class="'Modal' + (open === true ? ' open' : '')">
-    <div class="top">
-      <slot name="title"></slot>
-      <button class="close" @click="$emit('modalClosed'); open = false">X</button>
+  <div v-if="isOpen" class="Modal">
+    <div class="container"  ref="target">
+      <div class="top">
+        <slot name="title"></slot>
+        <button class="close" @click.stop="$emit('modalClose')">X</button>
+      </div>
+      <slot name="body"></slot>
     </div>
-    <slot name="body"></slot>
   </div>
 </template>
 
-<script>
-export default {
-  name: "Modal",
-  props: ["isOpen"],
-  emits: ["modalClosed"],
-  data() {
-    return {
-      open: this.isOpen,
-    };
-  },
-  created() {
-    console.log("Mounted!");
-  }
-}
+<script setup>
+import { defineProps, defineEmits, useTemplateRef } from "vue";
+import { onClickOutside } from "@vueuse/core";
+
+const emit = defineEmits(["modalClose"]);
+const props = defineProps({
+  isOpen: Boolean,
+});
+
+const target = useTemplateRef("target");
+onClickOutside(target, () => emit("modalClose"));
+
 </script>
 
 <style scoped>
-.Modal:not(.open) {
-  display: none;
+.Modal {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Modal .container {
+  margin: 0 auto;
   background-color: white;
   color: black;
-}
-
-.Modal.open {
-  display: block;
-}
-
-.Modal {
-  position: absolute;
-  align-content: center;
-  margin: 0 auto;
 }
 </style>

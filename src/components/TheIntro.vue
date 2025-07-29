@@ -23,11 +23,10 @@
         work together over 24 hours to create a tech project, and at the end
         present it to our judges!
       </p> -->
-      <button class="email-signup" @click="isModalOpen = true; console.log(isModalOpen)"
-        @modalClosed="isModelOpen = false; console.log(isModalOpen)">
+      <button class="email-signup" @click="openModal">
         Sign up for email updates
       </button>
-      <Modal :is-open="isModalOpen">
+      <Modal :is-open="isModalOpen" @modalClose="closeModal" name="email-sign-up">
         <template #title>
           <h1>Receive Email Updates</h1>
         </template>
@@ -49,21 +48,22 @@
   </div>
 </template>
 
-<script>
-
-export default {
-  // components: { Modal },
-  data() {
-    return {
-      isModalOpen: false,
-    }
-  }
-}
-</script>
-
 <script setup>
 import { vIntersectionObserver } from "@vueuse/components";
+import { ref } from "vue";
 import Modal from './Modal.vue';
+
+const isModalOpen = ref(false);
+
+const openModal = () => {
+  isModalOpen.value = true;
+  console.log("modal opened");
+}
+
+const closeModal = () => {
+  isModalOpen.value = false;
+  console.log("modal closed");
+}
 
 function onIntersectionObserver([{ isIntersecting, target }]) {
   if (isIntersecting) {
@@ -111,12 +111,11 @@ button.email-signup {
 }
 
 .outer-container {
+  align-content: center;
   height: 100lvh;
-  position: relative;
   width: 95%;
   margin: 0rem auto;
   margin-bottom: 2rem;
-  /* color: var(--color3); */
 }
 
 
@@ -127,15 +126,12 @@ h1 {
 }
 
 main {
+  margin: 0 auto;
   display: grid;
   gap: 30px;
   width: 90%;
   max-width: 1500px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
   justify-items: center;
-  transform: translate(-50%, -62.5%);
 }
 
 p {

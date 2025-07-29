@@ -75,6 +75,7 @@ html {
   background: #170800;
   z-index: -100;
   overflow-x: hidden;
+  overflow-x: auto;
   width: 100%;
   height: 100%;
 }
@@ -97,30 +98,16 @@ body {
 }
 
 #past-pics {
+  margin-top: 32px;
   padding: 20px;
-  max-width: min(1500px, 90lvw);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-  place-items: center;
-  place-content: center;
+  columns: 2 300px;
+  column-gap: 1rem;
 }
 
 #past-pics img {
+  display: block;
+  margin-bottom: 1rem;
   width: 100%;
-  aspect-ratio: 1.5;
-  object-fit: cover;
-  border-radius: 10px;
-  border: 1px solid white;
 }
 
-#past-pics img.visible {
-  opacity: 1;
-}
-
-@media(max-width: 1000px) {
-  #past-pics {
-    grid-template-columns: 1fr;
-  }
-}
 </style>

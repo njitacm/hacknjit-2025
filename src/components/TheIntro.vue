@@ -140,13 +140,6 @@ p {
 
 #view-hint {
   align-content: center;
-  /* display: grid; */
-  /* gap: 10px; */
-  /* position: absolute; */
-  /* bottom: 0; */
-  /* left: 50%; */
-  /* transform: translateX(-50%); */
-  /* opacity: 0; */
 }
 
 #view-hint * {
@@ -155,33 +148,8 @@ p {
 
 img {
   max-width: 50%;
-  /* border: 4px var(--color3) solid; */
-  /* border: 4px white solid; */
   border-radius: 30px;
   flex: 1;
-}
-
-.fade-in {
-  animation-name: fade-in;
-  animation-duration: 0.75s;
-  /* animation-delay: 1.5s; */
-  animation-iteration-count: 1;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-}
-
-.fade {
-  animation: fade-in 0.5s linear 1 normal forwards;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
 
 @keyframes gear-fade-in {
@@ -204,11 +172,19 @@ img {
   h1 {
     font-size: 3rem;
   }
+
+  button.email-signup {
+    font-size: 1.5rem;
+  }
 }
 
 @media (max-width: 450px) {
   h1 {
     font-size: 2.25rem;
+  }
+
+  button.email-signup {
+    font-size: 1.25rem;
   }
 }
 </style>

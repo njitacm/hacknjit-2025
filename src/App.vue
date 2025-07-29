@@ -105,6 +105,7 @@ body {
 }
 
 #past-pics img {
+  border-radius: 0.5rem;
   display: block;
   margin-bottom: 1rem;
   width: 100%;

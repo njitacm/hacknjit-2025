@@ -52,7 +52,7 @@ onClickOutside(target, () => emit("modalClose"));
   background-color: white;
   color: black;
   border-radius: 1rem;
-  animation: drop-in linear var(--anim-dur);
+  animation: drop-in ease-out var(--anim-dur);
 }
 
 .Modal .top {

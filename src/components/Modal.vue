@@ -103,4 +103,10 @@ onClickOutside(target, () => emit("modalClose"));
     transform: none;
   }
 }
+
+@media(max-width: 500px) {
+  .Modal .title * {
+    font-size: 1.5rem;
+  }
+}
 </style>

@@ -23,17 +23,19 @@
         work together over 24 hours to create a tech project, and at the end
         present it to our judges!
       </p> -->
-      <button class="email-signup" @click="openModal">
-        Sign up for email updates
-      </button>
-      <Modal :is-open="isModalOpen" @modalClose="closeModal" name="email-sign-up">
+      <a :href="vw <= modalNoShowThreshold ? 'https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?usp=dialog' : null" target="_blank" class="email-signup">
+        <button  @click="openModal">
+          Sign up for email updates
+        </button>
+      </a>
+      <Modal :is-open="isModalOpen && vw > modalNoShowThreshold" @modalClose="closeModal" name="email-sign-up">
         <template #title>
           <span>Receive Email Updates</span>
         </template>
         <template #body>
           <iframe
             src="https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?embedded=true"
-            width="640" height="450" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            width="400" height="450" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
           <!-- <div>Hello</div> -->
         </template>
       </Modal>
@@ -41,7 +43,7 @@
     <div id="view-hint" ref="viewHint">
       <span>View last year's photos</span>
       <br />
-      <span>&#x1F863;</span>
+      <span>&#129123;</span>
     </div>
     <!-- <img
       id="gear1"
@@ -52,8 +54,24 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, onBeforeMount } from "vue";
 import Modal from './Modal.vue';
+
+const modalNoShowThreshold = 400;   // viewport width in px;
+const vw = ref(Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0));
+
+const onWindowResize = () => {
+  vw.value = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+}
+
+onMounted(() =>  {
+  window.addEventListener("resize", onWindowResize);
+});
+
+onBeforeMount(() => {
+  window.removeEventListener("resize", onWindowResize);
+});
+
 
 const isModalOpen = ref(false);
 
@@ -70,7 +88,11 @@ const closeModal = () => {
 </script>
 
 <style scoped>
-button.email-signup {
+.email-signup {
+  border-radius: 100px;
+}
+
+.email-signup button {
   border-radius: 100px;
   background-color: white;
   color: #170800;
@@ -98,11 +120,12 @@ button.email-signup {
 }
 
 .outer-container {
+  padding-bottom: 32px;
   display: grid;
   grid-template-rows: 1fr auto;
   gap: 32px;
   align-content: center;
-  height: 100lvh;
+  height: 100svh;
   width: 95%;
   margin: 0rem auto;
   margin-bottom: 2rem;
@@ -122,11 +145,11 @@ main {
   width: 90%;
   max-width: 1500px;
   justify-items: center;
-  align-content: center; 
+  align-content: center;
   align-items: center;
 }
 
-main > * {
+main>* {
   height: min-content;
 }
 
@@ -173,7 +196,7 @@ img {
     font-size: 3rem;
   }
 
-  button.email-signup {
+  .email-signup button {
     font-size: 1.5rem;
   }
 }
@@ -183,7 +206,7 @@ img {
     font-size: 2.25rem;
   }
 
-  button.email-signup {
+  .email-signup button {
     font-size: 1.25rem;
   }
 }

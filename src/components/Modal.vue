@@ -5,7 +5,7 @@
         <h1 className="title">
           <slot name="title"></slot>
         </h1>
-        <button class="close" @click.stop="$emit('modalClose')">X</button>
+        <button class="close" @click.stop="$emit('modalClose')">&#10005;</button>
       </div>
       <div class="body">
         <slot name="body"></slot>
@@ -61,12 +61,15 @@ onClickOutside(target, () => emit("modalClose"));
 }
 
 .Modal .title * {
+  font-size: 2rem;
   display: block;
   padding: 16px;
   font-weight: bold;
 }
 
 .Modal button.close {
+  color: gray;
+  font-size: 2rem;
   cursor: pointer;
   aspect-ratio: 1;
   background-color: transparent;

@@ -23,4 +23,4 @@ pnpm-debug.log*
 *.sw?
 
 # custom
-notes.txt
+notes.md

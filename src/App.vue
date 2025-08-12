@@ -1,6 +1,6 @@
 <template>
   <div id="main-container">
-    <MLHBanner />
+    <!-- <MLHBanner /> -->
     <main class="body-container">
       <div class="banner-container">
         <NotifSignup id="NotifSignup" />

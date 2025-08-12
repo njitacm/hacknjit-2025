@@ -10,8 +10,9 @@
       <p>
         Stay tuned, we'll return in November 2025!
       </p>
-      <a :href="vw <= modalNoShowThreshold ? 'https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?usp=dialog' : null" target="_blank" class="email-signup">
-        <button  @click="openModal">
+      <a :href="vw <= modalNoShowThreshold ? 'https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?usp=dialog' : null"
+        target="_blank" class="email-signup">
+        <button @click="openModal">
           Sign up for email updates
         </button>
       </a>
@@ -22,7 +23,7 @@
         <template #body>
           <iframe
             src="https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?embedded=true"
-            width="400" height="450" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
         </template>
       </Modal>
     </main>
@@ -46,7 +47,7 @@ const onWindowResize = () => {
   vw.value = getVw();
 }
 
-onMounted(() =>  {
+onMounted(() => {
   window.addEventListener("resize", onWindowResize);
 });
 
@@ -80,6 +81,14 @@ const closeModal = () => {
   font-weight: bold;
   font-size: 2rem;
   cursor: pointer;
+}
+
+iframe {
+  max-width: 100%;
+  max-height: 100%;
+  width: 750px;
+  height: 550px;
+  overflow: hidden;
 }
 
 .outer-container {
@@ -150,6 +159,12 @@ img {
 
   .email-signup button {
     font-size: 1.5rem;
+  }
+}
+
+@media(max-width: 590px) {
+  iframe {
+    height: 650px;
   }
 }
 

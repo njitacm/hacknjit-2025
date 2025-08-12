@@ -54,6 +54,8 @@ onClickOutside(target, () => emit("modalClose"));
   border-radius: 1rem;
   animation: drop-in ease-out var(--anim-dur);
   padding-bottom: 12px;
+  overflow: hidden;
+  padding: 10px;
 }
 
 .Modal .top {
@@ -79,9 +81,9 @@ onClickOutside(target, () => emit("modalClose"));
 }
 
 .Modal .body {
-  /* overflow-y: auto; */
-  overflow: hidden;
-  height: fit-content;
+  max-height: 70vh;
+  overflow-y: auto;
+  height: inherit;
 }
 
 @keyframes fade-in {

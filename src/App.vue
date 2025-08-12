@@ -3,7 +3,7 @@
     <!-- <div class="gradient"></div> -->
     <MLHBanner />
     <!-- <TheHeader /> -->
-    <!-- <TheCountdown /> -->
+    <TheCountdown />
     <TheIntro id="Intro" />
     <div id="past-pics" ref="past-pics">
       <img src="./assets/PastPictures/hacknjit2024_1.jpg" />

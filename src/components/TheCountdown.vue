@@ -1,37 +1,18 @@
 <template>
-  <!-- <div ref="gradient" class="gradient"></div> -->
   <div class="outer-container gradient" ref="container">
     <Transition>
       <header v-show="containerIsVisible">
-        <h1>{{ format(days) }}</h1>
-        <GearColon class="gear-colon" />
-        <h1>{{ format(hours) }}</h1>
-        <GearColon />
-        <h1>{{ format(minutes) }}</h1>
-        <GearColon />
-        <h1>{{ format(seconds) }}</h1>
-      </header></Transition
-    >
+        <h1>
+          {{ format(days) }}&nbsp;:&nbsp;{{ format(hours) }}&nbsp;:&nbsp;{{ format(minutes) }}&nbsp;:&nbsp;{{
+            format(seconds) }}
+        </h1>
+      </header>
+    </Transition>
     <h3>
       {{ format(tweened_month.toFixed(0)) }} /
       {{ format(tweened_day.toFixed(0)) }} /
       {{ tweened_year.toFixed(0) }}
     </h3>
-    <div class="button-div">
-      <SteampunkButton
-        @click-emit="window.open('/register')"
-        style="color: black"
-        >Register Here!</SteampunkButton
-      >
-      <SteampunkButton
-        @click-emit="window.open('https://hacknjit-2024.devpost.com')"
-        style="color: black"
-        >See Our Devpost!</SteampunkButton
-      >
-    </div>
-    <div class="hatguy-container">
-      <HatGuy />
-    </div>
   </div>
 </template>
 
@@ -49,12 +30,10 @@ useIntersectionObserver(container, ([{ isIntersecting }]) => {
 </script>
 
 <script>
-import GearColon from "./GearColon.vue";
-import HatGuy from "./HatGuy.vue";
-import SteampunkButton from "./SteampunkButton.vue";
 export default {
   data() {
     return {
+      date: { year: 2025, month: 11, day: 8 },
       milliseconds: 0,
       seconds: 0,
       minutes: 0,
@@ -82,14 +61,9 @@ export default {
       gsap.to(this, { duration: 5, tweened_month: Number(n) || 0 });
     },
   },
-  components: {
-    GearColon,
-    HatGuy,
-    SteampunkButton,
-  },
   methods: {
     setTime() {
-      var timeLeft = new Date("2024/11/02 12:00:00") - new Date();
+      var timeLeft = new Date(`${this.date.year}/${this.date.month}/${this.date.day} 12:00:00`) - new Date();
 
       var daysLeft = timeLeft / 8.64e7;
       var hoursLeft = (timeLeft / 3.6e6) % 24;
@@ -111,33 +85,14 @@ export default {
       return s.padStart(2, "0");
     },
   },
-  computed: {
-    secondRotation() {
-      //   var rotationPercent = 360 - (this.milliseconds / 1000) * 360;
-      //   return "transform: rotate(" + rotationPercent + "deg);";
-      return "";
-    },
-    minuteRotation() {
-      var rotationPercent = 360 - (this.seconds / 60) * 360;
-      return "transform: rotate(" + rotationPercent + "deg);";
-    },
-    hourRotation() {
-      var rotationPercent = 360 - (this.minutes / 60) * 360;
-      return "transform: rotate(" + rotationPercent + "deg);";
-    },
-    dayRotation() {
-      var rotationPercent = 360 - (this.hours / 60) * 360;
-      return "transform: rotate(" + rotationPercent + "deg);";
-    },
-  },
   mounted() {
     setInterval(() => {
       this.setTime();
     }, 1000);
     setTimeout(() => {
-      this.date_day = 2;
-      this.date_month = 11;
-      this.date_year = 2024;
+      this.date_day = this.date.day;
+      this.date_month = this.date.month;
+      this.date_year = this.date.year;
     }, 2000);
   },
 };
@@ -147,6 +102,7 @@ export default {
   transition: all 0.1s linear;
   box-sizing: border-box;
 }
+
 .outer-container {
   color: white;
   height: fit-content;
@@ -158,32 +114,16 @@ export default {
   position: relative;
   overflow: hidden;
 }
-.hatguy-container {
-  animation-name: fade-in;
-  opacity: 0;
-  animation-delay: 4s;
-  animation-duration: 2.5s;
-  animation-iteration-count: 1;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-}
-@media (max-height: 630px) {
-  .hatguy-container {
-    left: 90%;
-  }
-}
+
 .gradient {
-  background: url("../assets/HackNJIT2024/repeating-bg.webp");
+  /* background: url("../assets/HackNJIT2024/repeating-bg.webp"); */
   animation-name: fade-in;
   animation-duration: 10s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
   width: 100%;
-  /* height: 100vh; */
-  /* position: absolute;
-  z-index: -10;
-  top: 0; */
 }
+
 header {
   margin: 0 auto;
   display: flex;
@@ -191,12 +131,11 @@ header {
   align-content: center;
   justify-content: center;
 }
-.gear-colon {
-  align-self: center;
-}
+
 h1 {
   font-size: 12rem;
 }
+
 h3 {
   font-size: 6rem;
   animation-name: fade-in;
@@ -207,44 +146,17 @@ h3 {
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
-.text-container {
-  align-self: center;
-  height: fit-content;
-}
-.text-container h1 {
-  font-size: 10rem;
-  border: 4px white solid;
-  border-radius: 50px;
-  padding: 1rem 1rem;
-  width: fit-content;
-  margin: 0 auto;
-}
 
-.countdown-gradient {
-  background: linear-gradient(
-    to right,
-    #00000090,
-    #00000060 10%,
-    #00000035 20%,
-    #00000035 80%,
-    #00000060 90%,
-    #00000090
-  );
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  left: 0;
-  z-index: -10;
-  top: 0;
-}
 @keyframes fade-in {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
 }
+
 .v-enter-active,
 .v-leave-active {
   transition: opacity 5s linear;
@@ -255,81 +167,74 @@ h3 {
 .v-leave-to {
   opacity: 0;
 }
-.button-div {
-  display: flex;
-  justify-content: space-between;
-  width: fit-content;
-  margin: 1rem auto;
-  gap: 3.5rem;
-}
+
 @media (max-width: 1500px) {
   h1 {
     font-size: 8.75rem;
   }
 
-  .countdown-gradient {
-    height: calc(85vh);
-  }
   header {
     margin-top: 77px;
   }
+
   h3 {
     margin-top: -30px;
   }
 }
+
 @media (max-width: 1000px) {
   h1 {
     font-size: 6.75rem;
   }
+
   h3 {
     font-size: 5rem;
   }
 }
+
 @media (max-width: 750px) {
   h1 {
     font-size: 5.25rem;
   }
+
   h3 {
     margin-top: 0px;
     font-size: 4.5rem;
   }
 }
+
 @media (max-width: 700px) {
   h1 {
     font-size: 4.5rem;
     z-index: 100;
   }
+
   h3 {
     margin-top: 0px;
     font-size: 4rem;
     z-index: 100;
   }
-  .button-div {
-    gap: 2.5rem;
-  }
-
-  .countdown-gradient {
-    height: calc(75vh);
-  }
 }
+
 @media (max-width: 500px) {
   h1 {
     font-size: 4rem;
   }
+
   h3 {
     font-size: 3rem;
   }
 }
+
 @media (max-width: 450px) {
   h1 {
     font-size: 3.5rem;
   }
+
   h3 {
     font-size: 2.5rem;
   }
-  .button-div {
-    gap: 2rem;
-  }
+
   header {
     gap: 0.2rem;
   }

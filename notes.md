@@ -1,5 +1,8 @@
 # HackNJIT 2025 Planning Notes
 
+Updates:
+* make sure to change "(posted soon)" to "(linked above)" in the FAQs when DevPost is created
+
 Theme / graphics:
 * Green and gray theme
 * Green = environment, gray = concrete (human activity)

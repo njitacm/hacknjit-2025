@@ -1,21 +1,24 @@
 <template>
   <div id="main-container">
     <MLHBanner />
-    <div class="banner-container">
-      <NotifSignup id="NotifSignup" />
-      <TheCountdown />
-      <div id="view-hint" ref="viewHint">
-        <span>View last year's photos</span>
-        <br />
-        <span>&#129123;</span>
+    <main class="body-container">
+      <div class="banner-container">
+        <NotifSignup id="NotifSignup" />
+        <TheCountdown />
+        <div id="view-hint" ref="viewHint">
+          <span>View last year's photos</span>
+          <br />
+          <span>&#129123;</span>
+        </div>
       </div>
-    </div>
-    <div id="past-pics" ref="past-pics">
-      <img src="./assets/PastPictures/hacknjit2024_1.jpg" />
-      <img src="./assets/PastPictures/hacknjit2024_2.jpg" />
-      <img src="./assets/PastPictures/hacknjit2024_3.jpg" />
-      <img src="./assets/PastPictures/hacknjit2024_4.jpg" />
-    </div>
+      <div id="past-pics" ref="past-pics">
+        <img src="./assets/PastPictures/hacknjit2024_1.jpg" />
+        <img src="./assets/PastPictures/hacknjit2024_2.jpg" />
+        <img src="./assets/PastPictures/hacknjit2024_3.jpg" />
+        <img src="./assets/PastPictures/hacknjit2024_4.jpg" />
+      </div>
+      <TheFAQ />
+    </main>
     <TheFooter />
   </div>
 </template>
@@ -95,7 +98,7 @@ button {
 
 #main-container {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr auto;
   place-content: center;
   place-items: center;
 }

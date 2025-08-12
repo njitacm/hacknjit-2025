@@ -122,9 +122,5 @@ onClickOutside(target, () => emit("modalClose"));
     max-width: none;
     width: 100%;
   }
-
-  .Modal .body {
-    /* max-height: none; */
-  }
 }
 </style>

@@ -44,7 +44,7 @@ onClickOutside(target, () => emit("modalClose"));
 }
 
 .Modal .container {
-  max-width: 95%;
+  max-width: 90%;
   max-height: 95%;
   width: fit-content;
   height: fit-content;
@@ -61,6 +61,7 @@ onClickOutside(target, () => emit("modalClose"));
 .Modal .top {
   display: grid;
   grid-template-columns: 1fr auto;
+  height: fit-content;
 }
 
 .Modal .title * {
@@ -70,9 +71,14 @@ onClickOutside(target, () => emit("modalClose"));
   font-weight: bold;
 }
 
+.Modal .title {
+  height: fit-content;
+}
+
 .Modal button.close {
   color: gray;
   font-size: 2rem;
+  max-height: 32px;
   cursor: pointer;
   aspect-ratio: 1;
   background-color: transparent;
@@ -106,9 +112,19 @@ onClickOutside(target, () => emit("modalClose"));
   }
 }
 
-@media(max-width: 500px) {
+@media(max-width: 550px) {
   .Modal .title * {
     font-size: 1.5rem;
+  }
+
+  .Modal .container {
+    box-sizing: border-box;
+    max-width: none;
+    width: 100%;
+  }
+
+  .Modal .body {
+    /* max-height: none; */
   }
 }
 </style>

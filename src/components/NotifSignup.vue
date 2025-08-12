@@ -1,5 +1,5 @@
 <template>
-  <div class="outer-container">
+  <div class="NotifSignup outer-container">
     <main>
       <h1>HackNJIT</h1>
       <p class="inner_text">
@@ -27,11 +27,6 @@
         </template>
       </Modal>
     </main>
-    <div id="view-hint" ref="viewHint">
-      <span>View last year's photos</span>
-      <br />
-      <span>&#129123;</span>
-    </div>
   </div>
 </template>
 
@@ -76,7 +71,7 @@ const closeModal = () => {
   border-radius: 100px;
   background-color: white;
   color: #170800;
-  padding: 12px 16px;
+  padding: 12px 24px;
   border: none;
   font-weight: bold;
   font-size: 2rem;
@@ -92,15 +87,12 @@ iframe {
 }
 
 .outer-container {
-  padding-bottom: 32px;
   display: grid;
   grid-template-rows: 1fr auto;
   gap: 32px;
   align-content: center;
-  height: 100svh;
   width: 95%;
   margin: 0rem auto;
-  margin-bottom: 2rem;
 }
 
 h1 {
@@ -132,14 +124,6 @@ p {
   text-align: center;
 }
 
-#view-hint {
-  align-content: center;
-}
-
-#view-hint * {
-  margin: 0 auto;
-}
-
 img {
   max-width: 50%;
   border-radius: 30px;
@@ -162,7 +146,7 @@ img {
   }
 }
 
-@media(max-width: 590px) {
+@media(max-width: 650px) {
   iframe {
     height: 650px;
   }

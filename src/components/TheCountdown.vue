@@ -1,18 +1,18 @@
 <template>
   <div class="outer-container gradient" ref="container">
-    <Transition>
-      <header v-show="containerIsVisible">
-        <h1>
-          {{ format(days) }}&nbsp;:&nbsp;{{ format(hours) }}&nbsp;:&nbsp;{{ format(minutes) }}&nbsp;:&nbsp;{{
-            format(seconds) }}
-        </h1>
-      </header>
-    </Transition>
-    <h3>
+    <h1>
       {{ format(tweened_month.toFixed(0)) }} /
       {{ format(tweened_day.toFixed(0)) }} /
       {{ tweened_year.toFixed(0) }}
-    </h3>
+    </h1>
+    <Transition>
+      <header v-show="containerIsVisible">
+        <h3>
+          {{ format(days) }}&nbsp;:&nbsp;{{ format(hours) }}&nbsp;:&nbsp;{{ format(minutes) }}&nbsp;:&nbsp;{{
+            format(seconds) }}
+        </h3>
+      </header>
+    </Transition>
   </div>
 </template>
 
@@ -109,14 +109,12 @@ export default {
   width: 75%;
   /* height: calc(100vh); */
   margin: 0 auto;
-  padding-top: 3.5rem;
   width: fit-content;
   position: relative;
   overflow: hidden;
 }
 
 .gradient {
-  /* background: url("../assets/HackNJIT2024/repeating-bg.webp"); */
   animation-name: fade-in;
   animation-duration: 10s;
   animation-iteration-count: 1;
@@ -133,11 +131,11 @@ header {
 }
 
 h1 {
-  font-size: 12rem;
+  font-size: 4em;
 }
 
 h3 {
-  font-size: 6rem;
+  font-size: 3em;
   animation-name: fade-in;
   opacity: 0;
   animation-delay: 2s;
@@ -168,75 +166,14 @@ h3 {
   opacity: 0;
 }
 
-@media (max-width: 1500px) {
-  h1 {
-    font-size: 8.75rem;
-  }
-
-  header {
-    margin-top: 77px;
-  }
-
-  h3 {
-    margin-top: -30px;
+@media(max-width: 1000px) {
+  .outer-container {
+    font-size: 12px;
   }
 }
-
-@media (max-width: 1000px) {
-  h1 {
-    font-size: 6.75rem;
-  }
-
-  h3 {
-    font-size: 5rem;
-  }
-}
-
-@media (max-width: 750px) {
-  h1 {
-    font-size: 5.25rem;
-  }
-
-  h3 {
-    margin-top: 0px;
-    font-size: 4.5rem;
-  }
-}
-
-@media (max-width: 700px) {
-  h1 {
-    font-size: 4.5rem;
-    z-index: 100;
-  }
-
-  h3 {
-    margin-top: 0px;
-    font-size: 4rem;
-    z-index: 100;
-  }
-}
-
-@media (max-width: 500px) {
-  h1 {
-    font-size: 4rem;
-  }
-
-  h3 {
-    font-size: 3rem;
-  }
-}
-
-@media (max-width: 450px) {
-  h1 {
-    font-size: 3.5rem;
-  }
-
-  h3 {
-    font-size: 2.5rem;
-  }
-
-  header {
-    gap: 0.2rem;
+@media(max-width: 550px) {
+  .outer-container {
+    font-size: 8px;
   }
 }
 </style>

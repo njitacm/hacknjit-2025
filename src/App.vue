@@ -1,23 +1,22 @@
 <template>
   <div id="main-container">
-    <!-- <div class="gradient"></div> -->
     <MLHBanner />
-    <!-- <TheHeader /> -->
-    <NotifSignup id="Intro" />
-    <TheCountdown />
+    <div class="banner-container">
+      <NotifSignup id="NotifSignup" />
+      <TheCountdown />
+      <div id="view-hint" ref="viewHint">
+        <span>View last year's photos</span>
+        <br />
+        <span>&#129123;</span>
+      </div>
+    </div>
     <div id="past-pics" ref="past-pics">
       <img src="./assets/PastPictures/hacknjit2024_1.jpg" />
       <img src="./assets/PastPictures/hacknjit2024_2.jpg" />
       <img src="./assets/PastPictures/hacknjit2024_3.jpg" />
       <img src="./assets/PastPictures/hacknjit2024_4.jpg" />
     </div>
-    <!-- <TheSponsors id="Sponsors" /> -->
-    <!-- <TheTeam id="Team" /> -->
-    <!-- <TheFAQ id="FAQ" /> -->
     <TheFooter />
-    <!-- <GearDivider />
-    <NewCountdown />
-    <TheOldIntro /> -->
   </div>
 </template>
 
@@ -74,7 +73,7 @@ html {
   font-size: 16px;
   background: #170800;
   z-index: -100;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   overflow-x: auto;
   width: 100%;
   height: 100%;
@@ -90,11 +89,22 @@ body {
   font-weight: 500;
 }
 
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
 #main-container {
   display: grid;
-  grid-template-rows: 100lvh 1fr auto;
+  grid-template-rows: auto 1fr auto;
   place-content: center;
   place-items: center;
+}
+
+.banner-container {
+  min-height: 100svh;
+  height: fit-content;
+  display: grid;
+  gap: 1rem;
 }
 
 #past-pics {
@@ -111,4 +121,11 @@ body {
   width: 100%;
 }
 
+#view-hint {
+  align-content: center;
+}
+
+#view-hint * {
+  margin: 0 auto;
+}
 </style>

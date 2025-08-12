@@ -3,8 +3,8 @@
     <!-- <div class="gradient"></div> -->
     <MLHBanner />
     <!-- <TheHeader /> -->
+    <NotifSignup id="Intro" />
     <TheCountdown />
-    <TheIntro id="Intro" />
     <div id="past-pics" ref="past-pics">
       <img src="./assets/PastPictures/hacknjit2024_1.jpg" />
       <img src="./assets/PastPictures/hacknjit2024_2.jpg" />
@@ -27,7 +27,7 @@ import TheCountdown from "./components/TheCountdown.vue";
 import TheFAQ from "./components/TheFAQ.vue";
 import TheFooter from "./components/TheFooter.vue";
 import TheHeader from "./components/TheHeader.vue";
-import TheIntro from "./components/TheIntro.vue";
+import NotifSignup from "./components/NotifSignup.vue";
 import TheSponsors from "./components/TheSponsors.vue";
 import TheTeam from "./components/TheTeam.vue";
 export default {
@@ -40,7 +40,7 @@ export default {
     TheFAQ,
     TheFooter,
     TheSponsors,
-    TheIntro,
+    NotifSignup,
   }
 };
 </script>

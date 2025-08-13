@@ -1,45 +1,49 @@
 <template>
-  <div v-if="isOpen" class="Modal">
-    <Transition>
-      <div class="container" ref="target" v-if="isOpen" appear>
-        <div class="top">
-          <h1 className="title">
-            <slot name="title"></slot>
-          </h1>
-          <button class="close" @click.stop="$emit('modalClose')">&#10005;</button>
+  <Teleport to="body">
+    <div v-for="(modal, index) in modalStack" :key="index" class="Modal" :style="{ zIndex: 1000 + index }">
+      <Transition appear>
+        <div class="modal-backdrop">
+          <div class="container" ref="target">
+            <header class="header">
+              <h2>{{ modal.title }}</h2>
+              <button @click.stop="closeModal" class="close">&times;</button>
+            </header>
+            <section class="body">
+              <component :is="modal.component" v-bind="modal.props" />
+            </section>
+          </div>
         </div>
-        <div class="body">
-          <slot name="body"></slot>
-        </div>
-      </div>
-    </Transition>
-  </div>
+      </Transition>
+    </div>
+  </Teleport>
 </template>
 
 <script setup>
-import { defineProps, defineEmits, useTemplateRef } from "vue";
+import { useTemplateRef } from "vue";
 import { onClickOutside } from "@vueuse/core";
-const emit = defineEmits(["modalClose"]);
-const props = defineProps({
-  isOpen: Boolean,
-});
+import { useModal } from "../composables/useModal";
+
+const { modalStack, closeModal } = useModal();
 
 const target = useTemplateRef("target");
-onClickOutside(target, () => emit("modalClose"));
-
+onClickOutside(target, () => closeModal());
 </script>
 
 <style scoped>
-.Modal {
-  backdrop-filter: blur(5px);
-  background-color: rgba(0, 0, 0, 0.5);
-  align-content: center;
+.Modal,
+.modal-backdrop {
   position: absolute;
-  z-index: 100001;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.modal-backdrop {
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.5);
+  align-content: center;
+  z-index: 100001;
 }
 
 .Modal .container {
@@ -56,21 +60,17 @@ onClickOutside(target, () => emit("modalClose"));
   padding: 10px;
 }
 
-.Modal .top {
+.Modal .header {
   display: grid;
   grid-template-columns: 1fr auto;
   height: fit-content;
 }
 
-.Modal .title * {
+.Modal .header * {
   font-size: 2rem;
   display: block;
   padding: 16px;
   font-weight: bold;
-}
-
-.Modal .title {
-  height: fit-content;
 }
 
 .Modal button.close {
@@ -91,7 +91,7 @@ onClickOutside(target, () => emit("modalClose"));
 }
 
 @media(max-width: 550px) {
-  .Modal .title * {
+  .Modal .header * {
     font-size: 1.5rem;
   }
 
@@ -104,11 +104,22 @@ onClickOutside(target, () => emit("modalClose"));
 
 .v-enter-active,
 .v-leave-active {
-  transition: all 1s ease;
+  transition: background-color 250ms linear;
 }
 
 .v-enter-from,
 .v-leave-to {
+  background-color: transparent;
+}
+
+.v-enter-active .container,
+.v-leave-active .container {
+  transition: transform 250ms ease-out, opacity 250ms ease-out;
+}
+
+.v-enter-from .container,
+.v-leave-to .container {
   opacity: 0;
+  transform: translateY(-50px);
 }
 </style>

@@ -12,6 +12,7 @@ export function useModal() {
             component: shallowRef(options.component),
             props: options.props || {},
         });
+        console.log(modalStack.value);
     };
 
     const closeModal = () => {

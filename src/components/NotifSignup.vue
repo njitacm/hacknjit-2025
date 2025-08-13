@@ -12,27 +12,18 @@
       </p>
       <a :href="vw <= modalNoShowThreshold ? 'https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?usp=dialog' : null"
         target="_blank" class="email-signup">
-        <button @click="openModal">
+        <button @click="openNewModal">
           Sign up for email updates
         </button>
       </a>
-      <Modal :is-open="isModalOpen && vw > modalNoShowThreshold" @modalClose="closeModal" name="email-sign-up">
-        <template #title>
-          <span>Receive Email Updates</span>
-        </template>
-        <template #body>
-          <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?embedded=true"
-            frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-        </template>
-      </Modal>
     </main>
   </div>
 </template>
 
 <script setup>
+import SignupForm from "./SignupForm.vue";
 import { ref, onMounted, onBeforeMount } from "vue";
-import Modal from './Modal.vue';
+import { useModal } from "../composables/useModal";
 
 const modalNoShowThreshold = 400;   // viewport width in px;
 const getVw = () => Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
@@ -50,15 +41,14 @@ onBeforeMount(() => {
   window.removeEventListener("resize", onWindowResize);
 });
 
-const isModalOpen = ref(false);
+const { openModal } = useModal();
 
-const openModal = () => {
-  isModalOpen.value = true;
-}
-
-const closeModal = () => {
-  isModalOpen.value = false;
-}
+const openNewModal = () => {
+  openModal({
+    title: "Receive Email Updates",
+    component: SignupForm
+  });
+};
 
 </script>
 
@@ -76,14 +66,6 @@ const closeModal = () => {
   font-weight: bold;
   font-size: 2rem;
   cursor: pointer;
-}
-
-iframe {
-  max-width: 100%;
-  max-height: 100%;
-  width: 750px;
-  height: 550px;
-  overflow: hidden;
 }
 
 .outer-container {
@@ -143,12 +125,6 @@ img {
 
   .email-signup button {
     font-size: 1.5rem;
-  }
-}
-
-@media(max-width: 650px) {
-  iframe {
-    height: 650px;
   }
 }
 

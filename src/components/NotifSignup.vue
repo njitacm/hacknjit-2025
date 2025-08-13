@@ -161,4 +161,14 @@ img {
     font-size: 1.25rem;
   }
 }
+
+/* .v-enter-active,
+.v-leave-active {
+  transition: all 1s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+} */
 </style>

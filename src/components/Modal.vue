@@ -1,23 +1,24 @@
 <template>
   <div v-if="isOpen" class="Modal">
-    <div class="container" ref="target">
-      <div class="top">
-        <h1 className="title">
-          <slot name="title"></slot>
-        </h1>
-        <button class="close" @click.stop="$emit('modalClose')">&#10005;</button>
+    <Transition>
+      <div class="container" ref="target" v-if="isOpen" appear>
+        <div class="top">
+          <h1 className="title">
+            <slot name="title"></slot>
+          </h1>
+          <button class="close" @click.stop="$emit('modalClose')">&#10005;</button>
+        </div>
+        <div class="body">
+          <slot name="body"></slot>
+        </div>
       </div>
-      <div class="body">
-        <slot name="body"></slot>
-      </div>
-    </div>
+    </Transition>
   </div>
 </template>
 
 <script setup>
 import { defineProps, defineEmits, useTemplateRef } from "vue";
 import { onClickOutside } from "@vueuse/core";
-
 const emit = defineEmits(["modalClose"]);
 const props = defineProps({
   isOpen: Boolean,
@@ -30,8 +31,8 @@ onClickOutside(target, () => emit("modalClose"));
 
 <style scoped>
 .Modal {
-  --anim-dur: 250ms;
   backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.5);
   align-content: center;
   position: absolute;
   z-index: 100001;
@@ -39,8 +40,6 @@ onClickOutside(target, () => emit("modalClose"));
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  animation: fade-in linear var(--anim-dur);
 }
 
 .Modal .container {
@@ -52,7 +51,6 @@ onClickOutside(target, () => emit("modalClose"));
   background-color: white;
   color: black;
   border-radius: 1rem;
-  animation: drop-in ease-out var(--anim-dur);
   padding-bottom: 12px;
   overflow: hidden;
   padding: 10px;
@@ -92,26 +90,6 @@ onClickOutside(target, () => emit("modalClose"));
   height: inherit;
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes drop-in {
-  from {
-    transform: translateY(-50px);
-  }
-
-  to {
-    transform: none;
-  }
-}
-
 @media(max-width: 550px) {
   .Modal .title * {
     font-size: 1.5rem;
@@ -122,5 +100,15 @@ onClickOutside(target, () => emit("modalClose"));
     max-width: none;
     width: 100%;
   }
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 1s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

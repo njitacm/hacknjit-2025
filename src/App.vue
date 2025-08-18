@@ -2,7 +2,6 @@
   <div id="main-container">
     <!-- <MLHBanner /> -->
     <main class="body-container">
-      <WhatIs></WhatIs>
       <div class="banner-container">
         <NotifSignup id="NotifSignup" />
         <TheCountdown />

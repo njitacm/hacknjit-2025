@@ -3,7 +3,7 @@
     <div v-for="(modal, index) in modalStack" :key="index" class="Modal" :style="{ zIndex: 1000 + index }">
       <div class="modal-backdrop">
         <Transition appear>
-          <div class="container" ref="target" v-on-click-outside="closeModal">
+          <div class="container" v-on-click-outside="closeModal">
             <header class="header">
               <h2>{{ modal.title }}</h2>
               <button @click="closeModal" class="close">&times;</button>
@@ -42,6 +42,7 @@ const { modalStack, closeModal } = useModal();
 }
 
 .Modal .container {
+  transform-origin: top center;
   max-width: 90%;
   max-height: 95%;
   width: fit-content;
@@ -97,24 +98,23 @@ const { modalStack, closeModal } = useModal();
   }
 }
 
-/* .v-enter-active,
-.v-leave-active {
-  transition: background-color 250ms linear;
-}
+@media (prefers-reduced-motion: no-preference) {
 
-.v-enter-from,
-.v-leave-to {
-  background-color: transparent;
-} */
+  .v-enter-active,
+  .v-leave-active {
+    animation: enter;
+    animation-duration: 250ms;
+    animation-timing-function: ease;
+  }
 
-.v-enter-active,
-.v-leave-active {
-  transition: transform 250ms ease-out, opacity 250ms ease-out;
-}
+  @keyframes enter {
+    from {
+      transform: perspective(100cm) rotateX(30deg) translateY(0px);
+    }
 
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-  transform: translateY(-50px);
+    to {
+      transform: perspective(none) rotateX(0deg) translateY(0px);
+    }
+  }
 }
 </style>

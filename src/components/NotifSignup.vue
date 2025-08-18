@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import SignupForm from "./SignupForm.vue";
+import SignupForm from "./modal_components/SignupForm.vue";
 import { ref, onMounted, onBeforeMount } from "vue";
 import { useModal } from "../composables/useModal";
 

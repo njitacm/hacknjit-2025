@@ -1,32 +1,27 @@
 <template>
   <Teleport to="body">
     <div v-for="(modal, index) in modalStack" :key="index" class="Modal" :style="{ zIndex: 1000 + index }">
-      <Transition appear>
-        <div class="modal-backdrop">
-          <div class="container" ref="target">
+      <div class="modal-backdrop">
+        <Transition appear>
+          <div class="container" ref="target" v-on-click-outside="closeModal">
             <header class="header">
               <h2>{{ modal.title }}</h2>
-              <button @click.stop="closeModal" class="close">&times;</button>
+              <button @click="closeModal" class="close">&times;</button>
             </header>
             <section class="body">
               <component :is="modal.component" v-bind="modal.props" />
             </section>
           </div>
-        </div>
-      </Transition>
+        </Transition>
+      </div>
     </div>
   </Teleport>
 </template>
 
 <script setup>
-import { useTemplateRef } from "vue";
-import { onClickOutside } from "@vueuse/core";
+import { vOnClickOutside } from "@vueuse/components"
 import { useModal } from "../composables/useModal";
-
 const { modalStack, closeModal } = useModal();
-
-const target = useTemplateRef("target");
-onClickOutside(target, () => closeModal());
 </script>
 
 <style scoped>
@@ -102,7 +97,7 @@ onClickOutside(target, () => closeModal());
   }
 }
 
-.v-enter-active,
+/* .v-enter-active,
 .v-leave-active {
   transition: background-color 250ms linear;
 }
@@ -110,15 +105,15 @@ onClickOutside(target, () => closeModal());
 .v-enter-from,
 .v-leave-to {
   background-color: transparent;
-}
+} */
 
-.v-enter-active .container,
-.v-leave-active .container {
+.v-enter-active,
+.v-leave-active {
   transition: transform 250ms ease-out, opacity 250ms ease-out;
 }
 
-.v-enter-from .container,
-.v-leave-to .container {
+.v-enter-from,
+.v-leave-to {
   opacity: 0;
   transform: translateY(-50px);
 }

@@ -10,7 +10,7 @@
       <p>
         Stay tuned, we'll return in November 2025!
       </p>
-      <a :href="vw <= modalNoShowThreshold ? 'https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?usp=dialog' : null"
+      <a :href="vw <= SHOW_MODAL_THRESHOLD ? 'https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?usp=dialog' : null"
         target="_blank" class="email-signup">
         <button @click="openNewModal">
           Sign up for email updates
@@ -25,13 +25,18 @@ import SignupForm from "./SignupForm.vue";
 import { ref, onMounted, onBeforeMount } from "vue";
 import { useModal } from "../composables/useModal";
 
-const modalNoShowThreshold = 400;   // viewport width in px;
+const SHOW_MODAL_THRESHOLD = 400;   // viewport width in px;
 const getVw = () => Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 const vw = ref(getVw());
+const { openModal, closeModal } = useModal();
 
 const onWindowResize = () => {
   vw.value = getVw();
-}
+
+  if (vw.value <= SHOW_MODAL_THRESHOLD) {
+    closeModal();
+  }
+};
 
 onMounted(() => {
   window.addEventListener("resize", onWindowResize);
@@ -41,13 +46,14 @@ onBeforeMount(() => {
   window.removeEventListener("resize", onWindowResize);
 });
 
-const { openModal } = useModal();
-
 const openNewModal = () => {
-  openModal({
-    title: "Receive Email Updates",
-    component: SignupForm
-  });
+  console.log(vw.value);
+  if (vw.value > SHOW_MODAL_THRESHOLD) {
+    openModal({
+      title: "Receive Email Updates",
+      component: SignupForm
+    });
+  }
 };
 
 </script>

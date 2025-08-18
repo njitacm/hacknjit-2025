@@ -47,7 +47,6 @@ onBeforeMount(() => {
 });
 
 const openNewModal = () => {
-  console.log(vw.value);
   if (vw.value > SHOW_MODAL_THRESHOLD) {
     openModal({
       title: "Receive Email Updates",

@@ -4,6 +4,7 @@ const modalStack = ref([]);
 
 export function useModal() {
     const openModal = (options) => {
+        // make ids more reliable
         const id = Date.now() + Math.random();
 
         modalStack.value.push({
@@ -12,7 +13,6 @@ export function useModal() {
             component: shallowRef(options.component),
             props: options.props || {},
         });
-        console.log(modalStack.value);
     };
 
     const closeModal = () => {

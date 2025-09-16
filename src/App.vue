@@ -35,6 +35,29 @@ import TheSponsors from "./components/TheSponsors.vue";
 import TheTeam from "./components/TheTeam.vue";
 import Modal from "./components/Modal.vue";
 
+/*
+
+TODO: NAV BAR
+* About
+  * Student chapter of ACM [link to main website] and YWCC
+* Schedule
+* Team?
+* Contact
+* Registration
+* FAQ
+* Sponsors
+
+TODO: Double check FAQs
+TODO: Log-in
+
+Title banner:
+* Universal-style vector GIF globe scroll animation, HackNJIT text rotates behind globe and "Hack the world" appears in its place
+* Then it scrolls up
+* Location / date would stay with the globe
+* We need animators
+
+*/
+
 export default {
   name: "HackNJIT",
   components: {

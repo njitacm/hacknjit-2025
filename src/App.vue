@@ -1,6 +1,7 @@
 <template>
   <div id="main-container">
     <!-- <MLHBanner /> -->
+    <TheHeader />
     <main class="body-container">
       <div class="banner-container">
         <NotifSignup id="NotifSignup" />
@@ -76,7 +77,7 @@ export default {
 
 <style>
 :root {
-  --main-bg-color: #dab473;
+  --main-bg-color: #274029;
   --main-fg-color: #8f5f49;
   --text-color: white;
   --secondary-bg-color: #3f2b12;
@@ -101,7 +102,8 @@ html {
   color: white;
   box-sizing: border-box;
   font-size: 16px;
-  background: #170800;
+  //background: #274029;
+  background-image: linear-gradient(to top,#181F1C,#274029);
   z-index: -100;
   /* overflow-x: hidden; */
   overflow-x: auto;

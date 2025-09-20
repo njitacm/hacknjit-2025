@@ -1,6 +1,6 @@
 <template>
   <div id="main-container">
-    <!-- <MLHBanner /> -->
+    <MLHBanner />
     <main class="body-container">
       <div class="banner-container">
         <NotifSignup id="NotifSignup" />
@@ -101,7 +101,7 @@ html {
   color: white;
   box-sizing: border-box;
   font-size: 16px;
-  background: #170800;
+  background: #274029;
   z-index: -100;
   /* overflow-x: hidden; */
   overflow-x: auto;

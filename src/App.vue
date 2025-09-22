@@ -94,6 +94,8 @@ export default {
   --mlh-banner-transparent1: #f7f7f77c;
   --mlh-banner-transparent2: #f7f7f7ab;
   --edge-colors: #d3b28eb2;
+
+  --max-content-width: 1000px;
 }
 
 html {
@@ -129,10 +131,8 @@ button {
 }
 
 #main-container {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  place-content: center;
-  place-items: center;
+  margin: 0 auto;
+  width: calc(100% - 50px);
 }
 
 .banner-container {

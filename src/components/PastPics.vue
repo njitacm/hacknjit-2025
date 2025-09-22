@@ -9,12 +9,12 @@
 
 <style scoped>
 .PastPics {
-  margin-top: 32px;
   gap: 16px;
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: auto auto;
   place-content: center;
-  height: auto;
+  width: 100%;
+  /* max-width: var(--max-content-width); */
   
   @media(max-width: 600px) {
     & {
@@ -24,8 +24,10 @@
 }
 
 img {
+  width: 100%;
+  height: auto;
   border-radius: 0.5rem;
-  /* display: block; */
+  display: block;
   top: 0;
   aspect-ratio: 16/9;
   object-fit: cover;

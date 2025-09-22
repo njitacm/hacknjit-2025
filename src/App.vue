@@ -37,6 +37,13 @@ import TheTeam from "./components/TheTeam.vue";
 import Modal from "./components/Modal.vue";
 
 /*
+TODO:
+* Built-in registration form
+* Gradient background
+* Waiting for graphics
+* Standard aspect ratio for images
+* Add tracks
+* Main site: pull events from sheets
 
 TODO: NAV BAR
 * About

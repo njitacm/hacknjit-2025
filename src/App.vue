@@ -34,7 +34,6 @@ import TheFooter from "./components/TheFooter.vue";
 import TheNavBar from "./components/TheNavBar.vue";
 import NotifSignup from "./components/NotifSignup.vue";
 import TheSponsors from "./components/TheSponsors.vue";
-import TheTeam from "./components/TheTeam.vue";
 import Modal from "./components/Modal.vue";
 
 /*
@@ -73,7 +72,6 @@ export default {
     TheNavBar,
     TheCountdown,
     MLHBanner,
-    TheTeam,
     TheFAQ,
     TheFooter,
     TheSponsors,

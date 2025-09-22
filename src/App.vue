@@ -8,7 +8,8 @@
         <div id="view-hint" ref="viewHint">
           <span>View last year's photos</span>
           <br />
-          <span>&#129123;</span>
+          <br />
+          <img src="./assets/down_arrow.svg" style="width: 25px; height: 25px"/>
         </div>
       </div>
       <PastPics />

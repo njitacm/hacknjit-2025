@@ -17,6 +17,7 @@
         <img src="./assets/PastPictures/hacknjit2024_3.jpg" />
         <img src="./assets/PastPictures/hacknjit2024_4.jpg" />
       </div>
+      <TheSponsors />
       <TheFAQ />
     </main>
     <TheFooter />

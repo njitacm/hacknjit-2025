@@ -11,12 +11,7 @@
           <span>&#129123;</span>
         </div>
       </div>
-      <div id="past-pics" ref="past-pics">
-        <img src="./assets/PastPictures/hacknjit2024_1.jpg" />
-        <img src="./assets/PastPictures/hacknjit2024_2.jpg" />
-        <img src="./assets/PastPictures/hacknjit2024_3.jpg" />
-        <img src="./assets/PastPictures/hacknjit2024_4.jpg" />
-      </div>
+      <PastPics />
       <!-- <TheSponsors /> -->
       <TheFAQ />
     </main>
@@ -34,6 +29,7 @@ import TheHeader from "./components/TheHeader.vue";
 import NotifSignup from "./components/NotifSignup.vue";
 import TheSponsors from "./components/TheSponsors.vue";
 import Modal from "./components/Modal.vue";
+import PastPics from "./components/PastPics.vue";
 
 /*
 TODO:
@@ -76,6 +72,7 @@ export default {
     TheSponsors,
     NotifSignup,
     Modal,
+    PastPics,
   }
 };
 </script>
@@ -141,20 +138,6 @@ button {
   height: fit-content;
   display: grid;
   gap: 1rem;
-}
-
-#past-pics {
-  margin-top: 32px;
-  padding: 20px;
-  columns: 2 300px;
-  column-gap: 1rem;
-}
-
-#past-pics img {
-  border-radius: 0.5rem;
-  display: block;
-  margin-bottom: 1rem;
-  width: 100%;
 }
 
 #view-hint {

@@ -1,7 +1,7 @@
 <template>
   <Teleport to="body">
     <div v-for="(modal, index) in modalStack" :key="index" class="Modal" :style="{ zIndex: 1000 + index }">
-      <div class="modal-backdrop">
+      <div class="modal-backdrop" @keydown.esc="closeModal">
         <Transition appear>
           <div class="container" v-on-click-outside="closeModal">
             <header class="header">
@@ -21,7 +21,21 @@
 <script setup>
 import { vOnClickOutside } from "@vueuse/components"
 import { useModal } from "../composables/useModal";
+import { onBeforeUnmount } from "vue";
 const { modalStack, closeModal } = useModal();
+
+// hit escape to close modal
+document.addEventListener("keydown", handleGlobalEscape);
+
+onBeforeUnmount(() => {
+  document.removeEventListener("keydown", handleGlobalEscape);
+});
+
+function handleGlobalEscape(e) {
+  if (e.key === 'Escape' || e.keyCode === 27) {
+    closeModal();
+  }
+}
 </script>
 
 <style scoped>

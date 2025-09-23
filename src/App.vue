@@ -8,15 +8,12 @@
         <div id="view-hint" ref="viewHint">
           <span>View last year's photos</span>
           <br />
-          <span>&#129123;</span>
+          <br />
+          <img src="./assets/down_arrow.svg" style="width: 25px; height: 25px"/>
         </div>
       </div>
-      <div id="past-pics" ref="past-pics">
-        <img src="./assets/PastPictures/hacknjit2024_1.jpg" />
-        <img src="./assets/PastPictures/hacknjit2024_2.jpg" />
-        <img src="./assets/PastPictures/hacknjit2024_3.jpg" />
-        <img src="./assets/PastPictures/hacknjit2024_4.jpg" />
-      </div>
+      <PastPics />
+      <!-- <TheSponsors /> -->
       <TheFAQ />
     </main>
     <TheFooter />
@@ -32,10 +29,17 @@ import TheFooter from "./components/TheFooter.vue";
 import TheHeader from "./components/TheHeader.vue";
 import NotifSignup from "./components/NotifSignup.vue";
 import TheSponsors from "./components/TheSponsors.vue";
-import TheTeam from "./components/TheTeam.vue";
 import Modal from "./components/Modal.vue";
+import PastPics from "./components/PastPics.vue";
 
 /*
+TODO:
+* Built-in registration form
+* Gradient background
+* Waiting for graphics
+* Standard aspect ratio for images
+* Add tracks
+* Main site: pull events from sheets
 
 TODO: NAV BAR
 * About
@@ -64,12 +68,12 @@ export default {
     TheHeader,
     TheCountdown,
     MLHBanner,
-    TheTeam,
     TheFAQ,
     TheFooter,
     TheSponsors,
     NotifSignup,
     Modal,
+    PastPics,
   }
 };
 </script>
@@ -90,6 +94,8 @@ export default {
   --mlh-banner-transparent1: #f7f7f77c;
   --mlh-banner-transparent2: #f7f7f7ab;
   --edge-colors: #d3b28eb2;
+
+  --max-content-width: 1000px;
 }
 
 html {
@@ -124,10 +130,8 @@ button {
 }
 
 #main-container {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  place-content: center;
-  place-items: center;
+  margin: 0 auto;
+  width: calc(100% - 50px);
 }
 
 .banner-container {
@@ -135,20 +139,6 @@ button {
   height: fit-content;
   display: grid;
   gap: 1rem;
-}
-
-#past-pics {
-  margin-top: 32px;
-  padding: 20px;
-  columns: 2 300px;
-  column-gap: 1rem;
-}
-
-#past-pics img {
-  border-radius: 0.5rem;
-  display: block;
-  margin-bottom: 1rem;
-  width: 100%;
 }
 
 #view-hint {

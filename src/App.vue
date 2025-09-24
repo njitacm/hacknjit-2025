@@ -12,6 +12,7 @@
           <img src="./assets/down_arrow.svg" style="width: 25px; height: 25px"/>
         </div>
       </div>
+      <!-- <Tracks/> -->
       <PastPics />
       <!-- <TheSponsors /> -->
       <TheFAQ />
@@ -30,6 +31,7 @@ import TheHeader from "./components/TheHeader.vue";
 import NotifSignup from "./components/NotifSignup.vue";
 import TheSponsors from "./components/TheSponsors.vue";
 import Modal from "./components/Modal.vue";
+import Tracks from "./components/Tracks.vue";
 import PastPics from "./components/PastPics.vue";
 
 /*
@@ -73,6 +75,7 @@ export default {
     TheSponsors,
     NotifSignup,
     Modal,
+    Tracks,
     PastPics,
   }
 };

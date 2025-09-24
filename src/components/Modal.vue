@@ -5,7 +5,7 @@
         <Transition appear>
           <div class="container" v-on-click-outside="closeModal">
             <header class="header">
-              <h2>{{ modal.title }}</h2>
+              <h3 class="title">{{ modal.title }}</h3>
               <button @click="closeModal" class="close">&times;</button>
             </header>
             <section class="body">
@@ -76,17 +76,15 @@ function handleGlobalEscape(e) {
   height: fit-content;
 }
 
-.Modal .header * {
-  font-size: 2rem;
-  display: block;
-  padding: 16px;
-  font-weight: bold;
+.header .title {
+  align-content: center;
 }
 
 .Modal button.close {
   color: gray;
-  font-size: 2rem;
-  max-height: 32px;
+  line-height: 0;
+  font-size: 3em;
+  height: 1em;
   cursor: pointer;
   aspect-ratio: 1;
   background-color: transparent;
@@ -101,10 +99,6 @@ function handleGlobalEscape(e) {
 }
 
 @media(max-width: 550px) {
-  .Modal .header * {
-    font-size: 1.5rem;
-  }
-
   .Modal .container {
     box-sizing: border-box;
     max-width: none;

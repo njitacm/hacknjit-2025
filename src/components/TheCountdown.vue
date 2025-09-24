@@ -1,18 +1,18 @@
 <template>
   <div class="outer-container gradient" ref="container">
-    <h1>
+    <Transition>
+      <header v-show="containerIsVisible">
+        <p class="countdown">
+          {{ format(days) }}&nbsp;:&nbsp;{{ format(hours) }}&nbsp;:&nbsp;{{ format(minutes) }}&nbsp;:&nbsp;{{
+            format(seconds) }}
+        </p>
+      </header>
+    </Transition>
+    <p class="date">
       {{ format(tweened_month.toFixed(0)) }} /
       {{ format(tweened_day.toFixed(0)) }} /
       {{ tweened_year.toFixed(0) }}
-    </h1>
-    <Transition>
-      <header v-show="containerIsVisible">
-        <h3>
-          {{ format(days) }}&nbsp;:&nbsp;{{ format(hours) }}&nbsp;:&nbsp;{{ format(minutes) }}&nbsp;:&nbsp;{{
-            format(seconds) }}
-        </h3>
-      </header>
-    </Transition>
+    </p>
   </div>
 </template>
 
@@ -114,6 +114,14 @@ export default {
   overflow: hidden;
 }
 
+.date {
+  font-size: 2em;
+}
+
+.countdown {
+  font-size: 3em;
+}
+
 .gradient {
   animation-name: fade-in;
   animation-duration: 10s;
@@ -130,12 +138,7 @@ header {
   justify-content: center;
 }
 
-h1 {
-  font-size: 4em;
-}
-
 h3 {
-  font-size: 3em;
   animation-name: fade-in;
   opacity: 0;
   animation-delay: 2s;
@@ -164,16 +167,5 @@ h3 {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
-}
-
-@media(max-width: 1000px) {
-  .outer-container {
-    font-size: 12px;
-  }
-}
-@media(max-width: 550px) {
-  .outer-container {
-    font-size: 8px;
-  }
 }
 </style>

@@ -1,38 +1,38 @@
 <template>
-  <div id="main-container">
-    <MLHBanner />
-    <main class="body-container">
-      <div class="banner-container">
-        <NotifSignup id="NotifSignup" />
-        <TheCountdown />
-        <div id="view-hint" ref="viewHint">
-          <span>View last year's photos</span>
-          <br />
-          <br />
-          <img src="./assets/down_arrow.svg" style="width: 25px; height: 25px"/>
-        </div>
-      </div>
-      <PastPics />
-      <!-- <TheSponsors /> -->
-      <TheFAQ />
-    </main>
-    <TheFooter />
-    <Modal />
-  </div>
+  <MLHBanner />
+  <main class="body-container">
+    <!-- <Banner gradient="radial-gradient(yellow, green)" /> -->
+    <Banner />
+    <!-- <Tracks/> -->
+    <PastPics />
+    <!-- <TheSponsors /> -->
+    <TheFAQ />
+  </main>
+  <TheFooter />
+  <Modal />
 </template>
 
 <script>
 import MLHBanner from "./components/MLHBanner.vue";
-import TheCountdown from "./components/TheCountdown.vue";
 import TheFAQ from "./components/TheFAQ.vue";
 import TheFooter from "./components/TheFooter.vue";
 import TheHeader from "./components/TheHeader.vue";
-import NotifSignup from "./components/NotifSignup.vue";
 import TheSponsors from "./components/TheSponsors.vue";
 import Modal from "./components/Modal.vue";
+import Banner from "./components/Banner.vue";
+import Tracks from "./components/Tracks.vue";
 import PastPics from "./components/PastPics.vue";
 
 /*
+TODO:
+* Mission statement
+Tracks:
+* Each page for tracks
+* Each track
+* Climate - solar punk
+* Conservation - endangered species, biodiversity, oceanography, trash reef
+* Public Health - medical, DNA strand, polymer chain, chemical, data analysis, hospital
+
 TODO:
 * Built-in registration form
 * Gradient background
@@ -66,13 +66,13 @@ export default {
   name: "HackNJIT",
   components: {
     TheHeader,
-    TheCountdown,
     MLHBanner,
     TheFAQ,
     TheFooter,
     TheSponsors,
-    NotifSignup,
     Modal,
+    Banner,
+    Tracks,
     PastPics,
   }
 };
@@ -106,10 +106,8 @@ html {
   text-align: center;
   color: white;
   box-sizing: border-box;
-  font-size: 16px;
   background: #274029;
   z-index: -100;
-  /* overflow-x: hidden; */
   overflow-x: auto;
   width: 100%;
   height: 100%;
@@ -119,33 +117,53 @@ body {
   height: 100%;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;
   font-weight: 500;
+  line-height: 1.5em;
+}
+
+p,
+span,
+a {
+  font-size: 1.25em;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 6em;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+h3 {
+  font-size: 1.5em;
 }
 
 button {
+  font-size: 1.5em;
   -webkit-tap-highlight-color: transparent;
 }
 
-#main-container {
+.page-side-padding {
   margin: 0 auto;
-  width: calc(100% - 50px);
+  width: calc(100vw - 64px);
 }
 
-.banner-container {
-  min-height: 100svh;
-  height: fit-content;
+main {
   display: grid;
-  gap: 1rem;
-}
-
-#view-hint {
-  align-content: center;
-}
-
-#view-hint * {
-  margin: 0 auto;
+  gap: 32px;
 }
 </style>

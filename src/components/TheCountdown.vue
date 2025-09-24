@@ -122,6 +122,26 @@ export default {
   font-size: 3em;
 }
 
+@media (max-width: 1000px) {
+  .date {
+    font-size: 1.5em;
+  }
+
+  .countdown {
+    font-size: 2.5em;
+  }
+}
+
+@media (max-width: 425px) {
+  .date {
+    font-size: 1.25em;
+  }
+
+  .countdown {
+    font-size: 2em;
+  }
+}
+
 .gradient {
   animation-name: fade-in;
   animation-duration: 10s;

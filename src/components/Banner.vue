@@ -63,6 +63,26 @@ p {
   font-size: 2em;
 }
 
+@media (max-width: 1000px) {
+  p {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 425px) {
+  h1 {
+    font-size: 3em;
+  }
+
+  p {
+    font-size: 1.25em;
+  }
+
+  .top-container {
+    align-self: last baseline;
+  }
+}
+
 .view-hint {
   align-content: center;
 }
@@ -71,7 +91,8 @@ p {
   margin: 0 auto;
 }
 
-.top-container, .bottom-container {
+.top-container,
+.bottom-container {
   display: grid;
   gap: 32px;
 }

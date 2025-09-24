@@ -3,16 +3,7 @@
     <!-- <MLHBanner /> -->
     <TheHeader />
     <main class="body-container">
-      <div class="banner-container">
-        <NotifSignup id="NotifSignup" />
-        <TheCountdown />
-        <div id="view-hint" ref="viewHint">
-          <span>View last year's photos</span>
-          <br />
-          <br />
-          <img src="./assets/down_arrow.svg" style="width: 25px; height: 25px"/>
-        </div>
-      </div>
+      <Banner/>
       <!-- <Tracks/> -->
       <PastPics />
       <!-- <TheSponsors /> -->
@@ -25,13 +16,12 @@
 
 <script>
 import MLHBanner from "./components/MLHBanner.vue";
-import TheCountdown from "./components/TheCountdown.vue";
 import TheFAQ from "./components/TheFAQ.vue";
 import TheFooter from "./components/TheFooter.vue";
-import TheNavBar from "./components/TheNavBar.vue";
-import NotifSignup from "./components/NotifSignup.vue";
+import TheHeader from "./components/TheHeader.vue";
 import TheSponsors from "./components/TheSponsors.vue";
 import Modal from "./components/Modal.vue";
+import Banner from "./components/Banner.vue";
 import Tracks from "./components/Tracks.vue";
 import PastPics from "./components/PastPics.vue";
 
@@ -68,14 +58,13 @@ Title banner:
 export default {
   name: "HackNJIT",
   components: {
-    TheNavBar,
-    TheCountdown,
+    TheHeader,
     MLHBanner,
     TheFAQ,
     TheFooter,
     TheSponsors,
-    NotifSignup,
     Modal,
+    Banner,
     Tracks,
     PastPics,
   }
@@ -114,7 +103,6 @@ html {
   //background: #274029;
   background-image: linear-gradient(to top,#181F1C,#274029);
   z-index: -100;
-  /* overflow-x: hidden; */
   overflow-x: auto;
   width: 100%;
   height: 100%;
@@ -137,20 +125,5 @@ button {
 #main-container {
   margin: 0 auto;
   width: calc(100% - 50px);
-}
-
-.banner-container {
-  min-height: 100svh;
-  height: fit-content;
-  display: grid;
-  gap: 1rem;
-}
-
-#view-hint {
-  align-content: center;
-}
-
-#view-hint * {
-  margin: 0 auto;
 }
 </style>

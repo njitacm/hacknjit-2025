@@ -1,10 +1,10 @@
 <template>
   <div class="TheFAQ">
     <div class="page-side-padding">
-      <h1>Frequently Asked Questions</h1>
+      <h2>Frequently Asked Questions</h2>
       <div class="faq">
         <div class="faq-card" v-for="(faq, index) in faqs" :key="index">
-          <h1>{{ faq.Question }}</h1>
+          <h3>{{ faq.Question }}</h3>
           <p>{{ faq.Answer }}</p>
         </div>
       </div>

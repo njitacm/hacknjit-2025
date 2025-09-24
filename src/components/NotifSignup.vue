@@ -1,23 +1,11 @@
 <template>
-  <div class="NotifSignup outer-container">
-    <main>
-      <h1 style="font-size:15.0rem; top:250px; position:relative ">HackNJIT</h1>
-      <img src="..\assets\HackNJIT2025\globe-half-of-the-earth.png" width=1800 style="position: relative;">
-      <!--<p class="inner_text">
-        HackNJIT is a 24-hour hackathon at the New Jersey Institute of
-        Technology, run by its ACM student chapter in conjunction with the Ying
-        Wu College of Computing.
-      </p> -->
-      <!--<p>
-        Stay tuned, we'll return in November 2025!
-      </p>-->
-      <!--<a :href="vw <= SHOW_MODAL_THRESHOLD ? 'https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?usp=dialog' : null"
-        target="_blank" class="email-signup">
-        <button @click="openNewModal">
-          Sign up for email updates
-        </button>
-      </a> -->
-    </main>
+  <div class="NotifSignup">
+    <a :href="vw <= SHOW_MODAL_THRESHOLD ? 'https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?usp=dialog' : null"
+      target="_blank" class="email-signup">
+      <button @click="openNewModal">
+        Sign up for email updates
+      </button>
+    </a>
   </div>
 </template>
 
@@ -73,33 +61,9 @@ const openNewModal = () => {
   cursor: pointer;
 }
 
-.outer-container {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  gap: 32px;
-  align-content: center;
-  width: 95%;
-  margin: 0rem auto;
-}
-
 h1 {
   margin: 5rem 0 1.75rem 0;
   font-weight: bold;
-}
-
-main {
-  margin: 0 auto;
-  display: grid;
-  gap: 30px;
-  width: 90%;
-  max-width: 1500px;
-  justify-items: center;
-  align-content: center;
-  align-items: center;
-}
-
-main>* {
-  height: min-content;
 }
 
 p {

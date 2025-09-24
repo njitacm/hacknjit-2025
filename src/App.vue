@@ -25,6 +25,15 @@ import PastPics from "./components/PastPics.vue";
 
 /*
 TODO:
+* Mission statement
+Tracks:
+* Each page for tracks
+* Each track
+* Climate - solar punk
+* Conservation - endangered species, biodiversity, oceanography, trash reef
+* Public Health - medical, DNA strand, polymer chain, chemical, data analysis, hospital
+
+TODO:
 * Built-in registration form
 * Gradient background
 * Waiting for graphics
@@ -108,13 +117,43 @@ body {
   height: 100%;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;
   font-weight: 500;
+  line-height: 1.5em;
+}
+
+p,
+span,
+a {
+  font-size: 1.25em;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 6em;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+h3 {
+  font-size: 1.5em;
 }
 
 button {
+  font-size: 1.5em;
   -webkit-tap-highlight-color: transparent;
 }
 

@@ -1,21 +1,22 @@
 <template>
-  <div class="PastPics" ref="past-pics">
-    <img src="../assets/PastPictures/hacknjit2024_1.jpg" />
-    <img src="../assets/PastPictures/hacknjit2024_2.jpg" id="two" />
-    <img src="../assets/PastPictures/hacknjit2024_3.jpg" />
-    <img src="../assets/PastPictures/hacknjit2024_4.jpg" />
+  <div class="PastPics">
+    <div class="page-side-padding container">
+      <img src="../assets/PastPictures/hacknjit2024_1.jpg" />
+      <img src="../assets/PastPictures/hacknjit2024_2.jpg" id="two" />
+      <img src="../assets/PastPictures/hacknjit2024_3.jpg" />
+      <img src="../assets/PastPictures/hacknjit2024_4.jpg" />
+    </div>
   </div>
 </template>
 
 <style scoped>
-.PastPics {
+.container {
   gap: 16px;
   display: grid;
   grid-template-columns: auto auto;
   place-content: center;
-  width: 100%;
   /* max-width: var(--max-content-width); */
-  
+
   @media(max-width: 600px) {
     & {
       grid-template-columns: 100%;
@@ -28,7 +29,6 @@ img {
   height: auto;
   border-radius: 0.5rem;
   display: block;
-  top: 0;
   aspect-ratio: 16/9;
   object-fit: cover;
 }

@@ -1,12 +1,14 @@
 <template>
-  <div class="Banner container">
-    <NotifSignup id="NotifSignup" />
-    <TheCountdown />
-    <div class="view-hint" ref="viewHint">
-      <span>View last year's photos</span>
-      <br />
-      <br />
-      <img src="../assets/down_arrow.svg" style="width: 25px; height: 25px" />
+  <div class="Banner container" :style="{ background: gradient }">
+    <div class="page-side-padding">
+      <NotifSignup id="NotifSignup" />
+      <TheCountdown />
+      <div class="view-hint" ref="viewHint">
+        <span>View last year's photos</span>
+        <br />
+        <br />
+        <img src="../assets/down_arrow.svg" style="width: 25px; height: 25px" />
+      </div>
     </div>
   </div>
 </template>
@@ -16,6 +18,9 @@ import TheCountdown from "./TheCountdown.vue";
 import NotifSignup from "./NotifSignup.vue";
 
 export default {
+  props: {
+    gradient: String
+  },
   components: {
     TheCountdown,
     NotifSignup

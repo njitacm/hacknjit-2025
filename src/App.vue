@@ -1,16 +1,15 @@
 <template>
-  <div id="main-container">
-    <MLHBanner />
-    <main class="body-container">
-      <Banner/>
-      <!-- <Tracks/> -->
-      <PastPics />
-      <!-- <TheSponsors /> -->
-      <TheFAQ />
-    </main>
-    <TheFooter />
-    <Modal />
-  </div>
+  <MLHBanner />
+  <main class="body-container">
+    <!-- <Banner gradient="radial-gradient(yellow, green)" /> -->
+    <Banner />
+    <!-- <Tracks/> -->
+    <PastPics />
+    <!-- <TheSponsors /> -->
+    <TheFAQ />
+  </main>
+  <TheFooter />
+  <Modal />
 </template>
 
 <script>
@@ -120,8 +119,13 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
-#main-container {
+.page-side-padding {
   margin: 0 auto;
-  width: calc(100% - 50px);
+  width: calc(100vw - 64px);
+}
+
+main {
+  display: grid;
+  gap: 32px;
 }
 </style>

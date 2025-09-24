@@ -111,10 +111,6 @@ a {
     width: 40px;
     height: 40px;
   }
-
-  aside {
-    font-size: 0.75rem;
-  }
 }
 
 @media (max-width: 500px) {

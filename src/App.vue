@@ -97,7 +97,6 @@ html {
   text-align: center;
   color: white;
   box-sizing: border-box;
-  font-size: 16px;
   background: #274029;
   z-index: -100;
   overflow-x: auto;

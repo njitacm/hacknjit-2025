@@ -77,7 +77,6 @@ function handleGlobalEscape(e) {
 }
 
 .Modal .header * {
-  font-size: 2rem;
   display: block;
   padding: 16px;
   font-weight: bold;
@@ -85,7 +84,6 @@ function handleGlobalEscape(e) {
 
 .Modal button.close {
   color: gray;
-  font-size: 2rem;
   max-height: 32px;
   cursor: pointer;
   aspect-ratio: 1;
@@ -101,10 +99,6 @@ function handleGlobalEscape(e) {
 }
 
 @media(max-width: 550px) {
-  .Modal .header * {
-    font-size: 1.5rem;
-  }
-
   .Modal .container {
     box-sizing: border-box;
     max-width: none;

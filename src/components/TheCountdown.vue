@@ -130,12 +130,7 @@ header {
   justify-content: center;
 }
 
-h1 {
-  font-size: 4em;
-}
-
 h3 {
-  font-size: 3em;
   animation-name: fade-in;
   opacity: 0;
   animation-delay: 2s;
@@ -166,14 +161,4 @@ h3 {
   opacity: 0;
 }
 
-@media(max-width: 1000px) {
-  .outer-container {
-    font-size: 12px;
-  }
-}
-@media(max-width: 550px) {
-  .outer-container {
-    font-size: 8px;
-  }
-}
 </style>

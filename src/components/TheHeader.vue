@@ -113,7 +113,6 @@ a {
 
 h1 {
   align-self: baseline;
-  font-size: 0.75rem;
   padding: 5px;
   text-align: center;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -124,20 +123,7 @@ h1.alternate {
 }
 
 h1.primary {
-  font-size: 2.75rem;
   font-weight: bold;
-}
-
-h1.primary:hover{
-  background: #4a5d4ab3; /* Translucent version of the original green (70% opacity) */
-}
-
-h1.secondary {
-  font-size: 1.75rem;
-}
-
-h1.tertiary {
-  font-size: 1.25rem;
 }
 
 h1.title:hover {
@@ -169,16 +155,7 @@ h1:hover::after {
 
 @media (max-width: 1100px) {
   h1.primary {
-    font-size: 2.5rem;
     font-weight: bold;
-  }
-
-  h1.secondary {
-    font-size: 1.5rem;
-  }
-
-  h1.tertiary {
-    font-size: 1.1rem;
   }
 }
 
@@ -197,7 +174,6 @@ h1:hover::after {
 
   h1.alternate {
     display: inherit;
-    font-size: 3rem;
   }
 }
 
@@ -223,14 +199,12 @@ h1:hover::after {
 @media (max-width: 600px) {
   h1.alternate {
     display: inherit;
-    font-size: 2.75rem;
   }
 }
 
 @media (max-width: 550px) {
   h1.alternate {
     display: inherit;
-    font-size: 2.5rem;
   }
 }
 
@@ -241,14 +215,12 @@ h1:hover::after {
 
   h1.alternate {
     width: 75%;
-    font-size: 2.25rem;
   }
 }
 
 @media (max-width: 375px) {
   h1.alternate {
     display: inherit;
-    font-size: 2rem;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div id="main-container">
-    <!-- <MLHBanner /> -->
-    <TheHeader />
+    <MLHBanner />
+    <TheNavBar />
     <main class="body-container">
       <div class="banner-container">
         <NotifSignup id="NotifSignup" />
@@ -18,6 +18,7 @@
         <img src="./assets/PastPictures/hacknjit2024_3.jpg" />
         <img src="./assets/PastPictures/hacknjit2024_4.jpg" />
       </div>
+      <TheSponsors />
       <TheFAQ />
     </main>
     <TheFooter />
@@ -30,7 +31,7 @@ import MLHBanner from "./components/MLHBanner.vue";
 import TheCountdown from "./components/TheCountdown.vue";
 import TheFAQ from "./components/TheFAQ.vue";
 import TheFooter from "./components/TheFooter.vue";
-import TheHeader from "./components/TheHeader.vue";
+import TheNavBar from "./components/TheNavBar.vue";
 import NotifSignup from "./components/NotifSignup.vue";
 import TheSponsors from "./components/TheSponsors.vue";
 import TheTeam from "./components/TheTeam.vue";
@@ -62,7 +63,7 @@ Title banner:
 export default {
   name: "HackNJIT",
   components: {
-    TheHeader,
+    TheNavBar,
     TheCountdown,
     MLHBanner,
     TheTeam,
@@ -102,7 +103,6 @@ html {
   color: white;
   box-sizing: border-box;
   font-size: 16px;
-  //background: #274029;
   background-image: linear-gradient(to top,#181F1C,#274029);
   z-index: -100;
   /* overflow-x: hidden; */

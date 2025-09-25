@@ -78,7 +78,7 @@ export default {
 
 <style>
 :root {
-  --main-bg-color: #dab473;
+  --main-bg-color: #274029;
   --main-fg-color: #8f5f49;
   --text-color: white;
   --secondary-bg-color: #3f2b12;
@@ -103,7 +103,7 @@ html {
   color: white;
   box-sizing: border-box;
   font-size: 16px;
-  background: #274029;
+  background-image: linear-gradient(to top,#181F1C,#274029);
   z-index: -100;
   /* overflow-x: hidden; */
   overflow-x: auto;

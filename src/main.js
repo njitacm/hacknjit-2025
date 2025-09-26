@@ -1,10 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-<<<<<<< HEAD
 
-var app = createApp(App);
-app.config.globalProperties.window = window
-=======
 import PrimeVue from 'primevue/config';
 // Vueform
 import Vueform from '@vueform/vueform/plugin'
@@ -22,6 +18,5 @@ app.use(Vueform, {
   locales: { en },
   locale: 'en'
 })
->>>>>>> 202e8af (Added primevue)
 
 app.mount('#app')

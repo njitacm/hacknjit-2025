@@ -15,7 +15,7 @@
       :class="[ isTitlebarActive || isDropdownVisible ? 'active' : '' ]"
       :style="{ width: `${mainBarWidth}px` }"
     >
-      <h1 class="text-lg"><a href="#Title">HackNJIT</a></h1>
+      <h1 class="text-lg"><a href="#Title" style="text-decoration: none;">HackNJIT</a></h1>
     </span>
 
     <!-- Dropdown -->
@@ -98,7 +98,7 @@ function getItemStyle(index) {
 
 .mainbar {
   height: 50px;
-  background-color: black;
+  background-color: #5a6d5a;
   cursor: pointer;
   border-radius: 16px;
   display: flex;
@@ -117,7 +117,7 @@ function getItemStyle(index) {
 
 .dropdown {
   position: absolute;
-  background-color: black;
+  background-color: #5a6d5a;
   border-radius: 16px;
   display: flex;
   justify-content: center;
@@ -143,6 +143,12 @@ li a {
 }
 nav {
   z-index: -50;
+}
+a{
+  text-decoration: none;
+}
+a:visited{
+  color: white;
 }
 </style>
 

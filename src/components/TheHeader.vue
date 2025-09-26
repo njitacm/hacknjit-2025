@@ -68,12 +68,11 @@ header {
   background-color: #5a6d5a;
   color: white;
   display: flex;
-  width: 100vw;
+  left:0;
+  right:0;
   z-index: 100;
   padding: 0.5rem 0;
-  position: absolute;
   top: 0;
-  display: flex;
   justify-content: center;
   position: fixed;
 }

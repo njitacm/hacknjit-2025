@@ -97,7 +97,6 @@ const closeModal = () => {
   padding: 12px 16px;
   border: none;
   font-weight: bold;
-  font-size: 2rem;
   cursor: pointer;
 }
 
@@ -131,7 +130,6 @@ const closeModal = () => {
 
 
 h1 {
-  font-size: 5rem;
   margin: 5rem 0 1.75rem 0;
   font-weight: bold;
 }
@@ -152,7 +150,6 @@ main>* {
 }
 
 p {
-  font-size: 2rem;
   height: -moz-fit-content;
   height: fit-content;
   align-self: center;
@@ -183,29 +180,4 @@ img {
   }
 }
 
-@media (max-width: 1200px) {
-  p {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 750px) {
-  h1 {
-    font-size: 3rem;
-  }
-
-  .email-signup button {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 450px) {
-  h1 {
-    font-size: 2.25rem;
-  }
-
-  .email-signup button {
-    font-size: 1.25rem;
-  }
-}
 </style>

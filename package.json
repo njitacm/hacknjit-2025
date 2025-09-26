@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueform/builder": "^1.12.1",
+    "@vueform/vueform": "^1.13.2",
     "@vueuse/components": "^13.9.0",
     "@vueuse/core": "^13.9.0",
     "gsap": "^3.13.0",

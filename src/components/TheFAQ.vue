@@ -1,19 +1,22 @@
 <template>
   <div class="TheFAQ">
-    <div class="page-side-padding">
-      <h2>Frequently Asked Questions</h2>
-      <div class="faq">
-        <div class="faq-card" v-for="(faq, index) in faqs" :key="index">
-          <h3>{{ faq.Question }}</h3>
-          <p>{{ faq.Answer }}</p>
-        </div>
-      </div>
-    </div>
+    <Accordion value="0">
+            <AccordionPanel v-for="(faq, index) in faqs" :key="index">
+                <AccordionHeader>{{ tab.Question }}</AccordionHeader>
+                <AccordionContent>
+                    <p class="m-0">{{ tab.Answer }}</p>
+                </AccordionContent>
+            </AccordionPanel>
+    </Accordion>
   </div>
 </template>
 
 <script>
 import faqs from "../data/faq.js"
+import Accordion from 'primevue/accordion';
+import AccordionPanel from 'primevue/accordionpanel';
+import AccordionHeader from 'primevue/accordionheader';
+import AccordionContent from 'primevue/accordioncontent';
 
 export default {
   data() {

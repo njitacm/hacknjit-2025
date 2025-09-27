@@ -1,23 +1,9 @@
 <template>
   <div id="main-container">
-    <MLHBanner />
     <TheNavBar />
+    <MLHBanner />
     <main class="body-container">
-      <div class="banner-container">
-        <NotifSignup id="NotifSignup" />
-        <TheCountdown />
-        <div id="view-hint" ref="viewHint">
-          <span>View last year's photos</span>
-          <br />
-          <span>&#129123;</span>
-        </div>
-      </div>
-      <div id="past-pics" ref="past-pics">
-        <img src="./assets/PastPictures/hacknjit2024_1.jpg" />
-        <img src="./assets/PastPictures/hacknjit2024_2.jpg" />
-        <img src="./assets/PastPictures/hacknjit2024_3.jpg" />
-        <img src="./assets/PastPictures/hacknjit2024_4.jpg" />
-      </div>
+      <Banner />
       <TheSponsors />
       <TheFAQ />
     </main>
@@ -30,6 +16,8 @@
 import MLHBanner from "./components/MLHBanner.vue";
 import TheFAQ from "./components/TheFAQ.vue";
 import TheFooter from "./components/TheFooter.vue";
+import TheNavBar from "./components/TheNavBar.vue";
+import TheCountdown from "./components/TheCountdown.vue";
 import TheHeader from "./components/TheHeader.vue";
 import TheSponsors from "./components/TheSponsors.vue";
 import Modal from "./components/Modal.vue";
@@ -123,7 +111,7 @@ html {
   color: white;
   box-sizing: border-box;
   font-size: 16px;
-  background-image: linear-gradient(to top,#181F1C,#274029);
+  background-image: linear-gradient(to top, #181F1C, #274029);
   z-index: -100;
   overflow-x: auto;
   width: 100%;

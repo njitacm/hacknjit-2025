@@ -1,21 +1,23 @@
 <template>
-  <MLHBanner />
-  <main class="body-container">
-    <!-- <Banner gradient="radial-gradient(yellow, green)" /> -->
-    <Banner />
-    <!-- <Tracks/> -->
-    <PastPics />
-    <!-- <TheSponsors /> -->
-    <TheFAQ />
-  </main>
-  <TheFooter />
-  <Modal />
+ <div id="main-container">
+    <TheNavBar />
+    <MLHBanner />
+    <main class="body-container">
+      <Banner />
+      <TheSponsors />
+      <TheFAQ />
+    </main>
+    <TheFooter />
+    <Modal />
+  </div>
 </template>
 
 <script>
 import MLHBanner from "./components/MLHBanner.vue";
 import TheFAQ from "./components/TheFAQ.vue";
 import TheFooter from "./components/TheFooter.vue";
+import TheNavBar from "./components/TheNavBar.vue";
+import TheCountdown from "./components/TheCountdown.vue";
 import TheHeader from "./components/TheHeader.vue";
 import TheSponsors from "./components/TheSponsors.vue";
 import Modal from "./components/Modal.vue";
@@ -107,8 +109,12 @@ html {
   color: white;
   box-sizing: border-box;
   font-size: 16px;
+<<<<<<< HEAD
   //background: #274029;
   background-image: linear-gradient(to top,#181F1C,#274029);
+=======
+  background-image: linear-gradient(to top, #181F1C, #274029);
+>>>>>>> cbb9959 (Fix errors)
   z-index: -100;
   overflow-x: auto;
   width: 100%;

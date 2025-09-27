@@ -1,38 +1,23 @@
-
 <template>
-  <header 
-      class="header" 
-    @mouseenter="isTitlebarActive = true" 
-    @mouseleave="isTitlebarActive = false"
-    :style="{ 
-      width: isDropdownVisible ? `${dropdownWidth}px` : 'fit-content'
-    }"
-    >
+  <header class="header" @mouseenter="isTitlebarActive = true" @mouseleave="isTitlebarActive = false" :style="{
+    width: isDropdownVisible? `${dropdownWidth}`: 'fit-content',
+    gap: isDropdownVisible? '8px' : '0px'
+  }">
 
     <!-- Title bar -->
-    <span
-      class="mainbar"
-      :class="[ isTitlebarActive || isDropdownVisible ? 'active' : '' ]"
-      :style="{ width: `${mainBarWidth}px` }"
-    >
-      <h1 class="text-lg"><a href="#Title">HackNJIT</a></h1>
-    </span>
+    <a class="mainbar"
+      :style="{ width: `${mainBarWidth}` }" href="#Title">
+      HackNJIT
+    </a>
 
     <!-- Dropdown -->
-    <nav
-      class="dropdown"
-      :style="{ 
-        width: `${dropdownWidth}px`,
-        top: isDropdownVisible ? `${dropdownTop}px` : '0px',
-        height: isDropdownVisible ? `${dropdownHeight}px` : '0px'
-      }"
-    >
+    <nav class="dropdown" :style="{
+      opacity: isDropdownVisible ? 1 : 0,
+      width: `${dropdownWidth}`,
+      fontSize: isDropdownVisible ? `${dropdownFontSize}` : '0px',
+    }">
       <ul>
-        <li
-          v-for="(item, index) in navItems"
-          :key="index"
-          :style="getItemStyle(index)"
-        >
+        <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index)">
           <a :href="item.href" class="nav-link">{{ item.label }}</a>
         </li>
       </ul>
@@ -53,15 +38,14 @@ const navItems = [
 ]
 
 // Sizes
-const mainBarDefault = 400
-const mainBarShrunk = 200
-const dropdownWidthExpanded = 750
-const dropdownHeight = 75
-const dropdownTop = 50
+const mainBarClosedWith = "150px";
+const mainBarOpenWith = "300px";
+const dropdownWidthExpanded = "600px";
+const dropdownFontSize = "1em";
 
 // Reactive widths
-const mainBarWidth = computed(() => (isTitlebarActive.value || isHoveredNav.value ? mainBarShrunk : mainBarDefault))
-const dropdownWidth = computed(() => (isTitlebarActive.value || isHoveredNav.value ? dropdownWidthExpanded : 0))
+const mainBarWidth = computed(() => (isTitlebarActive.value || isHoveredNav.value ? mainBarOpenWith : mainBarClosedWith))
+const dropdownWidth = computed(() => (isTitlebarActive.value || isHoveredNav.value ? dropdownWidthExpanded : "500px"))
 const isDropdownVisible = computed(() => isTitlebarActive.value || isHoveredNav.value)
 
 // Style for each list item
@@ -70,7 +54,7 @@ function getItemStyle(index) {
     return {
       opacity: 1,
       transform: 'translateY(0)',
-      transition: `opacity 0.3s ease ${(index+1) * 0.15}s, transform 0.3s ease ${(index+1) * 0.15}s`
+      transition: `opacity 0.3s ease ${(index + 1) * 0.15}s, transform 0.3s ease ${(index + 1) * 0.15}s`
     }
   } else {
     return {
@@ -84,65 +68,86 @@ function getItemStyle(index) {
 
 <style scoped>
 .header {
-  margin-top: 8px;
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;
   position: fixed;
-  top: 0;
+  top: 8px;
   z-index: 50;
-  display: flex;
-  justify-content: center;
-  justify-self: center;
+  display: grid;
+  justify-items: center;
+  transition: gap 250ms ease;
+}
+
+.mainbar,
+.dropdown {
+  background-color: #00250475;
+  backdrop-filter: blur(25px);
+  align-content: center;
 }
 
 .mainbar {
-  height: 50px;
-  background-color: black;
-  cursor: pointer;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: width 0.3s ease, border-radius 0.3s ease;
-}
-.mainbar.active {
-  border-radius: 16px 16px 0 0;
-}
-
-.mainbar h1 {
-  font-size: 24px;
-  color: white;
+  padding: 0.5em;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  border-radius: 1lh;
+  transition: width 250ms ease, border-radius 100ms ease;
 }
 
 .dropdown {
-  position: absolute;
-  background-color: black;
-  border-radius: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  height: 4em;
+  border-radius: 1000px;
   overflow: hidden;
-  transition: width 0.3s ease, top 0.3s ease, height 0.3s ease;
+  transition: width 300ms ease-out, height 300ms ease-out, opacity 250ms ease;
+}
+
+nav {
+  z-index: -50;
 }
 
 ul {
+  height: 100%;
   display: flex;
-  width: 100%;
   justify-content: space-around;
   padding: 0;
   margin: 0;
   list-style: none;
 }
+
 li {
-  font-size: 18px;
+  width: 100%;
+  line-height: 1.5em;
+  font-size: 1.5em;
+  display: block;
 }
-li a {
+
+.mainbar,
+.nav-link {
   color: white;
   text-decoration: none;
 }
-nav {
-  z-index: -50;
+
+.nav-link {
+  width: 100%;
+  height: 100%;
+  align-content: center;
+  display: block;
+}
+
+/* desktop */
+@media(hover: hover) and (pointer: fine) {
+  .nav-link {
+    transition: background-color 250ms ease;
+
+  }
+
+  .nav-link:hover {
+    background-color: #ffffff10
+  }
+}
+
+/* mobile */
+@media(pointer: coarse) {
+  .nav-link:active {
+    background-color: #ffffff10
+  }
 }
 </style>
-

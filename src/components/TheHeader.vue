@@ -1,28 +1,35 @@
 <template>
-  <Transition>
+  <!--<Transition>-->
     <header ref="pageHeader" v-show="showHeader">
       <nav class="main">
-        <h1 class="alternate">Welcome to HackNJIT!</h1>
-        <h1 class="tertiary"><a href="#Team">Meet The Team</a></h1>
-        <h1 class="secondary"><a href="#Intro">About Us</a></h1>
-        <h1 class="primary" @click="toTop()">HackNJIT</h1>
-        <h1 class="secondary">
+        <!-- <h1>HACKNJIT</h1> -->
+         <h1 class="primary" style="border-radius: 35px; padding:10px 20px;">Registration</h1>
+        <!-- <h1 class="alternate">Welcome to HackNJIT!</h1> -->
+         <h1 class="primary" style="border-radius: 35px; padding:10px 20px;">Schedule</h1>
+        <!-- <h1 class="tertiary"><a href="#Team">Meet The Team</a></h1> -->
+         <h1 class="primary" style="border-radius: 35px; padding:10px 20px;">Sponsors</h1>
+        <!-- <h1 class="secondary"><a href="#Intro">About Us</a></h1> -->
+         <h1 class="primary" style="border-radius: 35px; padding:10px 20px;">FAQ</h1>
+        <!-- <h1 class="primary" @click="toTop()">HackNJIT</h1> -->
+         <h1 class="primary" style="border-radius: 35px; padding:10px 20px;">Contact Us</h1>
+        <!-- <h1 class="secondary">
           <a href="#Sponsors">Sponsors</a>
         </h1>
         <h1 class="tertiary">
           <a href="#FAQ">FAQ</a>
-        </h1>
+        </h1> -->
       </nav>
     </header>
-  </Transition>
+  <!---</Transition>-->
 </template>
-
+<button></button>
 <script>
 export default {
   data() {
     return {
       showHeader: true,
-      fixedHeader: false,
+      //fixedHeader: false,
+      fixedHeader: true,
     };
   },
   methods: {
@@ -59,6 +66,7 @@ export default {
 }
 
 header {
+  background-color: #5a6d5a;
   color: white;
   display: flex;
   width: 100vw;
@@ -107,6 +115,7 @@ h1 {
   align-self: baseline;
   padding: 5px;
   text-align: center;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 h1.alternate {
@@ -115,6 +124,15 @@ h1.alternate {
 
 h1.primary {
   font-weight: bold;
+}
+h1.primary:hover{
+  background: #4a5d4ab3; /* Translucent version of the original green (70% opacity) */
+}
+h1.secondary {
+  font-size: 1.75rem;
+}
+h1.tertiary {
+  font-size: 1.25rem;
 }
 
 h1.title:hover {

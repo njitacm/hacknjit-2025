@@ -1,15 +1,29 @@
 <template>
-  <MLHBanner />
-  <main class="body-container">
-    <!-- <Banner gradient="radial-gradient(yellow, green)" /> -->
-    <Banner />
-    <!-- <Tracks/> -->
-    <PastPics />
-    <!-- <TheSponsors /> -->
-    <TheFAQ />
-  </main>
-  <TheFooter />
-  <Modal />
+  <div id="main-container">
+    <MLHBanner />
+    <TheNavBar />
+    <main class="body-container">
+      <div class="banner-container">
+        <NotifSignup id="NotifSignup" />
+        <TheCountdown />
+        <div id="view-hint" ref="viewHint">
+          <span>View last year's photos</span>
+          <br />
+          <span>&#129123;</span>
+        </div>
+      </div>
+      <div id="past-pics" ref="past-pics">
+        <img src="./assets/PastPictures/hacknjit2024_1.jpg" />
+        <img src="./assets/PastPictures/hacknjit2024_2.jpg" />
+        <img src="./assets/PastPictures/hacknjit2024_3.jpg" />
+        <img src="./assets/PastPictures/hacknjit2024_4.jpg" />
+      </div>
+      <TheSponsors />
+      <TheFAQ />
+    </main>
+    <TheFooter />
+    <Modal />
+  </div>
 </template>
 
 <script>
@@ -65,6 +79,8 @@ Title banner:
 export default {
   name: "HackNJIT",
   components: {
+    TheNavBar,
+    TheCountdown,
     TheHeader,
     MLHBanner,
     TheFAQ,
@@ -80,7 +96,7 @@ export default {
 
 <style>
 :root {
-  --main-bg-color: #dab473;
+  --main-bg-color: #274029;
   --main-fg-color: #8f5f49;
   --text-color: white;
   --secondary-bg-color: #3f2b12;
@@ -106,7 +122,8 @@ html {
   text-align: center;
   color: white;
   box-sizing: border-box;
-  background: #274029;
+  font-size: 16px;
+  background-image: linear-gradient(to top,#181F1C,#274029);
   z-index: -100;
   overflow-x: auto;
   width: 100%;

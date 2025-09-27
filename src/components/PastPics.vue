@@ -11,9 +11,10 @@
 
 <style scoped>
 .container {
-  gap: 16px;
+  --gap: 16px;
+  gap: var(--gap);
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: repeat(2, calc(50% - var(--gap) / 2));
   place-content: center;
   /* max-width: var(--max-content-width); */
 

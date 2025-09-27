@@ -1,8 +1,6 @@
 <template>
   <div class="NotifSignup outer-container">
     <main>
-      <h1 style="font-size:15.0rem; top:250px; position:relative ">HackNJIT</h1>
-      <img src="..\assets\HackNJIT2025\globe-half-of-the-earth.png" width=1800 style="position: relative;">
       <!--<p class="inner_text">
         HackNJIT is a 24-hour hackathon at the New Jersey Institute of
         Technology, run by its ACM student chapter in conjunction with the Ying
@@ -81,12 +79,6 @@ const openNewModal = () => {
   align-content: center;
   width: 95%;
   margin: 0rem auto;
-}
-
-h1 {
-  font-size: 5rem;
-  margin: 5rem 0 1.75rem 0;
-  font-weight: bold;
 }
 
 main {

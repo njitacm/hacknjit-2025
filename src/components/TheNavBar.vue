@@ -1,12 +1,11 @@
 <template>
   <header class="header" @mouseenter="isTitlebarActive = true" @mouseleave="isTitlebarActive = false" :style="{
-    width: isDropdownVisible? `${dropdownWidth}`: 'fit-content',
-    gap: isDropdownVisible? '8px' : '0px'
+    width: isDropdownVisible ? `${dropdownWidth}` : 'fit-content',
+    gap: isDropdownVisible ? '8px' : '0px'
   }">
 
     <!-- Title bar -->
-    <a class="mainbar"
-      :style="{ width: `${mainBarWidth}` }" href="#Title">
+    <a class="mainbar" :style="{ width: `${mainBarWidth}` }" href="#Title">
       HackNJIT
     </a>
 
@@ -54,7 +53,7 @@ function getItemStyle(index) {
     return {
       opacity: 1,
       transform: 'translateY(0)',
-      transition: `opacity 0.3s ease ${(index + 1) * 0.15}s, transform 0.3s ease ${(index + 1) * 0.15}s`
+      transition: `opacity 0.3s ease ${(index + 1) * 0.1}s, transform 0.3s ease ${(index + 1) * 0.1}s`
     }
   } else {
     return {
@@ -84,6 +83,7 @@ function getItemStyle(index) {
 }
 
 .mainbar {
+  font-weight: bold;
   padding: 0.5em;
   font-size: 1.5em;
   line-height: 1.5em;

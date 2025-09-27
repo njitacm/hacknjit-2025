@@ -28,16 +28,32 @@
 
 <script>
 import MLHBanner from "./components/MLHBanner.vue";
-import TheCountdown from "./components/TheCountdown.vue";
 import TheFAQ from "./components/TheFAQ.vue";
 import TheFooter from "./components/TheFooter.vue";
-import TheNavBar from "./components/TheNavBar.vue";
-import NotifSignup from "./components/NotifSignup.vue";
+import TheHeader from "./components/TheHeader.vue";
 import TheSponsors from "./components/TheSponsors.vue";
-import TheTeam from "./components/TheTeam.vue";
 import Modal from "./components/Modal.vue";
+import Banner from "./components/Banner.vue";
+import Tracks from "./components/Tracks.vue";
+import PastPics from "./components/PastPics.vue";
 
 /*
+TODO:
+* Mission statement
+Tracks:
+* Each page for tracks
+* Each track
+* Climate - solar punk
+* Conservation - endangered species, biodiversity, oceanography, trash reef
+* Public Health - medical, DNA strand, polymer chain, chemical, data analysis, hospital
+
+TODO:
+* Built-in registration form
+* Gradient background
+* Waiting for graphics
+* Standard aspect ratio for images
+* Add tracks
+* Main site: pull events from sheets
 
 TODO: NAV BAR
 * About
@@ -65,13 +81,15 @@ export default {
   components: {
     TheNavBar,
     TheCountdown,
+    TheHeader,
     MLHBanner,
-    TheTeam,
     TheFAQ,
     TheFooter,
     TheSponsors,
-    NotifSignup,
     Modal,
+    Banner,
+    Tracks,
+    PastPics,
   }
 };
 </script>
@@ -92,6 +110,8 @@ export default {
   --mlh-banner-transparent1: #f7f7f77c;
   --mlh-banner-transparent2: #f7f7f7ab;
   --edge-colors: #d3b28eb2;
+
+  --max-content-width: 1000px;
 }
 
 html {
@@ -105,7 +125,6 @@ html {
   font-size: 16px;
   background-image: linear-gradient(to top,#181F1C,#274029);
   z-index: -100;
-  /* overflow-x: hidden; */
   overflow-x: auto;
   width: 100%;
   height: 100%;
@@ -115,49 +134,74 @@ body {
   height: 100%;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;
   font-weight: 500;
+  line-height: 1.5em;
+}
+
+p,
+span,
+a {
+  font-size: 1.25em;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 6em;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+@media (max-width: 1000px) {
+  h1 {
+    font-size: 4em;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  h3 {
+    font-size: 1.25em;
+  }
+
+  p,
+  span,
+  a,
+  button {
+    font-size: 1em;
+  }
 }
 
 button {
+  font-size: 1.5em;
   -webkit-tap-highlight-color: transparent;
 }
 
-#main-container {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  place-content: center;
-  place-items: center;
-}
-
-.banner-container {
-  min-height: 100svh;
-  height: fit-content;
-  display: grid;
-  gap: 1rem;
-}
-
-#past-pics {
-  margin-top: 32px;
-  padding: 20px;
-  columns: 2 300px;
-  column-gap: 1rem;
-}
-
-#past-pics img {
-  border-radius: 0.5rem;
-  display: block;
-  margin-bottom: 1rem;
-  width: 100%;
-}
-
-#view-hint {
-  align-content: center;
-}
-
-#view-hint * {
+.page-side-padding {
   margin: 0 auto;
+  width: calc(100vw - 64px);
+}
+
+main {
+  display: grid;
+  gap: 32px;
 }
 </style>

@@ -3,9 +3,9 @@
     <TheNavBar />
     <MLHBanner />
     <main class="body-container">
-      <Banner />
-      <TheSponsors />
-      <TheFAQ />
+      <Banner gradient="linear-gradient(to top, #181F1C, #274029)" />
+      <TheSponsors gradient="linear-gradient(to top, #006e94, #005877)" />
+      <TheFAQ gradient="linear-gradient(to top, #4d3e15, #735c1f)" />
     </main>
     <TheFooter />
     <Modal />
@@ -111,7 +111,7 @@ html {
   color: white;
   box-sizing: border-box;
   font-size: 16px;
-  background-image: linear-gradient(to top, #181F1C, #274029);
+  background: #274029;
   z-index: -100;
   overflow-x: auto;
   width: 100%;

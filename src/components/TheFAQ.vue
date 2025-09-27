@@ -1,5 +1,5 @@
 <template>
-  <div class="TheFAQ">
+  <div class="TheFAQ" :style="{ background: gradient }">
     <div class="page-side-padding">
       <h2>Frequently Asked Questions</h2>
       <div class="faq">
@@ -16,6 +16,9 @@
 import faqs from "../data/faq.js"
 
 export default {
+  props: {
+    gradient: String
+  },
   data() {
     return {
       faqs: faqs

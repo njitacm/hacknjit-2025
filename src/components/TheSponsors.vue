@@ -1,5 +1,5 @@
 <template>
-  <div ref="container" class="outer-container">
+  <div ref="TheSponsors container" class="outer-container" :style="{ background: gradient }">
     <h1 class="title">Our Sponsors</h1>
     <div class="sponsors">
       <div v-for="(sponsor, index) in sponsors" :key="index" class="sponsor-grid">
@@ -13,7 +13,11 @@
 
 <script>
 import sponsors from "../data/sponsors";
+
 export default {
+  props: {
+    gradient: String
+  },
   data() {
     return {
       showSponsors: true,

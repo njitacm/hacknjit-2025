@@ -67,6 +67,7 @@ function getItemStyle(index) {
 
 <style scoped>
 .header {
+  justify-self: center;
   position: fixed;
   top: 8px;
   z-index: 50;

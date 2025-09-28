@@ -2,6 +2,7 @@
   <div id="main-container">
     <MLHBanner />
     <main class="body-container">
+      <Registration />
       <div class="banner-container">
         <NotifSignup id="NotifSignup" />
         <TheCountdown />
@@ -34,6 +35,7 @@ import NotifSignup from "./components/NotifSignup.vue";
 import TheSponsors from "./components/TheSponsors.vue";
 import TheTeam from "./components/TheTeam.vue";
 import Modal from "./components/Modal.vue";
+import Registration from "./components/Registration.vue";
 
 /*
 
@@ -70,6 +72,7 @@ export default {
     TheSponsors,
     NotifSignup,
     Modal,
+    Registration
   }
 };
 </script>

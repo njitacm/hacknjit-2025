@@ -1,12 +1,12 @@
 <template>
   <div class="TheFAQ">
     <Accordion value="0">
-            <AccordionPanel v-for="(faq, index) in faqs" :key="index">
-                <AccordionHeader>{{ tab.Question }}</AccordionHeader>
-                <AccordionContent>
-                    <p class="m-0">{{ tab.Answer }}</p>
-                </AccordionContent>
-            </AccordionPanel>
+      <AccordionPanel v-for="(faq, index) in faqs" :key="index" :value="index">
+        <AccordionHeader>{{ faq.Question }}</AccordionHeader>
+        <AccordionContent>
+          <p class="m-0">{{ faq.Answer }}</p>
+        </AccordionContent>
+      </AccordionPanel>
     </Accordion>
   </div>
 </template>
@@ -19,6 +19,12 @@ import AccordionHeader from 'primevue/accordionheader';
 import AccordionContent from 'primevue/accordioncontent';
 
 export default {
+  components: {
+    Accordion,
+    AccordionPanel,
+    AccordionHeader,
+    AccordionContent
+  },
   data() {
     return {
       faqs: faqs

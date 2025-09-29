@@ -1,21 +1,20 @@
 <template>
   <div class="NotifSignup outer-container">
     <main>
-      <h1>HackNJIT</h1>
-      <p class="inner_text">
+      <!--<p class="inner_text">
         HackNJIT is a 24-hour hackathon at the New Jersey Institute of
         Technology, run by its ACM student chapter in conjunction with the Ying
         Wu College of Computing.
-      </p>
-      <p>
+      </p> -->
+      <!--<p>
         Stay tuned, we'll return in November 2025!
-      </p>
-      <a :href="vw <= SHOW_MODAL_THRESHOLD ? 'https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?usp=dialog' : null"
+      </p>-->
+      <!--<a :href="vw <= SHOW_MODAL_THRESHOLD ? 'https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?usp=dialog' : null"
         target="_blank" class="email-signup">
         <button @click="openNewModal">
           Sign up for email updates
         </button>
-      </a>
+      </a> -->
     </main>
   </div>
 </template>
@@ -80,12 +79,6 @@ const openNewModal = () => {
   align-content: center;
   width: 95%;
   margin: 0rem auto;
-}
-
-h1 {
-  font-size: 5rem;
-  margin: 5rem 0 1.75rem 0;
-  font-weight: bold;
 }
 
 main {

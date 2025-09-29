@@ -5,7 +5,6 @@
     @submit="customSubmit"
   />
 </template>
-
 <script>
 import { useVueform, Vueform } from '@vueform/vueform'
 import schoolsJson from '../assets/schools.json'
@@ -30,7 +29,7 @@ export default {
             'HackNJIT Registration',
             'divider',
             'container',
-            'container_1',
+            'preferred_name_container',
             'age',
             'phone',
             'email',
@@ -118,7 +117,7 @@ export default {
           },
           description: 'This must be your legal name.',
         },
-        container_1: {
+        preferred_name_container: {
           type: 'group',
           schema: {
             preferred_name: {
@@ -185,15 +184,14 @@ export default {
           type: 'select',
           search: true,
           native: false,
-          label: 'University',
           inputType: 'search',
-          autocomplete: 'on',
+          autocomplete: 'enabled',
+          placeholder: 'University',
           items: schoolsJson,
           rules: [
             'required',
           ],
           strict: false,
-          default: 'New Jersey Institute of Technology',
         },
         lvlofstudy: {
           type: 'radiogroup',
@@ -915,4 +913,15 @@ export default {
   --vf-slider-tooltip-arrow-size-sm: 0.3125rem;
   --vf-slider-tooltip-arrow-size-lg: 0.3125rem;
 }
+
+.vf-description {
+  text-align: left;
+}
+
+*[aria-labelledby="container__label"] {
+  background-color: #eef3f7;
+  padding: 8px;
+  border-radius: 8px;
+}
+
 </style>

@@ -172,5 +172,4 @@ main {
   display: grid;
   gap: 32px;
 }
-
 </style>

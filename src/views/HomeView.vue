@@ -33,10 +33,5 @@ export default {
 </script>
 
 <style scoped>
-<<<<<<< Updated upstream
-=======
-
-
->>>>>>> Stashed changes
 
 </style>

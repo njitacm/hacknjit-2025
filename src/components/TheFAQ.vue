@@ -1,12 +1,12 @@
 <template>
   <div class="TheFAQ">
-    <Accordion value="0">
-            <AccordionPanel v-for="(faq, index) in faqs" :key="index">
-                <AccordionHeader>{{ tab.Question }}</AccordionHeader>
-                <AccordionContent>
-                    <p class="m-0">{{ tab.Answer }}</p>
-                </AccordionContent>
-            </AccordionPanel>
+    <Accordion value="0" >
+     <AccordionPanel v-for="faq in faqs" :key="faq.Question">
+       <AccordionHeader>{{ faq.Question }}</AccordionHeader>
+         <AccordionContent>
+           <p class="m-0">{{ faq.Answer }}</p>
+         </AccordionContent>
+       </AccordionPanel>
     </Accordion>
   </div>
 </template>
@@ -23,8 +23,15 @@ export default {
     return {
       faqs: faqs
     };
-  }
-}
+  },
+  components: { 
+    Accordion, 
+    AccordionPanel, 
+    AccordionHeader,
+    AccordionContent
+  },
+};
+
 </script>
 
 <style scoped>

@@ -4,23 +4,35 @@
     gap: isDropdownVisible ? '8px' : '0px'
   }">
 
-    <!-- Title bar -->
-    <a class="mainbar" :style="{ width: `${mainBarWidth}` }" href="#Title">
+    <!-- Title bar
+    <RouterLink to="/" class="mainbar" :style="{ width: `${mainBarWidth}` }">
       HackNJIT
-    </a>
+    </RouterLink> -->
 
     <!-- Dropdown -->
     <nav class="dropdown" :style="{
-      opacity: isDropdownVisible ? 1 : 0,
+      // opacity: isDropdownVisible ? 1 : 0,
       width: `${dropdownWidth}`,
-      fontSize: isDropdownVisible ? `${dropdownFontSize}` : '0px',
+      // fontSize: isDropdownVisible ? `${dropdownFontSize}` : '0px',
     }">
-      <ul>
+      <ul v-if="isTitlebarActive">
+        <li>
+          <RouterLink to="/" class="nav-link">
+            Home
+          </RouterLink>
+        </li>
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index)">
           <a :href="item.href" class="nav-link">{{ item.label }}</a>
         </li>
         <li>
           <RouterLink to="/registration" class="nav-link" :style="getItemStyle(navItems.length)">Register</RouterLink>
+        </li>
+      </ul>
+      <ul v-else>
+        <li>
+          <RouterLink to="/" class="nav-link">
+            HackNJIT
+          </RouterLink>
         </li>
       </ul>
     </nav>
@@ -29,6 +41,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+// import HomeView from '../views/HomeView.vue';
 
 const isTitlebarActive = ref(false)
 const isHoveredNav = ref(false)
@@ -40,14 +53,14 @@ const navItems = [
 ]
 
 // Sizes
-const mainBarClosedWith = "150px";
-const mainBarOpenWith = "300px";
+// const mainBarClosedWith = "150px";
+// const mainBarOpenWith = "300px";
 const dropdownWidthExpanded = "700px";
-const dropdownFontSize = "1em";
+// const dropdownFontSize = "1em";
 
 // Reactive widths
-const mainBarWidth = computed(() => (isTitlebarActive.value || isHoveredNav.value ? mainBarOpenWith : mainBarClosedWith))
-const dropdownWidth = computed(() => (isTitlebarActive.value || isHoveredNav.value ? dropdownWidthExpanded : "500px"))
+// const mainBarWidth = computed(() => (isTitlebarActive.value || isHoveredNav.value ? mainBarOpenWith : mainBarClosedWith))
+const dropdownWidth = computed(() => (isTitlebarActive.value || isHoveredNav.value ? dropdownWidthExpanded : "200px"))
 const isDropdownVisible = computed(() => isTitlebarActive.value || isHoveredNav.value)
 
 // Style for each list item

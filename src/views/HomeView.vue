@@ -33,60 +33,10 @@ export default {
 </script>
 
 <style scoped>
-p,
-span,
-a {
-  font-size: 1.25em;
-}
+<<<<<<< Updated upstream
+=======
 
-h1,
-h2,
-h3 {
-  font-weight: bold;
-}
 
-h1 {
-  font-size: 6em;
-}
-
-h2 {
-  font-size: 3em;
-}
-
-h3 {
-  font-size: 1.5em;
-}
-
-@media (max-width: 1000px) {
-  h1 {
-    font-size: 4em;
-  }
-
-  h2 {
-    font-size: 2em;
-  }
-
-  h3 {
-    font-size: 1.25em;
-  }
-
-  p,
-  span,
-  a,
-  button {
-    font-size: 1em;
-  }
-}
-
-button {
-  font-size: 1.5em;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.page-side-padding {
-  margin: 0 auto;
-  width: calc(100vw - 64px);
-}
-
+>>>>>>> Stashed changes
 
 </style>

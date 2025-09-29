@@ -19,6 +19,9 @@
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index)">
           <a :href="item.href" class="nav-link">{{ item.label }}</a>
         </li>
+        <li>
+            <RouterLink to="/registration">Register</RouterLink>
+        </li>
       </ul>
     </nav>
   </header>

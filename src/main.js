@@ -4,5 +4,6 @@ import router from './router.js'
 
 var app = createApp(App);
 app.config.globalProperties.window = window
+
 app.use(router)
 app.mount('#app')

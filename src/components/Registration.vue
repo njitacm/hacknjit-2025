@@ -18,8 +18,10 @@ export default {
       size: 'md',
       displayErrors: true,
       endpoint: '/api/register',
+      action: '/api/register',
       method: 'POST',
       uploadFileOnChange: false, // Disable automatic file (PDF) uploads
+      uploadTempFile: false,
       enctype: 'multipart/form-data', // For PDF (resume) uploads
       validateOn: 'step|change',
       steps: {
@@ -65,7 +67,7 @@ export default {
             'h1_1',
             'p',
             'divider_2',
-            // 'resume',
+            'resume',
             'linkedin',
             'divider_5',
           ],
@@ -357,28 +359,24 @@ export default {
           type: 'checkboxgroup',
           items: [
             {
-              value: '0',
+              value: 'Vegetarian',
               label: 'Vegetarian',
             },
             {
-              value: '1',
+              value: 'Vegan',
               label: 'Vegan',
             },
             {
-              value: '2',
+              value: 'Kosher',
               label: 'Kosher',
             },
             {
-              value: '3',
+              value: 'Halal',
               label: 'Halal',
             },
             {
-              value: '4',
+              value: 'Gluten-free',
               label: 'Gluten-free',
-            },
-            {
-              value: '5',
-              label: 'None',
             },
           ],
           label: 'Dietary Restrictions ',
@@ -566,25 +564,28 @@ export default {
           tag: 'h1',
           content: 'Networking (Optional)',
         },
-        // p: {
-        //   type: 'static',
-        //   tag: 'p',
-        //   content: '<div>You can skip any questions in this section, but we would appreciate your response! We are working to help our sponsors and hackers connect. To that end, we will be sharing a resume booklet with our sponsors, as well as LinkedIn accounts. This information will be shared with all our sponsors.</div>',
-        // },
+        p: {
+          type: 'static',
+          tag: 'p',
+          content: '<div>You can skip any questions in this section, but we would appreciate your response! We are working to help our sponsors and hackers connect. To that end, we will be sharing a resume booklet with our sponsors, as well as LinkedIn accounts. This information will be shared with all our sponsors.</div>',
+        },
         divider_2: {
           type: 'static',
           tag: 'hr',
         },
-        // resume: {
-        //   type: 'file',
-        //   label: 'Resume',
-        //   urls: {},
-        //   description: 'Attach your resume as a PDF',
-        //   accept: 'pdf,application/pdf',
-        //   rules: [
-        //     'max:10000',
-        //   ],
-        // },
+        resume: {
+          type: 'file',
+          label: 'Resume',
+          description: 'Attach your resume as a PDF',
+          accept: 'pdf,application/pdf',
+          rules: [
+            'max:10000',
+          ],
+          upload: false,
+          uploadTempEndpoint: false,
+          auto: false,
+          uploadUrl: null,
+        },
         linkedin: {
           type: 'text',
           label: 'LinkedIn Account URL',

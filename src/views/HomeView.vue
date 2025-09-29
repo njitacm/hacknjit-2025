@@ -1,7 +1,7 @@
 <template>
   <main class="body-container">
     <!-- <Banner gradient="radial-gradient(yellow, green)" /> -->
-    <Banner />
+    <Banner id="Banner" />
     <!-- <Tracks/> -->
     <PastPics />
     <!-- <TheSponsors /> -->

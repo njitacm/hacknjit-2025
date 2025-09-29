@@ -19,6 +19,9 @@
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index)">
           <a :href="item.href" class="nav-link">{{ item.label }}</a>
         </li>
+        <li>
+          <RouterLink to="/registration" class="nav-link" :style="getItemStyle(navItems.length)">Register</RouterLink>
+        </li>
       </ul>
     </nav>
   </header>
@@ -39,7 +42,7 @@ const navItems = [
 // Sizes
 const mainBarClosedWith = "150px";
 const mainBarOpenWith = "300px";
-const dropdownWidthExpanded = "600px";
+const dropdownWidthExpanded = "700px";
 const dropdownFontSize = "1em";
 
 // Reactive widths
@@ -107,14 +110,14 @@ nav {
 ul {
   height: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
 li {
-  width: 100%;
+  flex-grow: 1;
   line-height: 1.5em;
   font-size: 1.5em;
   display: block;

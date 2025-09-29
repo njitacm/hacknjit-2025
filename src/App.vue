@@ -113,15 +113,15 @@ body.modal-open {
   line-height: 1.5em;
 }
 
-p,
-span,
-a {
+p:not([.vf-registration > p]),
+span:not([.vf-registration > p]),
+a:not([.vf-registration > p]) {
   font-size: 1.25em;
 }
 
-h1,
-h2,
-h3 {
+h1:not([.vf-registration > p]),
+h2:not([.vf-registration > p]),
+h3:not([.vf-registration > p]) {
   font-weight: bold;
 }
 
@@ -172,4 +172,5 @@ main {
   display: grid;
   gap: 32px;
 }
+
 </style>

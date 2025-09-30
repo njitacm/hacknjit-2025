@@ -1,3 +1,4 @@
+<!-- values that need to be manually depending on nav size adjusted are denoted with `TOCHANGE` -->
 <template>
   <header v-on="mouseEventListeners" @touchend.passive="isTouch ? onTouch() : null" ref="header"
     :class="{ active: isNavActive }">
@@ -50,7 +51,7 @@ const screenSize = ref("large");      // small or large depending on screen size
 
 // vars
 const heightEmFactor = 4;             // em
-const screenSizeThreshold = 800;      // px - manually adjust based on number of nav items
+const screenSizeThreshold = 925;      // px - TOCHANGE - manually adjust based on number of nav items
 let wentToPage = false;               // a "lock" - ensures the nav closes when touch user taps on nav link
 const navItems = [
   // required: label, optional: hash, path
@@ -71,7 +72,7 @@ const navSizes = {
 
     },
     expanded: {
-      width: "calc(100vw - 16px)",         // matches the nav's padding/top gap of 8px
+      width: "var(--expanded-touch-width)",         // matches the nav's padding/top gap of 8px
       height: `${(navItems.length + 1) * heightEmFactor}em`,
     },
   },
@@ -245,7 +246,7 @@ header {
   display: grid;
   justify-items: center;
   transition: gap 250ms ease;
-  padding: 8px 0;
+  padding: 8px;
   border-radius: 1000px;
   width: fit-content;
 }
@@ -255,6 +256,7 @@ header.active {
 }
 
 nav {
+  --expanded-touch-width: calc(90vw - 50px - 16px);
   background-color: #00250475;
   backdrop-filter: blur(25px);
   align-content: center;
@@ -264,6 +266,7 @@ nav {
   border-radius: 2lh;
   overflow: hidden;
   transition: width 300ms ease, height 300ms ease;
+  justify-self: center;
 }
 
 ul {
@@ -330,6 +333,23 @@ header.active .section-indicator span {
 
 header.active .icon {
   width: 0px;
+}
+
+/* move nav toward the left to avoid collision with MLH banner */
+/* TOCHANGE - adjust max-width depending on nav bar overlap with MLH banner */
+@media(max-width: 1100px) {
+
+  header,
+  nav {
+    justify-self: left;
+  }
+}
+
+@media(max-width: 500px) {
+  nav {
+    /* accounts for padding on sides and in the middle (along the MLH banner) */
+    --expanded-touch-width: calc(90vw - 25px - 24px);
+  }
 }
 
 /* desktop */

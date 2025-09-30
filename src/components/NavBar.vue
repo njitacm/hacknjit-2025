@@ -158,9 +158,6 @@ nav {
   backdrop-filter: blur(25px);
   align-content: center;
   border: 1px solid #ffffff33;
-}
-
-nav {
   position: relative;
   height: 4em;
   border-radius: 1000px;

@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 const isHoveredNav = ref(false);
 const scrollLock = ref(true);     // if true, will force the nav bar open
@@ -44,14 +44,20 @@ const navWidths = {
 const isNavActive = computed(() => (scrollLock.value === true || isHoveredNav.value === true));
 const navWidth = computed(() => (isNavActive.value ? navWidths.expanded : navWidths.shrunk));
 
+const scrollHandler = () => {
+  if (window.scrollY > 50) {
+    scrollLock.value = false;
+  } else {
+    scrollLock.value = true;
+  }
+};
+
 onMounted(() => {
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      scrollLock.value = false;
-    } else {
-      scrollLock.value = true;
-    }
-  });
+  window.addEventListener("scroll", scrollHandler);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", scrollHandler);
 });
 
 // Style for each list item

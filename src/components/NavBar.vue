@@ -1,5 +1,5 @@
 <template>
-  <header @mouseenter="isNavActive = true" @mouseleave="isNavActive = false" :style="{
+  <header @mouseenter="isHoveredNav = true" @mouseleave="isHoveredNav = false" :style="{
     width: isNavActive ? '100%' : 'fit-content',
   }">
     <nav :style="{ width: `${navWidth}` }">
@@ -23,10 +23,10 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
-const isNavActive = ref(true)
-const isHoveredNav = ref(false)
+const isHoveredNav = ref(false);
+const scrollLock = ref(true);     // if true, will force the nav bar open
 
 const navItems = [
   { label: 'Sponsors', href: '#Sponsors' },
@@ -41,7 +41,18 @@ const navWidths = {
 };
 
 // Reactive widths
-const navWidth = computed(() => (isNavActive.value || isHoveredNav.value ? navWidths.expanded : navWidths.shrunk));
+const isNavActive = computed(() => (scrollLock.value === true || isHoveredNav.value === true));
+const navWidth = computed(() => (isNavActive.value ? navWidths.expanded : navWidths.shrunk));
+
+onMounted(() => {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      scrollLock.value = false;
+    } else {
+      scrollLock.value = true;
+    }
+  });
+});
 
 // Style for each list item
 function getItemStyle(index) {

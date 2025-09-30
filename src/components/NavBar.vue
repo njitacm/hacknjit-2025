@@ -1,15 +1,22 @@
 <template>
   <header v-on="mouseListeners" @touchstart.passive="isTouch ? onTouch() : null" ref="nav-bar"
-    :style="{ width: isNavActive ? '100%' : 'fit-content' }">
+    :class="{ active: isNavActive }">
     <nav :style="{ width: `${navWidth}` }">
       <ul>
+        <!-- Visible even when nav is active -->
         <li :style="getItemStyle(0)">
-          <RouterLink to="/" class="nav-link">
-            {{ isNavActive ? "Home" : activeSectionId }}
+          <RouterLink to="/" class="principal nav-link">
+            <span>
+              {{ isNavActive ? "Home" : activeSectionId }}
+            </span>
+            <img :src="downArrow" class="icon" />
           </RouterLink>
         </li>
+        <!-- Hidden when nav is unactive -->
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index + 1)">
-          <a :href="item.href" class="nav-link">{{ item.label }}</a>
+          <a :href="item.href" class="nav-link">
+            {{ item.label }}
+          </a>
         </li>
         <li :style="getItemStyle(navItems.length)">
           <RouterLink to="/registration" class="nav-link">
@@ -27,6 +34,7 @@ import { storeToRefs } from "pinia";
 import { useNavigationStore } from '../stores/navigation';
 import { useIsTouch } from '../composables/useIsTouch';
 import { useTouchStartOutside } from '../composables/useTouchStartOutside';
+import downArrow from "../assets/icons/down_arrow.svg";
 
 // composables and stores
 const navBarRef = useTemplateRef("nav-bar");
@@ -47,7 +55,7 @@ const navItems = [
 ];
 
 const navWidths = {
-  shrunk: "175px",
+  shrunk: "250px",
   expanded: "750px",
 };
 
@@ -151,6 +159,11 @@ header {
   transition: gap 250ms ease;
   padding: 8px 0;
   border-radius: 1000px;
+  width: fit-content;
+}
+
+header.active {
+  width: 100%;
 }
 
 nav {
@@ -188,6 +201,37 @@ li {
   height: 100%;
   align-content: center;
   display: block;
+}
+
+.nav-link.principal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+header:not(.active) .nav-link.principal {
+  padding: 0 16px;
+}
+
+.nav-link.principal span {
+  display: block;
+  flex-grow: 1;
+  font-size: 1em;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.5;
+}
+
+header.active .nav-link.principal span {
+  flex-grow: 0;
+}
+
+header.active .icon {
+  width: 0px;
 }
 
 /* desktop */

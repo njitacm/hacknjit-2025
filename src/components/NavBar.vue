@@ -40,21 +40,22 @@ const navItems = [
 ];
 
 onMounted(() => {
+  for (const child of navLinks.value.children) {
+    const width = child.offsetWidth + 100;
+    child.style.width = `${width}px`;
+    autoWidths.push(width);
+  }
+
   const resizeObserver = new ResizeObserver(entries => {
     for (const entry of entries) {
-      console.log("resized");
       const width = entry.contentRect.width;
       if (dropdownWidths.expanded === "auto" && dropdownWidths.shrunk === "auto") {
-        console.log("both auto");
         dropdownWidths.expanded = width;
       } else if (dropdownWidths.shrunk === "auto") {
-        console.log("shrunk auto");
         if (width <= dropdownWidths.expanded) {
-          console.log("less than or equal to expanded");
           dropdownWidths.shrunk = width;
         } else {
           dropdownWidths.shrunk = dropdownWidths.expanded;
-          console.log("greater than expanded");
           dropdownWidths.expanded = width;
         }
         dropdownWidths.expanded = `${dropdownWidths.expanded}px`;
@@ -63,7 +64,6 @@ onMounted(() => {
       } else {
         console.log("Unexpected case");
       }
-      console.log("new widths freshly resized", dropdownWidths);
     }
   });
   resizeObserver.observe(nav.value);
@@ -71,12 +71,8 @@ onMounted(() => {
     isTitlebarActive.value = false;
     setTimeout(() => {
       isTitlebarActive.value = true;
-    }, 0);
-  }, 0);
-
-  for (const child of navLinks.value.children) {
-    autoWidths.push(child.offsetWidth);
-  }
+    }, 100);
+  }, 100);
 });
 
 // Sizes
@@ -87,8 +83,7 @@ const dropdownWidths = {
 
 // Reactive widths
 const dropdownWidth = computed(() => {
-    console.log("new width at computed", dropdownWidths)
-    return (isTitlebarActive.value || isHoveredNav.value ? dropdownWidths.expanded : dropdownWidths.shrunk)
+  return (isTitlebarActive.value || isHoveredNav.value ? dropdownWidths.expanded : dropdownWidths.shrunk)
 });
 
 // Style for each list item
@@ -96,7 +91,6 @@ function getItemStyle(index) {
   if (isTitlebarActive.value) {
     return {
       width: `${autoWidths[index]}px`,
-      flexGrow: "1",
       opacity: 1,
       transform: 'translateY(0)',
       transition: `opacity 0.3s ease ${(index + 1) * 0.1}s, transform 0.3s ease ${(index + 1) * 0.1}s`
@@ -110,7 +104,6 @@ function getItemStyle(index) {
     if (index > 0) {
       obj.opacity = 0;
       obj.width = "0px";
-      obj.flexGrow = 0;
       obj.transform = 'translateY(-10px)';
     }
 
@@ -147,11 +140,23 @@ function getItemStyle(index) {
 }
 
 .dropdown {
+  opacity: 0;
   position: relative;
   height: 4em;
   border-radius: 1000px;
   overflow: hidden;
   transition: width 300ms ease-out;
+  animation: fade-in 500ms linear 200ms forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 nav {
@@ -168,7 +173,7 @@ ul {
 }
 
 li {
-  flex-grow: 1;
+  /* flex-grow: 1; */
   line-height: 1.5em;
   font-size: 1.5em;
   display: block;

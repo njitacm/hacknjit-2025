@@ -332,6 +332,7 @@ export default {
             {
               value: 'XS',
               label: 'XS',
+            },
             {
               value: 'S',
               label: 'S',

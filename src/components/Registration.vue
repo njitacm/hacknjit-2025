@@ -1,9 +1,17 @@
 <!-- Registration.vue -->
 <template>
   <Vueform 
+    v-if="submitted"
     v-bind="vueform" 
     @submit="customSubmit"
   />
+  <div v-else class="form-submitted">
+      <h1>Successfully Registered!</h1>
+      <p>Thank you for registering for HackNJIT 2025. We’ll be in touch soon!</p>
+      <RouterLink to="/" class="nav-link">
+           <button class="vf-btn vf-btn-primary">Return Home</button>
+      </RouterLink>
+  </div>
 </template>
 <script>
 import { useVueform, Vueform } from '@vueform/vueform'
@@ -14,6 +22,7 @@ export default {
   mixins: [Vueform],
   setup: useVueform,
   data: () => ({
+    submitted: false,
     vueform: {
       size: 'md',
       displayErrors: true,
@@ -602,7 +611,23 @@ export default {
         },
       },
     }
-  })
+  }),
+  methods: {
+    async formSubmit(form) {
+      try {
+        const response = await form.request()
+        if (response.ok) {
+        } else {
+          // TODO: handle server error
+          console.error('Error submitting form')
+        }
+      } catch (e) {
+        console.error('Error submitting form', e)
+      } finally {
+          this.submitted = true
+      }
+    }
+  }
 }
 </script>
 
@@ -927,6 +952,15 @@ export default {
   background-color: #eef3f7;
   padding: 8px;
   border-radius: 8px;
+}
+
+.form-submitted h1 {
+  font-size: var(--vf-font-size-h1);
+}
+    
+.form-submitted p {
+  font-size: var(--vf-font-size);
+  margin-bottom: 24px;
 }
 
 </style>

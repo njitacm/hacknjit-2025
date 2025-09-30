@@ -163,13 +163,17 @@ func handleFormSubmission(w http.ResponseWriter, r *http.Request) {
 	}
 
 	log.Printf("Processed form: %+v\n", form)
-	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprintf(w, `{"status":"success","message":"Registration received"}`)
+
+	// Automatically return 200 success code
+	_, err = w.Write([]byte("Successfully Processed Form"))
+	if err != nil {
+		log.Printf("Failed to write success header: %s\n", err)
+	}
 }
 
 func saveRegistrationToCSV(form RegistrationForm) error {
 	err := csvWriter.Write([]string{
-		form.FirstName, form.LastName, form.PreferredName, form.Age, form.Phone, form.Email, form.Country, form.Uni, form.LvlOfStudy, form.FirstHack, form.Major, form.ShirtSize, strings.Join(form.DietaryRestrictions, ","), strconv.FormatBool(form.Terms), strconv.FormatBool(form.MarketingEmails), strconv.FormatBool(form.MarketingEmails1), form.Minority, form.Gender, form.Race, form.ResumePath, form.LinkedIn,
+		form.FirstName, form.LastName, form.PreferredName, form.Age, form.Phone, form.Email, form.Country, form.Uni, form.LvlOfStudy, form.FirstHack, form.Major, form.ShirtSize, strings.Join(form.DietaryRestrictions, ","), strconv.FormatBool(form.MLHCheckbox0), strconv.FormatBool(form.MLHCheckbox1), strconv.FormatBool(form.MLHCheckbox2), form.Minority, form.Gender, form.Race, form.ResumePath, form.LinkedIn,
 	})
 	csvWriter.Flush()
 	return err

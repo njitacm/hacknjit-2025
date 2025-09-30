@@ -26,7 +26,7 @@ export default {
 .registration-container {
   all: initial;
   width: 75%;
-  margin: 5% auto 5% auto;
+  margin: 7.5% auto;
   background-color: white;
   padding: 16px;
   color: black;

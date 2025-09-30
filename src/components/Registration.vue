@@ -1,7 +1,7 @@
 <!-- Registration.vue -->
 <template>
   <Vueform 
-    v-if="submitted"
+    v-if="!submitted"
     v-bind="vueform" 
     @submit="customSubmit"
   />

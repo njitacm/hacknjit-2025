@@ -1,18 +1,21 @@
 <template>
-  <header v-on="mouseListeners" @touchstart.stop.passive="isTouch ? onTouch() : null" ref="nav-bar"
+  <header v-on="mouseListeners" @touchend.stop.passive="isTouch ? onTouch() : null" ref="header"
     :class="{ active: isNavActive }">
-    <nav :style="{ width: navSize.width, height: navSize.height }" ref="nav">
+    <nav :style="{ width: navSize.width, height: navSize.height }">
       <ul ref="ul">
-        <!-- Visible even when nav is active -->
+        <!-- visible even when nav is active -->
         <li :style="getItemStyle(0)">
-          <component :is="(isTouch && !isNavActive) ? 'span' : 'router-link'" to="/" class="principal nav-link">
+          <!-- touch devices when nav is closed: disbable the link by turning it into a span -->
+          <RouterLink to="/" class="principal nav-link" :class="{ disabled: isTouch && !isNavActive }">
             <span>{{ isNavActive ? "Home" : activeSectionId }}</span>
             <img :src="downArrow" class="icon" />
-          </component>
+          </RouterLink>
         </li>
-        <!-- Hidden when nav is unactive -->
+        <!-- hidden when nav is closed -->
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index + 1)">
-          <RouterLink :to="{ path: item.path ?? '/', hash: item.hash ?? '' }" class="nav-link">{{ item.label }}
+          <RouterLink :to="{ path: item.path ?? '/', hash: item.hash ?? '' }" class="nav-link"
+            :class="{ disabled: isTouch && !isNavActive }">
+            {{ item.label }}
           </RouterLink>
         </li>
       </ul>
@@ -35,16 +38,17 @@ const navigationStore = useNavigationStore();
 const { activeSectionId } = storeToRefs(navigationStore);
 
 // template refs
-const navBarRef = useTemplateRef("nav-bar");
-const navRef = useTemplateRef("nav");
+const headerRef = useTemplateRef("header");
 const ulRef = useTemplateRef("ul");
 
 // refs
-const isHoveredNav = ref(false);
-const scrollLock = ref(true);         // if true, will force the nav bar open
+const interactedWithNav = ref(false); // mouse enter, mouse leave, touch start affects nav open/closed
+const scrollLock = ref(true);         // if true, will force the nav bar to be open
 const screenSize = ref("large");      // small or large depending on screen size
 
 // vars
+const heightEmFactor = 4;             // em
+const screenSizeThreshold = 800;      // px - manually adjust based on number of nav items
 const navItems = [
   // required: label, optional: hash, path
   { label: 'Sponsors', hash: '#Sponsors' },
@@ -53,7 +57,6 @@ const navItems = [
   { label: 'Register', path: '/registration' },
 ];
 
-const heightEmFactor = 4;
 const navSizes = {
   // small screens
   small: {
@@ -82,25 +85,21 @@ const navSizes = {
 
 // handlers
 const onTouchStartOutside = () => {
-  console.log("touch start outside");
-  isHoveredNav.value = false;
+  interactedWithNav.value = false;
   // Perform actions when touch starts outside
 };
 
 const onMouseEnter = () => {
-  console.log("enter");
-  isHoveredNav.value = true;
+  interactedWithNav.value = true;
 };
 
 const onMouseLeave = () => {
-  console.log("leave");
-  isHoveredNav.value = false;
+  interactedWithNav.value = false;
 };
 
 const onTouch = () => {
-  console.log("touch");
-  if (isHoveredNav.value === false) {
-    isHoveredNav.value = true;
+  if (interactedWithNav.value === false) {
+    interactedWithNav.value = true;
   }
 };
 
@@ -126,16 +125,15 @@ const onMediaQueryChange = (e) => {
 
 // computed properties
 const isNavActive = computed(() => (
-  (screenSize.value === "large" && (scrollLock.value === true || isHoveredNav.value === true)))
+  (screenSize.value === "large" && (scrollLock.value === true || interactedWithNav.value === true)))
   ||
-  (screenSize.value === "small" && isHoveredNav.value === true)
+  (screenSize.value === "small" && interactedWithNav.value === true)
 );
 const navSize = computed(() => (isNavActive.value ? navSizes[screenSize.value].expanded : navSizes[screenSize.value].shrunk));
 
 const mouseListeners = computed(() => {
   // If it's a touch device, return an empty object. The @touch.passive will be used
   if (isTouch.value === true) {
-    console.log("value true");
     return {};
   }
 
@@ -146,10 +144,14 @@ const mouseListeners = computed(() => {
   };
 });
 
-const mqList = window.matchMedia("(max-width: 800px)");
+// query for for large vs small screens
+const mqList = window.matchMedia(`(max-width: ${screenSizeThreshold}px)`);
 
 // life cycle hooks
 onMounted(() => {
+  if (mqList.matches) {
+    onMediaQueryChange({ matches: true });
+  }
   window.addEventListener("scroll", onScroll);
   mqList.addEventListener("change", onMediaQueryChange);
 });
@@ -160,7 +162,7 @@ onUnmounted(() => {
 });
 
 // link touch start outside handler to the composable
-useTouchStartOutside(navBarRef, onTouchStartOutside);
+useTouchStartOutside(headerRef, onTouchStartOutside);
 
 // Style for each list item
 function getItemStyle(index) {
@@ -249,6 +251,10 @@ li {
   height: 100%;
   align-content: center;
   display: block;
+}
+
+.disabled {
+  touch-action: none;
 }
 
 .nav-link.principal {

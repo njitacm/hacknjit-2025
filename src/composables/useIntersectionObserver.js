@@ -27,7 +27,7 @@ export function useIntersectionObserver() {
 
         const options = {
             root: null, // relative to the viewport
-            rootMargin: "-25% 0px -25% 0px",
+            rootMargin: "-50% 0px -50% 0px",
             threshold: 0, // trigger when 50% of the element is visible
         };
 

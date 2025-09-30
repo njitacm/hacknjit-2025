@@ -1,5 +1,5 @@
 // composables/useIntersectionObserver.js
-import { useNavigationStore } from '@/stores/navigation';
+import { useNavigationStore } from '../stores/navigation';
 
 // This 'observer' variable is created only once, when the module is imported.
 // It will be shared by every component that uses this composable.

@@ -26,9 +26,12 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { storeToRefs } from "pinia";
 import { useNavigationStore } from '../stores/navigation';
+import { useIsTouch } from '../composables/useIsTouch';
 
 const navigationStore = useNavigationStore();
 const { activeSectionId } = storeToRefs(navigationStore);
+
+const { isTouch } = useIsTouch();
 
 const isHoveredNav = ref(false);
 const scrollLock = ref(true);     // if true, will force the nav bar open

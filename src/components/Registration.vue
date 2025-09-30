@@ -50,9 +50,9 @@ export default {
           elements: [
             'h1',
             'divider_4',
-            'terms',
-            'marketing_emails',
-            'marketing_emails_1',
+            'mlh_checkbox_0',
+            'mlh_checkbox_1',
+            'mlh_checkbox_2',
             'divider_3',
           ],
         },
@@ -236,11 +236,11 @@ export default {
           type: 'radiogroup',
           items: [
             {
-              value: 'y',
+              value: 'Yes',
               label: "Yes (We're honored to be your first hackathon experience!)",
             },
             {
-              value: 'n',
+              value: 'No',
               label: 'No (Welcome back!)',
             },
           ],
@@ -253,71 +253,71 @@ export default {
           type: 'radiogroup',
           items: [
             {
-              value: 'bis',
+              value: 'Business & Information Systems (BIS)',
               label: 'Business & Information Systems (BIS)',
             },
             {
-              value: 'cbus',
+              value: 'Computing & Business (CBUS)',
               label: 'Computing & Business (CBUS)',
             },
             {
-              value: 'cs',
+              value: 'Computer Science (CS)',
               label: 'Computer Science (CS)',
             },
             {
-              value: 'coe',
+              value: 'Computer Engineering (CoE)',
               label: 'Computer Engineering (CoE)',
             },
             {
-              value: 'ds',
+              value: 'Data Science (DS)',
               label: 'Data Science (DS)',
             },
             {
-              value: 'hci',
+              value: 'Human Computer Interaction (HCI)',
               label: 'Human Computer Interaction (HCI)',
             },
             {
-              value: 'is',
+              value: 'Information Systems (IS)',
               label: 'Information Systems (IS)',
             },
             {
-              value: 'it',
+              value: 'Information Technology (IT)',
               label: 'Information Technology (IT)',
             },
             {
-              value: 'se',
+              value: 'Software Engineering (SE)',
               label: 'Software Engineering (SE)',
             },
             {
-              value: 'wis',
+              value: 'Web & Information Systems (WIS)',
               label: 'Web & Information Systems (WIS)',
             },
             {
-              value: 'othrengr',
+              value: 'Another engineering discipline (such as civil, electrical, mechanical, etc.)',
               label: 'Another engineering discipline (such as civil, electrical, mechanical, etc.)',
             },
             {
-              value: 'othrnatsci',
+              value: 'A natural science (such as biology, chemistry, physics, etc.)',
               label: 'A natural science (such as biology, chemistry, physics, etc.)',
             },
             {
-              value: 'mathstats',
+              value: 'Mathematics or Statistics',
               label: 'Mathematics or Statistics',
             },
             {
-              value: 'business',
+              value: 'Business Discipline (such as accounting, finance, marketing, etc.)',
               label: 'Business Discipline (such as accounting, finance, marketing, etc.)',
             },
             {
-              value: 'health',
+              value: 'Health Science (such as nursing, pharmacy, radiology, etc.)',
               label: 'Health Science (such as nursing, pharmacy, radiology, etc.)',
             },
             {
-              value: 'arts',
+              value: 'Fine arts or performing arts (such as graphic design, music, studio art, etc.)',
               label: 'Fine arts or performing arts (such as graphic design, music, studio art, etc.)',
             },
             {
-              value: 'other',
+              value: 'Other',
               label: 'Other',
             },
           ],
@@ -330,23 +330,26 @@ export default {
           type: 'radiogroup',
           items: [
             {
-              value: 's',
+              value: 'XS',
+              label: 'XS',
+            {
+              value: 'S',
               label: 'S',
             },
             {
-              value: 'm',
+              value: 'M',
               label: 'M',
             },
             {
-              value: 'large',
+              value: 'L',
               label: 'L',
             },
             {
-              value: 'xl',
+              value: 'XL',
               label: 'XL',
             },
             {
-              value: 'xxl',
+              value: 'XXL',
               label: 'XXL',
             },
           ],
@@ -393,21 +396,21 @@ export default {
           type: 'static',
           tag: 'hr',
         },
-        terms: {
+        mlh_checkbox_0: {
           type: 'checkbox',
           text: 'I have read and agree to the <a href=https://static.mlh.io/docs/mlh-code-of-conduct.pdf>MLH Code of Conduct</a>',
           rules: [
             'accepted',
           ],
         },
-        marketing_emails: {
+        mlh_checkbox_1: {
           type: 'checkbox',
-          text: 'I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and MLH administration in-line with the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>. I further agree to the terms of both the <a href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md">MLH Contest Terms and Conditions</a>  and the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>.',
+          text: 'I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and MLH administration in-line with the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>. I further agree to the mlh_checkbox_0 of both the <a href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md">MLH Contest Terms and Conditions</a>  and the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>.',
           rules: [
             'accepted',
           ],
         },
-        marketing_emails_1: {
+        mlh_checkbox_2: {
           type: 'checkbox',
           text: '(Optional) I authorize MLH to send me occasional emails about relevant events, career opportunities, and community announcements.',
         },
@@ -434,19 +437,19 @@ export default {
           label: 'Do you identify as part of an underrepresented group in the technology industry? ',
           items: [
             {
-              value: 'y',
+              value: 'Yes',
               label: 'Yes',
             },
             {
-              value: 'n',
+              value: 'No',
               label: 'No',
             },
             {
-              value: 'u',
+              value: 'Unsure',
               label: 'Unsure',
             },
             {
-              value: 'p',
+              value: 'Prefer Not to Answer',
               label: 'Prefer Not to Answer',
             },
           ],
@@ -456,23 +459,23 @@ export default {
           label: 'Gender',
           items: [
             {
-              value: 'm',
+              value: 'Male',
               label: 'Male',
             },
             {
-              value: 'f',
+              value: 'Female',
               label: 'Female',
             },
             {
-              value: 'nb',
+              value: 'Non-Binary',
               label: 'Non-Binary',
             },
             {
-              value: 'self',
+              value: 'Prefer to Self-Describe',
               label: 'Prefer to Self-Describe',
             },
             {
-              value: 'p',
+              value: 'Prefer Not to Answer',
               label: 'Prefer Not to Answer',
             },
           ],
@@ -482,75 +485,75 @@ export default {
           label: 'Race / Ethnicity ',
           items: [
             {
-              value: 'ai',
+              value: 'Asian Indian',
               label: 'Asian Indian',
             },
             {
-              value: 'boa',
+              value: 'Black or African',
               label: 'Black or African',
             },
             {
-              value: 'c',
+              value: 'Chinese',
               label: 'Chinese',
             },
             {
-              value: 'f',
+              value: 'Filipino',
               label: 'Filipino',
             },
             {
-              value: 'goc',
+              value: 'Gaumanian or Chamorro',
               label: 'Gaumanian or Chamorro',
             },
             {
-              value: 'hlso',
+              value: 'Hispanic / Latino / Spanish Origin',
               label: 'Hispanic / Latino / Spanish Origin',
             },
             {
-              value: 'j',
+              value: 'Japenese',
               label: 'Japenese',
             },
             {
-              value: 'k',
+              value: 'Korean',
               label: 'Korean',
             },
             {
-              value: 'me',
+              value: 'Middle Eastern',
               label: 'Middle Eastern',
             },
             {
-              value: 'naan',
+              value: 'Native Hawaiian',
               label: 'Native Hawaiian',
             },
             {
-              value: 'nh',
+              value: 'Samoan',
               label: 'Samoan',
             },
             {
-              value: 's',
+              value: 'Samoan',
               label: 'Samoan',
             },
             {
-              value: 'v',
+              value: 'Vietnamese',
               label: 'Vietnamese',
             },
             {
-              value: 'w',
+              value: 'White',
               label: 'White',
             },
             {
-              value: 'oa',
+              value: 'Other Asian (Thai, Cambodian, etc)',
               label: 'Other Asian (Thai, Cambodian, etc)',
             },
             {
-              value: 'opi',
+              value: 'Other Pacific Islander',
               label: 'Other Pacific Islander',
             },
             {
-              value: 'o',
+              value: 'Other (Please Specify)',
               label: 'Other (Please Specify)',
             },
             {
-              value: 'p',
+              value: 'Prefer Not to Answer',
               label: 'Prefer Not to Answer',
             },
           ],

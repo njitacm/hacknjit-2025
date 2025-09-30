@@ -29,9 +29,9 @@ type RegistrationForm struct {
 	Major               string
 	ShirtSize           string
 	DietaryRestrictions []string
-	Terms               bool
-	MarketingEmails     bool
-	MarketingEmails1    bool
+	MLHCheckbox0        bool
+	MLHCheckbox1        bool
+	MLHCheckbox2        bool
 	Minority            string
 	Gender              string
 	Race                string
@@ -66,7 +66,7 @@ func setup() {
 
 		csvWriter = csv.NewWriter(csvFile)
 
-		err = csvWriter.Write([]string{"FirstName", "LastName", "PreferredName", "Age", "Phone", "Email", "Country", "Uni", "LvlOfStudy", "FirstHack", "Major", "ShirtSize", "DietaryRestrictions", "Terms", "MarketingEmails", "MarketingEmails1", "Minority", "Gender", "Race", "ResumePath", "LinkedIn"})
+		err = csvWriter.Write([]string{"FirstName", "LastName", "PreferredName", "Age", "Phone", "Email", "Country", "Uni", "LvlOfStudy", "FirstHack", "Major", "ShirtSize", "DietaryRestrictions", "MLH Checkbox 0", "MLH Checkbox 1", "MLH Checkbox 2", "Minority", "Gender", "Race", "ResumePath", "LinkedIn"})
 		if err != nil {
 			log.Fatal("Failed to write headers to csv\n\t", err)
 		}
@@ -105,25 +105,25 @@ func handleFormSubmission(w http.ResponseWriter, r *http.Request) {
 	}
 
 	form := RegistrationForm{
-		FirstName:        r.PostFormValue("first_name"),
-		LastName:         r.PostFormValue("last_name"),
-		PreferredName:    r.PostFormValue("preferred_name"),
-		Age:              r.PostFormValue("age"),
-		Phone:            r.PostFormValue("phone"),
-		Email:            r.PostFormValue("email"),
-		Country:          r.PostFormValue("country"),
-		Uni:              r.PostFormValue("uni"),
-		LvlOfStudy:       r.PostFormValue("lvlofstudy"),
-		FirstHack:        r.PostFormValue("firsthack"),
-		Major:            r.PostFormValue("major"),
-		ShirtSize:        r.PostFormValue("shirtsize"),
-		Terms:            r.PostFormValue("terms") == "true",
-		MarketingEmails:  r.PostFormValue("marketing_emails") == "true",
-		MarketingEmails1: r.PostFormValue("marketing_emails_1") == "true",
-		Minority:         r.PostFormValue("minority"),
-		Gender:           r.PostFormValue("gender"),
-		Race:             r.PostFormValue("race"),
-		LinkedIn:         r.PostFormValue("linkedin"),
+		FirstName:     r.PostFormValue("first_name"),
+		LastName:      r.PostFormValue("last_name"),
+		PreferredName: r.PostFormValue("preferred_name"),
+		Age:           r.PostFormValue("age"),
+		Phone:         r.PostFormValue("phone"),
+		Email:         r.PostFormValue("email"),
+		Country:       r.PostFormValue("country"),
+		Uni:           r.PostFormValue("uni"),
+		LvlOfStudy:    r.PostFormValue("lvlofstudy"),
+		FirstHack:     r.PostFormValue("firsthack"),
+		Major:         r.PostFormValue("major"),
+		ShirtSize:     r.PostFormValue("shirtsize"),
+		MLHCheckbox0:  r.PostFormValue("mlh_checkbox_0") == "true",
+		MLHCheckbox1:  r.PostFormValue("mlh_checkbox_1") == "true",
+		MLHCheckbox2:  r.PostFormValue("mlh_checkbox_2") == "true",
+		Minority:      r.PostFormValue("minority"),
+		Gender:        r.PostFormValue("gender"),
+		Race:          r.PostFormValue("race"),
+		LinkedIn:      r.PostFormValue("linkedin"),
 	}
 
 	// Hacky fix because I can't figure out the proper way of getting checkboxes

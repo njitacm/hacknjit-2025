@@ -28,39 +28,35 @@ import { useNavigationStore } from '../stores/navigation';
 import { useIsTouch } from '../composables/useIsTouch';
 import { useTouchStartOutside } from '../composables/useTouchStartOutside';
 
-const { isTouch } = useIsTouch();
-
+// composables and stores
 const navBarRef = useTemplateRef("nav-bar");
-
-const handleOutsideTouch = () => {
-  console.log("touch start outside");
-  isHoveredNav.value = false;
-  // Perform actions when touch starts outside
-};
-
-useTouchStartOutside(navBarRef, handleOutsideTouch);
+const { isTouch } = useIsTouch();
 
 const navigationStore = useNavigationStore();
 const { activeSectionId } = storeToRefs(navigationStore);
 
+// refs
 const isHoveredNav = ref(false);
 const scrollLock = ref(true);     // if true, will force the nav bar open
 
+// vars
 const navItems = [
   { label: 'Sponsors', href: '#Sponsors' },
   { label: 'FAQ', href: '#About' },
   { label: 'Contact', href: '#Contact' }
 ];
 
-// Sizes
 const navWidths = {
   shrunk: "175px",
   expanded: "750px",
 };
 
-// Reactive widths
-const isNavActive = computed(() => (scrollLock.value === true || isHoveredNav.value === true));
-const navWidth = computed(() => (isNavActive.value ? navWidths.expanded : navWidths.shrunk));
+// handlers
+const onTouchStartOutside = () => {
+  console.log("touch start outside");
+  isHoveredNav.value = false;
+  // Perform actions when touch starts outside
+};
 
 const onMouseEnter = () => {
   console.log("enter");
@@ -79,6 +75,18 @@ const onTouch = () => {
   }
 };
 
+const onScroll = () => {
+  if (window.scrollY > 50) {
+    scrollLock.value = false;
+  } else {
+    scrollLock.value = true;
+  }
+};
+
+// computed properties
+const isNavActive = computed(() => (scrollLock.value === true || isHoveredNav.value === true));
+const navWidth = computed(() => (isNavActive.value ? navWidths.expanded : navWidths.shrunk));
+
 const mouseListeners = computed(() => {
   // If it's a touch device, return an empty object. The @touch.passive will be used
   if (isTouch.value === true) {
@@ -93,21 +101,17 @@ const mouseListeners = computed(() => {
   };
 });
 
-const scrollHandler = () => {
-  if (window.scrollY > 50) {
-    scrollLock.value = false;
-  } else {
-    scrollLock.value = true;
-  }
-};
-
+// life cycle hooks
 onMounted(() => {
-  window.addEventListener("scroll", scrollHandler);
+  window.addEventListener("scroll", onScroll);
 });
 
 onUnmounted(() => {
-  window.removeEventListener("scroll", scrollHandler);
+  window.removeEventListener("scroll", onScroll);
 });
+
+// link touch start outside handler to the composable
+useTouchStartOutside(navBarRef, onTouchStartOutside);
 
 // Style for each list item
 function getItemStyle(index) {

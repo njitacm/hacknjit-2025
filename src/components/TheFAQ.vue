@@ -53,13 +53,18 @@ export default {
 }
 
 .p-accordion {
+  color: #274029;
   width: 80%;
 }
 
-.p-accordionpanel,
-.p-accordioncontent .p-accordioncontent-content {
-  border: none; 
+.p-accordionpanel {
+  border-radius: 8px;
+  background-color: white;
+  margin: 16px;
+  padding: 16px;
+  border-bottom: 3px solid #8080807F
 }
+
 
 .p-accordioncontent .p-accordioncontent-content p {
   padding: 8px 0
@@ -67,20 +72,36 @@ export default {
 
 .p-accordion p,
 .p-accordion button {
+  color: #274029;
   font-size: 1em;
   text-align: left;
-}
-
-
-.p-accordionpanel {
-  margin: 16px;
-  border-bottom: 3px solid #8080807F
+  transition: all 0.25s ease-out;
 }
 
 .p-accordionheader {
   font-weight: 850;
   border: none;
   text-wrap: wrap;
+}
+
+</style>
+
+<style>
+.p-accordion {
+  --p-accordion-header-active-color: #40BB4A;
+  --p-accordion-header-active-hover-color: #40BB4A;
+}
+.p-accordionpanel,
+.p-accordioncontent .p-accordioncontent-content {
+  border: none; 
+  border-style: none;
+}
+
+.p-accordionpanel-active {
+}
+
+.p-accordionpanel-active button {
+  color: #17641E;
 }
 
 </style>

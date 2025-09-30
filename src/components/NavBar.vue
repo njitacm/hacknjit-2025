@@ -42,7 +42,7 @@ const scrollLock = ref(true);     // if true, will force the nav bar open
 const navItems = [
   // required: label, optional: hash, path
   { label: 'Sponsors', hash: '#Sponsors' },
-  { label: 'FAQ', hash: '#About' },
+  { label: 'FAQ', hash: '#FAQ' },
   { label: 'Contact', hash: '#Contact' },
   { label: 'Register', path: '/registration' },
 ];

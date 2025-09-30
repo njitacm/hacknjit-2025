@@ -1,14 +1,12 @@
 <template>
-  <header class="header" @mouseenter="isTitlebarActive = true" @mouseleave="isTitlebarActive = false" :style="{
-    width: isTitlebarActive ? '100%' : 'fit-content',
+  <header @mouseenter="isNavActive = true" @mouseleave="isNavActive = false" :style="{
+    width: isNavActive ? '100%' : 'fit-content',
   }">
-
-    <!-- Dropdown -->
-    <nav class="dropdown" :style="{ width: `${dropdownWidth}` }" ref="nav">
-      <ul ref="nav-links">
+    <nav :style="{ width: `${navWidth}` }">
+      <ul>
         <li :style="getItemStyle(0)">
           <RouterLink to="/" class="nav-link">
-            {{ isTitlebarActive ? "Home" : "HackNJIT" }}
+            {{ isNavActive ? "Home" : "HackNJIT" }}
           </RouterLink>
         </li>
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index + 1)">
@@ -25,13 +23,10 @@
 </template>
 
 <script setup>
-import { ref, computed, useTemplateRef, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 
-const isTitlebarActive = ref(true)
+const isNavActive = ref(true)
 const isHoveredNav = ref(false)
-const navLinks = useTemplateRef("nav-links");
-const nav = useTemplateRef("nav");
-const autoWidths = [];
 
 const navItems = [
   { label: 'Sponsors', href: '#Sponsors' },
@@ -39,58 +34,21 @@ const navItems = [
   { label: 'Contact', href: '#Contact' }
 ];
 
-onMounted(() => {
-  for (const child of navLinks.value.children) {
-    const width = child.offsetWidth + 100;
-    child.style.width = `${width}px`;
-    autoWidths.push(width);
-  }
-
-  const resizeObserver = new ResizeObserver(entries => {
-    for (const entry of entries) {
-      const width = entry.contentRect.width;
-      if (dropdownWidths.expanded === "auto" && dropdownWidths.shrunk === "auto") {
-        dropdownWidths.expanded = width;
-      } else if (dropdownWidths.shrunk === "auto") {
-        if (width <= dropdownWidths.expanded) {
-          dropdownWidths.shrunk = width;
-        } else {
-          dropdownWidths.shrunk = dropdownWidths.expanded;
-          dropdownWidths.expanded = width;
-        }
-        dropdownWidths.expanded = `${dropdownWidths.expanded}px`;
-        dropdownWidths.shrunk = `${dropdownWidths.shrunk}px`;
-        resizeObserver.disconnect();
-      } else {
-        console.log("Unexpected case");
-      }
-    }
-  });
-  resizeObserver.observe(nav.value);
-  setTimeout(() => {
-    isTitlebarActive.value = false;
-    setTimeout(() => {
-      isTitlebarActive.value = true;
-    }, 100);
-  }, 100);
-});
-
 // Sizes
-const dropdownWidths = {
-  shrunk: "auto",
-  expanded: "auto",
+const navWidths = {
+  shrunk: "175px",
+  expanded: "750px",
 };
 
 // Reactive widths
-const dropdownWidth = computed(() => {
-  return (isTitlebarActive.value || isHoveredNav.value ? dropdownWidths.expanded : dropdownWidths.shrunk)
-});
+const navWidth = computed(() => (isNavActive.value || isHoveredNav.value ? navWidths.expanded : navWidths.shrunk));
 
 // Style for each list item
 function getItemStyle(index) {
-  if (isTitlebarActive.value) {
+  if (isNavActive.value) {
     return {
-      width: `${autoWidths[index]}px`,
+      width: `auto`,
+      flexGrow: 1,
       opacity: 1,
       transform: 'translateY(0)',
       transition: `opacity 0.3s ease ${(index + 1) * 0.1}s, transform 0.3s ease ${(index + 1) * 0.1}s`
@@ -102,6 +60,7 @@ function getItemStyle(index) {
 
     // index 0 ("HackNJIT") is not hidden
     if (index > 0) {
+      obj.flexGrow = 0;
       obj.opacity = 0;
       obj.width = "0px";
       obj.transform = 'translateY(-10px)';
@@ -113,54 +72,29 @@ function getItemStyle(index) {
 </script>
 
 <style scoped>
-.header {
+header {
   justify-self: center;
   position: fixed;
-  top: 8px;
   z-index: 50;
   display: grid;
   justify-items: center;
   transition: gap 250ms ease;
+  padding: 8px 0;
+  border-radius: 1000px;
 }
 
-.mainbar,
-.dropdown {
+nav {
   background-color: #00250475;
   backdrop-filter: blur(25px);
   align-content: center;
 }
 
-.mainbar {
-  font-weight: bold;
-  padding: 0.5em;
-  font-size: 1.5em;
-  line-height: 1.5em;
-  border-radius: 1lh;
-  transition: width 250ms ease, border-radius 100ms ease;
-}
-
-.dropdown {
-  opacity: 0;
+nav {
   position: relative;
   height: 4em;
   border-radius: 1000px;
   overflow: hidden;
-  transition: width 300ms ease-out;
-  animation: fade-in 500ms linear 200ms forwards;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-nav {
-  z-index: -50;
+  transition: width 300ms ease;
 }
 
 ul {
@@ -173,20 +107,15 @@ ul {
 }
 
 li {
-  /* flex-grow: 1; */
+  flex-grow: 1;
   line-height: 1.5em;
   font-size: 1.5em;
   display: block;
-  transition: width 300ms ease-out, flex-grow 300ms ease-out;
 }
 
-.mainbar,
 .nav-link {
   color: white;
   text-decoration: none;
-}
-
-.nav-link {
   width: 100%;
   height: 100%;
   align-content: center;

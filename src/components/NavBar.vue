@@ -3,18 +3,9 @@
     width: isTitlebarActive ? '100%' : 'fit-content',
   }">
 
-    <!-- Title bar
-    <RouterLink to="/" class="mainbar" :style="{ width: `${mainBarWidth}` }">
-      HackNJIT
-    </RouterLink> -->
-
     <!-- Dropdown -->
-    <nav class="dropdown" :style="{
-      // opacity: isDropdownVisible ? 1 : 0,
-      width: `${dropdownWidth}`,
-      // fontSize: isDropdownVisible ? `${dropdownFontSize}` : '0px',
-    }">
-      <ul>
+    <nav class="dropdown" :style="{ width: `${dropdownWidth}` }" ref="nav">
+      <ul ref="nav-links">
         <li :style="getItemStyle(0)">
           <RouterLink to="/" class="nav-link">
             {{ isTitlebarActive ? "Home" : "HackNJIT" }}
@@ -34,34 +25,77 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-// import HomeView from '../views/HomeView.vue';
+import { ref, computed, useTemplateRef, onMounted } from 'vue'
 
-const isTitlebarActive = ref(false)
+const isTitlebarActive = ref(true)
 const isHoveredNav = ref(false)
+const navLinks = useTemplateRef("nav-links");
+const nav = useTemplateRef("nav");
+const autoWidths = [];
 
 const navItems = [
   { label: 'Sponsors', href: '#Sponsors' },
   { label: 'FAQ', href: '#About' },
   { label: 'Contact', href: '#Contact' }
-]
+];
+
+onMounted(() => {
+  const resizeObserver = new ResizeObserver(entries => {
+    for (const entry of entries) {
+      console.log("resized");
+      const width = entry.contentRect.width;
+      if (dropdownWidths.expanded === "auto" && dropdownWidths.shrunk === "auto") {
+        console.log("both auto");
+        dropdownWidths.expanded = width;
+      } else if (dropdownWidths.shrunk === "auto") {
+        console.log("shrunk auto");
+        if (width <= dropdownWidths.expanded) {
+          console.log("less than or equal to expanded");
+          dropdownWidths.shrunk = width;
+        } else {
+          dropdownWidths.shrunk = dropdownWidths.expanded;
+          console.log("greater than expanded");
+          dropdownWidths.expanded = width;
+        }
+        dropdownWidths.expanded = `${dropdownWidths.expanded}px`;
+        dropdownWidths.shrunk = `${dropdownWidths.shrunk}px`;
+        resizeObserver.disconnect();
+      } else {
+        console.log("Unexpected case");
+      }
+      console.log("new widths freshly resized", dropdownWidths);
+    }
+  });
+  resizeObserver.observe(nav.value);
+  setTimeout(() => {
+    isTitlebarActive.value = false;
+    setTimeout(() => {
+      isTitlebarActive.value = true;
+    }, 0);
+  }, 0);
+
+  for (const child of navLinks.value.children) {
+    autoWidths.push(child.offsetWidth);
+  }
+});
 
 // Sizes
-// const mainBarClosedWith = "150px";
-// const mainBarOpenWith = "300px";
-const dropdownWidthExpanded = "700px";
-// const dropdownFontSize = "1em";
+const dropdownWidths = {
+  shrunk: "auto",
+  expanded: "auto",
+};
 
 // Reactive widths
-// const mainBarWidth = computed(() => (isTitlebarActive.value || isHoveredNav.value ? mainBarOpenWith : mainBarClosedWith))
-const dropdownWidth = computed(() => (isTitlebarActive.value || isHoveredNav.value ? dropdownWidthExpanded : "300px"))
-const isDropdownVisible = computed(() => isTitlebarActive.value || isHoveredNav.value)
+const dropdownWidth = computed(() => {
+    console.log("new width at computed", dropdownWidths)
+    return (isTitlebarActive.value || isHoveredNav.value ? dropdownWidths.expanded : dropdownWidths.shrunk)
+});
 
 // Style for each list item
 function getItemStyle(index) {
   if (isTitlebarActive.value) {
     return {
-      width: "100px",
+      width: `${autoWidths[index]}px`,
       flexGrow: "1",
       opacity: 1,
       transform: 'translateY(0)',
@@ -75,7 +109,7 @@ function getItemStyle(index) {
     // index 0 ("HackNJIT") is not hidden
     if (index > 0) {
       obj.opacity = 0;
-      obj.width = 0;
+      obj.width = "0px";
       obj.flexGrow = 0;
       obj.transform = 'translateY(-10px)';
     }
@@ -117,7 +151,7 @@ function getItemStyle(index) {
   height: 4em;
   border-radius: 1000px;
   overflow: hidden;
-  transition: width 300ms ease-out, height 300ms ease-out, opacity 250ms ease;
+  transition: width 300ms ease-out;
 }
 
 nav {

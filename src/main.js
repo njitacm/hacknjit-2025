@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router.js'
 
@@ -10,8 +11,9 @@ import en from '@vueform/vueform/locales/en'
 // Vueform CSS
 import '@vueform/vueform/dist/vueform.css'
 
+const pinia = createPinia()
 const app = createApp(App)
-
+app.use(pinia)
 
 app.config.globalProperties.window = window
 

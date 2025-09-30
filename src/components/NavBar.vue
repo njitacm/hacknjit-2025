@@ -28,6 +28,8 @@ import { useNavigationStore } from '../stores/navigation';
 import { useIsTouch } from '../composables/useIsTouch';
 import { useTouchStartOutside } from '../composables/useTouchStartOutside';
 
+const { isTouch } = useIsTouch();
+
 const navBarRef = useTemplateRef("nav-bar");
 
 const handleOutsideTouch = () => {
@@ -40,8 +42,6 @@ useTouchStartOutside(navBarRef, handleOutsideTouch);
 
 const navigationStore = useNavigationStore();
 const { activeSectionId } = storeToRefs(navigationStore);
-
-const { isTouch } = useIsTouch();
 
 const isHoveredNav = ref(false);
 const scrollLock = ref(true);     // if true, will force the nav bar open
@@ -74,7 +74,9 @@ const onMouseLeave = () => {
 
 const onTouch = () => {
   console.log("touch");
-  isHoveredNav.value = !isHoveredNav.value;
+  if (isHoveredNav.value === false) {
+    isHoveredNav.value = true;
+  }
 };
 
 const mouseListeners = computed(() => {

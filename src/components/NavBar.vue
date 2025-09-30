@@ -1,22 +1,21 @@
 <template>
-  <header v-on="mouseListeners" @touchend.stop.passive="isTouch ? onTouch() : null" ref="header"
-    :class="{ active: isNavActive }">
+  <header v-on="mouseListeners" @click.stop="() => console.log('header clicked')"
+    @touchend.stop.passive="isTouch ? onTouch() : null" ref="header" :class="{ active: isNavActive }">
     <nav :style="{ width: navSize.width, height: navSize.height }">
       <ul ref="ul">
         <!-- visible even when nav is active -->
         <li :style="getItemStyle(0)">
           <!-- touch devices when nav is closed: disbable the link by turning it into a span -->
-          <RouterLink to="/" class="principal nav-link" :class="{ disabled: isTouch && !isNavActive }">
-            <span>{{ isNavActive ? "Home" : activeSectionId }}</span>
+          <div class="section-indicator">
+            <span>{{ activeSectionId }}</span>
             <img :src="downArrow" class="icon" />
-          </RouterLink>
+          </div>
         </li>
         <!-- hidden when nav is closed -->
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index + 1)">
-          <RouterLink :to="{ path: item.path ?? '/', hash: item.hash ?? '' }" class="nav-link"
-            :class="{ disabled: isTouch && !isNavActive }">
+          <button class="nav-link" @click="!isTouch ? goToPage(item) : null" @touchend="() => goToPage(item)">
             {{ item.label }}
-          </RouterLink>
+          </button>
         </li>
       </ul>
     </nav>
@@ -29,9 +28,12 @@ import { storeToRefs } from "pinia";
 import { useNavigationStore } from '../stores/navigation';
 import { useIsTouch } from '../composables/useIsTouch';
 import { useTouchStartOutside } from '../composables/useTouchStartOutside';
+import { useRouter } from 'vue-router';
 import downArrow from "../assets/icons/down_arrow.svg";
 
+
 // composables and stores
+const router = useRouter();
 const { isTouch } = useIsTouch();
 
 const navigationStore = useNavigationStore();
@@ -51,6 +53,7 @@ const heightEmFactor = 4;             // em
 const screenSizeThreshold = 800;      // px - manually adjust based on number of nav items
 const navItems = [
   // required: label, optional: hash, path
+  { label: 'Home' },
   { label: 'Sponsors', hash: '#Sponsors' },
   { label: 'FAQ', hash: '#FAQ' },
   { label: 'Contact', hash: '#Contact' },
@@ -164,31 +167,59 @@ onUnmounted(() => {
 // link touch start outside handler to the composable
 useTouchStartOutside(headerRef, onTouchStartOutside);
 
-// Style for each list item
+function goToPage(item) {
+  if (isNavActive.value === true) {
+    console.log('going to page');
+    router.push({ path: item.path ?? '/', hash: item.hash ?? '' });
+  }
+}
+
+// style for each list item
 function getItemStyle(index) {
-  if (isNavActive.value) {
-    return {
-      width: "auto",
-      height: "auto",
-      flexGrow: 1,
+  if (isNavActive.value === true) {
+    const obj = {
       opacity: 1,
       transform: 'translateY(0)',
-      transition: `opacity 0.3s ease ${(index + 1) * 0.1}s, transform 0.3s ease ${(index + 1) * 0.1}s`
+      transition: `opacity 0.3s ease ${(index + 1) * 50}ms, transform 0.3s ease ${(index + 1) * 50}ms`
+    };
+
+    if (index === 0) {
+      obj.flexGrow = 0;
+
+      if (screenSize.value === "large") {
+        obj.width = "0px";
+        obj.height = "0px";
+      } else {
+        obj.width = "0px";
+        obj.height = "0px";
+      }
+    } else {
+      obj.flexGrow = 1;
+      obj.width = "auto";
+      obj.height = "auto";
     }
+
+    return obj;
   } else {
     const obj = {
       transition: 'opacity 0s, transform 0s'
     };
 
     // index 0 ("HackNJIT") is not hidden
-    if (index > 0) {
+    if (index === 0) {
+      obj.width = "auto";
+      obj.height = "100%";
+
+    } else {
       obj.flexGrow = 0;
       obj.opacity = 0;
       obj.transform = 'translateY(-10px)';
 
       if (screenSize.value === "large") {
         obj.width = "0px";
+        obj.height = "0px";
       } else {
+        obj.width = "0px";
         obj.height = "0px";
       }
     }
@@ -241,10 +272,13 @@ li {
   flex-grow: 1;
   line-height: inherit;
   font-size: 1.5em;
-  display: block;
 }
 
 .nav-link {
+  font-size: 1em;
+  cursor: pointer;
+  background: transparent;
+  border: none;
   color: white;
   text-decoration: none;
   width: 100%;
@@ -257,18 +291,20 @@ li {
   touch-action: none;
 }
 
-.nav-link.principal {
+.section-indicator {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
 }
 
-header:not(.active) .nav-link.principal {
+header:not(.active) .section-indicator {
   padding: 0 24px;
 }
 
-.nav-link.principal span {
+.section-indicator span {
   flex-grow: 1;
   font-size: 1em;
 }
@@ -279,8 +315,9 @@ header:not(.active) .nav-link.principal {
   opacity: 0.5;
 }
 
-header.active .nav-link.principal span {
+header.active .section-indicator span {
   flex-grow: 0;
+  font-size: 0;
 }
 
 header.active .icon {

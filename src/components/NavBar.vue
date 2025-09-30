@@ -6,22 +6,16 @@
         <!-- Visible even when nav is active -->
         <li :style="getItemStyle(0)">
           <RouterLink to="/" class="principal nav-link">
-            <span>
-              {{ isNavActive ? "Home" : activeSectionId }}
-            </span>
+            <span>{{ isNavActive ? "Home" : activeSectionId }}</span>
             <img :src="downArrow" class="icon" />
           </RouterLink>
         </li>
         <!-- Hidden when nav is unactive -->
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index + 1)">
-          <a :href="item.href" class="nav-link">
-            {{ item.label }}
-          </a>
+          <a :href="item.href" class="nav-link">{{ item.label }}</a>
         </li>
         <li :style="getItemStyle(navItems.length)">
-          <RouterLink to="/registration" class="nav-link">
-            Register
-          </RouterLink>
+          <RouterLink to="/registration" class="nav-link">Register</RouterLink>
         </li>
       </ul>
     </nav>
@@ -215,7 +209,6 @@ header:not(.active) .nav-link.principal {
 }
 
 .nav-link.principal span {
-  display: block;
   flex-grow: 1;
   font-size: 1em;
 }

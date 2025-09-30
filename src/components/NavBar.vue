@@ -1,19 +1,19 @@
 <template>
-  <header v-on="mouseListeners" @click.stop="() => console.log('header clicked')"
-    @touchend.stop.passive="isTouch ? onTouch() : null" ref="header" :class="{ active: isNavActive }">
+  <header v-on="mouseEventListeners" @touchend.passive="isTouch ? onTouch() : null" ref="header"
+    :class="{ active: isNavActive }">
     <nav :style="{ width: navSize.width, height: navSize.height }">
       <ul ref="ul">
         <!-- visible even when nav is active -->
         <li :style="getItemStyle(0)">
           <!-- touch devices when nav is closed: disbable the link by turning it into a span -->
           <div class="section-indicator">
-            <span>{{ activeSectionId }}</span>
+            <span>{{ activeSectionId.replace("-", " ") }}</span>
             <img :src="downArrow" class="icon" />
           </div>
         </li>
         <!-- hidden when nav is closed -->
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index + 1)">
-          <button class="nav-link" @click="!isTouch ? goToPage(item) : null" @touchend="() => goToPage(item)">
+          <button class="nav-link" @click="!isTouch ? goToPage(item) : null" @touchend.passive="() => goToPage(item)">
             {{ item.label }}
           </button>
         </li>
@@ -51,13 +51,15 @@ const screenSize = ref("large");      // small or large depending on screen size
 // vars
 const heightEmFactor = 4;             // em
 const screenSizeThreshold = 800;      // px - manually adjust based on number of nav items
+let wentToPage = false;               // a "lock" - ensures the nav closes when touch user taps on nav link
 const navItems = [
   // required: label, optional: hash, path
-  { label: 'Home' },
-  { label: 'Sponsors', hash: '#Sponsors' },
-  { label: 'FAQ', hash: '#FAQ' },
-  { label: 'Contact', hash: '#Contact' },
-  { label: 'Register', path: '/registration' },
+  { label: "Home" },
+  { label: "Past Pics", hash: "#Past-Pics" },
+  // { label: 'Sponsors', hash: '#Sponsors' },
+  { label: "FAQ", hash: '#FAQ' },
+  // { label: 'Contact', hash: '#Contact' },
+  { label: "Register", path: "/registration" },
 ];
 
 const navSizes = {
@@ -101,8 +103,10 @@ const onMouseLeave = () => {
 };
 
 const onTouch = () => {
-  if (interactedWithNav.value === false) {
+  if (interactedWithNav.value === false && isNavActive.value === false && !wentToPage) {
     interactedWithNav.value = true;
+  } else if (wentToPage) {
+    wentToPage = false;
   }
 };
 
@@ -128,13 +132,13 @@ const onMediaQueryChange = (e) => {
 
 // computed properties
 const isNavActive = computed(() => (
-  (screenSize.value === "large" && (scrollLock.value === true || interactedWithNav.value === true)))
+  ((screenSize.value === "large" && (scrollLock.value === true || interactedWithNav.value === true)))
   ||
   (screenSize.value === "small" && interactedWithNav.value === true)
-);
+));
 const navSize = computed(() => (isNavActive.value ? navSizes[screenSize.value].expanded : navSizes[screenSize.value].shrunk));
 
-const mouseListeners = computed(() => {
+const mouseEventListeners = computed(() => {
   // If it's a touch device, return an empty object. The @touch.passive will be used
   if (isTouch.value === true) {
     return {};
@@ -169,8 +173,12 @@ useTouchStartOutside(headerRef, onTouchStartOutside);
 
 function goToPage(item) {
   if (isNavActive.value === true) {
-    console.log('going to page');
     router.push({ path: item.path ?? '/', hash: item.hash ?? '' });
+
+    if (isTouch.value === true) {
+      wentToPage = true;
+      interactedWithNav.value = false;
+    }
   }
 }
 

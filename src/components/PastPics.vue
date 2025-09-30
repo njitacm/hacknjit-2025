@@ -1,5 +1,5 @@
 <template>
-  <div class="PastPics" ref="sectionRef" id="Past Pics">
+  <div class="PastPics" ref="sectionRef" id="Past-Pics">
     <div class="page-side-padding container">
       <img src="../assets/PastPictures/hacknjit2024_1.jpg" />
       <img src="../assets/PastPictures/hacknjit2024_2.jpg" id="two" />

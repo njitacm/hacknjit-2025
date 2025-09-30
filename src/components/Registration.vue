@@ -1,13 +1,20 @@
 <!-- Registration.vue -->
 <template>
   <Vueform 
-    v-if="!submitted"
+    v-if="response==-1"
     v-bind="vueform" 
-    @submit="customSubmit"
+    @success="handleResponse"
   />
-  <div v-else class="form-submitted">
+  <div v-else-if="response==200" class="form-submitted">
       <h1>Successfully Registered!</h1>
       <p>Thank you for registering for HackNJIT 2025. We’ll be in touch soon!</p>
+      <RouterLink to="/" class="nav-link">
+           <button class="vf-btn vf-btn-primary">Return Home</button>
+      </RouterLink>
+  </div>
+  <div v-else class="form-submitted">
+      <h1>Failed to register!</h1>
+      <p>We could not register you for HackNJIT 2025 at this time. We may be having some technical difficulties. Check back in later.</p>
       <RouterLink to="/" class="nav-link">
            <button class="vf-btn vf-btn-primary">Return Home</button>
       </RouterLink>
@@ -22,7 +29,7 @@ export default {
   mixins: [Vueform],
   setup: useVueform,
   data: () => ({
-    submitted: false,
+    response: -1,
     vueform: {
       size: 'md',
       displayErrors: true,
@@ -613,19 +620,11 @@ export default {
     }
   }),
   methods: {
-    async formSubmit(form) {
-      try {
-        const response = await form.request()
-        if (response.ok) {
-        } else {
-          // TODO: handle server error
-          console.error('Error submitting form')
-        }
-      } catch (e) {
-        console.error('Error submitting form', e)
-      } finally {
-          this.submitted = true
-      }
+    handleResponse(response, form$) {
+      this.response = response
+      console.log(response) // axios response
+      console.log(response.status) // HTTP status code
+      console.log(response.data) // response data
     }
   }
 }
@@ -946,6 +945,10 @@ export default {
 
 .vf-description {
   text-align: left;
+}
+
+.vf-file-preview-upload {
+  display: none;
 }
 
 *[aria-labelledby="container__label"] {

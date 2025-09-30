@@ -40,7 +40,7 @@ type RegistrationForm struct {
 }
 
 var csvWriter *csv.Writer
-var csvFilePath string = "./formdata/registrations.csv"
+var csvFilePath string = "./responses/registrations.csv"
 var csvFile *os.File
 
 func setup() {
@@ -53,7 +53,7 @@ func setup() {
 		log.Println("Error: Dev mode not set")
 	}
 
-	os.MkdirAll("./formdata/resumes", os.ModePerm)
+	os.MkdirAll("./responses/resumes", os.ModePerm)
 
 	if _, err := os.Stat(csvFilePath); errors.Is(err, os.ErrNotExist) {
 		// file does not exist
@@ -139,7 +139,7 @@ func handleFormSubmission(w http.ResponseWriter, r *http.Request) {
 	if err == nil {
 		log.Printf("Saving resume...")
 		defer file.Close()
-		dst := fmt.Sprintf("./formdata/resumes/%s-%s-%d-resume.pdf", form.FirstName, form.LastName, time.Now().UnixNano())
+		dst := fmt.Sprintf("./responses/resumes/%s-%s-%d-resume.pdf", form.FirstName, form.LastName, time.Now().UnixNano())
 
 		out, err := os.Create(dst)
 		if err != nil {

@@ -18,6 +18,7 @@ export default createRouter({
   history: createMemoryHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
+    console.log(to);
     if (savedPosition) {
       return savedPosition;
     }

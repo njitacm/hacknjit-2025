@@ -157,6 +157,7 @@ nav {
   background-color: #00250475;
   backdrop-filter: blur(25px);
   align-content: center;
+  border: 1px solid #ffffff33;
 }
 
 nav {

@@ -113,15 +113,15 @@ body.modal-open {
   line-height: 1.5em;
 }
 
-p:not(.vf-registration),
-span:not(.vf-registration),
-a:not(.vf-registration) {
+p,
+span,
+a {
   font-size: 1.25em;
 }
 
-h1:not(.vf-registration),
-h2:not(.vf-registration),
-h3:not(.vf-registration) {
+h1,
+h2,
+h3 {
   font-weight: bold;
 }
 

@@ -34,7 +34,10 @@ export default {
   text-align: unset;
 }
 
-
-
+.vf-registration p,
+.vf-registration span,
+.vf-registration a {
+  font-size: var(--vf-font-size);
+}
 </style>
 

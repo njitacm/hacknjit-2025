@@ -1,7 +1,6 @@
 <template>
-  <header @mouseenter="isHoveredNav = true" @mouseleave="isHoveredNav = false" :style="{
-    width: isNavActive ? '100%' : 'fit-content',
-  }" id="main-nav-bar">
+  <header v-on="mouseListeners" @touchstart.passive="isTouch ? onTouch() : null"
+    :style="{ width: isNavActive ? '100%' : 'fit-content' }">
     <nav :style="{ width: `${navWidth}` }">
       <ul>
         <li :style="getItemStyle(0)">
@@ -51,6 +50,35 @@ const navWidths = {
 // Reactive widths
 const isNavActive = computed(() => (scrollLock.value === true || isHoveredNav.value === true));
 const navWidth = computed(() => (isNavActive.value ? navWidths.expanded : navWidths.shrunk));
+
+const onMouseEnter = () => {
+  console.log("enter");
+  isHoveredNav.value = true;
+};
+
+const onMouseLeave = () => {
+  console.log("leave");
+  isHoveredNav.value = false;
+};
+
+const onTouch = () => {
+  console.log("touch");
+  isHoveredNav.value = !isHoveredNav.value;
+};
+
+const mouseListeners = computed(() => {
+  // If it's a touch device, return an empty object. The @touch.passive will be used
+  if (isTouch.value === true) {
+    console.log("value true");
+    return {};
+  }
+
+  // If it's not a touch device, return an object with the event handlers.
+  return {
+    mouseenter: onMouseEnter,
+    mouseleave: onMouseLeave,
+  };
+});
 
 const scrollHandler = () => {
   if (window.scrollY > 50) {

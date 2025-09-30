@@ -1,7 +1,7 @@
 <template>
   <header @mouseenter="isHoveredNav = true" @mouseleave="isHoveredNav = false" :style="{
     width: isNavActive ? '100%' : 'fit-content',
-  }">
+  }" id="main-nav-bar">
     <nav :style="{ width: `${navWidth}` }">
       <ul>
         <li :style="getItemStyle(0)">

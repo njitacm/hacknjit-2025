@@ -1,5 +1,5 @@
 <template>
-  <div class="TheFAQ">
+  <div class="TheFAQ" ref="sectionRef" id="FAQ">
     <div class="page-side-padding">
       <h2>Frequently Asked Questions</h2>
       <div class="faq">
@@ -14,12 +14,21 @@
 
 <script>
 import faqs from "../data/faq.js"
+import { useIntersectionObserver } from '../composables/useIntersectionObserver';
+
+const { observe, unobserve } = useIntersectionObserver();
 
 export default {
   data() {
     return {
       faqs: faqs
     };
+  },
+  mounted() {
+    observe(this.$refs.sectionRef);
+  },
+  beforeUnmount() {
+    unobserve(this.$refs.sectionRef);
   }
 }
 </script>

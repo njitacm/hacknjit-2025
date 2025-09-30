@@ -6,7 +6,7 @@
       <ul>
         <li :style="getItemStyle(0)">
           <RouterLink to="/" class="nav-link">
-            {{ isNavActive ? "Home" : "HackNJIT" }}
+            {{ isNavActive ? "Home" : activeSectionId }}
           </RouterLink>
         </li>
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index + 1)">
@@ -24,6 +24,11 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { storeToRefs } from "pinia";
+import { useNavigationStore } from '../stores/navigation';
+
+const navigationStore = useNavigationStore();
+const { activeSectionId } = storeToRefs(navigationStore);
 
 const isHoveredNav = ref(false);
 const scrollLock = ref(true);     // if true, will force the nav bar open

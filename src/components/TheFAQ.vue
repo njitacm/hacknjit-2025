@@ -41,24 +41,46 @@ export default {
 </script>
 
 <style scoped>
-.faq {
+.TheFAQ {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-items: center;
 }
 
-.faq-card {
-  width: 100%;
-  margin: 1rem;
+.TheFAQ button {
+  color: white;
+}
+
+.p-accordion {
+  width: 80%;
+}
+
+.p-accordionpanel,
+.p-accordioncontent .p-accordioncontent-content {
+  border: none; 
+}
+
+.p-accordioncontent .p-accordioncontent-content p {
+  padding: 8px 0
+}
+
+.p-accordion p,
+.p-accordion button {
+  font-size: 1em;
   text-align: left;
 }
 
-.page-side-padding {
-  @media(min-width: 900px) {
-    & {
-      width: calc(100vw - 256px);
-    }
-  }
+
+.p-accordionpanel {
+  margin: 16px;
+  border-bottom: 3px solid #8080807F
 }
+
+.p-accordionheader {
+  font-weight: 850;
+  border: none;
+  text-wrap: wrap;
+}
+
 </style>

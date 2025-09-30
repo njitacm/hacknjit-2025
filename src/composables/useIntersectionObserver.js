@@ -8,12 +8,19 @@ let observer;
 // The callback function that the IntersectionObserver will execute.
 const handleIntersection = (entries) => {
     const navigationStore = useNavigationStore();
+    let intersected = false;
+
     entries.forEach(entry => {
         // When a section is intersecting, call the Pinia action.
         if (entry.isIntersecting) {
+            intersected = true;
             navigationStore.setActiveSection(entry.target.id);
         }
     });
+    
+    if (!intersected) {
+        navigationStore.setActiveSection("HackNJIT");
+    }
 };
 
 // This is the exported composable function.
@@ -26,7 +33,7 @@ export function useIntersectionObserver() {
 
         const options = {
             root: null, // relative to the viewport
-            threshold: 0.5, // trigger when 50% of the element is visible
+            threshold: 0.1, // trigger when 50% of the element is visible
         };
 
         observer = new IntersectionObserver(handleIntersection, options);

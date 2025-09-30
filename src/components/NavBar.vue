@@ -1,18 +1,19 @@
 <template>
   <header v-on="mouseListeners" @touchstart.stop.passive="isTouch ? onTouch() : null" ref="nav-bar"
     :class="{ active: isNavActive }">
-    <nav :style="{ width: `${navWidth}` }">
-      <ul>
+    <nav :style="{ width: navSize.width, height: navSize.height }" ref="nav">
+      <ul ref="ul">
         <!-- Visible even when nav is active -->
         <li :style="getItemStyle(0)">
-          <component :is="(isTouch && !isNavActive) ? 'span' : 'router-link'" to="/" class="principal nav-link" >
+          <component :is="(isTouch && !isNavActive) ? 'span' : 'router-link'" to="/" class="principal nav-link">
             <span>{{ isNavActive ? "Home" : activeSectionId }}</span>
             <img :src="downArrow" class="icon" />
           </component>
         </li>
         <!-- Hidden when nav is unactive -->
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index + 1)">
-          <RouterLink :to="{ path: item.path ?? '/', hash: item.hash ?? '' }" class="nav-link">{{ item.label }}</RouterLink>
+          <RouterLink :to="{ path: item.path ?? '/', hash: item.hash ?? '' }" class="nav-link">{{ item.label }}
+          </RouterLink>
         </li>
       </ul>
     </nav>
@@ -20,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, useTemplateRef } from 'vue'
+import { ref, computed, onMounted, onUnmounted, useTemplateRef } from 'vue';
 import { storeToRefs } from "pinia";
 import { useNavigationStore } from '../stores/navigation';
 import { useIsTouch } from '../composables/useIsTouch';
@@ -28,15 +29,20 @@ import { useTouchStartOutside } from '../composables/useTouchStartOutside';
 import downArrow from "../assets/icons/down_arrow.svg";
 
 // composables and stores
-const navBarRef = useTemplateRef("nav-bar");
 const { isTouch } = useIsTouch();
 
 const navigationStore = useNavigationStore();
 const { activeSectionId } = storeToRefs(navigationStore);
 
+// template refs
+const navBarRef = useTemplateRef("nav-bar");
+const navRef = useTemplateRef("nav");
+const ulRef = useTemplateRef("ul");
+
 // refs
 const isHoveredNav = ref(false);
-const scrollLock = ref(true);     // if true, will force the nav bar open
+const scrollLock = ref(true);         // if true, will force the nav bar open
+const screenSize = ref("large");      // small or large depending on screen size
 
 // vars
 const navItems = [
@@ -47,9 +53,31 @@ const navItems = [
   { label: 'Register', path: '/registration' },
 ];
 
-const navWidths = {
-  shrunk: "250px",
-  expanded: "750px",
+const heightEmFactor = 4;
+const navSizes = {
+  // small screens
+  small: {
+    shrunk: {
+      width: "250px",
+      height: `${heightEmFactor}em`,
+
+    },
+    expanded: {
+      width: "calc(100vw - 16px)",         // matches the nav's padding/top gap of 8px
+      height: `${(navItems.length + 1) * heightEmFactor}em`,
+    },
+  },
+  // large screens
+  large: {
+    shrunk: {
+      width: "250px",
+      height: `${heightEmFactor}em`,
+    },
+    expanded: {
+      width: "750px",
+      height: `${heightEmFactor}em`,
+    },
+  }
 };
 
 // handlers
@@ -84,9 +112,25 @@ const onScroll = () => {
   }
 };
 
+const onMediaQueryChange = (e) => {
+  const isSmallScreen = e.matches;
+
+  if (isSmallScreen) {
+    screenSize.value = "small";
+    ulRef.value.style.flexDirection = "column";
+  } else {
+    screenSize.value = "large";
+    ulRef.value.style.flexDirection = "row";
+  }
+};
+
 // computed properties
-const isNavActive = computed(() => (scrollLock.value === true || isHoveredNav.value === true));
-const navWidth = computed(() => (isNavActive.value ? navWidths.expanded : navWidths.shrunk));
+const isNavActive = computed(() => (
+  (screenSize.value === "large" && (scrollLock.value === true || isHoveredNav.value === true)))
+  ||
+  (screenSize.value === "small" && isHoveredNav.value === true)
+);
+const navSize = computed(() => (isNavActive.value ? navSizes[screenSize.value].expanded : navSizes[screenSize.value].shrunk));
 
 const mouseListeners = computed(() => {
   // If it's a touch device, return an empty object. The @touch.passive will be used
@@ -102,13 +146,17 @@ const mouseListeners = computed(() => {
   };
 });
 
+const mqList = window.matchMedia("(max-width: 800px)");
+
 // life cycle hooks
 onMounted(() => {
   window.addEventListener("scroll", onScroll);
+  mqList.addEventListener("change", onMediaQueryChange);
 });
 
 onUnmounted(() => {
   window.removeEventListener("scroll", onScroll);
+  mqList.removeEventListener("change", onMediaQueryChange);
 });
 
 // link touch start outside handler to the composable
@@ -118,7 +166,8 @@ useTouchStartOutside(navBarRef, onTouchStartOutside);
 function getItemStyle(index) {
   if (isNavActive.value) {
     return {
-      width: `auto`,
+      width: "auto",
+      height: "auto",
       flexGrow: 1,
       opacity: 1,
       transform: 'translateY(0)',
@@ -133,8 +182,13 @@ function getItemStyle(index) {
     if (index > 0) {
       obj.flexGrow = 0;
       obj.opacity = 0;
-      obj.width = "0px";
       obj.transform = 'translateY(-10px)';
+
+      if (screenSize.value === "large") {
+        obj.width = "0px";
+      } else {
+        obj.height = "0px";
+      }
     }
 
     return obj;
@@ -165,10 +219,10 @@ nav {
   align-content: center;
   border: 1px solid #ffffff33;
   position: relative;
-  height: 4em;
-  border-radius: 1000px;
+  line-height: 1em;
+  border-radius: 2lh;
   overflow: hidden;
-  transition: width 300ms ease;
+  transition: width 300ms ease, height 300ms ease;
 }
 
 ul {
@@ -177,12 +231,13 @@ ul {
   justify-content: center;
   padding: 0;
   margin: 0;
+  line-height: inherit;
   list-style: none;
 }
 
 li {
   flex-grow: 1;
-  line-height: 1.5em;
+  line-height: inherit;
   font-size: 1.5em;
   display: block;
 }

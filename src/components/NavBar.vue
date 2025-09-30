@@ -1,14 +1,14 @@
 <template>
-  <header v-on="mouseListeners" @touchstart.passive="isTouch ? onTouch() : null" ref="nav-bar"
+  <header v-on="mouseListeners" @touchstart.stop.passive="isTouch ? onTouch() : null" ref="nav-bar"
     :class="{ active: isNavActive }">
     <nav :style="{ width: `${navWidth}` }">
       <ul>
         <!-- Visible even when nav is active -->
         <li :style="getItemStyle(0)">
-          <RouterLink to="/" class="principal nav-link">
+          <component :is="(isTouch && !isNavActive) ? 'span' : 'router-link'" to="/" class="principal nav-link" >
             <span>{{ isNavActive ? "Home" : activeSectionId }}</span>
             <img :src="downArrow" class="icon" />
-          </RouterLink>
+          </component>
         </li>
         <!-- Hidden when nav is unactive -->
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index + 1)">

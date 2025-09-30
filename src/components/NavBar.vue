@@ -12,10 +12,7 @@
         </li>
         <!-- Hidden when nav is unactive -->
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index + 1)">
-          <a :href="item.href" class="nav-link">{{ item.label }}</a>
-        </li>
-        <li :style="getItemStyle(navItems.length)">
-          <RouterLink to="/registration" class="nav-link">Register</RouterLink>
+          <RouterLink :to="{ path: item.path ?? '/', hash: item.hash ?? '' }" class="nav-link">{{ item.label }}</RouterLink>
         </li>
       </ul>
     </nav>
@@ -43,9 +40,11 @@ const scrollLock = ref(true);     // if true, will force the nav bar open
 
 // vars
 const navItems = [
-  { label: 'Sponsors', href: '#Sponsors' },
-  { label: 'FAQ', href: '#About' },
-  { label: 'Contact', href: '#Contact' }
+  // required: label, optional: hash, path
+  { label: 'Sponsors', hash: '#Sponsors' },
+  { label: 'FAQ', hash: '#About' },
+  { label: 'Contact', hash: '#Contact' },
+  { label: 'Register', path: '/registration' },
 ];
 
 const navWidths = {
@@ -205,7 +204,7 @@ li {
 }
 
 header:not(.active) .nav-link.principal {
-  padding: 0 16px;
+  padding: 0 24px;
 }
 
 .nav-link.principal span {

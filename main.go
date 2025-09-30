@@ -63,23 +63,19 @@ func setup() {
 		if err != nil {
 			log.Fatal("Failed to create csv file\n\t", err)
 		}
+
 		csvWriter = csv.NewWriter(csvFile)
-		if err != nil {
-			log.Fatal("Failed to create csv writer\n\t", err)
-		}
+
 		err = csvWriter.Write([]string{"FirstName", "LastName", "PreferredName", "Age", "Phone", "Email", "Country", "Uni", "LvlOfStudy", "FirstHack", "Major", "ShirtSize", "DietaryRestrictions", "Terms", "MarketingEmails", "MarketingEmails1", "Minority", "Gender", "Race", "ResumePath", "LinkedIn"})
 		if err != nil {
 			log.Fatal("Failed to write headers to csv\n\t", err)
 		}
 	} else {
-		csvFile, err = os.Open(csvFilePath)
+		csvFile, err = os.OpenFile(csvFilePath, os.O_APPEND|os.O_WRONLY, 0644)
 		if err != nil {
 			log.Fatal("Failed to open csv file\n\t", err)
 		}
 		csvWriter = csv.NewWriter(csvFile)
-		if err != nil {
-			log.Fatal("Failed to create csv writer\n\t", err)
-		}
 	}
 }
 

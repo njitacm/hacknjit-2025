@@ -1,7 +1,6 @@
 <template>
   <header class="header" @mouseenter="isTitlebarActive = true" @mouseleave="isTitlebarActive = false" :style="{
-    width: isDropdownVisible ? `${dropdownWidth}` : 'fit-content',
-    gap: isDropdownVisible ? '8px' : '0px'
+    width: isTitlebarActive ? '100%' : 'fit-content',
   }">
 
     <!-- Title bar
@@ -15,23 +14,18 @@
       width: `${dropdownWidth}`,
       // fontSize: isDropdownVisible ? `${dropdownFontSize}` : '0px',
     }">
-      <ul v-if="isTitlebarActive">
-        <li>
+      <ul>
+        <li :style="getItemStyle(0)">
           <RouterLink to="/" class="nav-link">
-            Home
+            {{ isTitlebarActive ? "Home" : "HackNJIT" }}
           </RouterLink>
         </li>
-        <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index)">
+        <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index + 1)">
           <a :href="item.href" class="nav-link">{{ item.label }}</a>
         </li>
-        <li>
-          <RouterLink to="/registration" class="nav-link" :style="getItemStyle(navItems.length)">Register</RouterLink>
-        </li>
-      </ul>
-      <ul v-else>
-        <li>
-          <RouterLink to="/" class="nav-link">
-            HackNJIT
+        <li :style="getItemStyle(navItems.length)">
+          <RouterLink to="/registration" class="nav-link">
+            Register
           </RouterLink>
         </li>
       </ul>
@@ -60,23 +54,33 @@ const dropdownWidthExpanded = "700px";
 
 // Reactive widths
 // const mainBarWidth = computed(() => (isTitlebarActive.value || isHoveredNav.value ? mainBarOpenWith : mainBarClosedWith))
-const dropdownWidth = computed(() => (isTitlebarActive.value || isHoveredNav.value ? dropdownWidthExpanded : "200px"))
+const dropdownWidth = computed(() => (isTitlebarActive.value || isHoveredNav.value ? dropdownWidthExpanded : "300px"))
 const isDropdownVisible = computed(() => isTitlebarActive.value || isHoveredNav.value)
 
 // Style for each list item
 function getItemStyle(index) {
-  if (isDropdownVisible.value) {
+  if (isTitlebarActive.value) {
     return {
+      width: "100px",
+      flexGrow: "1",
       opacity: 1,
       transform: 'translateY(0)',
       transition: `opacity 0.3s ease ${(index + 1) * 0.1}s, transform 0.3s ease ${(index + 1) * 0.1}s`
     }
   } else {
-    return {
-      opacity: 0,
-      transform: 'translateY(-10px)',
+    const obj = {
       transition: 'opacity 0s, transform 0s'
+    };
+
+    // index 0 ("HackNJIT") is not hidden
+    if (index > 0) {
+      obj.opacity = 0;
+      obj.width = 0;
+      obj.flexGrow = 0;
+      obj.transform = 'translateY(-10px)';
     }
+
+    return obj;
   }
 }
 </script>
@@ -134,6 +138,7 @@ li {
   line-height: 1.5em;
   font-size: 1.5em;
   display: block;
+  transition: width 300ms ease-out, flex-grow 300ms ease-out;
 }
 
 .mainbar,

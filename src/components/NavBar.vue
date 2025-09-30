@@ -1,5 +1,5 @@
 <template>
-  <header v-on="mouseListeners" @touchstart.passive="isTouch ? onTouch() : null"
+  <header v-on="mouseListeners" @touchstart.passive="isTouch ? onTouch() : null" ref="nav-bar"
     :style="{ width: isNavActive ? '100%' : 'fit-content' }">
     <nav :style="{ width: `${navWidth}` }">
       <ul>
@@ -22,10 +22,21 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, useTemplateRef } from 'vue'
 import { storeToRefs } from "pinia";
 import { useNavigationStore } from '../stores/navigation';
 import { useIsTouch } from '../composables/useIsTouch';
+import { useTouchStartOutside } from '../composables/useTouchStartOutside';
+
+const navBarRef = useTemplateRef("nav-bar");
+
+const handleOutsideTouch = () => {
+  console.log("touch start outside");
+  isHoveredNav.value = false;
+  // Perform actions when touch starts outside
+};
+
+useTouchStartOutside(navBarRef, handleOutsideTouch);
 
 const navigationStore = useNavigationStore();
 const { activeSectionId } = storeToRefs(navigationStore);

@@ -1,12 +1,16 @@
 package main
 
 import (
+	"encoding/csv"
+	"errors"
 	"flag"
 	"fmt"
 	"io"
 	"log"
 	"net/http"
 	"os"
+	"strconv"
+	"strings"
 	"time"
 )
 
@@ -35,18 +39,11 @@ type RegistrationForm struct {
 	LinkedIn            string
 }
 
-func main() {
-	os.MkdirAll("./resumes", os.ModePerm)
+var csvWriter *csv.Writer
+var csvFilePath string = "./formdata/registrations.csv"
+var csvFile *os.File
 
-	setOptions()
-	http.Handle("/", http.FileServer(http.Dir("./dist")))
-	http.HandleFunc("/api/register", handleFormSubmission)
-
-	log.Println("Server running on :8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
-}
-
-func setOptions() {
+func setup() {
 	var (
 		isDev = flag.Bool("dev", false, "run in development mode")
 	)
@@ -56,6 +53,46 @@ func setOptions() {
 		log.Println("Error: Dev mode not set")
 	}
 
+	os.MkdirAll("./formdata/resumes", os.ModePerm)
+
+	if _, err := os.Stat(csvFilePath); errors.Is(err, os.ErrNotExist) {
+		// file does not exist
+		csvFile, err = os.Create(csvFilePath)
+
+		// Setup CSV file
+		if err != nil {
+			log.Fatal("Failed to create csv file\n\t", err)
+		}
+		csvWriter = csv.NewWriter(csvFile)
+		if err != nil {
+			log.Fatal("Failed to create csv writer\n\t", err)
+		}
+		err = csvWriter.Write([]string{"FirstName", "LastName", "PreferredName", "Age", "Phone", "Email", "Country", "Uni", "LvlOfStudy", "FirstHack", "Major", "ShirtSize", "DietaryRestrictions", "Terms", "MarketingEmails", "MarketingEmails1", "Minority", "Gender", "Race", "ResumePath", "LinkedIn"})
+		if err != nil {
+			log.Fatal("Failed to write headers to csv\n\t", err)
+		}
+	} else {
+		csvFile, err = os.Open(csvFilePath)
+		if err != nil {
+			log.Fatal("Failed to open csv file\n\t", err)
+		}
+		csvWriter = csv.NewWriter(csvFile)
+		if err != nil {
+			log.Fatal("Failed to create csv writer\n\t", err)
+		}
+	}
+}
+
+func main() {
+	setup()
+	defer csvFile.Close()
+	defer csvWriter.Flush()
+
+	http.Handle("/", http.FileServer(http.Dir("./dist")))
+	http.HandleFunc("/api/register", handleFormSubmission)
+
+	log.Println("Server running on :8080")
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
 func handleFormSubmission(w http.ResponseWriter, r *http.Request) {
@@ -64,8 +101,8 @@ func handleFormSubmission(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Parse multipart form (10 MB max memory for files)
-	err := r.ParseMultipartForm(10 << 20)
+	// Parse multipart form (2 MB max memory for files)
+	err := r.ParseMultipartForm(2 << 20)
 	if err != nil {
 		http.Error(w, "Error parsing form", http.StatusBadRequest)
 		return
@@ -106,7 +143,7 @@ func handleFormSubmission(w http.ResponseWriter, r *http.Request) {
 	if err == nil {
 		log.Printf("Saving resume...")
 		defer file.Close()
-		dst := fmt.Sprintf("./resumes/%s-%s-%d-resume.pdf", form.FirstName, form.LastName, time.Now().UnixNano())
+		dst := fmt.Sprintf("./formdata/resumes/%s-%s-%d-resume.pdf", form.FirstName, form.LastName, time.Now().UnixNano())
 
 		out, err := os.Create(dst)
 		if err != nil {
@@ -124,8 +161,18 @@ func handleFormSubmission(w http.ResponseWriter, r *http.Request) {
 	} else {
 		log.Printf("Error getting formfile: %s\n", err.Error())
 	}
+	err = saveRegistrationToCSV(form)
+	if err != nil {
+		log.Printf("Failed to save registration: %s\n", err)
+	}
 
 	log.Printf("Processed form: %+v\n", form)
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Fprintf(w, `{"status":"success","message":"Registration received"}`)
+}
+
+func saveRegistrationToCSV(form RegistrationForm) error {
+	return csvWriter.Write([]string{
+		form.FirstName, form.LastName, form.PreferredName, form.Age, form.Phone, form.Email, form.Country, form.Uni, form.LvlOfStudy, form.FirstHack, form.Major, form.ShirtSize, strings.Join(form.DietaryRestrictions, ","), strconv.FormatBool(form.Terms), strconv.FormatBool(form.MarketingEmails), strconv.FormatBool(form.MarketingEmails1), form.Minority, form.Gender, form.Race, form.ResumePath, form.LinkedIn,
+	})
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="TheFAQ" ref="section-ref" id="FAQ">
+  <div class="TheFAQ" ref="sectionRef" id="FAQ">
     <div class="page-side-padding">
       <h2>Frequently Asked Questions</h2>
       <div class="faq">

@@ -20,10 +20,15 @@ export default createRouter({
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition;
-    } else {
-      return {
-        top: 0,
-      }
     }
+
+    const options = { top: 0 };
+
+    if (to.hash !== '') {
+      options.top = 100;          // apply offset so it's not covered by the nav
+      options.el = to.hash;
+    }
+
+    return options;
   }
 })

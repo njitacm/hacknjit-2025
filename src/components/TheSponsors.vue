@@ -1,5 +1,5 @@
 <template>
-  <div ref="TheSponsors container" class="outer-container" :style="{ background: gradient }">
+  <div ref="TheSponsors container" class="outer-container" id="Sponsors" :style="{ background: gradient }">
     <h1 class="title">Our Sponsors</h1>
     <div class="sponsors">
       <div v-for="(sponsor, index) in sponsors" :key="index" class="sponsor-grid">

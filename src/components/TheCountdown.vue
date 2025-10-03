@@ -1,5 +1,5 @@
 <template>
-  <div class="outer-container countdown-container" ref="container">
+  <div class="outer-container gradient" ref="container">
     <Transition>
       <header v-show="containerIsVisible">
         <p class="countdown">
@@ -105,9 +105,9 @@ onMounted(() => {
   }
 }
 
-.countdown-container {
+.gradient {
   animation-name: fade-in;
-  animation-duration: 5s;
+  animation-duration: 10s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
   width: 100%;
@@ -124,7 +124,7 @@ header {
 h3 {
   animation-name: fade-in;
   opacity: 0;
-  animation-delay: 2.5s;
+  animation-delay: 2s;
   animation-duration: 2.5s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
@@ -144,6 +144,7 @@ h3 {
 .v-enter-active,
 .v-leave-active {
   transition: opacity 5s linear;
+  transition-delay: 0.5s;
 }
 
 .v-enter-from,

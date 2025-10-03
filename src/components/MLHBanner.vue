@@ -8,3 +8,11 @@
       alt="Major League Hacking 2026 Hackathon Season" style="width:100%">
   </a>
 </template>
+
+<style>
+@media(max-width: 700px) {
+  #mlh-trust-badge {
+    right: 10px !important;
+  }
+}
+</style>

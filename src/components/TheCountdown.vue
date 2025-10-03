@@ -1,18 +1,18 @@
 <template>
-  <div class="outer-container countdown" ref="container">
-    <h1>
+  <div class="outer-container countdown-container" ref="container">
+    <Transition>
+      <header v-show="containerIsVisible">
+        <p class="countdown">
+          {{ format(days) }}&nbsp;:&nbsp;{{ format(hours) }}&nbsp;:&nbsp;{{ format(minutes) }}&nbsp;:&nbsp;{{
+            format(seconds) }}
+        </p>
+      </header>
+    </Transition>
+    <p class="date">
       {{ format(tweened_month.toFixed(0)) }} /
       {{ format(tweened_day.toFixed(0)) }} /
       {{ format(tweened_year.toFixed(0), 4) }}
-    </h1>
-    <Transition>
-      <header v-show="containerIsVisible">
-        <h3>
-          {{ format(days) }}&nbsp;:&nbsp;{{ format(hours) }}&nbsp;:&nbsp;{{ format(minutes) }}&nbsp;:&nbsp;{{
-            format(seconds) }}
-        </h3>
-      </header>
-    </Transition>
+    </p>
   </div>
 </template>
 
@@ -108,7 +108,35 @@ export default {
   overflow: hidden;
 }
 
+.date {
+  font-size: 2em;
+}
+
 .countdown {
+  font-size: 3em;
+}
+
+@media (max-width: 1000px) {
+  .date {
+    font-size: 1.5em;
+  }
+
+  .countdown {
+    font-size: 2.5em;
+  }
+}
+
+@media (max-width: 425px) {
+  .date {
+    font-size: 1.25em;
+  }
+
+  .countdown {
+    font-size: 2em;
+  }
+}
+
+.countdown-container {
   animation-name: fade-in;
   animation-duration: 5s;
   animation-iteration-count: 1;
@@ -124,12 +152,7 @@ header {
   justify-content: center;
 }
 
-h1 {
-  font-size: 4em;
-}
-
 h3 {
-  font-size: 3em;
   animation-name: fade-in;
   opacity: 0;
   animation-delay: 2.5s;
@@ -157,16 +180,5 @@ h3 {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
-}
-
-@media(max-width: 1000px) {
-  .outer-container {
-    font-size: 12px;
-  }
-}
-@media(max-width: 550px) {
-  .outer-container {
-    font-size: 8px;
-  }
 }
 </style>

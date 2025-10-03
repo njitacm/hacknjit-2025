@@ -95,8 +95,12 @@ func main() {
 	http.Handle("/", http.FileServer(http.Dir("./dist")))
 	http.HandleFunc("/api/register", handleFormSubmission)
 
-	portStr := fmt.Sprintf(":%d", port)
-	logger.Printf("[INFO] Server running on %s\n", portStr)
+	portStr := fmt.Sprintf(":%d", *port)
+	if *isDev {
+		log.Printf("[INFO] Server running on %s\n", portStr)
+	} else {
+		logger.Printf("[INFO] Server running on %s\n", portStr)
+	}
 	logger.Fatal(http.ListenAndServe(portStr, nil))
 }
 

@@ -3,22 +3,21 @@
     <Transition>
       <header v-show="containerIsVisible">
         <p class="countdown">
-          {{ format(days) }}&nbsp;:&nbsp;{{ format(hours) }}&nbsp;:&nbsp;{{ format(minutes) }}&nbsp;:&nbsp;{{
-            format(seconds) }}
+          {{ formattedDays }} : {{ formattedHours }} : {{ formattedMinutes }} : {{ formattedSeconds }}
         </p>
       </header>
     </Transition>
     <p class="date">
-      {{ format(tweened_month.toFixed(0)) }} /
-      {{ format(tweened_day.toFixed(0)) }} /
-      {{ format(tweened_year.toFixed(0), 4) }}
+      {{ tweened_month.toFixed(0) }} /
+      {{ tweened_day.toFixed(0) }} /
+      {{ tweened_year.toFixed(0) }}
     </p>
   </div>
 </template>
 
 <script setup>
 import gsap from "gsap";
-import { ref } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useIntersectionObserver } from "@vueuse/core";
 
 const container = ref(null);
@@ -27,70 +26,40 @@ const containerIsVisible = ref(false);
 useIntersectionObserver(container, ([{ isIntersecting }]) => {
   containerIsVisible.value = isIntersecting;
 });
+
+const targetDate = new Date(`2025/11/8 12:00:00`);
+const days = ref(0);
+const hours = ref(0);
+const minutes = ref(0);
+const seconds = ref(0);
+
+const tweened_year = ref(0);
+const tweened_month = ref(0);
+const tweened_day = ref(0);
+
+const formattedDays = computed(() => String(Math.floor(days.value)).padStart(2, "0"));
+const formattedHours = computed(() => String(Math.floor(hours.value)).padStart(2, "0"));
+const formattedMinutes = computed(() => String(Math.floor(minutes.value)).padStart(2, "0"));
+const formattedSeconds = computed(() => String(Math.floor(seconds.value)).padStart(2, "0"));
+
+function updateCountdown() {
+      var timeLeft = targetDate - new Date();
+      days.value = timeLeft / 8.64e7;
+      hours.value = (timeLeft  / 3.6e6) % 24;
+      minutes.value = (timeLeft / 60000) % 60;
+      seconds.value = (timeLeft / 1000) % 60;
+}
+
+onMounted(() => {
+  setInterval(updateCountdown, 1000);
+  
+  gsap.to(tweened_year, { value: targetDate.getFullYear(), duration: 4.5, ease: "expo" });
+  gsap.to(tweened_month, { value: targetDate.getMonth() + 1, duration: 4.5, ease: "expo" });
+  gsap.to(tweened_day, { value: targetDate.getDate(), duration: 4.5, ease: "expo" });
+});
+
 </script>
 
-<script>
-export default {
-  data() {
-    return {
-      date: { year: 2025, month: 11, day: 8 },
-      milliseconds: 0,
-      seconds: 0,
-      minutes: 0,
-      ten_minutes: 0,
-      hours: 0,
-      ten_hours: 0,
-      days: 0,
-      ten_days: 0,
-      date_month: null,
-      date_day: null,
-      date_year: null,
-      tweened_month: 0,
-      tweened_day: 0,
-      tweened_year: 0,
-    };
-  },
-  watch: {
-    date_year(n) {
-      gsap.to(this, { duration: 4.5, tweened_year: Number(n) || 0, ease: "expo" });
-    },
-    date_day(n) {
-      gsap.to(this, { duration: 4.5, tweened_day: Number(n) || 0, ease: "expo" });
-    },
-    date_month(n) {
-      gsap.to(this, { duration: 4.5, tweened_month: Number(n) || 0, ease: "expo"});
-    },
-  },
-  methods: {
-    setTime() {
-      var timeLeft = new Date(`${this.date.year}/${this.date.month}/${this.date.day} 12:00:00`) - new Date();
-
-      this.days = timeLeft / 8.64e7;
-      this.hours = (timeLeft / 3.6e6) % 24;
-      this.minutes = (timeLeft / 60000) % 60;
-      this.seconds = (timeLeft / 1000) % 60;
-      this.milliseconds = (this.seconds % 1) * 1000;
-    },
-    format(number, digitsToPad = 2) {
-      if (number < 0) {
-        number = 0;
-      }
-      var s = "" + Math.floor(number);
-      return s.padStart(digitsToPad, "0");
-    },
-  },
-  mounted() {
-    setInterval(() => {
-      this.setTime();
-    }, 1000);
-    setTimeout(() => {
-      this.date_day = this.date.day;
-      this.date_month = this.date.month;
-      this.date_year = this.date.year;
-    }, 500);
-  },
-};
-</script>
 <style scoped>
 * {
   transition: all 0.1s linear;

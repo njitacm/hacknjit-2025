@@ -62,7 +62,7 @@ func setup() {
 
 	if *isDev {
 		os.MkdirAll(logDir, os.ModePerm)
-		logFilePath := fmt.Sprintf("%s/logs-%d.txt", logDir, time.Now().UnixNano())
+		logFilePath := fmt.Sprintf("%s/logs-%d.log", logDir, time.Now().UnixNano())
 		logFile, err := os.Create(logFilePath)
 		if err != nil {
 			log.Fatalf("Failed to create Logger: %s\n", err)

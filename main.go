@@ -2,15 +2,16 @@ package main
 
 import (
 	"encoding/csv"
-	"errors"
 	"flag"
 	"fmt"
 	"io"
 	"log"
 	"net/http"
 	"os"
+	"regexp"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -39,56 +40,64 @@ type RegistrationForm struct {
 	LinkedIn            string
 }
 
+// Arguments
+var isDev *bool
+var port *int
+
+var logger *log.Logger
+var logDir string = "./logs"
+
 var csvWriter *csv.Writer
-var csvFilePath string = "./responses/registrations.csv"
 var csvFile *os.File
+var csvMutex sync.Mutex
+
+var outputDir string = "./responses"
+var resumeDir string = fmt.Sprintf("%s/resumes", outputDir) // Must be a subdirectory of outputDir
+var csvFilePath string = fmt.Sprintf("%s/registrations-%d.csv", outputDir, time.Now().UnixNano())
 
 func setup() {
-	var (
-		isDev = flag.Bool("dev", false, "run in development mode")
-	)
+	isDev = flag.Bool("dev", false, "run in development mode")
+	port = flag.Int("p", 8080, "port to run server on")
 	flag.Parse()
 
 	if *isDev {
-		log.Println("Error: Dev mode not set")
+		os.MkdirAll(logDir, os.ModePerm)
+		logFilePath := fmt.Sprintf("%s/logs-%d.txt", logDir, time.Now().UnixNano())
+		logFile, err := os.Create(logFilePath)
+		if err != nil {
+			log.Fatalf("Failed to create Logger: %s\n", err)
+		}
+		logger = log.New(logFile, "", log.LstdFlags)
+	} else {
+		logger = log.Default()
 	}
 
-	os.MkdirAll("./responses/resumes", os.ModePerm)
+	// Create output directories (if they do not exist) and csv file
+	// MkDirAll will create resume directory and its parent directory (outputDir)
+	os.MkdirAll(resumeDir, os.ModePerm)
+	csvFile, err := os.Create(csvFilePath)
+	if err != nil {
+		logger.Fatalf("[FATAL] Failed to create csv file: %s\n", err)
+	}
 
-	if _, err := os.Stat(csvFilePath); errors.Is(err, os.ErrNotExist) {
-		// file does not exist
-		csvFile, err = os.Create(csvFilePath)
+	csvWriter = csv.NewWriter(csvFile)
 
-		// Setup CSV file
-		if err != nil {
-			log.Fatal("Failed to create csv file\n\t", err)
-		}
-
-		csvWriter = csv.NewWriter(csvFile)
-
-		err = csvWriter.Write([]string{"FirstName", "LastName", "PreferredName", "Age", "Phone", "Email", "Country", "Uni", "LvlOfStudy", "FirstHack", "Major", "ShirtSize", "DietaryRestrictions", "MLH Checkbox 0", "MLH Checkbox 1", "MLH Checkbox 2", "Minority", "Gender", "Race", "ResumePath", "LinkedIn"})
-		if err != nil {
-			log.Fatal("Failed to write headers to csv\n\t", err)
-		}
-	} else {
-		csvFile, err = os.OpenFile(csvFilePath, os.O_APPEND|os.O_WRONLY, 0644)
-		if err != nil {
-			log.Fatal("Failed to open csv file\n\t", err)
-		}
-		csvWriter = csv.NewWriter(csvFile)
+	err = writeRow([]string{"FirstName", "LastName", "PreferredName", "Age", "Phone", "Email", "Country", "Uni", "LvlOfStudy", "FirstHack", "Major", "ShirtSize", "DietaryRestrictions", "MLH Checkbox 0", "MLH Checkbox 1", "MLH Checkbox 2", "Minority", "Gender", "Race", "ResumePath", "LinkedIn"})
+	if err != nil {
+		logger.Fatalf("[FATAL] Failed to write headers for csv file %s: %s\n", csvFilePath, err)
 	}
 }
 
 func main() {
 	setup()
 	defer csvFile.Close()
-	defer csvWriter.Flush()
 
 	http.Handle("/", http.FileServer(http.Dir("./dist")))
 	http.HandleFunc("/api/register", handleFormSubmission)
 
-	log.Println("Server running on :8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	portStr := fmt.Sprintf(":%d", port)
+	logger.Printf("[INFO] Server running on %s\n", portStr)
+	logger.Fatal(http.ListenAndServe(portStr, nil))
 }
 
 func handleFormSubmission(w http.ResponseWriter, r *http.Request) {
@@ -117,9 +126,9 @@ func handleFormSubmission(w http.ResponseWriter, r *http.Request) {
 		FirstHack:     r.PostFormValue("firsthack"),
 		Major:         r.PostFormValue("major"),
 		ShirtSize:     r.PostFormValue("shirtsize"),
-		MLHCheckbox0:  r.PostFormValue("mlh_checkbox_0") == "true",
-		MLHCheckbox1:  r.PostFormValue("mlh_checkbox_1") == "true",
-		MLHCheckbox2:  r.PostFormValue("mlh_checkbox_2") == "true",
+		MLHCheckbox0:  r.PostFormValue("mlh_checkbox_0") != "",
+		MLHCheckbox1:  r.PostFormValue("mlh_checkbox_1") != "",
+		MLHCheckbox2:  r.PostFormValue("mlh_checkbox_2") != "",
 		Minority:      r.PostFormValue("minority"),
 		Gender:        r.PostFormValue("gender"),
 		Race:          r.PostFormValue("race"),
@@ -127,6 +136,7 @@ func handleFormSubmission(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Hacky fix because I can't figure out the proper way of getting checkboxes
+	logger.Println(r.Form["dietaryrestrictions"])
 	for i := range 5 {
 		v := (r.FormValue(fmt.Sprintf("dietaryrestrictions[%d]", i)))
 		if v != "" {
@@ -135,46 +145,125 @@ func handleFormSubmission(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Handle resume PDF upload
-	file, _, err := r.FormFile("resume")
-	if err == nil {
-		log.Printf("Saving resume...")
-		defer file.Close()
-		dst := fmt.Sprintf("./responses/resumes/%s-%s-%d-resume.pdf", form.FirstName, form.LastName, time.Now().UnixNano())
-
-		out, err := os.Create(dst)
-		if err != nil {
-			http.Error(w, "Failed to save file", http.StatusInternalServerError)
-			return
-		}
-
-		defer out.Close()
-		_, err = io.Copy(out, file)
-		if err != nil {
-			http.Error(w, "Failed to save file", http.StatusInternalServerError)
-			return
-		}
-		form.ResumePath = dst
-	} else {
-		log.Printf("Error getting formfile: %s\n", err.Error())
+	if err = handleResumeUpload(&form, r); err != nil {
+		logger.Printf("[ERROR] Error saving resume: %s\n", err.Error())
+		http.Error(w, "Failed to save file", http.StatusInternalServerError)
 	}
+
 	err = saveRegistrationToCSV(form)
 	if err != nil {
-		log.Printf("Failed to save registration: %s\n", err)
+		logger.Printf("[ERROR] Failed to save registration: \n%s\n", err)
+		http.Error(w, "Failed to save registration", http.StatusInternalServerError)
+		return
 	}
+	logger.Printf("[INFO] Finished saving form: %+v\n", form)
 
-	log.Printf("Processed form: %+v\n", form)
-
-	// Automatically return 200 success code
+	// Automatically returns 200 success code
 	_, err = w.Write([]byte("Successfully Processed Form"))
 	if err != nil {
-		log.Printf("Failed to write success header: %s\n", err)
+		logger.Printf("[INFO] Failed to write success header: %s\n", err)
 	}
 }
 
 func saveRegistrationToCSV(form RegistrationForm) error {
-	err := csvWriter.Write([]string{
-		form.FirstName, form.LastName, form.PreferredName, form.Age, form.Phone, form.Email, form.Country, form.Uni, form.LvlOfStudy, form.FirstHack, form.Major, form.ShirtSize, strings.Join(form.DietaryRestrictions, ","), strconv.FormatBool(form.MLHCheckbox0), strconv.FormatBool(form.MLHCheckbox1), strconv.FormatBool(form.MLHCheckbox2), form.Minority, form.Gender, form.Race, form.ResumePath, form.LinkedIn,
-	})
-	csvWriter.Flush()
-	return err
+	csvRowUnsanitized := []string{
+		form.FirstName,
+		form.LastName,
+		form.PreferredName,
+		form.Age,
+		form.Phone,
+		form.Email,
+		form.Country,
+		form.Uni,
+		form.LvlOfStudy,
+		form.FirstHack,
+		form.Major,
+		form.ShirtSize,
+		strings.Join(form.DietaryRestrictions,
+			","),
+		strconv.FormatBool(form.MLHCheckbox0),
+		strconv.FormatBool(form.MLHCheckbox1),
+		strconv.FormatBool(form.MLHCheckbox2),
+		form.Minority,
+		form.Gender,
+		form.Race,
+		form.ResumePath,
+		form.LinkedIn,
+	}
+
+	csvRow := []string{}
+	for _, col := range csvRowUnsanitized {
+		csvRow = append(csvRow, sanitizeCSVColumn(col))
+	}
+
+	return writeRow(csvRow)
+}
+
+func writeRow(csvRow []string) error {
+	csvMutex.Lock()         // Ensures only one write operation is being done at a given time
+	defer csvMutex.Unlock() // Unlock on exit
+	err := csvWriter.Write(csvRow)
+	if err != nil {
+		return fmt.Errorf("csvWriter failed to write row to csv file %s:\n\tRow: %s\n\tError: %w\n", csvFilePath, strings.Join(csvRow, ","), err)
+	}
+
+	csvWriter.Flush() // Must flush output buffer to actually write to the file
+	// If an error occurs in csvWriter.flush, it is stored internally and can be retrieved with csvWriter.Error()
+	if err := csvWriter.Error(); err != nil {
+		return fmt.Errorf("csvWriter failed to flush output buffer when writing row to csv file %s:\n\tRow: %s\n\tError: %w\n", csvFilePath, strings.Join(csvRow, ","), err)
+	}
+
+	return nil
+}
+
+func handleResumeUpload(form *RegistrationForm, r *http.Request) error {
+	file, _, err := r.FormFile("resume")
+	if err == http.ErrMissingFile {
+		logger.Printf("[INFO] User did not submit a resume. Continuing...\n")
+		return nil
+	} else if err != nil {
+		return err
+	}
+
+	logger.Printf("[INFO] Beginning saving resume...")
+	defer file.Close()
+	dst := fmt.Sprintf("./responses/resumes/%s-%s-%d-resume.pdf", sanitizeString(form.FirstName), sanitizeString(form.LastName), time.Now().UnixNano())
+
+	out, err := os.Create(dst)
+	if err != nil {
+		return err
+	}
+
+	defer out.Close()
+	_, err = io.Copy(out, file)
+	if err != nil {
+		return err
+	}
+	form.ResumePath = dst
+	logger.Printf("[INFO] Resume succesfully saved at %s", dst)
+
+	return nil
+}
+
+func sanitizeString(str string) string {
+	// Only keep letters, numbers, underscore, dash
+	validChars := regexp.MustCompile(`[^a-zA-Z0-9_-]`)
+	sanitizedStr := validChars.ReplaceAllString(str, "_")
+
+	// Condense repeating underscores
+	multiUnderscores := regexp.MustCompile(`_+`)
+	sanitizedStr = multiUnderscores.ReplaceAllString(sanitizedStr, "_")
+
+	// In case the result is only invalid characters
+	if sanitizedStr == "" {
+		return "ERROR"
+	}
+	return sanitizedStr
+}
+
+func sanitizeCSVColumn(str string) string {
+	str = strings.TrimSpace(str)
+	str = strings.ReplaceAll(str, "\n", " ")
+	str = strings.ReplaceAll(str, "\r", " ")
+	return str
 }

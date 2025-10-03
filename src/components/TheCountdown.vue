@@ -1,5 +1,5 @@
 <template>
-  <div class="outer-container countdown-container" ref="container">
+  <div class="outer-container gradient" ref="container">
     <Transition>
       <header v-show="containerIsVisible">
         <p class="countdown">
@@ -11,7 +11,7 @@
     <p class="date">
       {{ format(tweened_month.toFixed(0)) }} /
       {{ format(tweened_day.toFixed(0)) }} /
-      {{ format(tweened_year.toFixed(0), 4) }}
+      {{ tweened_year.toFixed(0) }}
     </p>
   </div>
 </template>
@@ -47,36 +47,42 @@ export default {
       date_year: null,
       tweened_month: 0,
       tweened_day: 0,
-      tweened_year: 0,
+      tweened_year: 2000,
     };
   },
   watch: {
     date_year(n) {
-      gsap.to(this, { duration: 4.5, tweened_year: Number(n) || 0, ease: "expo" });
+      gsap.to(this, { duration: 5, tweened_year: Number(n) || 0 });
     },
     date_day(n) {
-      gsap.to(this, { duration: 4.5, tweened_day: Number(n) || 0, ease: "expo" });
+      gsap.to(this, { duration: 5, tweened_day: Number(n) || 0 });
     },
     date_month(n) {
-      gsap.to(this, { duration: 4.5, tweened_month: Number(n) || 0, ease: "expo"});
+      gsap.to(this, { duration: 5, tweened_month: Number(n) || 0 });
     },
   },
   methods: {
     setTime() {
       var timeLeft = new Date(`${this.date.year}/${this.date.month}/${this.date.day} 12:00:00`) - new Date();
 
-      this.days = timeLeft / 8.64e7;
-      this.hours = (timeLeft / 3.6e6) % 24;
-      this.minutes = (timeLeft / 60000) % 60;
-      this.seconds = (timeLeft / 1000) % 60;
-      this.milliseconds = (this.seconds % 1) * 1000;
+      var daysLeft = timeLeft / 8.64e7;
+      var hoursLeft = (timeLeft / 3.6e6) % 24;
+      var minLeft = (timeLeft / 60000) % 60;
+      var secsLeft = (timeLeft / 1000) % 60;
+      var millisecondsLeft = (secsLeft % 1) * 1000;
+
+      this.milliseconds = millisecondsLeft;
+      this.seconds = secsLeft;
+      this.minutes = minLeft;
+      this.hours = hoursLeft;
+      this.days = daysLeft;
     },
-    format(number, digitsToPad = 2) {
+    format(number) {
       if (number < 0) {
         number = 0;
       }
       var s = "" + Math.floor(number);
-      return s.padStart(digitsToPad, "0");
+      return s.padStart(2, "0");
     },
   },
   mounted() {
@@ -87,7 +93,7 @@ export default {
       this.date_day = this.date.day;
       this.date_month = this.date.month;
       this.date_year = this.date.year;
-    }, 500);
+    }, 2000);
   },
 };
 </script>
@@ -136,9 +142,9 @@ export default {
   }
 }
 
-.countdown-container {
+.gradient {
   animation-name: fade-in;
-  animation-duration: 5s;
+  animation-duration: 10s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
   width: 100%;
@@ -155,7 +161,7 @@ header {
 h3 {
   animation-name: fade-in;
   opacity: 0;
-  animation-delay: 2.5s;
+  animation-delay: 2s;
   animation-duration: 2.5s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
@@ -175,6 +181,7 @@ h3 {
 .v-enter-active,
 .v-leave-active {
   transition: opacity 5s linear;
+  transition-delay: 0.5s;
 }
 
 .v-enter-from,

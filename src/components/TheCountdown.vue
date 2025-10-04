@@ -1,31 +1,26 @@
 <template>
-  <div class="outer-container gradient" ref="container">
-    <h1>
-      {{ format(tweened_month.toFixed(0)) }} /
-      {{ format(tweened_day.toFixed(0)) }} /
-      {{ tweened_year.toFixed(0) }}
-    </h1>
-    <Transition>
-      <header v-show="containerIsVisible">
+  <div class="outer-container" ref="container">
+    <Transition appear>
+      <div>
         <p class="countdown">
           {{ formattedDays }} : {{ formattedHours }} : {{ formattedMinutes }} : {{ formattedSeconds }}
         </p>
-      </header>
+        <p class="date">
+          {{ tweened_month.toFixed(0) }} /
+          {{ tweened_day.toFixed(0) }} /
+          {{ tweened_year.toFixed(0) }}
+        </p>
+      </div>
     </Transition>
-    <p class="date">
-      {{ tweened_month.toFixed(0) }} /
-      {{ tweened_day.toFixed(0) }} /
-      {{ tweened_year.toFixed(0) }}
-    </p>
   </div>
 </template>
 
 <script setup>
 import gsap from "gsap";
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, useTemplateRef } from "vue";
 import { useIntersectionObserver } from "@vueuse/core";
 
-const container = ref(null);
+const container = useTemplateRef("container");
 const containerIsVisible = ref(false);
 
 useIntersectionObserver(container, ([{ isIntersecting }]) => {
@@ -48,16 +43,17 @@ const formattedMinutes = computed(() => String(Math.floor(minutes.value)).padSta
 const formattedSeconds = computed(() => String(Math.floor(seconds.value)).padStart(2, "0"));
 
 function updateCountdown() {
-      var timeLeft = targetDate - new Date();
-      days.value = timeLeft / 8.64e7;
-      hours.value = (timeLeft  / 3.6e6) % 24;
-      minutes.value = (timeLeft / 60000) % 60;
-      seconds.value = (timeLeft / 1000) % 60;
+  var timeLeft = targetDate - new Date();
+  days.value = timeLeft / 8.64e7;
+  hours.value = (timeLeft / 3.6e6) % 24;
+  minutes.value = (timeLeft / 60000) % 60;
+  seconds.value = (timeLeft / 1000) % 60;
 }
 
 onMounted(() => {
+  updateCountdown();
   setInterval(updateCountdown, 1000);
-  
+
   gsap.to(tweened_year, { value: targetDate.getFullYear(), duration: 4.5, ease: "expo" });
   gsap.to(tweened_month, { value: targetDate.getMonth() + 1, duration: 4.5, ease: "expo" });
   gsap.to(tweened_day, { value: targetDate.getDate(), duration: 4.5, ease: "expo" });
@@ -75,57 +71,24 @@ onMounted(() => {
   color: white;
   height: fit-content;
   width: 75%;
-  /* height: calc(100vh); */
-  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
   width: fit-content;
   position: relative;
   overflow: hidden;
 }
 
-.gradient {
-  animation-name: fade-in;
-  animation-duration: 10s;
-  animation-iteration-count: 1;
-  animation-timing-function: linear;
-  width: 100%;
+.countdown {
+  font-size: 2em ;
 }
 
-header {
-  margin: 0 auto;
-  display: flex;
-  gap: 0.5rem;
-  align-content: center;
-  justify-content: center;
-}
-
-h1 {
-  font-size: 4em;
-}
-
-h3 {
-  font-size: 3em;
-  animation-name: fade-in;
-  opacity: 0;
-  animation-delay: 2s;
-  animation-duration: 2.5s;
-  animation-iteration-count: 1;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
+.date {
+  font-size: 1.5em;
 }
 
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 5s linear;
+  transition: opacity 1s linear;
   transition-delay: 0.5s;
 }
 
@@ -134,14 +97,20 @@ h3 {
   opacity: 0;
 }
 
+.v-enter-to,
+.v-leave-from {
+  opacity: 1;
+}
+
 @media(max-width: 1000px) {
   .outer-container {
-    font-size: 12px;
+    font-size: 1.5em;
   }
 }
-@media(max-width: 550px) {
+
+@media(max-width: 600px) {
   .outer-container {
-    font-size: 8px;
+    font-size: 1em;
   }
 }
 </style>

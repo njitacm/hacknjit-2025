@@ -1,65 +1,11 @@
 <template>
-  <div ref="container" class="outer-container">
-    <div class="title" v-intersection-observer="[onIntersectionObserver]">
-      <!-- <img class="title-svg" src="../assets/HackNJIT2024/gears/gear4.svg" /> -->
-      <h1 class="title">Our Sponsors</h1>
-      <!-- @click="
-          window.open(
-            'https://cdn.discordapp.com/attachments/1193704838010253323/1275603312468557877/HackNJIT_2024_Sponsorship_Packet.pdf?ex=66d3aca9&is=66d25b29&hm=acccbe5ad986f1124a1da9bc6aa7c65d2666a07f36caae3209df5fbbb9644fdc&'
-          )
-        " -->
-      <!-- <h2 @click="toggleSponsors">Sponsor Packet</h2> -->
-      <!-- <img class="title-svg" src="../assets/HackNJIT2024/gears/gear4.svg" /> -->
-    </div>
-    <div class="sponsors" v-intersection-observer="[onIntersectionObserver]">
-      <!-- <h1>Title Sponsor</h1>
-        <h1>Gold Sponsor</h1>
-        <h1>Silver Sponsor</h1>
-        <h1>Bronze Sponsor</h1> -->
-      <div class="sponsor-grid">
-        <a href="https://starmicronics.com/" id="starmicronics">
-          <img
-            class="sponsor-img"
-            style="width: 80%"
-            src="../assets/HackNJIT2024/Sponsors/Star_Micronics_logo.svg"
-            alt="Star Micronics"
-        /></a>
-        <a href="https://www.merck.com/" id="merck">
-          <img
-            class="sponsor-img"
-            src="../assets/HackNJIT2024/Sponsors/Merck.png"
-            alt="Merck"
-        /></a>
-        <a href="https://www.isaca.org/" id="isaca">
-          <img
-            class="sponsor-img"
-            src="../assets/HackNJIT2024/Sponsors/ISACA_nobg.png"
-            alt="Isaca"
-        /></a>
-
-        <a href="https://hyperswitch.io/" id="hyperswitch">
-          <img
-            class="sponsor-img"
-            src="../assets/HackNJIT2024/Sponsors/hyperswitch_logo.png"
-            alt="Hyperswitch"
-        /></a>
-        <a href="https://antlionaudio.com/" id="antlion">
-          <img
-            class="sponsor-img"
-            style="width: 85%; height: 85%"
-            src="../assets/HackNJIT2024/Sponsors/AntlionAudio.png"
-            alt="Antlion Audio"
-          />
+  <div ref="TheSponsors container" class="outer-container" :style="{ background: gradient }">
+    <h1 class="title">Our Sponsors</h1>
+    <div class="sponsors">
+      <div v-for="(sponsor, index) in sponsors" :key="index" class="sponsor-grid">
+        <a :href="sponsor.link" :title="sponsor.name" target="_blank">
+          <img :src="sponsor.src" :alt="sponsor.alt"/>
         </a>
-        <a
-          href="http://hackp.ac/mlh-StandOutStickers-hackathons"
-          id="standoutStickers"
-        >
-          <img
-            class="sponsor-img"
-            src="../assets/HackNJIT2024/Sponsors/StandOut-Stickers-Logo.png"
-            alt="StandOutStickers"
-        /></a>
       </div>
     </div>
   </div>
@@ -76,10 +22,16 @@ function onIntersectionObserver([{ isIntersecting, target }]) {
 }
 </script>
 <script>
+import sponsors from "../data/sponsors";
+
 export default {
+  props: {
+    gradient: String
+  },
   data() {
     return {
       showSponsors: true,
+      sponsors: sponsors,
     };
   },
   methods: {

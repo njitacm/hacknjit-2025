@@ -2,8 +2,9 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router.js'
 
-var app = createApp(App);
-app.config.globalProperties.window = window
+import PrimeVue from 'primevue/config';
 
-app.use(router)
-app.mount('#app')
+const app = createApp(App);
+app.use(router);
+app.use(PrimeVue);
+app.mount('#app');

@@ -138,15 +138,6 @@ h1.primary {
   font-size: 2.75rem;
   font-weight: bold;
 }
-h1.primary:hover{
-  background: #4a5d4ab3; /* Translucent version of the original green (70% opacity) */
-}
-h1.secondary {
-  font-size: 1.75rem;
-}
-h1.tertiary {
-  font-size: 1.25rem;
-}
 
 h1.title:hover {
   text-decoration: none;

@@ -2,27 +2,15 @@
   <MLHBanner />
   <NavBar />
   <main class="body-container">
-    <!-- <Banner gradient="radial-gradient(yellow, green)" /> -->
-    <Banner />
-    <!-- <Tracks/> -->
-    <PastPics />
-    <!-- <TheSponsors /> -->
-    <TheFAQ />
+    <RouterView></RouterView>
   </main>
   <TheFooter />
-  <Modal />
 </template>
 
 <script>
 import MLHBanner from "./components/MLHBanner.vue";
-import TheFAQ from "./components/TheFAQ.vue";
 import TheFooter from "./components/TheFooter.vue";
-import TheHeader from "./components/TheHeader.vue";
-import TheSponsors from "./components/TheSponsors.vue";
-import Modal from "./components/Modal.vue";
 import Banner from "./components/Banner.vue";
-import Tracks from "./components/Tracks.vue";
-import PastPics from "./components/PastPics.vue";
 import NavBar from "./components/NavBar.vue";
 
 /*
@@ -67,16 +55,10 @@ Title banner:
 export default {
   name: "HackNJIT",
   components: {
-    TheHeader,
     MLHBanner,
-    TheFAQ,
     TheFooter,
-    TheSponsors,
-    Modal,
-    Banner,
-    Tracks,
-    PastPics,
     NavBar,
+    Banner,
   }
 };
 </script>

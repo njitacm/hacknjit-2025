@@ -269,6 +269,34 @@ nav {
   justify-self: center;
 }
 
+.mainbar,
+.dropdown {
+  background-color: #00250475;
+  backdrop-filter: blur(25px);
+  align-content: center;
+}
+
+.mainbar {
+  font-weight: bold;
+  padding: 0.5em;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  border-radius: 1lh;
+  transition: width 250ms ease, border-radius 100ms ease;
+}
+
+.dropdown {
+  position: relative;
+  height: 4em;
+  border-radius: 1000px;
+  overflow: hidden;
+  transition: width 300ms ease-out, height 300ms ease-out, opacity 250ms ease;
+}
+
+nav {
+  z-index: -50;
+}
+
 ul {
   height: 100%;
   display: flex;

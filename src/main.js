@@ -1,7 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-var app = createApp(App);
-app.config.globalProperties.window = window
+import PrimeVue from 'primevue/config';
 
+const app = createApp(App)
+
+app.use(PrimeVue)
 app.mount('#app')

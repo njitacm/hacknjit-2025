@@ -1,11 +1,21 @@
 <template>
-  <div class="NotifSignup">
-    <a :href="vw <= SHOW_MODAL_THRESHOLD ? 'https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?usp=dialog' : null"
-      target="_blank" class="email-signup">
-      <button @click="openNewModal">
-        Sign up for email updates
-      </button>
-    </a>
+  <div class="NotifSignup outer-container">
+    <main>
+      <!--<p class="inner_text">
+        HackNJIT is a 24-hour hackathon at the New Jersey Institute of
+        Technology, run by its ACM student chapter in conjunction with the Ying
+        Wu College of Computing.
+      </p> -->
+      <!--<p>
+        Stay tuned, we'll return in November 2025!
+      </p>-->
+      <!--<a :href="vw <= SHOW_MODAL_THRESHOLD ? 'https://docs.google.com/forms/d/e/1FAIpQLSfiGXXticr2s7PcrMUN69K0U8LWq5sM4bnRJf-H4pfGU6MUNg/viewform?usp=dialog' : null"
+        target="_blank" class="email-signup">
+        <button @click="openNewModal">
+          Sign up for email updates
+        </button>
+      </a> -->
+    </main>
   </div>
 </template>
 
@@ -58,15 +68,36 @@ const openNewModal = () => {
   padding: 12px 24px;
   border: none;
   font-weight: bold;
+  font-size: 2rem;
   cursor: pointer;
 }
 
-h1 {
-  margin: 5rem 0 1.75rem 0;
-  font-weight: bold;
+.outer-container {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 32px;
+  align-content: center;
+  width: 95%;
+  margin: 0rem auto;
+}
+
+main {
+  margin: 0 auto;
+  display: grid;
+  gap: 30px;
+  width: 90%;
+  max-width: 1500px;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+}
+
+main>* {
+  height: min-content;
 }
 
 p {
+  font-size: 2rem;
   height: -moz-fit-content;
   height: fit-content;
   align-self: center;
@@ -78,4 +109,40 @@ img {
   border-radius: 30px;
   flex: 1;
 }
+
+@media (max-width: 1200px) {
+  p {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 750px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  .email-signup button {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 450px) {
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  .email-signup button {
+    font-size: 1.25rem;
+  }
+}
+
+/* .v-enter-active,
+.v-leave-active {
+  transition: all 1s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+} */
 </style>

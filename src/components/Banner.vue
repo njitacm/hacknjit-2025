@@ -1,99 +1,96 @@
 <template>
-  <div class="Banner" :style="{ background: gradient }">
-    <div class="page-side-padding container">
-      <div class="top-container">
-        <h1>HackNJIT</h1>
-        <p class="inner_text">
-          HackNJIT is a 24-hour hackathon at the New Jersey Institute of
-          Technology, run by its ACM student chapter in conjunction with the Ying
-          Wu College of Computing.
-        </p>
-        <p>
-          Stay tuned, we'll return in November 2025!
-        </p>
-        <NotifSignup id="NotifSignup" />
+  <div class="Banner">
+    <!-- <NotifSignup id="NotifSignup" /> -->
+    <div class="title-super-container">
+      <div class="title-container">
+        <h1 class="title">HackNJIT</h1>
+        <img src="..\assets\HackNJIT2025\globe-half-of-the-earth.png" class="earth">
+        <TheCountdown class="countdown" />
       </div>
-      <div class="bottom-container">
-        <TheCountdown />
-        <div class="view-hint" ref="viewHint">
-          <span>View last year's photos</span>
-          <br />
-          <br />
-          <img src="../assets/down_arrow.svg" style="width: 25px; height: 25px" />
-        </div>
-      </div>
+    </div>
+    <div class="view-hint">
+      <span>View last year's photos</span>
+      <br />
+      <span>&#129123;</span>
     </div>
   </div>
 </template>
 
 <script>
-import TheCountdown from "./TheCountdown.vue";
 import NotifSignup from "./NotifSignup.vue";
+import TheCountdown from "./TheCountdown.vue";
 
 export default {
-  props: {
-    gradient: String
-  },
   components: {
-    TheCountdown,
-    NotifSignup
+    NotifSignup,
+    TheCountdown
   }
 }
-
 </script>
 
 <style scoped>
-.container {
+.Banner {
   min-height: 100svh;
   height: fit-content;
-  display: grid;
+  /* display: grid; */
   grid-template-rows: 1fr auto;
   gap: 1rem;
-  margin: 0 auto;
-  display: grid;
-  gap: 30px;
-  width: 90%;
-  max-width: 1500px;
-  justify-items: center;
-  align-content: space-between;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.title-super-container {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-p {
-  font-size: 2em;
+.title-container {
+  position: relative;
+  top: 128px;
+  /* transform: translateY(50%); */
+  /* transform-origin: 50% 50%; */
 }
 
-@media (max-width: 1000px) {
-  p {
-    font-size: 1.5em;
-  }
+.title {
+  font-weight: bold;
+  font-size: 10em;
+  position: absolute;
+  width: 100%;
+  text-align: center;
 }
 
-@media (max-width: 425px) {
-  h1 {
-    font-size: 3em;
-  }
+.earth {
+  width: 1000px;
+  position: relative;
+  transform-origin: 50% 50%;
+  margin: 0;
+}
 
-  p {
-    font-size: 1.25em;
-  }
-
-  .top-container {
-    align-self: last baseline;
-  }
+.countdown {
+  bottom: 32px;
+  position: absolute;
 }
 
 .view-hint {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 32px;
+  position: absolute;
   align-content: center;
 }
 
-.view-hint * {
-  margin: 0 auto;
+@media(max-width: 1000px) {
+  .title {
+    font-size: 6em;
+    top: 60px;
+  }
 }
 
-.top-container,
-.bottom-container {
-  display: grid;
-  gap: 32px;
+@media(max-width: 600px) {
+  .title {
+    font-size: 4em;
+    top: 95px;
+  }
 }
 </style>

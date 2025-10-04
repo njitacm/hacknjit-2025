@@ -1,5 +1,5 @@
 <template>
-  <div class="PastPics">
+  <div class="PastPics" ref="sectionRef" id="Past-Pics">
     <div class="page-side-padding container">
       <img src="../assets/PastPictures/hacknjit2024_1.jpg" />
       <img src="../assets/PastPictures/hacknjit2024_2.jpg" id="two" />
@@ -8,6 +8,21 @@
     </div>
   </div>
 </template>
+
+<script>
+import { useIntersectionObserver } from '../composables/useIntersectionObserver';
+
+const { observe, unobserve } = useIntersectionObserver();
+
+export default {
+  mounted() {
+    observe(this.$refs.sectionRef);
+  },
+  beforeUnmount() {
+    unobserve(this.$refs.sectionRef);
+  }
+}
+</script>
 
 <style scoped>
 .container {

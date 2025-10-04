@@ -1,10 +1,10 @@
 <template>
-  <MLHBanner />
-  <NavBar />
   <main class="body-container">
+    <MLHBanner />
+    <NavBar />
     <RouterView></RouterView>
+    <TheFooter />
   </main>
-  <TheFooter />
 </template>
 
 <script>
@@ -172,4 +172,5 @@ main {
   display: grid;
   gap: 32px;
 }
+
 </style>

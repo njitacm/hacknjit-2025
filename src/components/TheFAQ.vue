@@ -1,57 +1,107 @@
 <template>
-  <div class="TheFAQ" ref="sectionRef" id="FAQ">
-    <div class="page-side-padding">
-      <h2>Frequently Asked Questions</h2>
-      <div class="faq">
-        <div class="faq-card" v-for="(faq, index) in faqs" :key="index">
-          <h3>{{ faq.Question }}</h3>
-          <p>{{ faq.Answer }}</p>
-        </div>
-      </div>
-    </div>
+  <div class="TheFAQ">
+    <Accordion value="0">
+      <AccordionPanel v-for="(faq, index) in faqs" :key="index" :value="index">
+        <AccordionHeader>{{ faq.Question }}</AccordionHeader>
+        <AccordionContent>
+          <p class="m-0">{{ faq.Answer }}</p>
+        </AccordionContent>
+      </AccordionPanel>
+    </Accordion>
   </div>
 </template>
 
 <script>
 import faqs from "../data/faq.js"
-import { useIntersectionObserver } from '../composables/useIntersectionObserver';
-
-const { observe, unobserve } = useIntersectionObserver();
+import Accordion from 'primevue/accordion';
+import AccordionPanel from 'primevue/accordionpanel';
+import AccordionHeader from 'primevue/accordionheader';
+import AccordionContent from 'primevue/accordioncontent';
 
 export default {
+  components: {
+    Accordion,
+    AccordionPanel,
+    AccordionHeader,
+    AccordionContent
+  },
   data() {
     return {
       faqs: faqs
     };
   },
-  mounted() {
-    observe(this.$refs.sectionRef);
+  components: { 
+    Accordion, 
+    AccordionPanel, 
+    AccordionHeader,
+    AccordionContent
   },
-  beforeUnmount() {
-    unobserve(this.$refs.sectionRef);
-  }
-}
+};
+
 </script>
 
 <style scoped>
-.faq {
+.TheFAQ {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-items: center;
 }
 
-.faq-card {
-  width: 100%;
-  margin: 1rem;
-  text-align: left;
+.TheFAQ button {
+  color: white;
 }
 
-.page-side-padding {
-  @media(min-width: 900px) {
-    & {
-      width: calc(100vw - 256px);
-    }
-  }
+.p-accordion {
+  color: #274029;
+  width: 80%;
 }
+
+.p-accordionpanel {
+  border-radius: 8px;
+  background-color: white;
+  margin: 16px;
+  padding: 16px;
+  border-bottom: 3px solid #8080807F
+}
+
+
+.p-accordioncontent .p-accordioncontent-content p {
+  padding: 8px 0
+}
+
+.p-accordion p,
+.p-accordion button {
+  color: #274029;
+  font-size: 1em;
+  text-align: left;
+  transition: all 0.25s ease-out;
+}
+
+.p-accordionheader {
+  font-weight: 850;
+  border: none;
+  text-wrap: wrap;
+}
+
+</style>
+
+<style>
+.p-accordion {
+  --p-accordion-header-active-color: #40BB4A;
+  --p-accordion-header-active-hover-color: #40BB4A;
+}
+.p-accordionpanel,
+.p-accordioncontent .p-accordioncontent-content {
+  border: none; 
+  border-style: none;
+}
+
+.p-accordionpanel-active {
+}
+
+.p-accordionpanel-active button {
+  color: #17641E;
+}
+
 </style>

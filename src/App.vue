@@ -1,5 +1,6 @@
 <template>
   <MLHBanner />
+  <NavBar />
   <main class="body-container">
     <!-- <Banner gradient="radial-gradient(yellow, green)" /> -->
     <Banner />
@@ -22,6 +23,7 @@ import Modal from "./components/Modal.vue";
 import Banner from "./components/Banner.vue";
 import Tracks from "./components/Tracks.vue";
 import PastPics from "./components/PastPics.vue";
+import NavBar from "./components/NavBar.vue";
 
 /*
 TODO:
@@ -74,6 +76,7 @@ export default {
     Banner,
     Tracks,
     PastPics,
+    NavBar,
   }
 };
 </script>

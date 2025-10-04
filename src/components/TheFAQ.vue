@@ -1,5 +1,5 @@
 <template>
-  <div class="TheFAQ">
+  <div class="TheFAQ" ref="sectionRef" id="FAQ">
     <Accordion value="0">
       <AccordionPanel v-for="(faq, index) in faqs" :key="index" :value="index">
         <AccordionHeader>{{ faq.Question }}</AccordionHeader>
@@ -17,6 +17,8 @@ import Accordion from 'primevue/accordion';
 import AccordionPanel from 'primevue/accordionpanel';
 import AccordionHeader from 'primevue/accordionheader';
 import AccordionContent from 'primevue/accordioncontent';
+import { useIntersectionObserver } from '../composables/useIntersectionObserver';
+const { observe, unobserve } = useIntersectionObserver();
 
 export default {
   components: {
@@ -30,12 +32,12 @@ export default {
       faqs: faqs
     };
   },
-  components: { 
-    Accordion, 
-    AccordionPanel, 
-    AccordionHeader,
-    AccordionContent
+  mounted() {
+    observe(this.$refs.sectionRef);
   },
+  beforeUnmount() {
+    unobserve(this.$refs.sectionRef);
+  }
 };
 
 </script>

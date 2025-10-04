@@ -11,7 +11,6 @@
 
 <script>
 import { useIntersectionObserver } from '../composables/useIntersectionObserver';
-
 const { observe, unobserve } = useIntersectionObserver();
 
 export default {

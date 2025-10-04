@@ -1,13 +1,29 @@
+
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router.js'
+import PrimeVue from 'primevue/config';
 
-const pinia = createPinia()
-const app = createApp(App)
-app.use(pinia)
+// Vueform
+import Vueform from '@vueform/vueform/plugin'
+import vueformTheme from '@vueform/vueform/themes/vueform'
+import en from '@vueform/vueform/locales/en'
 
-app.config.globalProperties.window = window
+// Vueform CSS
+import '@vueform/vueform/dist/vueform.css'
 
-app.use(router)
-app.mount('#app')
+const pinia = createPinia();
+const app = createApp(App);
+app.config.globalProperties.window = window;
+
+app.use(router);
+app.use(pinia);
+app.use(PrimeVue);
+app.use(Vueform, {
+  theme: vueformTheme,
+  locales: { en },
+  locale: 'en'
+});
+
+app.mount('#app');

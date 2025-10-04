@@ -1,5 +1,5 @@
 <template>
-  <div class="Banner">
+  <div class="Banner" :style="{ background: gradient }">
     <!-- <NotifSignup id="NotifSignup" /> -->
     <div class="title-super-container">
       <div class="title-container">
@@ -8,10 +8,11 @@
         <TheCountdown class="countdown" />
       </div>
     </div>
-    <div class="view-hint">
+    <div class="view-hint" ref="viewHint">
       <span>View last year's photos</span>
       <br />
-      <span>&#129123;</span>
+      <br />
+      <img src="../assets/down_arrow.svg" style="width: 25px; height: 25px" />
     </div>
   </div>
 </template>
@@ -21,6 +22,9 @@ import NotifSignup from "./NotifSignup.vue";
 import TheCountdown from "./TheCountdown.vue";
 
 export default {
+  props: {
+    gradient: String
+  },
   components: {
     NotifSignup,
     TheCountdown
@@ -32,7 +36,6 @@ export default {
 .Banner {
   min-height: 100svh;
   height: fit-content;
-  /* display: grid; */
   grid-template-rows: 1fr auto;
   gap: 1rem;
   position: relative;

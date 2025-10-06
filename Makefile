@@ -1,16 +1,20 @@
 # PHONY does not correspond to a real file; Used to run commands w/o a corresponding file
-.PHONY: all install clean 
+.PHONY: all update clean
 
 # Default 
 all: hacknjit-server
 
-# Install Node.js and golang dependencies
-install:
-	npm install
+# Install & Update Node.js and golang dependencies
+update:
+	npm install 
+	npm update
 	go install
+	go get -u ./
 
 # Build frontend and Go backend
-hacknjit-server: install
+hacknjit-server:
+	npm install
+	go install
 	npm run build
 	go build -o hacknjit-server main.go
 

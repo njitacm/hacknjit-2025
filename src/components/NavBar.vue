@@ -192,6 +192,7 @@ function getItemStyle(index) {
       transition: `opacity 0.3s ease ${(index + 1) * 50}ms, transform 0.3s ease ${(index + 1) * 50}ms`
     };
 
+    // section header that shows even with nav bar closed
     if (index === 0) {
       obj.flexGrow = 0;
 
@@ -214,7 +215,7 @@ function getItemStyle(index) {
       transition: 'opacity 0s, transform 0s'
     };
 
-    // index 0 ("HackNJIT") is not hidden
+    // section header that shows even with nav bar closed
     if (index === 0) {
       obj.width = "auto";
       obj.height = "100%";

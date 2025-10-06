@@ -27,7 +27,7 @@ export function useIntersectionObserver() {
 
         const options = {
             root: null, // relative to the viewport
-            rootMargin: "0% 0px -90% 0px",          // place tripwire 10% down from the top
+            rootMargin: "-10% 0px -90% 0px",          // place tripwire 10% down from the top
             threshold: 0, // trigger when 50% of the element is visible
         };
 

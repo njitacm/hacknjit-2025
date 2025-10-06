@@ -63,13 +63,17 @@ export default {
   border-radius: 8px;
   background-color: white;
   margin: 16px;
-  padding: 16px;
   border-bottom: 3px solid #8080807F
 }
 
 
 .p-accordioncontent .p-accordioncontent-content p {
-  padding: 8px 0
+  padding: 16px;
+}
+
+.p-accordion button {
+  padding: 16px;
+  height: 100%;
 }
 
 .p-accordion p,

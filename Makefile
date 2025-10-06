@@ -1,5 +1,5 @@
-# PHONY does not correspond to a real file; Used to run commands w/o a corresponding file
-.PHONY: all update clean
+# Run this build target regardless of if file exists or not
+.PHONY: hacknjit-server
 
 # Default 
 all: hacknjit-server

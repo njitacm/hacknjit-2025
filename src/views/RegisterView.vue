@@ -1,5 +1,5 @@
 <template>
-  <div class="registration-container">
+  <div class="RegisterView View">
     <Registration></Registration>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
 </style>
 
 <style>
-.registration-container {
+.RegisterView {
   all: initial;
   width: 75%;
   margin: 7.5% auto;

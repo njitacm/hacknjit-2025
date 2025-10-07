@@ -98,6 +98,12 @@ h3 {
   font-size: 1.5em;
 }
 
+.View {
+  position: relative;
+  top: 80px;
+  margin-bottom: 80px;
+}
+
 @media (max-width: 1000px) {
   h1 {
     font-size: 4em;

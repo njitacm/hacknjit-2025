@@ -108,9 +108,16 @@ export default {
               label: "First Name",
               type: 'text',
               columns: {
-                container: 6,
-                label: 12,
-                wrapper: 12,
+                sm: {
+                  container: 12,
+                  label: 12,
+                  wrapper: 12,
+                },
+                lg: {
+                  container: 6,
+                  label: 12,
+                  wrapper: 12,
+                },
               },
               fieldName: 'First name',
               rules: [
@@ -122,9 +129,16 @@ export default {
               label: "Last Name",
               type: 'text',
               columns: {
-                container: 6,
-                label: 12,
-                wrapper: 12,
+                sm: {
+                  container: 12,
+                  label: 12,
+                  wrapper: 12,
+                },
+                lg: {
+                  container: 6,
+                  label: 12,
+                  wrapper: 12,
+                },
               },
               fieldName: 'Last name',
               rules: [
@@ -161,9 +175,11 @@ export default {
           type: 'text',
           inputType: 'number',
           columns: {
+            lg: {
                 container: 3,
                 label: 12,
                 wrapper: 12,
+            },
           },
           rules: [
             'required',
@@ -180,9 +196,11 @@ export default {
             'required',
           ],
           columns: {
+            lg: {
                 container: 3,
                 label: 12,
                 wrapper: 12,
+            },
           },
           fieldName: 'Phone',
           placeholder: 'Phone',
@@ -202,9 +220,11 @@ export default {
             'email',
           ],
           columns: {
+            lg: {
                 container: 6,
                 label: 12,
                 wrapper: 12,
+            },
           },
           fieldName: 'Email (School email preferred.',
         },
@@ -212,9 +232,11 @@ export default {
           label: "Country of Residence",
           placeholder: 'Country of Residence',
           columns: {
+            lg: {
                 container: 6,
                 label: 12,
                 wrapper: 12,
+            },
           },
           floating: false,
           type: 'select',
@@ -231,9 +253,11 @@ export default {
           label: "University",
           placeholder: 'University',
           columns: {
+            lg: {
                 container: 6,
                 label: 12,
                 wrapper: 12,
+            },
           },
           floating: false,
           type: 'select',
@@ -251,9 +275,11 @@ export default {
           label: 'Major',
           type: 'select',
           columns: {
+            lg: {
                 container: 6,
                 label: 12,
                 wrapper: 12,
+            },
           },
           items: [
             {
@@ -366,9 +392,11 @@ export default {
               ],
               view: "tabs",
               columns: {
+                lg: {
                     container: 6,
                     label: 12,
                     wrapper: 12,
+                },
               },
               rules: [
                 'required',
@@ -405,9 +433,11 @@ export default {
               ],
               view: "tabs",
               columns: {
+                lg: {
                     container: 6,
                     label: 12,
                     wrapper: 12,
+                },
               },
               rules: [
                 'required',
@@ -444,9 +474,11 @@ export default {
                 },
               ],
               columns: {
+                lg: {
                     container: 6,
                     label: 12,
                     wrapper: 12,
+                },
               },
             },
             lvlofstudy: {
@@ -483,9 +515,11 @@ export default {
                 },
               ],
               columns: {
+                lg: {
                     container: 6,
                     label: 12,
                     wrapper: 12,
+                },
               },
               rules: [
                 'required',

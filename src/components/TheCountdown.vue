@@ -103,15 +103,9 @@ onMounted(() => {
   opacity: 1;
 }
 
-@media(max-width: 1000px) {
-  .outer-container {
-    font-size: 1.5em;
-  }
-}
-
 @media(max-width: 600px) {
   .outer-container {
-    font-size: 1em;
+    font-size: 0.75em;
   }
 }
 </style>

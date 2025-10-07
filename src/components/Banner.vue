@@ -86,10 +86,11 @@ export default {
 .content {
   left: 50%;
   transform: translateX(-50%);
-  bottom: 32px;
+  bottom: 0;
   position: absolute;
   display: grid;
-  gap: 16px;
+  justify-items: center;
+  gap: 32px;
 }
 
 .register-button {
@@ -110,12 +111,16 @@ export default {
     font-size: 6em;
     top: 60px;
   }
+
 }
 
 @media(max-width: 600px) {
   .title {
     font-size: 4em;
     top: 95px;
+  }
+  .register-button {
+    font-size: 1.75em;
   }
 }
 </style>

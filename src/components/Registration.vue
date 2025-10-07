@@ -1,23 +1,20 @@
 <!-- Registration.vue -->
 <template>
-  <Vueform 
-    v-if="response==-1"
-    v-bind="vueform" 
-    @success="handleResponse"
-  />
-  <div v-else-if="response==200" class="form-submitted">
-      <h1>Successfully Registered!</h1>
-      <p>Thank you for registering for HackNJIT 2025. We’ll be in touch soon!</p>
-      <RouterLink to="/" class="nav-link">
-           <button class="vf-btn vf-btn-primary">Return Home</button>
-      </RouterLink>
+  <Vueform v-if="response == -1" v-bind="vueform" @success="handleResponse" />
+  <div v-else-if="response == 200" class="form-submitted">
+    <h1>Successfully Registered!</h1>
+    <p>Thank you for registering for HackNJIT 2025. We’ll be in touch soon!</p>
+    <RouterLink to="/" class="nav-link">
+      <button class="vf-btn vf-btn-primary">Return Home</button>
+    </RouterLink>
   </div>
   <div v-else class="form-submitted">
-      <h1>Failed to register!</h1>
-      <p>We could not register you for HackNJIT 2025 at this time. We may be having some technical difficulties. Check back in later.</p>
-      <RouterLink to="/" class="nav-link">
-           <button class="vf-btn vf-btn-primary">Return Home</button>
-      </RouterLink>
+    <h1>Failed to register!</h1>
+    <p>We could not register you for HackNJIT 2025 at this time. We may be having some technical difficulties. Check
+      back in later.</p>
+    <RouterLink to="/" class="nav-link">
+      <button class="vf-btn vf-btn-primary">Return Home</button>
+    </RouterLink>
   </div>
 </template>
 <script>
@@ -879,14 +876,14 @@ export default {
   --vf-border-width-tag: 1px;
   --vf-border-width-blockquote: 3px;
   --vf-border-width-table: 1px;
-  --vf-shadow-input: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-input-hover: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-input-focus: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-handles: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-handles-hover: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-handles-focus: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-btn: 0px 0px 0px 0px rgba(0,0,0,0);
-  --vf-shadow-dropdown: 0px 0px 0px 0px rgba(0,0,0,0);
+  --vf-shadow-input: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  --vf-shadow-input-hover: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  --vf-shadow-input-focus: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  --vf-shadow-handles: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  --vf-shadow-handles-hover: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  --vf-shadow-handles-focus: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  --vf-shadow-btn: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  --vf-shadow-dropdown: 0px 0px 0px 0px rgba(0, 0, 0, 0);
   --vf-radius-input: 0.25rem;
   --vf-radius-input-sm: 0.25rem;
   --vf-radius-input-lg: 0.25rem;
@@ -960,10 +957,9 @@ export default {
 .form-submitted h1 {
   font-size: var(--vf-font-size-h1);
 }
-    
+
 .form-submitted p {
   font-size: var(--vf-font-size);
   margin-bottom: 24px;
 }
-
 </style>

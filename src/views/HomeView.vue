@@ -4,7 +4,7 @@
     <Banner />
     <!-- <Tracks/> -->
     <PastPics />
-    <!-- <TheSponsors /> -->
+    <TheSponsors />
     <TheFAQ />
   </div>
 </template>

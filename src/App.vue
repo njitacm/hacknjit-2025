@@ -1,7 +1,7 @@
 <template>
   <main class="body-container">
-    <MLHBanner />
     <NavBar />
+    <MLHBanner />
     <RouterView></RouterView>
     <TheFooter />
   </main>
@@ -57,18 +57,13 @@ html {
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--main-bg-color);
   text-align: center;
   color: white;
   box-sizing: border-box;
   z-index: -100;
   overflow-x: auto;
+  background: linear-gradient(to bottom, black, var(--main-bg-color));
   width: 100%;
-  height: 100%;
-}
-
-body {
-  height: 100%;
 }
 
 body.modal-open {
@@ -135,11 +130,6 @@ button {
 .page-side-padding {
   margin: 0 auto;
   width: calc(100vw - 64px);
-}
-
-main {
-  display: grid;
-  gap: 32px;
 }
 
 .body-container {

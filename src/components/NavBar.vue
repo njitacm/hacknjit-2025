@@ -1,7 +1,7 @@
 <!-- values that need to be manually depending on nav size adjusted are denoted with `TOCHANGE` -->
 <template>
   <header v-on="mouseEventListeners" @touchend.passive="isTouch ? onTouch() : null" ref="header"
-    :class="{ active: isNavActive, visible: showNav }">
+    :class="{ active: isNavActive, visible: true }">
     <nav :style="{ width: navSize.width, height: navSize.height }">
       <ul ref="ul">
         <!-- visible even when nav is active -->

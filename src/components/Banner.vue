@@ -86,6 +86,7 @@ export default {
 }
 
 .view-hint {
+  width: 100%;
   left: 50%;
   transform: translateX(-50%);
   bottom: 32px;

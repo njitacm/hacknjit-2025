@@ -546,10 +546,6 @@ export default {
               label: 'Samoan',
             },
             {
-              value: 'Samoan',
-              label: 'Samoan',
-            },
-            {
               value: 'Vietnamese',
               label: 'Vietnamese',
             },

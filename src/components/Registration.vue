@@ -1061,7 +1061,15 @@ export default {
 
 .registration-container {
   padding: 3% !important;
+  width: 90% !important;
 }
+
+@media (min-width: 640px) { 
+  .registration-container {
+    width: 75% !important;
+  }
+}
+
 
 .vf-description {
   text-align: left;
@@ -1089,7 +1097,4 @@ export default {
   margin: 4px;
 }
 
-a {
-
-}
 </style>

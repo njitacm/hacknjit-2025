@@ -1,7 +1,8 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
+import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
 
 import HomeView from './views/HomeView.vue'
 import RegisterView from './views/RegisterView.vue'
+import PageNotFoundView from './views/PageNotFoundView.vue'
 
 const routes = [
   {
@@ -12,10 +13,14 @@ const routes = [
     path: '/registration',
     component: RegisterView
   },
+  {
+    path: '/:pathMatch(.*)*',
+    component: PageNotFoundView,
+  }
 ]
 
 export default createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
@@ -31,4 +36,4 @@ export default createRouter({
 
     return options;
   }
-})
+});

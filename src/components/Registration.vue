@@ -617,9 +617,6 @@ export default {
   methods: {
     handleResponse(response, form$) {
       this.response = response
-      console.log(response) // axios response
-      console.log(response.status) // HTTP status code
-      console.log(response.data) // response data
     }
   }
 }

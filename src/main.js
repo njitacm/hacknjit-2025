@@ -7,11 +7,7 @@ import Aura from '@primeuix/themes/aura';
 
 // Vueform
 import Vueform from '@vueform/vueform/plugin'
-import vueformTheme from '@vueform/vueform/themes/vueform'
-import en from '@vueform/vueform/locales/en'
-
-// Vueform CSS
-import '@vueform/vueform/dist/vueform.css'
+import vueformConfig from './../vueform.config.js';
 
 const pinia = createPinia();
 const app = createApp(App);
@@ -24,10 +20,6 @@ app.use(PrimeVue, {
     preset: Aura
   }
 });
-app.use(Vueform, {
-  theme: vueformTheme,
-  locales: { en },
-  locale: 'en'
-});
+app.use(Vueform, vueformConfig);
 
 app.mount('#app');

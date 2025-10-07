@@ -1,5 +1,6 @@
 <template>
   <div class="TheFAQ" ref="sectionRef" id="FAQ">
+    <h2>FAQ</h2>
     <Accordion value="0">
       <AccordionPanel v-for="(faq, index) in faqs" :key="index" :value="index">
         <AccordionHeader>{{ faq.Question }}</AccordionHeader>

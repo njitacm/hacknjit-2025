@@ -1,7 +1,7 @@
 <!-- values that need to be manually depending on nav size adjusted are denoted with `TOCHANGE` -->
 <template>
   <header v-on="mouseEventListeners" @touchend.passive="isTouch ? onTouch() : null" ref="header"
-    :class="{ active: isNavActive, visible: true }">
+    :class="{ active: isNavActive }">
     <nav :style="{ width: navSize.width, height: navSize.height }">
       <ul ref="ul">
         <!-- visible even when nav is active -->
@@ -48,8 +48,6 @@ const interactedWithNav = ref(false); // mouse enter, mouse leave, touch start a
 const scrollLock = ref(true);         // if true, will force the nav bar to be open
 const screenSize = ref("large");      // small or large depending on screen size
 const currentPage = ref("Home");
-const showNav = ref(true);
-const lastScrollPos = ref(0);
 
 // vars
 const heightEmFactor = 4;             // em
@@ -106,54 +104,23 @@ const onMouseLeave = () => {
 };
 
 const onTouch = () => {
+  console.log("touched!");
   if (interactedWithNav.value === false && isNavActive.value === false && !wentToPage) {
+    console.log("if 1");
     interactedWithNav.value = true;
   } else if (wentToPage) {
+    console.log("if 2");
     wentToPage = false;
   }
 };
 
 const onScroll = () => {
-  const currentScrollPos = window.scrollY;
-
   // scroll lock functionality (force nav open if at top)
-  if (currentScrollPos > 50) {
+  if (window.scrollY > 50) {
     scrollLock.value = false;
   } else {
     scrollLock.value = true;
   }
-
-  // scroll down to hide nav bar functionality
-
-  // always visible on large screens
-  if (screenSize.value === "large") {
-    if (showNav.value === false) {
-      showNav.value = true;
-    }
-    return;
-  }
-
-  // add threshold to reduce sensitivity
-  if (Math.abs(currentScrollPos - lastScrollPos.value) < 10) {
-    return;
-  }
-
-  // a small buffer to prevent hiding the navbar at the very top of the page
-  if (currentScrollPos <= 60) {
-    showNav.value = true;
-    return;
-  }
-
-  if (currentScrollPos < lastScrollPos.value) {
-    // scroll up
-    showNav.value = true;
-  } else {
-    // scroll down
-    showNav.value = false;
-    interactedWithNav.value = false;
-  }
-
-  lastScrollPos.value = currentScrollPos;
 };
 
 const onMediaQueryChange = (e) => {
@@ -178,13 +145,9 @@ router.beforeEach((to) => {
 
 // computed properties
 const isNavActive = computed(() => (
-  (showNav.value === true) 
-  &&
-  (
-    ((screenSize.value === "large" && (scrollLock.value === true || interactedWithNav.value === true)))
-    ||
-    (screenSize.value === "small" && interactedWithNav.value === true)
-  )
+  ((screenSize.value === "large" && (scrollLock.value === true || interactedWithNav.value === true)))
+  ||
+  (screenSize.value === "small" && interactedWithNav.value === true)
 ));
 const navSize = computed(() => (isNavActive.value ? navSizes[screenSize.value].expanded : navSizes[screenSize.value].shrunk));
 
@@ -311,10 +274,6 @@ header {
 
 header.active {
   width: 100%;
-}
-
-header:not(.visible) {
-  transform: translateY(-100px);
 }
 
 nav {

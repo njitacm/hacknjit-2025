@@ -8,7 +8,7 @@
         <li :style="getItemStyle(0)">
           <!-- touch devices when nav is closed: disbable the link by turning it into a span -->
           <div class="section-indicator">
-            <span>{{ activeSectionId.replace("-", " ") }}</span>
+            <span>{{ getSectionHeader() }}</span>
             <img :src="downArrow" class="icon" />
           </div>
         </li>
@@ -29,9 +29,8 @@ import { storeToRefs } from "pinia";
 import { useNavigationStore } from '../stores/navigation';
 import { useIsTouch } from '../composables/useIsTouch';
 import { useTouchStartOutside } from '../composables/useTouchStartOutside';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import downArrow from "../assets/icons/down_arrow.svg";
-
 
 // composables and stores
 const router = useRouter();
@@ -48,6 +47,7 @@ const ulRef = useTemplateRef("ul");
 const interactedWithNav = ref(false); // mouse enter, mouse leave, touch start affects nav open/closed
 const scrollLock = ref(true);         // if true, will force the nav bar to be open
 const screenSize = ref("large");      // small or large depending on screen size
+const currentPage = ref("Home");
 
 // vars
 const heightEmFactor = 4;             // em
@@ -131,6 +131,14 @@ const onMediaQueryChange = (e) => {
   }
 };
 
+router.beforeEach((to) => {
+  if (to.path === "/registration") {
+    currentPage.value = "Registration";
+  } else if (to.path === "/") {
+    currentPage.value = "Home";
+  }
+});
+
 // computed properties
 const isNavActive = computed(() => (
   ((screenSize.value === "large" && (scrollLock.value === true || interactedWithNav.value === true)))
@@ -171,6 +179,13 @@ onUnmounted(() => {
 
 // link touch start outside handler to the composable
 useTouchStartOutside(headerRef, onTouchStartOutside);
+
+function getSectionHeader() {
+  if (currentPage.value === "Home") {
+    return activeSectionId.value.replace("-", " "); 
+  }
+  return currentPage.value; 
+}
 
 function goToPage(item) {
   if (isNavActive.value === true) {

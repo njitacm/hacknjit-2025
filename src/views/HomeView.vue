@@ -3,9 +3,9 @@
     <!-- <Banner gradient="radial-gradient(yellow, green)" /> -->
     <Banner />
     <!-- <Tracks/> -->
-    <PastPics />
     <TheSponsors />
     <TheFAQ />
+    <PastPics />
   </div>
 </template>
 

@@ -1,19 +1,22 @@
 <template>
-  <div class="TheFAQ" ref="sectionRef" id="FAQ">
-    <h2>FAQ</h2>
-    <Accordion value="0">
-      <AccordionPanel v-for="(faq, index) in faqs" :key="index" :value="index">
-        <AccordionHeader>{{ faq.Question }}</AccordionHeader>
-        <AccordionContent>
-          <p class="m-0">{{ faq.Answer }}</p>
-        </AccordionContent>
-      </AccordionPanel>
+  <div class="component-container" id="FAQ">
+    <h1>FAQ</h1>
+    <Accordion class="faq-container"> 
+      <div class="faq-topic-container" v-for="(topic_faqs, topic) in faqs"> 
+        <h2 class="faq-topic">{{topic}}</h2>
+          <AccordionPanel v-for="(faq, index) in topic_faqs" :key="faq.Question" :value="faq.Answer">
+            <AccordionHeader>{{ faq.Question }}</AccordionHeader>
+            <AccordionContent>
+              <p class="m-0">{{ faq.Answer }}</p>
+            </AccordionContent>
+          </AccordionPanel>
+      </div>
     </Accordion>
   </div>
 </template>
 
 <script>
-import faqs from "../data/faq.js"
+import faqs from "../data/faq.json"
 import Accordion from 'primevue/accordion';
 import AccordionPanel from 'primevue/accordionpanel';
 import AccordionHeader from 'primevue/accordionheader';
@@ -32,12 +35,6 @@ export default {
     return {
       faqs: faqs
     };
-  },
-  mounted() {
-    observe(this.$refs.sectionRef);
-  },
-  beforeUnmount() {
-    unobserve(this.$refs.sectionRef);
   }
 };
 
@@ -57,7 +54,7 @@ export default {
 
 .p-accordion {
   color: #274029;
-  width: 80%;
+  width: 100%;
 }
 
 .p-accordionpanel {
@@ -70,6 +67,7 @@ export default {
 
 .p-accordioncontent .p-accordioncontent-content p {
   padding: 16px;
+  padding-top: 0px;
 }
 
 .p-accordion button {
@@ -77,8 +75,10 @@ export default {
   height: 100%;
 }
 
+.p-accordion,
 .p-accordion p,
 .p-accordion button {
+  border: none;
   color: #274029;
   font-size: 1em;
   text-align: left;
@@ -91,17 +91,25 @@ export default {
   text-wrap: wrap;
 }
 
-</style>
+.component-container {
+  margin: 16px auto;
+}
 
-<style>
+.faq-container {
+  margin: auto;
+  width: calc(100vw - 64px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.faq-container .faq-topic-container {
+  flex: 40%;
+}
+
 .p-accordion {
   --p-accordion-header-active-color: #40BB4A;
   --p-accordion-header-active-hover-color: #40BB4A;
-}
-.p-accordionpanel,
-.p-accordioncontent .p-accordioncontent-content {
-  border: none; 
-  border-style: none;
 }
 
 .p-accordionpanel-active {
@@ -111,4 +119,38 @@ export default {
   color: #17641E;
 }
 
+h2.faq-topic {
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+}
+
+@media (max-width: 450px) {
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+  h2.faq-topic {
+    font-size: 1.5rem;
+  }
+  button.p-accordionheader {
+    font-size: 1rem;
+  }
+  .faq-container .faq-topic-container {
+    flex: 100%;
+  }
+  .faq-container {
+    width: 100vw;
+  }
+}
+</style>
+
+<style>
+/* I don't know why but this needs to be global to work */
+.p-accordioncontent-content,
+.p-accordioncontent .p-accordioncontent-content {
+  border: none; 
+  border-style: none;
+  border-color: none;
+}
 </style>

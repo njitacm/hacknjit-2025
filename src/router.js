@@ -25,7 +25,7 @@ export default createRouter({
     const options = { top: 0 };
 
     if (to.hash !== '') {
-      options.top = 90;          // apply offset so it's not covered by the nav
+      options.top = 80;          // apply offset so it's not covered by the nav
       options.el = to.hash;
     }
 

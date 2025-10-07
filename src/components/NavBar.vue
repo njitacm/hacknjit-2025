@@ -1,7 +1,7 @@
 <!-- values that need to be manually depending on nav size adjusted are denoted with `TOCHANGE` -->
 <template>
   <header v-on="mouseEventListeners" @touchend.passive="isTouch ? onTouch() : null" ref="header"
-    :class="{ active: isNavActive }">
+    :class="{ active: isNavActive, visible: showNav }">
     <nav :style="{ width: navSize.width, height: navSize.height }">
       <ul ref="ul">
         <!-- visible even when nav is active -->
@@ -48,6 +48,8 @@ const interactedWithNav = ref(false); // mouse enter, mouse leave, touch start a
 const scrollLock = ref(true);         // if true, will force the nav bar to be open
 const screenSize = ref("large");      // small or large depending on screen size
 const currentPage = ref("Home");
+const showNav = ref(true);
+const lastScrollPos = ref(0);
 
 // vars
 const heightEmFactor = 4;             // em
@@ -112,11 +114,46 @@ const onTouch = () => {
 };
 
 const onScroll = () => {
-  if (window.scrollY > 50) {
+  const currentScrollPos = window.scrollY;
+
+  // scroll lock functionality (force nav open if at top)
+  if (currentScrollPos > 50) {
     scrollLock.value = false;
   } else {
     scrollLock.value = true;
   }
+
+  // scroll down to hide nav bar functionality
+
+  // always visible on large screens
+  if (screenSize.value === "large") {
+    if (showNav.value === false) {
+      showNav.value = true;
+    }
+    return;
+  }
+
+  // add threshold to reduce sensitivity
+  if (Math.abs(currentScrollPos - lastScrollPos.value) < 10) {
+    return;
+  }
+
+  // a small buffer to prevent hiding the navbar at the very top of the page
+  if (currentScrollPos <= 60) {
+    showNav.value = true;
+    return;
+  }
+
+  if (currentScrollPos < lastScrollPos.value) {
+    // scroll up
+    showNav.value = true;
+  } else {
+    // scroll down
+    showNav.value = false;
+    interactedWithNav.value = false;
+  }
+
+  lastScrollPos.value = currentScrollPos;
 };
 
 const onMediaQueryChange = (e) => {
@@ -141,9 +178,13 @@ router.beforeEach((to) => {
 
 // computed properties
 const isNavActive = computed(() => (
-  ((screenSize.value === "large" && (scrollLock.value === true || interactedWithNav.value === true)))
-  ||
-  (screenSize.value === "small" && interactedWithNav.value === true)
+  (showNav.value === true) 
+  &&
+  (
+    ((screenSize.value === "large" && (scrollLock.value === true || interactedWithNav.value === true)))
+    ||
+    (screenSize.value === "small" && interactedWithNav.value === true)
+  )
 ));
 const navSize = computed(() => (isNavActive.value ? navSizes[screenSize.value].expanded : navSizes[screenSize.value].shrunk));
 
@@ -182,9 +223,9 @@ useTouchStartOutside(headerRef, onTouchStartOutside);
 
 function getSectionHeader() {
   if (currentPage.value === "Home") {
-    return activeSectionId.value.replace("-", " "); 
+    return activeSectionId.value.replace("-", " ");
   }
-  return currentPage.value; 
+  return currentPage.value;
 }
 
 function goToPage(item) {
@@ -265,18 +306,25 @@ header {
   padding: 8px;
   border-radius: 1000px;
   width: fit-content;
+  transition: transform 250ms ease;
 }
 
 header.active {
   width: 100%;
 }
 
+header:not(.visible) {
+  transform: translateY(-100px);
+}
+
 nav {
   --expanded-touch-width: calc(90vw - 50px - 16px);
+  --border-width: 1px;
+  --border-adjusted-border-radius: calc(2lh - 2 * var(--border-width));
+  border: var(--border-width) solid #ffffff33;
   background-color: #00250475;
   backdrop-filter: blur(25px);
   align-content: center;
-  border: 1px solid #ffffff33;
   position: relative;
   line-height: 1em;
   border-radius: 2lh;

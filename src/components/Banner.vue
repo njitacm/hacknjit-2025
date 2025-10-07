@@ -8,11 +8,13 @@
         <TheCountdown class="countdown" />
       </div>
     </div>
-    <div class="view-hint" ref="viewHint">
-      <span>View last year's photos</span>
+    <div class="view-hint">
+      <RouterLink :to="{ hash: '#Past-Pics' }" class="router-link">View last year's photos</RouterLink>
       <br />
       <br />
-      <img src="../assets/down_arrow.svg" style="width: 25px; height: 25px" />
+      <RouterLink :to="{ hash: '#Past-Pics' }">
+        <img src="../assets/down_arrow.svg" style="width: 25px; height: 25px" />
+      </RouterLink>
     </div>
   </div>
 </template>
@@ -89,6 +91,11 @@ export default {
   bottom: 32px;
   position: absolute;
   align-content: center;
+}
+
+.view-hint .router-link {
+  color: white;
+  text-decoration: none;
 }
 
 @media(max-width: 1000px) {

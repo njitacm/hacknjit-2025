@@ -21,8 +21,8 @@
 
 <script>
 import { useVueform, Vueform } from '@vueform/vueform'
-import schoolsJson from '../assets/schools.json'
-import countriesJson from '../assets/countries.json'
+import schoolsJson from '../data/schools.json'
+import countriesJson from '../data/countries.json'
 
 export default {
   mixins: [Vueform],
@@ -108,7 +108,6 @@ export default {
             first_name: {
               label: "First Name",
               type: 'text',
-              placeholder: 'First name',
               columns: {
                 container: 6,
                 label: 12,
@@ -123,7 +122,6 @@ export default {
             last_name: {
               label: "Last Name",
               type: 'text',
-              placeholder: 'Last name',
               columns: {
                 container: 6,
                 label: 12,
@@ -144,7 +142,6 @@ export default {
           schema: {
             preferred_name: {
               type: 'text',
-              placeholder: 'Preferred name',
               columns: {
                 label: 12,
                 wrapper: 12,
@@ -166,12 +163,10 @@ export default {
             'max:100',
           ],
           fieldName: 'age',
-          placeholder: 'Age',
         },
         phone: {
           label: "Phone Number",
           type: 'phone',
-          placeholder: 'Phone',
           rules: [
             'required',
           ],
@@ -188,7 +183,6 @@ export default {
             'max:255',
             'email',
           ],
-          placeholder: 'Email',
           fieldName: 'Email',
           description: 'School email preferred.',
         },
@@ -199,7 +193,6 @@ export default {
           native: false,
           inputType: 'search',
           autocomplete: 'enabled',
-          placeholder: 'Country of Residence',
           items: countriesJson,
           rules: [
             'required',
@@ -212,7 +205,6 @@ export default {
           native: false,
           inputType: 'search',
           autocomplete: 'enabled',
-          placeholder: 'University',
           items: schoolsJson,
           rules: [
             'required',
@@ -618,7 +610,6 @@ export default {
           type: 'text',
           label: 'LinkedIn Account URL',
           inputType: 'url',
-          placeholder: 'https://www.linkedin.com/in/YOURUSER/',
         },
         divider_5: {
           type: 'static',
@@ -643,7 +634,7 @@ export default {
 .vf-registration *:before,
 .vf-registration *:after,
 .vf-registration:root {
-  --vf-primary: var(--main-bg-color);
+  --vf-primary: #07bf9b;
   --vf-primary-darker: #06ac8b;
   --vf-color-on-primary: #ffffff;
   --vf-danger: #ef4444;
@@ -672,7 +663,7 @@ export default {
   --vf-dark-900: #191919;
   --vf-ring-width: 2px;
   --vf-ring-color: #07bf9b66;
-  --vf-link-color: var(--vf-primary);
+  --vf-link-color: var(--vf-color-success);
   --vf-link-decoration: underline;
   --vf-font-size: 1rem;
   --vf-font-size-sm: 0.875rem;
@@ -832,7 +823,6 @@ export default {
   --vf-color-input-danger: var(--vf-gray-800);
   --vf-color-input-success: var(--vf-gray-800);
   --vf-color-disabled: var(--vf-gray-400);
-  --vf-color-placeholder: var(--vf-gray-300);
   --vf-color-passive: var(--vf-gray-700);
   --vf-color-muted: var(--vf-gray-500);
   --vf-color-floating: var(--vf-gray-500);
@@ -972,5 +962,9 @@ export default {
 .form-submitted p {
   font-size: var(--vf-font-size);
   margin-bottom: 24px;
+}
+
+a {
+
 }
 </style>

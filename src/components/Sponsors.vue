@@ -1,11 +1,13 @@
 <template>
-  <div ref="sectionRef" class="component-container" id="Sponsors">
+  <div ref="sectionRef" class="Sponsors component-container page-side-padding" id="Sponsors">
     <h1 class="title">Our Sponsors</h1>
-    <div class="sponsors-container">
-      <div class="sponsor-category">
-        <div class="sponsor-item" v-for="(sponsor, index) in sponsors.bronze" :key="index">
-          <a :href="sponsor.link" :title="sponsor.name" target="_blank">
-            <img :src="sponsor.imgSrc" :alt="sponsor.imgAlt" class="sponsor-image" />
+    <div class="container">
+      <div v-for="(sponsors, category, index1) in sponsors" :key="index1" class="category-container">
+        <h2 v-if="sponsors.length">{{ category.at(0).toUpperCase() + category.substring(1) }}</h2>
+        <div class="category-sponsors-container">
+          <a v-for="(sponsor, index2) in sponsors" :key="index2" :href="sponsor.link" :title="sponsor.name" class="sponsor-item"
+            target="_blank">
+            <img :src="sponsor.imgSrc" :alt="sponsor.imgAlt" class="image" />
           </a>
         </div>
       </div>
@@ -43,44 +45,47 @@ onBeforeUnmount(() => {
   if (sectionRef.value) unobserve(sectionRef.value);
 });
 
-const showSponsors = ref(true);
-
-function toggleSponsors() {
-  this.showSponsors.value = !this.showSponsors.value;
-}
 </script>
 
 <style scoped>
-.sponsor-category {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 4rem;
+.category-container {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
 }
 
-div.sponsor-item {
-  height: 100%;
-  width: 40%;
-  padding: 16px;
-  height: 320px;
+.category-sponsors-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.sponsor-item {
+  max-width: 500px;
+  flex-basis: 200px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  padding: 16px;
+  align-content: center;
   background: #B7EBDA;
   border-radius: 8px;
 }
 
-.sponsor-image {
-  width: 100%;
+.image {
+  max-height: 100%;
+  max-width: 100%;
   object-fit: contain;
   filter: brightness(0.95);
   transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-.sponsor-image:hover {
-  transform: scale(1.05);
-  filter: brightness(1.2);
+@media(hover: hover) and (pointer: fine) {
+  .sponsor-item:hover .image {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+  }
 }
 
 @media (max-width: 768px) {

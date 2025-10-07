@@ -11,7 +11,7 @@
 
 <script>
 import TheFAQ from "../components/TheFAQ.vue";
-import TheSponsors from "../components/TheSponsors.vue";
+import TheSponsors from "../components/Sponsors.vue";
 import Modal from "../components/Modal.vue";
 import Banner from "../components/Banner.vue";
 import Tracks from "../components/Tracks.vue";

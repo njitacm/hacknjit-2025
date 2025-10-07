@@ -14,6 +14,6 @@ export default {
             "link": "https://www.merck.com/"
         }
     ],
-    "silver": [ ],
-    "gold": [ ]
+    // "silver": [ ],
+    // "gold": [ ]
 };

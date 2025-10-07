@@ -1,7 +1,7 @@
 <!-- Registration.vue -->
 <template>
-  <Vueform v-if="response == -1" v-bind="vueform" @success="handleResponse" />
-  <div v-else-if="response == 200" class="form-submitted">
+  <Vueform v-if="response.status == -1" v-bind="vueform" @success="handleResponse" />
+  <div v-else-if="response.status == 200" class="form-submitted">
     <h1>Successfully Registered!</h1>
     <p>Thank you for registering for HackNJIT 2025. We’ll be in touch soon!</p>
     <RouterLink to="/" class="nav-link">
@@ -28,8 +28,10 @@ export default {
   mixins: [Vueform],
   setup: useVueform,
   data: () => ({
-    response: -1,
-    vueform: {
+    response: {
+      status: -1,
+    },
+    vueform:{
       size: 'md',
       displayErrors: true,
       endpoint: '/api/register',
@@ -41,25 +43,25 @@ export default {
       validateOn: 'step|change',
       steps: {
         page0: {
-          label: 'Personal Information',
-          elements: [
-            'HackNJIT Registration',
-            'divider',
-            'container',
-            'preferred_name_container',
-            'age',
-            'phone',
-            'email',
-            'country',
-            'uni',
-            'lvlofstudy',
-            'firsthack',
-            'major',
-            'shirtsize',
-            'dietaryrestrictions',
-            'divider_1',
-          ],
-        },
+           label: 'Personal Information',
+           elements: [
+             'HackNJIT Registration',
+             'divider',
+             'container',
+             'preferred_name_container',
+             'age',
+             'phone',
+             'email',
+             'country',
+             'uni',
+             'lvlofstudy',
+             'firsthack',
+             'major',
+             'shirtsize',
+             'dietaryrestrictions',
+             'divider_1',
+           ],
+         },
         page1: {
           label: 'MLH Agreements',
           elements: [
@@ -104,6 +106,7 @@ export default {
           type: 'group',
           schema: {
             first_name: {
+              label: "First Name",
               type: 'text',
               placeholder: 'First name',
               columns: {
@@ -118,6 +121,7 @@ export default {
               ],
             },
             last_name: {
+              label: "Last Name",
               type: 'text',
               placeholder: 'Last name',
               columns: {
@@ -135,6 +139,7 @@ export default {
           description: 'This must be your legal name.',
         },
         preferred_name_container: {
+          label: "Preferred Name",
           type: 'group',
           schema: {
             preferred_name: {
@@ -153,6 +158,7 @@ export default {
           description: '(Optional) Your preferred name.',
         },
         age: {
+          label: "Age",
           type: 'text',
           inputType: 'number',
           rules: [
@@ -163,6 +169,7 @@ export default {
           placeholder: 'Age',
         },
         phone: {
+          label: "Phone Number",
           type: 'phone',
           placeholder: 'Phone',
           rules: [
@@ -173,6 +180,7 @@ export default {
           unmask: true,
         },
         email: {
+          label: "Email",
           type: 'text',
           inputType: 'email',
           rules: [
@@ -185,6 +193,7 @@ export default {
           description: 'School email preferred.',
         },
         country: {
+          label: "Country",
           type: 'select',
           search: true,
           native: false,
@@ -195,9 +204,9 @@ export default {
           rules: [
             'required',
           ],
-          default: 'United States',
         },
         uni: {
+          label: "University",
           type: 'select',
           search: true,
           native: false,
@@ -211,6 +220,7 @@ export default {
           strict: false,
         },
         lvlofstudy: {
+          label: 'Highest Level of Study',
           type: 'radiogroup',
           items: [
             {
@@ -242,12 +252,12 @@ export default {
               label: 'I’m not currently a student',
             },
           ],
-          label: 'Highest Level of Study ',
           rules: [
             'required',
           ],
         },
         firsthack: {
+          label: 'Is this your first Hackathon?',
           type: 'radiogroup',
           items: [
             {
@@ -259,12 +269,12 @@ export default {
               label: 'No (Welcome back!)',
             },
           ],
-          label: 'Is this your first Hackathon?',
           rules: [
             'required',
           ],
         },
         major: {
+          label: 'Major',
           type: 'radiogroup',
           items: [
             {
@@ -336,12 +346,12 @@ export default {
               label: 'Other',
             },
           ],
-          label: 'Major',
           rules: [
             'required',
           ],
         },
         shirtsize: {
+          label: 'Unisex T-Shirt Size',
           type: 'radiogroup',
           items: [
             {
@@ -369,12 +379,12 @@ export default {
               label: 'XXL',
             },
           ],
-          label: 'Unisex T-Shirt Size',
           rules: [
             'required',
           ],
         },
         dietaryrestrictions: {
+          label: 'Dietary Restrictions (Select all that apply)',
           type: 'checkboxgroup',
           items: [
             {
@@ -398,10 +408,6 @@ export default {
               label: 'Gluten-free',
             },
           ],
-          label: 'Dietary Restrictions ',
-          rules: [
-            'required',
-          ],
         },
         h1: {
           type: 'static',
@@ -413,7 +419,7 @@ export default {
           tag: 'hr',
         },
         mlh_checkbox_0: {
-          label: 'MLH Terms and Conditions',
+          label: 'MLH Code of Conduct',
           type: 'checkbox',
           text: 'I have read and agree to the <a href=https://static.mlh.io/docs/mlh-code-of-conduct.pdf>MLH Code of Conduct</a>',
           rules: [
@@ -423,12 +429,13 @@ export default {
         mlh_checkbox_1: {
           label: 'MLH Terms and Conditions',
           type: 'checkbox',
-          text: 'I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and MLH administration in-line with the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>. I further agree to the mlh_checkbox_0 of both the <a href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md">MLH Contest Terms and Conditions</a>  and the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>.',
+          text: 'I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and MLH administration in-line with the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>. I further agree to the terms of both the <a href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md">MLH Contest Terms and Conditions</a>  and the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>.',
           rules: [
             'accepted',
           ],
         },
         mlh_checkbox_2: {
+          label: 'MLH Email Policy',
           type: 'checkbox',
           text: '(Optional) I authorize MLH to send me occasional emails about relevant events, career opportunities, and community announcements.',
         },

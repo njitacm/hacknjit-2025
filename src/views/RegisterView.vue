@@ -24,12 +24,14 @@ export default {
 
 <style>
 .registration-container {
+  --top-offset: 80px;
   width: 75%;
   height: 100%;
   background-color: white;
   padding: 16px;
   margin: auto;
-  top: 80px;
+  margin-bottom: var(--top-offset);
+  top: var(--top-offset);
   position: relative;
   color: black;
   border-radius: 8px;

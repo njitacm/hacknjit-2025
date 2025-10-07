@@ -1,15 +1,15 @@
 <template>
-  <div class="component-container" id="FAQ">
+  <div class="component-container" id="FAQ" ref="sectionRef">
     <h1>FAQ</h1>
-    <Accordion class="faq-container"> 
-      <div class="faq-topic-container" v-for="(topic_faqs, topic) in faqs"> 
-        <h2 class="faq-topic">{{topic}}</h2>
-          <AccordionPanel v-for="(faq, index) in topic_faqs" :key="faq.Question" :value="faq.Answer">
-            <AccordionHeader>{{ faq.Question }}</AccordionHeader>
-            <AccordionContent>
-              <p class="m-0">{{ faq.Answer }}</p>
-            </AccordionContent>
-          </AccordionPanel>
+    <Accordion class="faq-container">
+      <div class="faq-topic-container" v-for="(topic_faqs, topic) in faqs">
+        <h2 class="faq-topic">{{ topic }}</h2>
+        <AccordionPanel v-for="(faq, index) in topic_faqs" :key="faq.Question" :value="faq.Answer">
+          <AccordionHeader>{{ faq.Question }}</AccordionHeader>
+          <AccordionContent>
+            <p class="m-0">{{ faq.Answer }}</p>
+          </AccordionContent>
+        </AccordionPanel>
       </div>
     </Accordion>
   </div>
@@ -35,6 +35,12 @@ export default {
     return {
       faqs: faqs
     };
+  },
+  mounted() {
+    observe(this.$refs.sectionRef);
+  },
+  unmounted() {
+    unobserve(this.$refs.sectionRef);
   }
 };
 
@@ -112,8 +118,7 @@ export default {
   --p-accordion-header-active-hover-color: #40BB4A;
 }
 
-.p-accordionpanel-active {
-}
+.p-accordionpanel-active {}
 
 .p-accordionpanel-active button {
   color: #17641E;
@@ -130,15 +135,19 @@ h2.faq-topic {
     font-size: 2rem;
     margin-bottom: 16px;
   }
+
   h2.faq-topic {
     font-size: 1.5rem;
   }
+
   button.p-accordionheader {
     font-size: 1rem;
   }
+
   .faq-container .faq-topic-container {
     flex: 100%;
   }
+
   .faq-container {
     width: 100vw;
   }
@@ -149,7 +158,7 @@ h2.faq-topic {
 /* I don't know why but this needs to be global to work */
 .p-accordioncontent-content,
 .p-accordioncontent .p-accordioncontent-content {
-  border: none; 
+  border: none;
   border-style: none;
   border-color: none;
 }

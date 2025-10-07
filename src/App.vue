@@ -26,6 +26,14 @@ export default {
 
 <style>
 :root {
+  --hacknjit-primary-transparent: #4a3728e5;
+  --hacknjit-primary: #4a3728;
+  --hacknjit-secondary: #8B6B4F;
+  --hacknjit-tertiary: #57cc99;
+  --hacknjit-fourth: #5BA36A;
+  --hacknjit-fifth: #3FA7A3;
+  --hacknjit-sixth: #6EC1E4;
+
   --main-bg-color: #274029;
   --main-fg-color: #8f5f49;
   --text-color: white;
@@ -135,6 +143,11 @@ main {
 }
 
 .body-container {
-  background-image: linear-gradient(to bottom, black, var(--main-bg-color));
+  background-image: linear-gradient(to bottom, black, var(--hacknjit-sixth),
+                                                      var(--hacknjit-fifth),
+                                                      var(--hacknjit-fourth),
+                                                      var(--hacknjit-tertiary),
+                                                      var(--hacknjit-secondary),
+                                                      var(--hacknjit-primary));
 }
 </style>

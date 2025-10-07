@@ -23,7 +23,6 @@ export default createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
-    console.log(to);
     if (savedPosition) {
       return savedPosition;
     }

@@ -1,7 +1,7 @@
 <template>
   <main class="body-container">
-    <MLHBanner />
     <NavBar />
+    <MLHBanner />
     <RouterView></RouterView>
     <TheFooter />
   </main>

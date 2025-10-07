@@ -24,14 +24,17 @@ export default {
 
 <style>
 .registration-container {
-  all: initial;
   width: 75%;
-  margin: 7.5% auto;
+  height: 100%;
   background-color: white;
   padding: 16px;
+  margin: auto;
+  top: 80px;
+  position: relative;
   color: black;
   border-radius: 8px;
   text-align: unset;
+  display: block;
 }
 
 .vf-registration p,

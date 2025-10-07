@@ -59,7 +59,7 @@ const navItems = [
   // required: label, optional: hash, path
   { label: "Home" },
   { label: "Past Pics", hash: "#Past-Pics" },
-  // { label: 'Sponsors', hash: '#Sponsors' },
+  { label: 'Sponsors', hash: '#Sponsors' },
   { label: "FAQ", hash: '#FAQ' },
   // { label: 'Contact', hash: '#Contact' },
   { label: "Register", path: "/registration" },

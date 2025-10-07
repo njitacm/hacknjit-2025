@@ -24,14 +24,19 @@ export default {
 
 <style>
 .RegisterView {
-  all: initial;
+  --top-offset: 80px;
   width: 75%;
-  margin: 7.5% auto;
+  height: 100%;
   background-color: white;
   padding: 16px;
+  margin: auto;
+  margin-bottom: var(--top-offset);
+  top: var(--top-offset);
+  position: relative;
   color: black;
   border-radius: 8px;
   text-align: unset;
+  display: block;
 }
 
 .vf-registration p,

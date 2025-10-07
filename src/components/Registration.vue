@@ -31,7 +31,7 @@ export default {
     response: {
       status: -1,
     },
-    vueform:{
+    vueform: {
       size: 'md',
       displayErrors: true,
       endpoint: '/api/register',
@@ -43,24 +43,24 @@ export default {
       validateOn: 'step|change',
       steps: {
         page0: {
-           label: 'Personal Information',
-           elements: [
-             'HackNJIT Registration',
-             'divider',
-             'container',
-             'preferred_name_container',
-             'email',
-             'phone',
-             'age',
-             'country',
-             'uni',
-             'major',
-             'otherMajor',
-             'container2',
-             'container3',
-             'divider_1',
-           ],
-         },
+          label: 'Personal Information',
+          elements: [
+            'HackNJIT Registration',
+            'divider',
+            'container',
+            'preferred_name_container',
+            'email',
+            'phone',
+            'age',
+            'country',
+            'uni',
+            'major',
+            'otherMajor',
+            'container2',
+            'container3',
+            'divider_1',
+          ],
+        },
         page1: {
           label: 'MLH Agreements',
           elements: [
@@ -176,9 +176,9 @@ export default {
           inputType: 'number',
           columns: {
             lg: {
-                container: 3,
-                label: 12,
-                wrapper: 12,
+              container: 3,
+              label: 12,
+              wrapper: 12,
             },
           },
           rules: [
@@ -197,9 +197,9 @@ export default {
           ],
           columns: {
             lg: {
-                container: 3,
-                label: 12,
-                wrapper: 12,
+              container: 3,
+              label: 12,
+              wrapper: 12,
             },
           },
           fieldName: 'Phone',
@@ -221,9 +221,9 @@ export default {
           ],
           columns: {
             lg: {
-                container: 6,
-                label: 12,
-                wrapper: 12,
+              container: 6,
+              label: 12,
+              wrapper: 12,
             },
           },
           fieldName: 'Email (School email preferred.',
@@ -233,9 +233,9 @@ export default {
           placeholder: 'Country of Residence',
           columns: {
             lg: {
-                container: 6,
-                label: 12,
-                wrapper: 12,
+              container: 6,
+              label: 12,
+              wrapper: 12,
             },
           },
           floating: false,
@@ -254,9 +254,9 @@ export default {
           placeholder: 'University',
           columns: {
             lg: {
-                container: 6,
-                label: 12,
-                wrapper: 12,
+              container: 6,
+              label: 12,
+              wrapper: 12,
             },
           },
           floating: false,
@@ -276,9 +276,9 @@ export default {
           type: 'select',
           columns: {
             lg: {
-                container: 6,
-                label: 12,
-                wrapper: 12,
+              container: 6,
+              label: 12,
+              wrapper: 12,
             },
           },
           items: [
@@ -324,7 +324,7 @@ export default {
             },
             {
               value: 'Mathematics or Statistics',
-              label: 'Mathematics or Statistics', 
+              label: 'Mathematics or Statistics',
             },
             {
               value: 'A natural science',
@@ -361,15 +361,15 @@ export default {
           label: "Other Major",
           columns: {
             lg: {
-                container: 6,
-                label: 12,
-                wrapper: 12,
+              container: 6,
+              label: 12,
+              wrapper: 12,
             },
           },
           placeholder: "Other Major",
           floating: false,
           fieldName: 'Other Major',
-          conditions: [[ 'major', 'Other' ]],
+          conditions: [['major', 'Other']],
           rules: [
             'required',
             'max:255',
@@ -395,9 +395,9 @@ export default {
               view: "tabs",
               columns: {
                 lg: {
-                    container: 6,
-                    label: 12,
-                    wrapper: 12,
+                  container: 6,
+                  label: 12,
+                  wrapper: 12,
                 },
               },
               rules: [
@@ -436,9 +436,9 @@ export default {
               view: "tabs",
               columns: {
                 lg: {
-                    container: 6,
-                    label: 12,
-                    wrapper: 12,
+                  container: 6,
+                  label: 12,
+                  wrapper: 12,
                 },
               },
               rules: [
@@ -477,9 +477,9 @@ export default {
               ],
               columns: {
                 lg: {
-                    container: 6,
-                    label: 12,
-                    wrapper: 12,
+                  container: 6,
+                  label: 12,
+                  wrapper: 12,
                 },
               },
             },
@@ -518,9 +518,9 @@ export default {
               ],
               columns: {
                 lg: {
-                    container: 6,
-                    label: 12,
-                    wrapper: 12,
+                  container: 6,
+                  label: 12,
+                  wrapper: 12,
                 },
               },
               rules: [
@@ -1061,18 +1061,6 @@ export default {
   --vf-slider-tooltip-arrow-size-lg: 0.3125rem;
 }
 
-.registration-container {
-  padding: 3% !important;
-  width: 90% !important;
-}
-
-@media (min-width: 640px) { 
-  .registration-container {
-    width: 75% !important;
-  }
-}
-
-
 .vf-description {
   text-align: left;
 }
@@ -1095,8 +1083,8 @@ export default {
   font-size: var(--vf-font-size);
   margin-bottom: 24px;
 }
+
 .vf-element-layout-outer-wrapper {
   margin: 4px;
 }
-
 </style>

@@ -1,7 +1,7 @@
 <!-- values that need to be manually depending on nav size adjusted are denoted with `TOCHANGE` -->
 <template>
   <header v-on="mouseEventListeners" @touchend.passive="isTouch ? onTouch() : null" ref="header"
-    :class="{ active: isNavActive, visible: showNav }">
+    :class="{ active: isNavActive, visible: true }">
     <nav :style="{ width: navSize.width, height: navSize.height }">
       <ul ref="ul">
         <!-- visible even when nav is active -->
@@ -59,7 +59,7 @@ const navItems = [
   // required: label, optional: hash, path
   { label: "Home" },
   { label: "Past Pics", hash: "#Past-Pics" },
-  // { label: 'Sponsors', hash: '#Sponsors' },
+  { label: 'Sponsors', hash: '#Sponsors' },
   { label: "FAQ", hash: '#FAQ' },
   // { label: 'Contact', hash: '#Contact' },
   { label: "Register", path: "/registration" },
@@ -322,14 +322,14 @@ nav {
   --border-width: 1px;
   --border-adjusted-border-radius: calc(2lh - 2 * var(--border-width));
   border: var(--border-width) solid #ffffff33;
-  background-color: #00250475;
+  background-color: #00250435;
   backdrop-filter: blur(25px);
   align-content: center;
   position: relative;
   line-height: 1em;
   border-radius: 2lh;
   overflow: hidden;
-  transition: width 300ms ease, height 300ms ease;
+  transition: width 750ms ease, height 500ms ease;
   justify-self: center;
 }
 

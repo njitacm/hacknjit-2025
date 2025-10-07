@@ -1,5 +1,5 @@
 <template>
-  <div class="Banner" :style="{ background: gradient }">
+  <div class="Banner" id="HackNJIT" ref="sectionRef" :style="{ background: gradient }">
     <!-- <NotifSignup id="NotifSignup" /> -->
     <div class="title-super-container">
       <div class="title-container">
@@ -20,6 +20,8 @@
 <script>
 import NotifSignup from "./NotifSignup.vue";
 import TheCountdown from "./TheCountdown.vue";
+import { useIntersectionObserver } from '../composables/useIntersectionObserver';
+const { observe, unobserve } = useIntersectionObserver();
 
 export default {
   props: {
@@ -28,6 +30,12 @@ export default {
   components: {
     NotifSignup,
     TheCountdown
+  },
+  mounted() {
+    observe(this.$refs.sectionRef);
+  },
+  beforeUnmount() {
+    unobserve(this.$refs.sectionRef);
   }
 }
 </script>

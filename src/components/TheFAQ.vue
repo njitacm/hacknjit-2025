@@ -1,5 +1,5 @@
 <template>
-  <div class="component-container" id="FAQ">
+  <div class="component-container" id="FAQ" ref="sectionRef">
     <h1>FAQ</h1>
     <Accordion class="faq-container"> 
       <div class="faq-topic-container" v-for="(topic_faqs, topic) in faqs"> 
@@ -15,29 +15,26 @@
   </div>
 </template>
 
-<script>
-import faqs from "../data/faq.json"
+
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import faqs from '../data/faq.json';
 import Accordion from 'primevue/accordion';
 import AccordionPanel from 'primevue/accordionpanel';
 import AccordionHeader from 'primevue/accordionheader';
 import AccordionContent from 'primevue/accordioncontent';
 import { useIntersectionObserver } from '../composables/useIntersectionObserver';
+
+const sectionRef = ref(null);
 const { observe, unobserve } = useIntersectionObserver();
+onMounted(() => {
+  if (sectionRef.value) observe(sectionRef.value);
+});
+onBeforeUnmount(() => {
+  if (sectionRef.value) unobserve(sectionRef.value);
+});
 
-export default {
-  components: {
-    Accordion,
-    AccordionPanel,
-    AccordionHeader,
-    AccordionContent
-  },
-  data() {
-    return {
-      faqs: faqs
-    };
-  }
-};
-
+const faqList = ref(faqs);
 </script>
 
 <style scoped>
@@ -46,6 +43,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-items: center;
+
 }
 
 .TheFAQ button {
@@ -53,7 +51,6 @@ export default {
 }
 
 .p-accordion {
-  color: #274029;
   width: 100%;
 }
 
@@ -79,7 +76,6 @@ export default {
 .p-accordion p,
 .p-accordion button {
   border: none;
-  color: #274029;
   font-size: 1em;
   text-align: left;
   transition: all 0.25s ease-out;
@@ -110,6 +106,8 @@ export default {
 .p-accordion {
   --p-accordion-header-active-color: #40BB4A;
   --p-accordion-header-active-hover-color: #40BB4A;
+;
+
 }
 
 .p-accordionpanel-active {

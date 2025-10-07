@@ -13,45 +13,6 @@ import TheFooter from "./components/TheFooter.vue";
 import Banner from "./components/Banner.vue";
 import NavBar from "./components/NavBar.vue";
 
-/*
-TODO:
-* Mission statement
-Tracks:
-* Each page for tracks
-* Each track
-* Climate - solar punk
-* Conservation - endangered species, biodiversity, oceanography, trash reef
-* Public Health - medical, DNA strand, polymer chain, chemical, data analysis, hospital
-
-TODO:
-* Built-in registration form
-* Gradient background
-* Waiting for graphics
-* Standard aspect ratio for images
-* Add tracks
-* Main site: pull events from sheets
-
-TODO: NAV BAR
-* About
-  * Student chapter of ACM [link to main website] and YWCC
-* Schedule
-* Team?
-* Contact
-* Registration
-* FAQ
-* Sponsors
-
-TODO: Double check FAQs
-TODO: Log-in
-
-Title banner:
-* Universal-style vector GIF globe scroll animation, HackNJIT text rotates behind globe and "Hack the world" appears in its place
-* Then it scrolls up
-* Location / date would stay with the globe
-* We need animators
-
-*/
-
 export default {
   name: "HackNJIT",
   components: {

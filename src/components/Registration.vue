@@ -1,7 +1,7 @@
 <!-- Registration.vue -->
 <template>
-  <Vueform v-if="response.data == -1" v-bind="vueform" @success="handleResponse" />
-  <div v-else-if="response.data == 200" class="form-submitted">
+  <Vueform v-if="response == -1" v-bind="vueform" @success="handleResponse" />
+  <div v-else-if="response == 200" class="form-submitted">
     <h1>Successfully Registered!</h1>
     <p>Thank you for registering for HackNJIT 2025. We’ll be in touch soon!</p>
     <RouterLink to="/" class="nav-link">
@@ -17,6 +17,8 @@
     </RouterLink>
   </div>
 </template>
+
+
 <script>
 import { useVueform, Vueform } from '@vueform/vueform'
 import schoolsJson from '../assets/schools.json'
@@ -411,6 +413,7 @@ export default {
           tag: 'hr',
         },
         mlh_checkbox_0: {
+          label: 'MLH Terms and Conditions',
           type: 'checkbox',
           text: 'I have read and agree to the <a href=https://static.mlh.io/docs/mlh-code-of-conduct.pdf>MLH Code of Conduct</a>',
           rules: [
@@ -418,6 +421,7 @@ export default {
           ],
         },
         mlh_checkbox_1: {
+          label: 'MLH Terms and Conditions',
           type: 'checkbox',
           text: 'I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and MLH administration in-line with the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>. I further agree to the mlh_checkbox_0 of both the <a href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md">MLH Contest Terms and Conditions</a>  and the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>.',
           rules: [

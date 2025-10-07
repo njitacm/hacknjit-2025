@@ -49,16 +49,15 @@ export default {
              'divider',
              'container',
              'preferred_name_container',
-             'age',
-             'phone',
              'email',
+             'phone',
+             'age',
              'country',
              'uni',
-             'lvlofstudy',
-             'firsthack',
              'major',
-             'shirtsize',
-             'dietaryrestrictions',
+             'otherMajor',
+             'container2',
+             'container3',
              'divider_1',
            ],
          },
@@ -155,12 +154,22 @@ export default {
           description: '(Optional) Your preferred name.',
         },
         age: {
+          name: "age",
           label: "Age",
+          placeholder: 'Age',
+          floating: false,
           type: 'text',
           inputType: 'number',
+          columns: {
+                container: 3,
+                label: 12,
+                wrapper: 12,
+          },
           rules: [
             'required',
             'max:100',
+            'min:18',
+            'numeric',
           ],
           fieldName: 'age',
         },
@@ -170,12 +179,21 @@ export default {
           rules: [
             'required',
           ],
+          columns: {
+                container: 3,
+                label: 12,
+                wrapper: 12,
+          },
           fieldName: 'Phone',
+          placeholder: 'Phone',
+          floating: false,
           allowIncomplete: true,
           unmask: true,
         },
         email: {
           label: "Email",
+          placeholder: 'Email',
+          floating: false,
           type: 'text',
           inputType: 'email',
           rules: [
@@ -183,11 +201,22 @@ export default {
             'max:255',
             'email',
           ],
-          fieldName: 'Email',
-          description: 'School email preferred.',
+          columns: {
+                container: 6,
+                label: 12,
+                wrapper: 12,
+          },
+          fieldName: 'Email (School email preferred.',
         },
         country: {
-          label: "Country",
+          label: "Country of Residence",
+          placeholder: 'Country of Residence',
+          columns: {
+                container: 6,
+                label: 12,
+                wrapper: 12,
+          },
+          floating: false,
           type: 'select',
           search: true,
           native: false,
@@ -200,6 +229,13 @@ export default {
         },
         uni: {
           label: "University",
+          placeholder: 'University',
+          columns: {
+                container: 6,
+                label: 12,
+                wrapper: 12,
+          },
+          floating: false,
           type: 'select',
           search: true,
           native: false,
@@ -211,63 +247,14 @@ export default {
           ],
           strict: false,
         },
-        lvlofstudy: {
-          label: 'Highest Level of Study',
-          type: 'radiogroup',
-          items: [
-            {
-              value: 'Undergraduate University (2 year - community college or similar)',
-              label: 'Undergraduate University (2 year - community college or similar)',
-            },
-            {
-              value: 'Undergraduate University (3+ year)',
-              label: 'Undergraduate University (3+ year)',
-            },
-            {
-              value: 'Graduate University (Masters, Professional, Doctoral, etc)',
-              label: 'Graduate University (Masters, Professional, Doctoral, etc)',
-            },
-            {
-              value: 'Code School / Bootcamp',
-              label: 'Code School / Bootcamp',
-            },
-            {
-              value: 'Other Vocational / Trade Program or Apprenticeship',
-              label: 'Other Vocational / Trade Program or Apprenticeship',
-            },
-            {
-              value: 'Prefer not to answer',
-              label: 'Prefer not to answer',
-            },
-            {
-              value: 'I’m not currently a student',
-              label: 'I’m not currently a student',
-            },
-          ],
-          rules: [
-            'required',
-          ],
-        },
-        firsthack: {
-          label: 'Is this your first Hackathon?',
-          type: 'radiogroup',
-          items: [
-            {
-              value: 'Yes',
-              label: "Yes (We're honored to be your first hackathon experience!)",
-            },
-            {
-              value: 'No',
-              label: 'No (Welcome back!)',
-            },
-          ],
-          rules: [
-            'required',
-          ],
-        },
         major: {
           label: 'Major',
-          type: 'radiogroup',
+          type: 'select',
+          columns: {
+                container: 6,
+                label: 12,
+                wrapper: 12,
+          },
           items: [
             {
               value: 'Business & Information Systems (BIS)',
@@ -310,96 +297,201 @@ export default {
               label: 'Web & Information Systems (WIS)',
             },
             {
-              value: 'Another engineering discipline (such as civil, electrical, mechanical, etc.)',
-              label: 'Another engineering discipline (such as civil, electrical, mechanical, etc.)',
-            },
-            {
-              value: 'A natural science (such as biology, chemistry, physics, etc.)',
-              label: 'A natural science (such as biology, chemistry, physics, etc.)',
-            },
-            {
               value: 'Mathematics or Statistics',
-              label: 'Mathematics or Statistics',
+              label: 'Mathematics or Statistics', 
             },
             {
-              value: 'Business Discipline (such as accounting, finance, marketing, etc.)',
-              label: 'Business Discipline (such as accounting, finance, marketing, etc.)',
+              value: 'A natural science',
+              label: 'A natural science (E.g. biology, chemistry, physics, etc.)',
             },
             {
-              value: 'Health Science (such as nursing, pharmacy, radiology, etc.)',
-              label: 'Health Science (such as nursing, pharmacy, radiology, etc.)',
+              value: 'Another engineering discipline',
+              label: 'Another engineering discipline (E.g. civil, electrical, mechanical, etc.)',
             },
             {
-              value: 'Fine arts or performing arts (such as graphic design, music, studio art, etc.)',
-              label: 'Fine arts or performing arts (such as graphic design, music, studio art, etc.)',
+              value: 'Business Discipline',
+              label: 'Business Discipline (E.g. accounting, finance, marketing, etc.)',
+            },
+            {
+              value: 'Health Science',
+              label: 'Health Science (E.g. nursing, pharmacy, radiology, etc.)',
+            },
+            {
+              value: 'Fine arts or performing arts',
+              label: 'Fine arts or performing arts (E.g. graphic design, music, studio art, etc.)',
             },
             {
               value: 'Other',
               label: 'Other',
             },
           ],
+          view: "blocks",
           rules: [
             'required',
           ],
         },
-        shirtsize: {
-          label: 'Unisex T-Shirt Size',
-          type: 'radiogroup',
-          items: [
-            {
-              value: 'XS',
-              label: 'XS',
-            },
-            {
-              value: 'S',
-              label: 'S',
-            },
-            {
-              value: 'M',
-              label: 'M',
-            },
-            {
-              value: 'L',
-              label: 'L',
-            },
-            {
-              value: 'XL',
-              label: 'XL',
-            },
-            {
-              value: 'XXL',
-              label: 'XXL',
-            },
-          ],
+        otherMajor: {
+          type: "text",
+          label: "Other Major",
+          columns: {
+                container: 6,
+                label: 12,
+                wrapper: 12,
+          },
+          placeholder: "Other Major",
+          floating: false,
+          fieldName: 'Other Major',
+          conditions: [[ 'major', 'Other' ]],
           rules: [
             'required',
+            'max:255',
           ],
         },
-        dietaryrestrictions: {
-          label: 'Dietary Restrictions (Select all that apply)',
-          type: 'checkboxgroup',
-          items: [
-            {
-              value: 'Vegetarian',
-              label: 'Vegetarian',
+
+        container2: {
+          type: "group",
+          schema: {
+            firsthack: {
+              label: 'Is this your first Hackathon?',
+              type: 'radiogroup',
+              items: [
+                {
+                  value: 'Yes',
+                  label: "Yes",
+                },
+                {
+                  value: 'No',
+                  label: 'No',
+                },
+              ],
+              view: "tabs",
+              columns: {
+                    container: 6,
+                    label: 12,
+                    wrapper: 12,
+              },
+              rules: [
+                'required',
+              ],
             },
-            {
-              value: 'Vegan',
-              label: 'Vegan',
+            shirtsize: {
+              label: 'Unisex T-Shirt Size',
+              type: 'radiogroup',
+              items: [
+                {
+                  value: 'XS',
+                  label: 'XS',
+                },
+                {
+                  value: 'S',
+                  label: 'S',
+                },
+                {
+                  value: 'M',
+                  label: 'M',
+                },
+                {
+                  value: 'L',
+                  label: 'L',
+                },
+                {
+                  value: 'XL',
+                  label: 'XL',
+                },
+                {
+                  value: '2XL',
+                  label: '2XL',
+                },
+              ],
+              view: "tabs",
+              columns: {
+                    container: 6,
+                    label: 12,
+                    wrapper: 12,
+              },
+              rules: [
+                'required',
+              ],
             },
-            {
-              value: 'Kosher',
-              label: 'Kosher',
+          },
+        },
+        container3: {
+          type: "group",
+          schema: {
+            dietaryrestrictions: {
+              label: 'Dietary Restrictions (Select all that apply)',
+              type: 'checkboxgroup',
+              items: [
+                {
+                  value: 'Vegetarian',
+                  label: 'Vegetarian',
+                },
+                {
+                  value: 'Vegan',
+                  label: 'Vegan',
+                },
+                {
+                  value: 'Kosher',
+                  label: 'Kosher',
+                },
+                {
+                  value: 'Halal',
+                  label: 'Halal',
+                },
+                {
+                  value: 'Gluten-free',
+                  label: 'Gluten-free',
+                },
+              ],
+              columns: {
+                    container: 6,
+                    label: 12,
+                    wrapper: 12,
+              },
             },
-            {
-              value: 'Halal',
-              label: 'Halal',
+            lvlofstudy: {
+              label: 'Highest Level of Study',
+              type: 'radiogroup',
+              items: [
+                {
+                  value: 'Undergraduate University (2 year - Community college or similar)',
+                  label: 'Undergraduate University (2 year - community college or similar)',
+                },
+                {
+                  value: 'Undergraduate University (3+ year)',
+                  label: 'Undergraduate University (3+ year)',
+                },
+                {
+                  value: 'Graduate University (Masters, Professional, Doctoral, etc)',
+                  label: 'Graduate University (Masters, Professional, Doctoral, etc)',
+                },
+                {
+                  value: 'Code School / Bootcamp',
+                  label: 'Code School / Bootcamp',
+                },
+                {
+                  value: 'Other Vocational / Trade Program or Apprenticeship',
+                  label: 'Other Vocational / Trade Program or Apprenticeship',
+                },
+                {
+                  value: 'Prefer not to answer',
+                  label: 'Prefer not to answer',
+                },
+                {
+                  value: 'I’m not currently a student',
+                  label: 'I’m not currently a student',
+                },
+              ],
+              columns: {
+                    container: 6,
+                    label: 12,
+                    wrapper: 12,
+              },
+              rules: [
+                'required',
+              ],
             },
-            {
-              value: 'Gluten-free',
-              label: 'Gluten-free',
-            },
-          ],
+          },
         },
         h1: {
           type: 'static',
@@ -562,8 +654,8 @@ export default {
               label: 'Other Pacific Islander',
             },
             {
-              value: 'Other (Please Specify)',
-              label: 'Other (Please Specify)',
+              value: 'Other',
+              label: 'Other',
             },
             {
               value: 'Prefer Not to Answer',
@@ -591,8 +683,7 @@ export default {
         },
         resume: {
           type: 'file',
-          label: 'Resume',
-          description: 'Attach your resume as a PDF',
+          label: 'Resume (Attach your resume as a PDF',
           accept: 'pdf,application/pdf',
           rules: [
             'max:10000',
@@ -934,6 +1025,10 @@ export default {
   --vf-slider-tooltip-arrow-size-lg: 0.3125rem;
 }
 
+.registration-container {
+  padding: 3% !important;
+}
+
 .vf-description {
   text-align: left;
 }
@@ -955,6 +1050,9 @@ export default {
 .form-submitted p {
   font-size: var(--vf-font-size);
   margin-bottom: 24px;
+}
+.vf-element-layout-outer-wrapper {
+  margin: 4px;
 }
 
 a {

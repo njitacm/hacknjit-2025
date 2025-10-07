@@ -65,7 +65,7 @@ export default {
 
 <style>
 :root {
-  --main-bg-color: #dab473;
+  --main-bg-color: #274029;
   --main-fg-color: #8f5f49;
   --text-color: white;
   --secondary-bg-color: #3f2b12;
@@ -91,7 +91,7 @@ html {
   text-align: center;
   color: white;
   box-sizing: border-box;
-  background: #274029;
+  background: var(--main-bg-color);
   z-index: -100;
   overflow-x: auto;
   width: 100%;

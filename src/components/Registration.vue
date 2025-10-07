@@ -1,7 +1,7 @@
 <!-- Registration.vue -->
 <template>
-  <Vueform v-if="response == -1" v-bind="vueform" @success="handleResponse" />
-  <div v-else-if="response == 200" class="form-submitted">
+  <Vueform v-if="response.data == -1" v-bind="vueform" @success="handleResponse" />
+  <div v-else-if="response.data == 200" class="form-submitted">
     <h1>Successfully Registered!</h1>
     <p>Thank you for registering for HackNJIT 2025. We’ll be in touch soon!</p>
     <RouterLink to="/" class="nav-link">
@@ -632,7 +632,7 @@ export default {
 .vf-registration *:before,
 .vf-registration *:after,
 .vf-registration:root {
-  --vf-primary: #07bf9b;
+  --vf-primary: var(--main-bg-color);
   --vf-primary-darker: #06ac8b;
   --vf-color-on-primary: #ffffff;
   --vf-danger: #ef4444;
@@ -662,7 +662,7 @@ export default {
   --vf-ring-width: 2px;
   --vf-ring-color: #07bf9b66;
   --vf-link-color: var(--vf-primary);
-  --vf-link-decoration: inherit;
+  --vf-link-decoration: underline;
   --vf-font-size: 1rem;
   --vf-font-size-sm: 0.875rem;
   --vf-font-size-lg: 1rem;

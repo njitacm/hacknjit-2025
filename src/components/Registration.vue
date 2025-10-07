@@ -1,9 +1,9 @@
 <!-- Registration.vue -->
 <template>
-  <Vueform v-if="response.status == -1" v-bind="vueform" @success="handleResponse" />
+  <Vueform v-if="response.status == -1" v-bind="vueform" add-class="vue-form" @success="handleResponse" @error="handleError" />
   <div v-else-if="response.status == 200" class="form-submitted">
     <h1>Successfully Registered!</h1>
-    <p>Thank you for registering for HackNJIT 2025. We’ll be in touch soon!</p>
+    <p>Thank you for registering for HackNJIT 2025. We'll be in touch soon!</p>
     <RouterLink to="/" class="nav-link">
       <button class="vf-btn vf-btn-primary">Return Home</button>
     </RouterLink>
@@ -743,7 +743,10 @@ export default {
   }),
   methods: {
     handleResponse(response, form$) {
-      this.response = response
+      this.response = response;
+    },
+    handleError(error, details, form$) {
+      this.response = error;
     }
   }
 }
@@ -754,12 +757,12 @@ export default {
 .vf-registration *:before,
 .vf-registration *:after,
 .vf-registration:root {
-  --vf-primary: #07bf9b;
-  --vf-primary-darker: #06ac8b;
+  --vf-primary: #058168;
+  --vf-primary-darker: #035f4d;
   --vf-color-on-primary: #ffffff;
-  --vf-danger: #ef4444;
+  --vf-danger: #c03737;
   --vf-danger-lighter: #fee2e2;
-  --vf-success: #10b981;
+  --vf-success: #058168;
   --vf-success-lighter: #d1fae5;
   --vf-gray-50: #f9fafb;
   --vf-gray-100: #f3f4f6;
@@ -1073,6 +1076,10 @@ export default {
   background-color: #eef3f7;
   padding: 8px;
   border-radius: 8px;
+}
+
+.vue-form *, .form-submitted * {
+  font-family: sans-serif;
 }
 
 .form-submitted h1 {

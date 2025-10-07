@@ -58,7 +58,6 @@ export default {};
   
   <style scoped>
 footer {
-  /* background: var(--edge-colors); */
   color: var(--text-color);
   display: flex;
   flex-direction: column;

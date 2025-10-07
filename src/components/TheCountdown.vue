@@ -80,6 +80,7 @@ onMounted(() => {
 
 .countdown {
   font-size: 2em ;
+  white-space: nowrap;
 }
 
 .date {

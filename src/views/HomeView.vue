@@ -1,12 +1,12 @@
 <template>
-  <main class="body-container">
+  <div>
     <!-- <Banner gradient="radial-gradient(yellow, green)" /> -->
     <Banner />
     <!-- <Tracks/> -->
     <PastPics />
     <!-- <TheSponsors /> -->
     <TheFAQ />
-  </main>
+  </div>
 </template>
 
 <script>

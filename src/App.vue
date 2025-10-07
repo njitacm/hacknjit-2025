@@ -88,10 +88,10 @@ html {
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--main-bg-color);
   text-align: center;
   color: white;
   box-sizing: border-box;
-  background: var(--main-bg-color);
   z-index: -100;
   overflow-x: auto;
   width: 100%;
@@ -173,4 +173,7 @@ main {
   gap: 32px;
 }
 
+.body-container {
+  background-image: linear-gradient(to bottom, black, var(--main-bg-color));
+}
 </style>

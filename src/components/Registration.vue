@@ -360,9 +360,11 @@ export default {
           type: "text",
           label: "Other Major",
           columns: {
+            lg: {
                 container: 6,
                 label: 12,
                 wrapper: 12,
+            },
           },
           placeholder: "Other Major",
           floating: false,

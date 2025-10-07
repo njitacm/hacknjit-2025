@@ -129,11 +129,6 @@ button {
   width: calc(100vw - 64px);
 }
 
-main {
-  display: grid;
-  gap: 32px;
-}
-
 .body-container {
   background-image: linear-gradient(to bottom, black, var(--main-bg-color));
 }

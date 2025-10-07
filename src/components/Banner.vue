@@ -5,7 +5,10 @@
       <div class="title-container">
         <h1 class="title">HackNJIT</h1>
         <img src="..\assets\HackNJIT2025\globe-half-of-the-earth.png" class="earth">
-        <TheCountdown class="countdown" />
+        <div class="content">
+          <TheCountdown />
+          <RouterLink to="/registration" class="router-link pill">Register Now</RouterLink>
+        </div>
       </div>
     </div>
     <div class="view-hint">
@@ -80,9 +83,13 @@ export default {
   margin: 0;
 }
 
-.countdown {
+.content {
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 32px;
   position: absolute;
+  display: grid;
+  gap: 16px;
 }
 
 .view-hint {
@@ -92,11 +99,6 @@ export default {
   bottom: 32px;
   position: absolute;
   align-content: center;
-}
-
-.view-hint .router-link {
-  color: white;
-  text-decoration: none;
 }
 
 @media(max-width: 1000px) {

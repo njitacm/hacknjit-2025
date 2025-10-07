@@ -62,7 +62,12 @@ html {
   box-sizing: border-box;
   z-index: -100;
   overflow-x: auto;
-  background: linear-gradient(to bottom, black, var(--main-bg-color));
+  background-image: linear-gradient(to bottom, black, var(--hacknjit-sixth),
+      var(--hacknjit-fifth),
+      var(--hacknjit-fourth),
+      var(--hacknjit-tertiary),
+      var(--hacknjit-secondary),
+      var(--hacknjit-primary));
   width: 100%;
 }
 
@@ -75,6 +80,7 @@ body.modal-open {
   padding: 0;
   font-weight: 500;
   line-height: 1.5em;
+  -webkit-tap-highlight-color: transparent;
 }
 
 p,
@@ -138,12 +144,40 @@ button {
   width: calc(100vw - 64px);
 }
 
-.body-container {
-  background-image: linear-gradient(to bottom, black, var(--hacknjit-sixth),
-                                                      var(--hacknjit-fifth),
-                                                      var(--hacknjit-fourth),
-                                                      var(--hacknjit-tertiary),
-                                                      var(--hacknjit-secondary),
-                                                      var(--hacknjit-primary));
+.router-link {
+  color: white;
+  text-decoration: none;
+}
+
+.pill {
+  --bkg-hov-act: radial-gradient(circle at top, var(--hacknjit-tertiary), transparent),
+    conic-gradient(var(--hacknjit-fourth),
+      var(--hacknjit-fifth) 135deg 225deg,
+      var(--hacknjit-fourth));
+  --bkg: conic-gradient(var(--hacknjit-fourth),
+      var(--hacknjit-fifth) 135deg 225deg,
+      var(--hacknjit-fourth));
+  border-radius: 1000px;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  background: var(--bkg);
+  transition: transform 250ms ease, filter 500ms ease;
+}
+
+@media(hover: hover) and (pointer: fine) {
+  .pill:hover {
+    background: var(--bkg-hov-act);
+    filter: drop-shadow(0px 10px 10px #00000033);
+    transform: scale(1.05);
+  }
+}
+
+@media(pointer: coarse) {
+  .pill:active {
+    transform: scale(0.95);
+    background: var(--bkg-hov-act);
+  }
 }
 </style>

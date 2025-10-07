@@ -313,8 +313,6 @@ li {
   cursor: pointer;
   background: transparent;
   border: none;
-  color: white;
-  text-decoration: none;
   width: 100%;
   height: 100%;
   align-content: center;

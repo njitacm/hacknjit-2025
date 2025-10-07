@@ -1,7 +1,7 @@
 <!-- Registration.vue -->
 <template>
-  <Vueform v-if="response.data == -1" v-bind="vueform" @success="handleResponse" />
-  <div v-else-if="response.data == 200" class="form-submitted">
+  <Vueform v-if="response.status == -1" v-bind="vueform" @success="handleResponse" />
+  <div v-else-if="response.status == 200" class="form-submitted">
     <h1>Successfully Registered!</h1>
     <p>Thank you for registering for HackNJIT 2025. We’ll be in touch soon!</p>
     <RouterLink to="/" class="nav-link">
@@ -17,17 +17,21 @@
     </RouterLink>
   </div>
 </template>
+
+
 <script>
 import { useVueform, Vueform } from '@vueform/vueform'
-import schoolsJson from '../assets/schools.json'
-import countriesJson from '../assets/countries.json'
+import schoolsJson from '../data/schools.json'
+import countriesJson from '../data/countries.json'
 
 export default {
   mixins: [Vueform],
   setup: useVueform,
   data: () => ({
-    response: -1,
-    vueform: {
+    response: {
+      status: -1,
+    },
+    vueform:{
       size: 'md',
       displayErrors: true,
       endpoint: '/api/register',
@@ -39,25 +43,25 @@ export default {
       validateOn: 'step|change',
       steps: {
         page0: {
-          label: 'Personal Information',
-          elements: [
-            'HackNJIT Registration',
-            'divider',
-            'container',
-            'preferred_name_container',
-            'age',
-            'phone',
-            'email',
-            'country',
-            'uni',
-            'lvlofstudy',
-            'firsthack',
-            'major',
-            'shirtsize',
-            'dietaryrestrictions',
-            'divider_1',
-          ],
-        },
+           label: 'Personal Information',
+           elements: [
+             'HackNJIT Registration',
+             'divider',
+             'container',
+             'preferred_name_container',
+             'age',
+             'phone',
+             'email',
+             'country',
+             'uni',
+             'lvlofstudy',
+             'firsthack',
+             'major',
+             'shirtsize',
+             'dietaryrestrictions',
+             'divider_1',
+           ],
+         },
         page1: {
           label: 'MLH Agreements',
           elements: [
@@ -102,8 +106,8 @@ export default {
           type: 'group',
           schema: {
             first_name: {
+              label: "First Name",
               type: 'text',
-              placeholder: 'First name',
               columns: {
                 container: 6,
                 label: 12,
@@ -116,8 +120,8 @@ export default {
               ],
             },
             last_name: {
+              label: "Last Name",
               type: 'text',
-              placeholder: 'Last name',
               columns: {
                 container: 6,
                 label: 12,
@@ -133,11 +137,11 @@ export default {
           description: 'This must be your legal name.',
         },
         preferred_name_container: {
+          label: "Preferred Name",
           type: 'group',
           schema: {
             preferred_name: {
               type: 'text',
-              placeholder: 'Preferred name',
               columns: {
                 label: 12,
                 wrapper: 12,
@@ -151,6 +155,7 @@ export default {
           description: '(Optional) Your preferred name.',
         },
         age: {
+          label: "Age",
           type: 'text',
           inputType: 'number',
           rules: [
@@ -158,11 +163,10 @@ export default {
             'max:100',
           ],
           fieldName: 'age',
-          placeholder: 'Age',
         },
         phone: {
+          label: "Phone Number",
           type: 'phone',
-          placeholder: 'Phone',
           rules: [
             'required',
           ],
@@ -171,6 +175,7 @@ export default {
           unmask: true,
         },
         email: {
+          label: "Email",
           type: 'text',
           inputType: 'email',
           rules: [
@@ -178,30 +183,28 @@ export default {
             'max:255',
             'email',
           ],
-          placeholder: 'Email',
           fieldName: 'Email',
           description: 'School email preferred.',
         },
         country: {
+          label: "Country",
           type: 'select',
           search: true,
           native: false,
           inputType: 'search',
           autocomplete: 'enabled',
-          placeholder: 'Country of Residence',
           items: countriesJson,
           rules: [
             'required',
           ],
-          default: 'United States',
         },
         uni: {
+          label: "University",
           type: 'select',
           search: true,
           native: false,
           inputType: 'search',
           autocomplete: 'enabled',
-          placeholder: 'University',
           items: schoolsJson,
           rules: [
             'required',
@@ -209,6 +212,7 @@ export default {
           strict: false,
         },
         lvlofstudy: {
+          label: 'Highest Level of Study',
           type: 'radiogroup',
           items: [
             {
@@ -240,12 +244,12 @@ export default {
               label: 'I’m not currently a student',
             },
           ],
-          label: 'Highest Level of Study ',
           rules: [
             'required',
           ],
         },
         firsthack: {
+          label: 'Is this your first Hackathon?',
           type: 'radiogroup',
           items: [
             {
@@ -257,12 +261,12 @@ export default {
               label: 'No (Welcome back!)',
             },
           ],
-          label: 'Is this your first Hackathon?',
           rules: [
             'required',
           ],
         },
         major: {
+          label: 'Major',
           type: 'radiogroup',
           items: [
             {
@@ -334,12 +338,12 @@ export default {
               label: 'Other',
             },
           ],
-          label: 'Major',
           rules: [
             'required',
           ],
         },
         shirtsize: {
+          label: 'Unisex T-Shirt Size',
           type: 'radiogroup',
           items: [
             {
@@ -367,12 +371,12 @@ export default {
               label: 'XXL',
             },
           ],
-          label: 'Unisex T-Shirt Size',
           rules: [
             'required',
           ],
         },
         dietaryrestrictions: {
+          label: 'Dietary Restrictions (Select all that apply)',
           type: 'checkboxgroup',
           items: [
             {
@@ -396,10 +400,6 @@ export default {
               label: 'Gluten-free',
             },
           ],
-          label: 'Dietary Restrictions ',
-          rules: [
-            'required',
-          ],
         },
         h1: {
           type: 'static',
@@ -411,6 +411,7 @@ export default {
           tag: 'hr',
         },
         mlh_checkbox_0: {
+          label: 'MLH Code of Conduct',
           type: 'checkbox',
           text: 'I have read and agree to the <a href=https://static.mlh.io/docs/mlh-code-of-conduct.pdf>MLH Code of Conduct</a>',
           rules: [
@@ -418,13 +419,15 @@ export default {
           ],
         },
         mlh_checkbox_1: {
+          label: 'MLH Terms and Conditions',
           type: 'checkbox',
-          text: 'I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and MLH administration in-line with the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>. I further agree to the mlh_checkbox_0 of both the <a href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md">MLH Contest Terms and Conditions</a>  and the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>.',
+          text: 'I authorize you to share my application/registration information with Major League Hacking for event administration, ranking, and MLH administration in-line with the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>. I further agree to the terms of both the <a href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md">MLH Contest Terms and Conditions</a>  and the <a href="https://mlh.io/privacy">MLH Privacy Policy</a>.',
           rules: [
             'accepted',
           ],
         },
         mlh_checkbox_2: {
+          label: 'MLH Email Policy',
           type: 'checkbox',
           text: '(Optional) I authorize MLH to send me occasional emails about relevant events, career opportunities, and community announcements.',
         },
@@ -543,10 +546,6 @@ export default {
               label: 'Samoan',
             },
             {
-              value: 'Samoan',
-              label: 'Samoan',
-            },
-            {
               value: 'Vietnamese',
               label: 'Vietnamese',
             },
@@ -607,7 +606,6 @@ export default {
           type: 'text',
           label: 'LinkedIn Account URL',
           inputType: 'url',
-          placeholder: 'https://www.linkedin.com/in/YOURUSER/',
         },
         divider_5: {
           type: 'static',
@@ -632,7 +630,7 @@ export default {
 .vf-registration *:before,
 .vf-registration *:after,
 .vf-registration:root {
-  --vf-primary: var(--main-bg-color);
+  --vf-primary: #07bf9b;
   --vf-primary-darker: #06ac8b;
   --vf-color-on-primary: #ffffff;
   --vf-danger: #ef4444;
@@ -661,7 +659,7 @@ export default {
   --vf-dark-900: #191919;
   --vf-ring-width: 2px;
   --vf-ring-color: #07bf9b66;
-  --vf-link-color: var(--vf-primary);
+  --vf-link-color: var(--vf-color-success);
   --vf-link-decoration: underline;
   --vf-font-size: 1rem;
   --vf-font-size-sm: 0.875rem;
@@ -821,7 +819,6 @@ export default {
   --vf-color-input-danger: var(--vf-gray-800);
   --vf-color-input-success: var(--vf-gray-800);
   --vf-color-disabled: var(--vf-gray-400);
-  --vf-color-placeholder: var(--vf-gray-300);
   --vf-color-passive: var(--vf-gray-700);
   --vf-color-muted: var(--vf-gray-500);
   --vf-color-floating: var(--vf-gray-500);
@@ -961,5 +958,9 @@ export default {
 .form-submitted p {
   font-size: var(--vf-font-size);
   margin-bottom: 24px;
+}
+
+a {
+
 }
 </style>

@@ -322,14 +322,14 @@ nav {
   --border-width: 1px;
   --border-adjusted-border-radius: calc(2lh - 2 * var(--border-width));
   border: var(--border-width) solid #ffffff33;
-  background-color: #00250475;
+  background-color: #00250435;
   backdrop-filter: blur(25px);
   align-content: center;
   position: relative;
   line-height: 1em;
   border-radius: 2lh;
   overflow: hidden;
-  transition: width 300ms ease, height 300ms ease;
+  transition: width 750ms ease, height 500ms ease;
   justify-self: center;
 }
 

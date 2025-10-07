@@ -1,18 +1,19 @@
-{
+// NOTE: all paths are relative to /src/assets
+export default {
     "bronze": [
         {
             "name": "GitHub",
-            "imgSrc": "src/assets/sponsors/github.png",
+            "imgSrc": "sponsors/github.png",
             "imgAlt": "GitHub",
             "link": "https://github.com/"
         },
         {
             "name": "Merck",
-            "imgSrc": "src/assets/sponsors/Merck.png",
+            "imgSrc": "sponsors/Merck.png",
             "imgAlt": "Merck",
             "link": "https://www.merck.com/"
         }
     ],
     "silver": [ ],
     "gold": [ ]
-}
+};

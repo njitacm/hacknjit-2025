@@ -5,7 +5,7 @@
       <div class="sponsor-category">
         <div class="sponsor-item" v-for="(sponsor, index) in sponsors.bronze" :key="index">
           <a :href="sponsor.link" :title="sponsor.name" target="_blank">
-            <img :src="sponsor.imgSrc" :alt="sponsor.imgAlt" class="sponsor-image"/>
+            <img :src="sponsor.imgSrc" :alt="sponsor.imgAlt" class="sponsor-image" />
           </a>
         </div>
       </div>
@@ -14,15 +14,30 @@
 </template>
 
 <script setup>
-import sponsors from "../data/sponsors.json";
+import sponsorsData from "../data/sponsors";
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useIntersectionObserver } from '../composables/useIntersectionObserver';
+import { getImageUrl } from "../util";
+
+// convert sponsor imageSrcs to URLs
+const sponsors = ref({});
 
 const sectionRef = ref(null);
 const { observe, unobserve } = useIntersectionObserver();
 
-onMounted(() => {
+onMounted(async () => {
   if (sectionRef.value) observe(sectionRef.value);
+
+  const newSponsors = JSON.parse(JSON.stringify(sponsorsData));
+
+  // companies in each tier
+  for (const companies of Object.values(newSponsors)) {
+    for (const company of companies) {
+      company.imgSrc = await getImageUrl(company.imgSrc);
+    }
+  }
+
+  sponsors.value = newSponsors;
 });
 onBeforeUnmount(() => {
   if (sectionRef.value) unobserve(sectionRef.value);
@@ -59,7 +74,7 @@ div.sponsor-item {
 .sponsor-image {
   width: 100%;
   object-fit: contain;
-  filter: brightness(0.95); 
+  filter: brightness(0.95);
   transition: transform 0.2s ease, filter 0.2s ease;
 }
 
@@ -79,5 +94,4 @@ div.sponsor-item {
     max-height: 50px;
   }
 }
-
 </style>

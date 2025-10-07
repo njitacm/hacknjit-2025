@@ -159,7 +159,7 @@ button {
       var(--hacknjit-fourth));
   border-radius: 1000px;
   border: none;
-  padding: 8px 16px;
+  padding: 8px 24px;
   font-weight: bold;
   cursor: pointer;
   background: var(--bkg);

@@ -79,12 +79,12 @@ onMounted(() => {
 }
 
 .countdown {
-  font-size: 2em ;
+  font-size: 3em ;
   white-space: nowrap;
 }
 
 .date {
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
 .v-enter-active,

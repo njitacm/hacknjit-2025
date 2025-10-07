@@ -7,7 +7,7 @@
         <img src="..\assets\HackNJIT2025\globe-half-of-the-earth.png" class="earth">
         <div class="content">
           <TheCountdown />
-          <RouterLink to="/registration" class="router-link pill">Register Now</RouterLink>
+          <RouterLink to="/registration" class="router-link pill register-button">Register Now</RouterLink>
         </div>
       </div>
     </div>
@@ -90,6 +90,10 @@ export default {
   position: absolute;
   display: grid;
   gap: 16px;
+}
+
+.register-button {
+  font-size: 2em;
 }
 
 .view-hint {

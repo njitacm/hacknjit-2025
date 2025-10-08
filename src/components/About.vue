@@ -14,7 +14,8 @@
 </template>
 
 <script>
-import { observe, unobserve } from "../composables/useIntersectionObserver";
+import { useIntersectionObserver } from "../composables/useIntersectionObserver";
+const { observe, unobserve } = useIntersectionObserver();
 
 export default {
   mounted() {

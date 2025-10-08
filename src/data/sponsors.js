@@ -1,17 +1,20 @@
-// NOTE: all paths are relative to /src/assets
+// NOTE: all paths are relative to /src/assets/sponsors
 export default {
     "bronze": [
         {
             "name": "GitHub",
-            "imgSrc": "sponsors/github.png",
-            "imgAlt": "GitHub",
+            "imgSrc": "github.png",
             "link": "https://github.com/"
         },
         {
             "name": "Merck",
-            "imgSrc": "sponsors/Merck.png",
-            "imgAlt": "Merck",
+            "imgSrc": "merck.png",
             "link": "https://www.merck.com/"
+        },
+        {
+            "name": "Pure Buttons",
+            "imgSrc": "pure_buttons.svg",
+            "link": "https://mlh.link/MLH-PureButtons-hackathons"
         }
     ],
     // "silver": [ ],

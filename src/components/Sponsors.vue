@@ -7,7 +7,7 @@
         <div class="category-sponsors-container">
           <a v-for="(sponsor, index2) in sponsors" :key="index2" :href="sponsor.link" :title="sponsor.name" class="sponsor-item"
             target="_blank">
-            <img :src="sponsor.imgSrc" :alt="sponsor.imgAlt" class="image" />
+            <img :src="sponsor.imgSrc" :alt="`${sponsor.name} logo`" class="image" />
           </a>
         </div>
       </div>
@@ -35,7 +35,7 @@ onMounted(async () => {
   // companies in each tier
   for (const companies of Object.values(newSponsors)) {
     for (const company of companies) {
-      company.imgSrc = await getImageUrl(company.imgSrc);
+      company.imgSrc = await getImageUrl(`sponsors/${company.imgSrc}`);
     }
   }
 
@@ -67,7 +67,7 @@ onBeforeUnmount(() => {
   flex-basis: 200px;
   flex-grow: 1;
   flex-shrink: 0;
-  padding: 16px;
+  padding: 32px;
   align-content: center;
   background: #B7EBDA;
   border-radius: 8px;

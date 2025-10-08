@@ -1,13 +1,19 @@
 <template>
-  <div class="About" ref="sectionRef" id="About">
+  <div class="About page-side-padding" ref="sectionRef" id="About">
     <h2>About</h2>
     <div class="container">
-      <img />
+      <img src="../assets/PastPictures/hacknjit2022_1.jpg" class="main-img" />
       <div class="text-content">
         <p>HackNJIT is a 24-hour hackathon hosted anually at the New Jersey Institute of Technology. Our mission is to
           empower students to create...</p>
-        <p><img />Where? </p>
-        <p><img />When? </p>
+        <div class="key-info-container">
+          <p class="key-info-header"><img src="../assets/icons/date.svg" class="icon" /><span>When?</span></p>
+          <p class="key-info">November 8, 2025 - November 9, 2025</p>
+        </div>
+        <div class="key-info-container">
+          <p class="key-info-header"><img src="../assets/icons/location.svg" class="icon" /><span>Where?</span></p>
+          <p class="key-info">150 Bleeker St #1982, Newark, NJ 07102 (Campus Center Ballrooms)</p>
+        </div>
       </div>
     </div>
   </div>
@@ -29,8 +35,63 @@ export default {
 </script>
 
 <style scoped>
-.content {
+.About {
+  max-width: 1000px;
+}
+
+.container {
   display: flex;
-  gap: 16px
+  gap: 16px;
+}
+
+.text-content {
+  display: grid;
+  align-content: space-between;
+  gap: 16px;
+  text-align: left;
+}
+
+.main-img {
+  width: 500px;
+  border-radius: 10px;
+}
+
+.key-info-container {
+  display: grid;
+  gap: 8px;
+}
+
+.key-info-header {
+  background-color: white;
+  color: var(--hacknjit-primary);
+  border-radius: 10px;
+  padding: 0 12px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: fit-content;
+}
+
+.key-info-header span {
+  font-weight: bold;
+}
+
+.icon {
+  height: 1em;
+}
+
+.key-info {
+  padding: 0 8px;
+}
+
+@media(max-width: 900px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-img {
+    width: 100%;
+  }
 }
 </style>

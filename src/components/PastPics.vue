@@ -1,22 +1,51 @@
 <template>
   <div class="PastPics" ref="sectionRef" id="Past-Pics">
     <h2 class="section-title">Past Pictures</h2>
-    <div class="section container">
-      <img src="../assets/past_pics/hacknjit2024_1.jpg" />
-      <img src="../assets/past_pics/hacknjit2024_2.jpg" id="two" />
-      <img src="../assets/past_pics/hacknjit2024_3.jpg" />
-      <img src="../assets/past_pics/hacknjit2024_4.jpg" />
-    </div>
+    <Galleria :value="images" :responsiveOptions="responsiveOptions" :numVisible="4" containerClass="slideshow">
+      <template #item="slotProps">
+        <img :src="slotProps.item.src" :alt="`HackNJIT ${slotProps.item.year} photo`" style="width: 100%" />
+      </template>
+      <template #thumbnail="slotProps">
+        <img :src="slotProps.item.src" :alt="`HackNJIT ${slotProps.item.year} photo`" />
+      </template>
+    </Galleria>
   </div>
 </template>
 
 <script>
+import Galleria from 'primevue/galleria';
+import images from '../data/past_pics';
 import { useIntersectionObserver } from '../composables/useIntersectionObserver';
+import { getImageUrl } from '../util';
 const { observe, unobserve } = useIntersectionObserver();
 
 export default {
-  mounted() {
+  components: { Galleria },
+  data() {
+    return {
+      images: null,
+      responsiveOptions: [
+        {
+          breakpoint: '1300px',
+          numVisible: 4
+        },
+        {
+          breakpoint: '575px',
+          numVisible: 1
+        }
+      ],
+    };
+  },
+  async mounted() {
     observe(this.$refs.sectionRef);
+    const newPaths = JSON.parse(JSON.stringify(images));
+
+    for (let i = 0; i < newPaths.length; i++) {
+      newPaths[i].src = await getImageUrl(`past_pics/${newPaths[i].src}`);
+    }
+
+    this.images = newPaths;
+    console.log(this.images);
   },
   beforeUnmount() {
     unobserve(this.$refs.sectionRef);
@@ -25,32 +54,14 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  --gap: 16px;
-  gap: var(--gap);
-  display: grid;
-  grid-template-columns: repeat(2, calc(50% - var(--gap) / 2));
-  place-content: center;
-  /* max-width: var(--max-content-width); */
-
-  @media(max-width: 600px) {
-    & {
-      grid-template-columns: 100%;
-    }
-  }
+.slideshow {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 img {
   width: 100%;
-  height: auto;
-  border-radius: 0.5rem;
-  display: block;
   aspect-ratio: 16/9;
   object-fit: cover;
-}
-
-#two {
-  /* adjust the numbers to crop */
-  object-position: 100% 40%;
 }
 </style>

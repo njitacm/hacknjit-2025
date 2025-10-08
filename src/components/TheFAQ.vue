@@ -1,6 +1,6 @@
 <template>
-  <div class="component-container" id="FAQ" ref="sectionRef">
-    <h2>FAQ</h2>
+  <div class="TheFAQ" id="FAQ" ref="sectionRef">
+    <h2 class="section-title">FAQ</h2>
     <Accordion class="faq-container">
       <div class="faq-topic-container" v-for="(topic_faqs, topic) in faqs" :key="topic">
         <h3 class="faq-topic">{{ topic }}</h3>
@@ -85,10 +85,6 @@ const faqList = ref(faqs);
   font-weight: 850;
   border: none;
   text-wrap: wrap;
-}
-
-.component-container {
-  margin: 16px auto;
 }
 
 .faq-container {

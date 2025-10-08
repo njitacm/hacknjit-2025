@@ -1,6 +1,6 @@
 <template>
-  <div ref="sectionRef" class="Sponsors component-container page-side-padding" id="Sponsors">
-    <h2 class="title">Our Sponsors</h2>
+  <div ref="sectionRef" class="Sponsors component-container section" id="Sponsors">
+    <h2 class="section-title">Our Sponsors</h2>
     <div class="container">
       <div v-for="(sponsors, category, index1) in sponsors" :key="index1" class="category-container">
         <h3 v-if="sponsors.length">{{ category.at(0).toUpperCase() + category.substring(1) }}</h3>

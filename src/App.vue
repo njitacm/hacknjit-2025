@@ -140,9 +140,13 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
-.page-side-padding {
-  margin: 0 auto;
+.section {
+  margin: 32px auto;
   width: calc(100vw - 64px);
+}
+
+.section-title {
+  margin-bottom: 16px;
 }
 
 .router-link {

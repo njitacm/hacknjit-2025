@@ -1,6 +1,7 @@
 <template>
   <div class="PastPics" ref="sectionRef" id="Past-Pics">
-    <div class="page-side-padding container">
+    <h2 class="section-title">Past Pictures</h2>
+    <div class="section container">
       <img src="../assets/PastPictures/hacknjit2024_1.jpg" />
       <img src="../assets/PastPictures/hacknjit2024_2.jpg" id="two" />
       <img src="../assets/PastPictures/hacknjit2024_3.jpg" />

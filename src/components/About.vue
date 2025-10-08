@@ -1,6 +1,6 @@
 <template>
-  <div class="About page-side-padding" ref="sectionRef" id="About">
-    <h2>About</h2>
+  <div class="About section" ref="sectionRef" id="About">
+    <h2 class="section-title">About</h2>
     <div class="container">
       <img src="../assets/PastPictures/hacknjit2022_1.jpg" class="main-img" />
       <div class="text-content">

@@ -4,8 +4,7 @@
     <div class="container">
       <img src="../assets/PastPictures/hacknjit2022_1.jpg" class="main-img" />
       <div class="text-content">
-        <p>HackNJIT is a 24-hour hackathon hosted anually at the New Jersey Institute of Technology. Our mission is to
-          empower students to create...</p>
+        <p>HackNJIT is a 24-hour hackathon hosted anually at the New Jersey Institute of Technology. We're open to all, whether you're a beginner or pro. Our goal is to empower students to be creative, learn new things outside the classroom, and share memorable experiences.</p>
         <div class="key-info-container">
           <p class="key-info-header"><img src="../assets/icons/date.svg" class="icon" /><span>When?</span></p>
           <p class="key-info">November 8, 2025 - November 9, 2025</p>

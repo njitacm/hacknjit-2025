@@ -4,7 +4,7 @@
     <div class="title-super-container">
       <div class="title-container">
         <h1 class="title">HackNJIT</h1>
-        <img src="..\assets\HackNJIT2025\globe-half-of-the-earth.png" class="earth">
+        <img src="..\assets\globe-half-of-the-earth.png" class="earth">
         <div class="content">
           <TheCountdown />
           <RouterLink to="/registration" class="router-link pill register-button">Register Now</RouterLink>
@@ -16,7 +16,7 @@
       <br />
       <br />
       <RouterLink :to="{ hash: '#Past-Pics' }">
-        <img src="../assets/down_arrow.svg" style="width: 25px; height: 25px" />
+        <img src="../assets/icons/down_arrow.svg" style="width: 25px; height: 25px" />
       </RouterLink>
     </div>
   </div>

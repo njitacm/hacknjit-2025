@@ -1,9 +1,9 @@
 <template>
   <div ref="sectionRef" class="Sponsors component-container page-side-padding" id="Sponsors">
-    <h1 class="title">Our Sponsors</h1>
+    <h2 class="title">Our Sponsors</h2>
     <div class="container">
       <div v-for="(sponsors, category, index1) in sponsors" :key="index1" class="category-container">
-        <h2 v-if="sponsors.length">{{ category.at(0).toUpperCase() + category.substring(1) }}</h2>
+        <h3 v-if="sponsors.length">{{ category.at(0).toUpperCase() + category.substring(1) }}</h3>
         <div class="category-sponsors-container">
           <a v-for="(sponsor, index2) in sponsors" :key="index2" :href="sponsor.link" :title="sponsor.name" class="sponsor-item"
             target="_blank">

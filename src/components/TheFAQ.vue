@@ -1,9 +1,9 @@
 <template>
   <div class="component-container" id="FAQ" ref="sectionRef">
-    <h1>FAQ</h1>
+    <h2>FAQ</h2>
     <Accordion class="faq-container">
       <div class="faq-topic-container" v-for="(topic_faqs, topic) in faqs" :key="topic">
-        <h2 class="faq-topic">{{ topic }}</h2>
+        <h3 class="faq-topic">{{ topic }}</h3>
         <AccordionPanel v-for="(faq, index) in topic_faqs" :key="index" :value="faq.Answer">
           <AccordionHeader>{{ faq.Question }}</AccordionHeader>
           <AccordionContent>

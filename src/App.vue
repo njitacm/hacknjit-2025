@@ -93,6 +93,7 @@ h1,
 h2,
 h3 {
   font-weight: bold;
+  text-align: center;
 }
 
 h1 {

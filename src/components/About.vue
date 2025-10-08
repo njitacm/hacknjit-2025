@@ -2,7 +2,7 @@
   <div class="About section" ref="sectionRef" id="About">
     <h2 class="section-title">About</h2>
     <div class="container">
-      <img src="../assets/PastPictures/hacknjit2022_1.jpg" class="main-img" />
+      <img src="../assets/past_pics/hacknjit2022_1.jpg" class="main-img" />
       <div class="text-content">
         <p>HackNJIT is a 24-hour hackathon hosted anually at the New Jersey Institute of Technology. We're open to all, whether you're a beginner or pro. Our goal is to empower students to be creative, learn new things outside the classroom, and share memorable experiences.</p>
         <div class="key-info-container">

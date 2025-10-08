@@ -3,30 +3,30 @@
     <nav>
       <hr />
       <!-- <a href="https://discord.com" target="_blank"
-        ><img src="../assets/Logos/discord.svg"
+        ><img src="../assets/logos/discord.svg"
       /></a>
       <a href="https://github.com" target="_blank"
-        ><img src="../assets/Logos/github-white.svg"
+        ><img src="../assets/logos/github-white.svg"
       /></a> -->
       <a href="https://www.instagram.com/NJITACM/" target="_blank"
-        ><img src="../assets/Logos/instagram.svg"
+        ><img src="../assets/logos/instagram.svg"
       /></a>
       <a href="https://www.linkedin.com/company/njit-acm" target="_blank"
-        ><img src="../assets/Logos/linkedin.svg"
+        ><img src="../assets/logos/linkedin.svg"
       /></a>
       <a href="https://x.com/NJITACM" target="_blank"
-        ><img src="../assets/Logos/twitter.svg"
+        ><img src="../assets/logos/twitter.svg"
       /></a>
       <a
         href="https://https://www.youtube.com/channel/UC3stSn7UK5-IX6mNnlWlRLw"
         target="_blank"
-        ><img src="../assets/Logos/youtube.svg"
+        ><img src="../assets/logos/youtube.svg"
       /></a>
       <hr />
     </nav>
     <div class="NJIT_logos">
-      <img id="acm-logo" src="../assets/Logos/acm_logo_white.svg" />
-      <img id="ywcc-logo" src="../assets/Logos/NJIT_white.png" />
+      <img id="acm-logo" src="../assets/logos/acm_logo_white.svg" />
+      <img id="ywcc-logo" src="../assets/logos/NJIT_white.png" />
     </div>
     <aside>
       <hr />

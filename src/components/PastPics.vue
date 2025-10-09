@@ -1,12 +1,9 @@
 <template>
-  <div class="PastPics" ref="sectionRef" id="Past-Pics">
+  <div class="PastPics section" ref="sectionRef" id="Past-Pics">
     <h2 class="section-title">Past Pictures</h2>
-    <Galleria :value="images" :responsiveOptions="responsiveOptions" :numVisible="4" containerClass="slideshow">
+    <Galleria v-bind="slideshowProps" :value="images" containerClass="slideshow" >
       <template #item="slotProps">
         <img :src="slotProps.item.src" :alt="`HackNJIT ${slotProps.item.year} photo`" style="width: 100%" />
-      </template>
-      <template #thumbnail="slotProps">
-        <img :src="slotProps.item.src" :alt="`HackNJIT ${slotProps.item.year} photo`" />
       </template>
     </Galleria>
   </div>
@@ -24,16 +21,16 @@ export default {
   data() {
     return {
       images: null,
-      responsiveOptions: [
-        {
-          breakpoint: '1300px',
-          numVisible: 4
-        },
-        {
-          breakpoint: '575px',
-          numVisible: 1
-        }
-      ],
+      slideshowProps: {
+        value: images,
+        showItemNavigators: true,
+        showItemNavigatorsOnHover: true,
+        showThumbnails: false,
+        showIndicators: true,
+        circular: true,
+        autoPlay: true,
+        transitionInterval: 5000,
+      },
     };
   },
   async mounted() {

@@ -38,7 +38,6 @@ export default {
 
 <style scoped>
 .Banner {
-  height: 100svh;
   min-height: 900px;
   display: grid;
   grid-template-rows: 1fr auto;

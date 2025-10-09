@@ -35,7 +35,7 @@ onMounted(async () => {
   // companies in each tier
   for (const companies of Object.values(newSponsors)) {
     for (const company of companies) {
-      company.imgSrc = await getImageUrl(`sponsors/${company.imgSrc}`);
+      company.imgSrc = `src/assets/sponsors/${company.imgSrc}`;
     }
   }
 

@@ -1,7 +1,7 @@
 <template>
   <div class="PastPics section" ref="sectionRef" id="Past-Pics">
     <h2 class="section-title">Past Pictures</h2>
-    <Galleria v-bind="slideshowProps" :value="images" containerClass="slideshow" >
+    <Galleria v-bind="slideshowProps" :value="images">
       <template #item="slotProps">
         <img :src="slotProps.item.src" :alt="`HackNJIT ${slotProps.item.year} photo`" style="width: 100%" />
       </template>
@@ -50,10 +50,26 @@ export default {
 </script>
 
 <style scoped>
-.slideshow {
-  max-width: 1000px;
-  margin: 0 auto;
+.p-galleria {
+  --p-galleria-border-width: 0px;
+  --p-galleria-border-radius: var(--border-radius);
+  --p-galleria-indicator-button-background: var(--hacknjit-primary);
+  --p-galleria-indicator-button-hover-background: var(--hacknjit-secondary);
+  --p-galleria-indicator-button-active-background: white;
+  --p-galleria-nav-button-background: white;
+  --p-galleria-nav-button-color: var(--hacknjit-primary);
+  --p-galleria-nav-button-hover-background: var(--hacknjit-secondary);
+  --p-galleria-nav-button-focus-ring-color: white;
+
+  @media(pointer: coarse) {
+    & {
+      --p-galleria-indicator-button-hover-background: var(--p-galleria-indicator-button-background);
+      --p-galleria-nav-button-hover-background: var(--p-galleria-nav-button-background);
+      --p-galleria-nav-button-hover-color: var(--p-galleria-nav-button-color);
+    }
+  }
 }
+
 
 img {
   width: 100%;

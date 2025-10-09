@@ -9,8 +9,8 @@
   </a>
 </template>
 
-<style>
-@media(max-width: 700px) {
+<style scoped>
+@media(max-width: 500px) {
   #mlh-trust-badge {
     right: 10px !important;
   }

@@ -3,21 +3,30 @@
     <nav>
       <hr />
       <!-- <a href="https://discord.com" target="_blank"
-        ><img src="../assets/Logos/discord.svg"
+        ><img src="../assets/logos/discord.svg"
       /></a>
       <a href="https://github.com" target="_blank"
-        ><img src="../assets/Logos/github-white.svg"
+        ><img src="../assets/logos/github-white.svg"
       /></a> -->
-      <a href="https://www.instagram.com/NJITACM/" target="_blank"><img src="../assets/Logos/instagram.svg" /></a>
-      <a href="https://www.linkedin.com/company/njit-acm" target="_blank"><img src="../assets/Logos/linkedin.svg" /></a>
-      <a href="https://x.com/NJITACM" target="_blank"><img src="../assets/Logos/twitter.svg" /></a>
-      <a href="https://https://www.youtube.com/channel/UC3stSn7UK5-IX6mNnlWlRLw" target="_blank"><img
-          src="../assets/Logos/youtube.svg" /></a>
+      <a href="https://www.instagram.com/NJITACM/" target="_blank"
+        ><img src="../assets/logos/instagram.svg"
+      /></a>
+      <a href="https://www.linkedin.com/company/njit-acm" target="_blank"
+        ><img src="../assets/logos/linkedin.svg"
+      /></a>
+      <a href="https://x.com/NJITACM" target="_blank"
+        ><img src="../assets/logos/twitter.svg"
+      /></a>
+      <a
+        href="https://https://www.youtube.com/channel/UC3stSn7UK5-IX6mNnlWlRLw"
+        target="_blank"
+        ><img src="../assets/logos/youtube.svg"
+      /></a>
       <hr />
     </nav>
     <div class="NJIT_logos">
-      <img id="acm-logo" src="../assets/Logos/acm_logo_white.svg" />
-      <img id="ywcc-logo" src="../assets/Logos/NJIT_white.png" />
+      <img id="acm-logo" src="../assets/logos/acm_logo_white.svg" />
+      <img id="ywcc-logo" src="../assets/logos/NJIT_white.png" />
     </div>
     <aside>
       <hr />
@@ -25,25 +34,30 @@
       <hr />
       <a href="https://www.acm.org/" target="_blank">ACM National</a>
       <hr />
-      <a href="https://computing.njit.edu/" target="_blank">NJIT Ying Wu College of Computing</a>
+      <a href="https://computing.njit.edu/" target="_blank"
+        >NJIT Ying Wu College of Computing</a
+      >
       <!-- <hr />
       <a href="https://acm.njit.edu" target="_blank">Sponsor Packet</a> -->
       <hr />
       <a href="mailto:hacknjit@njit.edu" target="_blank">Email Us</a>
       <hr />
-      <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct</a>
+      <a
+        href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
+        target="_blank"
+        >MLH Code of Conduct</a
+      >
       <hr />
     </aside>
   </footer>
 </template>
-
-<script>
+  
+  <script>
 export default {};
 </script>
-
-<style scoped>
+  
+  <style scoped>
 footer {
-  /* background: var(--edge-colors); */
   color: var(--text-color);
   display: flex;
   flex-direction: column;
@@ -51,7 +65,6 @@ footer {
   padding: 2rem;
   padding-bottom: 2rem;
 }
-
 nav,
 aside {
   display: flex;
@@ -60,16 +73,13 @@ aside {
   gap: 1rem;
   padding: 0.75rem 0;
 }
-
 aside {
   flex-wrap: wrap;
 }
-
 div.line {
   display: flex;
   align-content: center;
 }
-
 nav hr {
   border: none;
   border-top: 4px solid white;
@@ -80,39 +90,35 @@ nav hr {
   height: 1px;
   align-self: center;
 }
-
 .NJIT_logos {
   display: flex;
   align-content: center;
   justify-content: center;
   gap: 0.5rem;
 }
-
 #acm-logo {
   width: 100px;
   align-self: center;
 }
-
 #ywcc-logo {
   width: 200px;
 }
-
 nav img {
   width: 50px;
   height: 50px;
 }
-
 a {
   color: inherit;
 }
-
 @media (max-width: 600px) {
   nav img {
     width: 40px;
     height: 40px;
   }
+  aside {
+    font-size: 0.75rem;
+  }
 }
-
 @media (max-width: 500px) {
   nav img {
     width: 35px;

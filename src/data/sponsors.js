@@ -1,18 +1,22 @@
-const sponsors = [
-    /*
-    {
-        "name": "Display Name of Company",
-        "alt": "alt attribute of the image",
-        "src": "src attribute of the image",
-        "link": "Link to company website",
-    }
-    */
-    {
-        "name": "Company",
-        "alt": "Company",
-        "src": "filename.png",
-        "link": "https://www.google.com/",
-    }
-];
-
-export default sponsors;
+// NOTE: all paths are relative to /src/assets/sponsors
+export default {
+    "bronze": [
+        {
+            "name": "GitHub",
+            "imgSrc": "github.png",
+            "link": "https://github.com/"
+        },
+        {
+            "name": "Merck",
+            "imgSrc": "merck.png",
+            "link": "https://www.merck.com/"
+        },
+        {
+            "name": "Pure Buttons",
+            "imgSrc": "pure_buttons.svg",
+            "link": "https://mlh.link/MLH-PureButtons-hackathons"
+        }
+    ],
+    // "silver": [ ],
+    // "gold": [ ]
+};

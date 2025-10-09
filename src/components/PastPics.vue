@@ -1,40 +1,79 @@
 <template>
-  <div class="PastPics">
-    <div class="page-side-padding container">
-      <img src="../assets/PastPictures/hacknjit2024_1.jpg" />
-      <img src="../assets/PastPictures/hacknjit2024_2.jpg" id="two" />
-      <img src="../assets/PastPictures/hacknjit2024_3.jpg" />
-      <img src="../assets/PastPictures/hacknjit2024_4.jpg" />
-    </div>
+  <div class="PastPics section" ref="sectionRef" id="Past-Pics">
+    <h2 class="section-title">Past Pictures</h2>
+    <Galleria v-bind="slideshowProps" :value="images">
+      <template #item="slotProps">
+        <img :src="slotProps.item.src" :alt="`HackNJIT ${slotProps.item.year} photo`" style="width: 100%" />
+      </template>
+    </Galleria>
   </div>
 </template>
 
-<style scoped>
-.container {
-  gap: 16px;
-  display: grid;
-  grid-template-columns: auto auto;
-  place-content: center;
-  /* max-width: var(--max-content-width); */
+<script>
+import Galleria from 'primevue/galleria';
+import images from '../data/past_pics';
+import { useIntersectionObserver } from '../composables/useIntersectionObserver';
+import { getImageUrl } from '../util';
+const { observe, unobserve } = useIntersectionObserver();
 
-  @media(max-width: 600px) {
+export default {
+  components: { Galleria },
+  data() {
+    return {
+      images: null,
+      slideshowProps: {
+        value: images,
+        showItemNavigators: true,
+        showItemNavigatorsOnHover: true,
+        showThumbnails: false,
+        showIndicators: true,
+        circular: true,
+        autoPlay: true,
+        transitionInterval: 5000,
+      },
+    };
+  },
+  async mounted() {
+    observe(this.$refs.sectionRef);
+    const newPaths = JSON.parse(JSON.stringify(images));
+
+    for (let i = 0; i < newPaths.length; i++) {
+      newPaths[i].src = await getImageUrl(`past_pics/${newPaths[i].src}`);
+    }
+
+    this.images = newPaths;
+  },
+  beforeUnmount() {
+    unobserve(this.$refs.sectionRef);
+  }
+}
+</script>
+
+<style scoped>
+.p-galleria {
+  --p-galleria-border-width: 0px;
+  --p-galleria-border-radius: var(--border-radius);
+  --p-galleria-indicator-button-background: var(--hacknjit-primary);
+  --p-galleria-indicator-button-hover-background: var(--hacknjit-secondary);
+  --p-galleria-indicator-button-active-background: white;
+  --p-galleria-nav-button-background: white;
+  --p-galleria-nav-button-color: var(--hacknjit-primary);
+  --p-galleria-nav-button-hover-background: var(--hacknjit-secondary);
+  --p-galleria-nav-button-focus-ring-color: white;
+
+  @media(pointer: coarse) {
     & {
-      grid-template-columns: 100%;
+      --p-galleria-indicator-button-hover-background: var(--p-galleria-indicator-button-background);
+      --p-galleria-nav-button-hover-background: var(--p-galleria-nav-button-background);
+      --p-galleria-nav-button-hover-color: var(--p-galleria-nav-button-color);
     }
   }
 }
 
+
 img {
   width: 100%;
-  height: auto;
-  border-radius: 0.5rem;
-  display: block;
   aspect-ratio: 16/9;
   object-fit: cover;
-}
-
-#two {
-  /* adjust the numbers to crop */
-  object-position: 100% 40%;
 }
 </style>

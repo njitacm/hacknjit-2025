@@ -1,11 +1,11 @@
 <template>
   <Teleport to="body">
     <div v-for="(modal, index) in modalStack" :key="index" class="Modal" :style="{ zIndex: 1000 + index }">
-      <div class="modal-backdrop" @keydown.esc="closeModal">
+      <div class="modal-backdrop">
         <Transition appear>
           <div class="container" v-on-click-outside="closeModal">
             <header class="header">
-              <h3 class="title">{{ modal.title }}</h3>
+              <h2>{{ modal.title }}</h2>
               <button @click="closeModal" class="close">&times;</button>
             </header>
             <section class="body">
@@ -21,21 +21,7 @@
 <script setup>
 import { vOnClickOutside } from "@vueuse/components"
 import { useModal } from "../composables/useModal";
-import { onBeforeUnmount } from "vue";
 const { modalStack, closeModal } = useModal();
-
-// hit escape to close modal
-document.addEventListener("keydown", handleGlobalEscape);
-
-onBeforeUnmount(() => {
-  document.removeEventListener("keydown", handleGlobalEscape);
-});
-
-function handleGlobalEscape(e) {
-  if (e.key === 'Escape' || e.keyCode === 27) {
-    closeModal();
-  }
-}
 </script>
 
 <style scoped>
@@ -64,7 +50,7 @@ function handleGlobalEscape(e) {
   margin: 0 auto;
   background-color: white;
   color: black;
-  border-radius: 1rem;
+  border-radius: var(--border-radius);
   padding-bottom: 12px;
   overflow: hidden;
   padding: 10px;
@@ -76,15 +62,17 @@ function handleGlobalEscape(e) {
   height: fit-content;
 }
 
-.header .title {
-  align-content: center;
+.Modal .header * {
+  font-size: 2rem;
+  display: block;
+  padding: 16px;
+  font-weight: bold;
 }
 
 .Modal button.close {
   color: gray;
-  line-height: 0;
-  font-size: 3em;
-  height: 1em;
+  font-size: 2rem;
+  max-height: 32px;
   cursor: pointer;
   aspect-ratio: 1;
   background-color: transparent;
@@ -99,6 +87,10 @@ function handleGlobalEscape(e) {
 }
 
 @media(max-width: 550px) {
+  .Modal .header * {
+    font-size: 1.5rem;
+  }
+
   .Modal .container {
     box-sizing: border-box;
     max-width: none;

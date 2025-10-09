@@ -1,86 +1,40 @@
 <template>
-  <MLHBanner />
   <main class="body-container">
-    <!-- <Banner gradient="radial-gradient(yellow, green)" /> -->
-    <Banner />
-    <!-- <Tracks/> -->
-    <PastPics />
-    <!-- <TheSponsors /> -->
-    <TheFAQ />
+    <NavBar />
+    <MLHBanner />
+    <RouterView></RouterView>
+    <TheFooter />
   </main>
-  <TheFooter />
-  <Modal />
 </template>
 
 <script>
 import MLHBanner from "./components/MLHBanner.vue";
-import TheFAQ from "./components/TheFAQ.vue";
 import TheFooter from "./components/TheFooter.vue";
-import TheHeader from "./components/TheHeader.vue";
-import TheSponsors from "./components/TheSponsors.vue";
-import Modal from "./components/Modal.vue";
 import Banner from "./components/Banner.vue";
-import Tracks from "./components/Tracks.vue";
-import PastPics from "./components/PastPics.vue";
-
-/*
-TODO:
-* Mission statement
-Tracks:
-* Each page for tracks
-* Each track
-* Climate - solar punk
-* Conservation - endangered species, biodiversity, oceanography, trash reef
-* Public Health - medical, DNA strand, polymer chain, chemical, data analysis, hospital
-
-TODO:
-* Built-in registration form
-* Gradient background
-* Waiting for graphics
-* Standard aspect ratio for images
-* Add tracks
-* Main site: pull events from sheets
-
-TODO: NAV BAR
-* About
-  * Student chapter of ACM [link to main website] and YWCC
-* Schedule
-* Team?
-* Contact
-* Registration
-* FAQ
-* Sponsors
-
-TODO: Double check FAQs
-TODO: Log-in
-
-Title banner:
-* Universal-style vector GIF globe scroll animation, HackNJIT text rotates behind globe and "Hack the world" appears in its place
-* Then it scrolls up
-* Location / date would stay with the globe
-* We need animators
-
-*/
+import NavBar from "./components/NavBar.vue";
 
 export default {
   name: "HackNJIT",
   components: {
-    TheHeader,
     MLHBanner,
-    TheFAQ,
     TheFooter,
-    TheSponsors,
-    Modal,
+    NavBar,
     Banner,
-    Tracks,
-    PastPics,
   }
 };
 </script>
 
 <style>
 :root {
-  --main-bg-color: #dab473;
+  --hacknjit-primary-transparent: #4a3728e5;
+  --hacknjit-primary: #4a3728;
+  --hacknjit-secondary: #8B6B4F;
+  --hacknjit-tertiary: #57cc99;
+  --hacknjit-fourth: #5BA36A;
+  --hacknjit-fifth: #3990b5;
+  --hacknjit-sixth: #307c7a;
+
+  --main-bg-color: #274029;
   --main-fg-color: #8f5f49;
   --text-color: white;
   --secondary-bg-color: #3f2b12;
@@ -94,7 +48,9 @@ export default {
   --mlh-banner-transparent1: #f7f7f77c;
   --mlh-banner-transparent2: #f7f7f7ab;
   --edge-colors: #d3b28eb2;
+  --semi-transparent-white: #ffffffaa;
 
+  --border-radius: 10px;
   --max-content-width: 1000px;
 }
 
@@ -103,18 +59,17 @@ html {
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: white;
   box-sizing: border-box;
-  background: #274029;
   z-index: -100;
-  overflow-x: auto;
+  overflow-x: hidden;
+  background-image: linear-gradient(to bottom, black 50svh, var(--hacknjit-sixth),
+      var(--hacknjit-fifth),
+      var(--hacknjit-fourth),
+      var(--hacknjit-tertiary),
+      var(--hacknjit-secondary),
+      var(--hacknjit-primary));
   width: 100%;
-  height: 100%;
-}
-
-body {
-  height: 100%;
 }
 
 body.modal-open {
@@ -126,6 +81,7 @@ body.modal-open {
   padding: 0;
   font-weight: 500;
   line-height: 1.5em;
+  -webkit-tap-highlight-color: transparent;
 }
 
 p,
@@ -138,6 +94,7 @@ h1,
 h2,
 h3 {
   font-weight: bold;
+  text-align: center;
 }
 
 h1 {
@@ -150,6 +107,12 @@ h2 {
 
 h3 {
   font-size: 1.5em;
+}
+
+.View {
+  position: relative;
+  top: 80px;
+  margin-bottom: 80px;
 }
 
 @media (max-width: 1000px) {
@@ -178,13 +141,50 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
-.page-side-padding {
-  margin: 0 auto;
+.section {
+  margin: 32px auto;
   width: calc(100vw - 64px);
+  max-width: var(--max-content-width);
 }
 
-main {
-  display: grid;
-  gap: 32px;
+.section-title {
+  margin-bottom: 16px;
+}
+
+.router-link {
+  color: white;
+  text-decoration: none;
+}
+
+.pill {
+  --bkg-hov-act: radial-gradient(circle at top, var(--hacknjit-tertiary), transparent),
+    conic-gradient(var(--hacknjit-fourth),
+      var(--hacknjit-fifth) 135deg 225deg,
+      var(--hacknjit-fourth));
+  --bkg: conic-gradient(var(--hacknjit-fourth),
+      var(--hacknjit-fifth) 135deg 225deg,
+      var(--hacknjit-fourth));
+  border-radius: 1000px;
+  border: none;
+  padding: 8px 24px;
+  font-weight: bold;
+  cursor: pointer;
+  background: var(--bkg);
+  transition: transform 250ms ease, filter 500ms ease;
+}
+
+@media(hover: hover) and (pointer: fine) {
+  .pill:hover {
+    background: var(--bkg-hov-act);
+    filter: drop-shadow(0px 10px 10px #00000033);
+    transform: scale(1.05);
+  }
+}
+
+@media(pointer: coarse) {
+  .pill:active {
+    transform: scale(0.95);
+    background: var(--bkg-hov-act);
+  }
 }
 </style>

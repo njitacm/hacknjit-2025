@@ -1,6 +1,5 @@
 <template>
   <div class="Banner" id="HackNJIT" ref="sectionRef" :style="{ background: gradient }">
-    <!-- <NotifSignup id="NotifSignup" /> -->
     <h1 class="title">HackNJIT</h1>
     <div class="earth-container">
       <img src="..\assets\globe.svg" class="earth">
@@ -14,7 +13,6 @@
 </template>
 
 <script>
-import NotifSignup from "./NotifSignup.vue";
 import TheCountdown from "./TheCountdown.vue";
 import { useIntersectionObserver } from '../composables/useIntersectionObserver';
 const { observe, unobserve } = useIntersectionObserver();
@@ -24,7 +22,6 @@ export default {
     gradient: String
   },
   components: {
-    NotifSignup,
     TheCountdown
   },
   mounted() {

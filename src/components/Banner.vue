@@ -53,11 +53,13 @@ export default {
 }
 
 .title {
+  top: 250px;
   font-weight: bold;
   font-size: 10em;
   position: absolute;
   width: 100%;
   text-align: center;
+  z-index: -2;
 }
 
 .earth-container {
@@ -68,14 +70,13 @@ export default {
   top: -100px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: -999;
+  z-index: -1;
 }
 
 .earth {
-  z-index: -999;
   object-fit: cover; /* Ensures the image fills the container */
   -webkit-mask-image: -webkit-linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0)); /* For Webkit browsers */
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 20%, rgba(0,0,0,0)); /* Standard syntax */
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,0)); /* Standard syntax */
 }
 
 .content {
@@ -101,7 +102,7 @@ export default {
 @media(max-width: 1000px) {
   .title {
     font-size: 6em;
-    top: 60px;
+    top: 310px;
   }
 
 }
@@ -109,7 +110,7 @@ export default {
 @media(max-width: 600px) {
   .title {
     font-size: 4em;
-    top: 95px;
+    top: 345px;
   }
 
   .register-button {

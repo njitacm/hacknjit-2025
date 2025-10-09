@@ -48,6 +48,7 @@ export default {
   --mlh-banner-transparent1: #f7f7f77c;
   --mlh-banner-transparent2: #f7f7f7ab;
   --edge-colors: #d3b28eb2;
+  --semi-transparent-white: #ffffffaa;
 
   --border-radius: 10px;
   --max-content-width: 1000px;

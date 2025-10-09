@@ -47,19 +47,28 @@ onBeforeUnmount(() => {
   justify-items: center;
 }
 
-.p-accordion,
-.p-accordion-panel,
+.p-accordion {
+  --p-accordion-header-background: var(--semi-transparent-white);
+  --p-accordion-header-color: var(--hacknjit-primary);
+  --p-accordion-content-background: transparent;
+  --p-accordion-content-padding: 16px;
+  --p-accordion-header-hover-background: white;
+  --p-accordion-header-hover-color: var(--hacknjit-primary);
+  --p-accordion-header-active-hover-background: var(--hacknjit-primary);
+  --p-accordion-header-active-background: var(--hacknjit-primary);
+  --p-accordion-header-active-color: white;
+  --p-accordion-header-toggle-icon-color: var(--hacknjit-primary);
+  --p-accordion-header-toggle-icon-hover-color: var(--hacknjit-primary);
+
+  @media(pointer: coarse) {
+    & {
+      --p-accordion-header-hover-background: var(--p-accordion-header-background);
+    }
+  }
+}
+
 .p-accordion button {
-  border-radius: var(--border-radius);
-}
-
-.p-accordionpanel-active button {
-  border-radius: var(--border-radius) var(--border-radius) 0 0;
-}
-
-.p-accordionpanel-active .p-accordioncontent {
-  border-radius: 0 0 var(--border-radius) var(--border-radius);
-  overflow: hidden;
+  border-radius: var(--border-radius) !important;
 }
 
 .p-accordion {
@@ -78,7 +87,6 @@ onBeforeUnmount(() => {
 }
 
 .p-accordion button {
-  color: white;
   padding: 16px;
   height: 100%;
 }
@@ -87,7 +95,7 @@ onBeforeUnmount(() => {
 .p-accordion p,
 .p-accordion button {
   text-align: left;
-  transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out, background-color 0s, color 0s;
 }
 
 .p-accordionheader {
@@ -96,15 +104,6 @@ onBeforeUnmount(() => {
 
 .faq-container .faq-topic-container {
   flex: 45%;
-}
-
-.p-accordion {
-  --p-accordion-header-active-color: #40BB4A;
-  --p-accordion-header-active-hover-color: #40BB4A;
-}
-
-.p-accordionpanel-active button {
-  color: #17641E;
 }
 
 @media (max-width: 750px) {

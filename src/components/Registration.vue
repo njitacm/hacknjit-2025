@@ -1,20 +1,21 @@
-<!-- Registration.vue -->
 <template>
-  <Vueform v-if="response.status == -1" v-bind="vueform" @success="handleResponse" @error="handleError" />
-  <div v-else-if="response.status == 200" class="form-submitted">
-    <h1>Successfully Registered!</h1>
-    <p>Thank you for registering for HackNJIT 2025. We'll be in touch soon!</p>
-    <RouterLink to="/" class="nav-link">
-      <button class="vf-btn vf-btn-primary">Return Home</button>
-    </RouterLink>
-  </div>
-  <div v-else class="form-submitted">
-    <h1>Failed to register!</h1>
-    <p>We could not register you for HackNJIT 2025 at this time. We may be having some technical difficulties. Check
-      back in later.</p>
-    <RouterLink to="/" class="nav-link">
-      <button class="vf-btn vf-btn-primary">Return Home</button>
-    </RouterLink>
+  <div class="Registration section">
+    <Vueform v-if="response.status == -1" v-bind="vueform" @success="handleResponse" @error="handleError" />
+    <div v-else-if="response.status == 200" class="form-submitted">
+      <h1>Successfully Registered!</h1>
+      <p>Thank you for registering for HackNJIT 2025. We'll be in touch soon!</p>
+      <RouterLink to="/" class="nav-link">
+        <button class="vf-btn vf-btn-primary">Return Home</button>
+      </RouterLink>
+    </div>
+    <div v-else class="form-submitted">
+      <h1>Failed to register!</h1>
+      <p>We could not register you for HackNJIT 2025 at this time. We may be having some technical difficulties. Check
+        back in later.</p>
+      <RouterLink to="/" class="nav-link">
+        <button class="vf-btn vf-btn-primary">Return Home</button>
+      </RouterLink>
+    </div>
   </div>
 </template>
 
@@ -281,6 +282,10 @@ export default {
               wrapper: 12,
             },
           },
+          search: true,
+          autocomplete: 'enabled',
+          inputType: 'search',
+          native: false,
           items: [
             {
               value: 'Business & Information Systems (BIS)',
@@ -752,17 +757,29 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.Registration {
+  --top-offset: 100px;
+  position: relative;
+  top: var(--top-offset);
+  background-color: white;
+  color: black;
+  padding: 16px;
+  margin: auto;
+  margin-bottom: var(--top-offset);
+  border-radius: var(--border-radius);
+}
+
 .vf-registration *,
 .vf-registration *:before,
 .vf-registration *:after,
 .vf-registration:root {
-  --vf-primary: #058168;
-  --vf-primary-darker: #035f4d;
+  --vf-primary: var(--hacknjit-fifth);
+  --vf-primary-darker: var(--hacknjit-sixth);
   --vf-color-on-primary: #ffffff;
   --vf-danger: #c03737;
   --vf-danger-lighter: #fee2e2;
-  --vf-success: #058168;
+  --vf-success: var(--hacknjit-sixth);
   --vf-success-lighter: #d1fae5;
   --vf-gray-50: #f9fafb;
   --vf-gray-100: #f3f4f6;
@@ -785,8 +802,8 @@ export default {
   --vf-dark-800: #262626;
   --vf-dark-900: #191919;
   --vf-ring-width: 2px;
-  --vf-ring-color: #07bf9b66;
-  --vf-link-color: var(--vf-color-success);
+  --vf-ring-color: var(--hacknjit-fifth);
+  --vf-link-color: var(--hacknjit-fifth);
   --vf-link-decoration: underline;
   --vf-font-size: 1rem;
   --vf-font-size-sm: 0.875rem;
@@ -1062,10 +1079,6 @@ export default {
   --vf-slider-tooltip-arrow-size: 0.3125rem;
   --vf-slider-tooltip-arrow-size-sm: 0.3125rem;
   --vf-slider-tooltip-arrow-size-lg: 0.3125rem;
-}
-
-.vf-description {
-  text-align: left;
 }
 
 .vf-file-preview-upload {

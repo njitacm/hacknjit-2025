@@ -59,7 +59,6 @@ html {
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: white;
   box-sizing: border-box;
   z-index: -100;

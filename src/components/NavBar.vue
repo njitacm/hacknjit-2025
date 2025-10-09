@@ -323,6 +323,7 @@ li {
 }
 
 .section-indicator {
+  text-align: center;
   width: 100%;
   height: 100%;
   display: flex;

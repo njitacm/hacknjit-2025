@@ -42,7 +42,6 @@ export default {
     }
 
     this.images = newPaths;
-    console.log(this.images);
   },
   beforeUnmount() {
     unobserve(this.$refs.sectionRef);

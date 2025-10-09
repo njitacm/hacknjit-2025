@@ -7,16 +7,8 @@
     </div>
     <div class="spacer"></div>
     <div class="content">
-      <TheCountdown />
       <RouterLink to="/registration" class="router-link pill register-button">Register Now</RouterLink>
-      <div class="view-hint">
-        <RouterLink :to="{ hash: '#Past-Pics' }" class="router-link">View last year's photos</RouterLink>
-        <br />
-        <br />
-        <RouterLink :to="{ hash: '#Past-Pics' }">
-          <img src="../assets/icons/down_arrow.svg" style="width: 25px; height: 25px" />
-        </RouterLink>
-      </div>
+      <TheCountdown />
     </div>
   </div>
 </template>
@@ -46,10 +38,11 @@ export default {
 
 <style scoped>
 .Banner {
-  min-height: 100svh;
-  height: fit-content;
+  height: 100svh;
+  min-height: 900px;
   display: grid;
   grid-template-rows: 1fr auto;
+  padding-bottom: 32px;
 }
 
 .title {
@@ -75,9 +68,7 @@ export default {
 
 .earth {
   object-fit: cover;
-  /* Ensures the image fills the container */
-  /* -webkit-mask-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0)); */
-  /* filter: brightness(75%); */
+  -webkit-mask-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 75%);
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 75%);
 }
 

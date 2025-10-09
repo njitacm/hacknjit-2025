@@ -34,10 +34,6 @@ export default {
 </script>
 
 <style scoped>
-.About {
-  max-width: 1000px;
-}
-
 .container {
   display: flex;
   gap: 16px;

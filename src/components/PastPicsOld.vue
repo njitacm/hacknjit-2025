@@ -31,7 +31,6 @@ export default {
   display: grid;
   grid-template-columns: repeat(2, calc(50% - var(--gap) / 2));
   place-content: center;
-  /* max-width: var(--max-content-width); */
 
   @media(max-width: 600px) {
     & {

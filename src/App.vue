@@ -49,6 +49,7 @@ export default {
   --mlh-banner-transparent2: #f7f7f7ab;
   --edge-colors: #d3b28eb2;
 
+  --border-radius: 10px;
   --max-content-width: 1000px;
 }
 
@@ -143,6 +144,7 @@ button {
 .section {
   margin: 32px auto;
   width: calc(100vw - 64px);
+  max-width: var(--max-content-width);
 }
 
 .section-title {

@@ -1,6 +1,8 @@
 // NOTE: all paths are relative to /src/assets/sponsors
 export default {
-    "bronze": [
+    // "platinum": [ ]
+    // "gold": [ ]
+    "silver": [
         {
             "name": "GitHub",
             "imgSrc": "github.png",
@@ -11,12 +13,12 @@ export default {
             "imgSrc": "merck.png",
             "link": "https://www.merck.com/"
         },
+    ],
+    "bronze": [
         {
             "name": "Pure Buttons",
             "imgSrc": "pure_buttons.svg",
             "link": "https://mlh.link/MLH-PureButtons-hackathons"
         }
     ],
-    // "silver": [ ],
-    // "gold": [ ]
 };

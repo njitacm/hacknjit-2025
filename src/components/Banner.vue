@@ -63,7 +63,7 @@ export default {
 }
 
 .earth-container {
-  display: inline-block;  
+  display: inline-block;
   width: 1000px;
   position: absolute;
   overflow: hidden;
@@ -74,9 +74,11 @@ export default {
 }
 
 .earth {
-  object-fit: cover; /* Ensures the image fills the container */
-  -webkit-mask-image: -webkit-linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0)); /* For Webkit browsers */
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,0)); /* Standard syntax */
+  object-fit: cover;
+  /* Ensures the image fills the container */
+  /* -webkit-mask-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0)); */
+  /* filter: brightness(75%); */
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 75%);
 }
 
 .content {

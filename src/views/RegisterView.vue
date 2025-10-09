@@ -34,7 +34,7 @@ export default {
   top: var(--top-offset);
   position: relative;
   color: black;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   text-align: unset;
   display: block;
 }

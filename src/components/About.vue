@@ -48,7 +48,7 @@ export default {
 
 .main-img {
   width: 500px;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
 }
 
 .key-info-container {
@@ -59,7 +59,7 @@ export default {
 .key-info-header {
   background-color: white;
   color: var(--hacknjit-primary);
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   padding: 0 12px;
   display: flex;
   gap: 8px;

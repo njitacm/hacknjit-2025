@@ -279,7 +279,6 @@ header.active {
 nav {
   --expanded-touch-width: calc(90vw - 50px - 16px);
   --border-width: 1px;
-  --border-adjusted-border-radius: calc(2lh - 2 * var(--border-width));
   border: var(--border-width) solid #ffffff33;
   background-color: #00250435;
   backdrop-filter: blur(25px);

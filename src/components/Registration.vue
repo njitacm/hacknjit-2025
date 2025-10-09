@@ -1075,7 +1075,7 @@ export default {
 *[aria-labelledby="container__label"] {
   background-color: #eef3f7;
   padding: 8px;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
 }
 
 .vf-registration *,

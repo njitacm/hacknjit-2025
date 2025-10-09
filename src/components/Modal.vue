@@ -50,7 +50,7 @@ const { modalStack, closeModal } = useModal();
   margin: 0 auto;
   background-color: white;
   color: black;
-  border-radius: 1rem;
+  border-radius: var(--border-radius);
   padding-bottom: 12px;
   overflow: hidden;
   padding: 10px;

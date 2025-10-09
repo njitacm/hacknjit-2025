@@ -70,7 +70,7 @@ onBeforeUnmount(() => {
   padding: 32px;
   align-content: center;
   background: #B7EBDA;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
 }
 
 .image {

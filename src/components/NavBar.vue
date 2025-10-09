@@ -14,7 +14,8 @@
         </li>
         <!-- hidden when nav is closed -->
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index + 1)">
-          <button class="nav-link" @click="!isTouch ? goToPage(item) : null" @touchend.passive="() => goToPage(item)">
+          <button tabindex="-1" class="nav-link" @click="!isTouch ? goToPage(item) : null"
+            @touchend.passive="() => goToPage(item)">
             {{ item.label }}
           </button>
         </li>
@@ -42,6 +43,7 @@ const { activeSectionId } = storeToRefs(navigationStore);
 // template refs
 const headerRef = useTemplateRef("header");
 const ulRef = useTemplateRef("ul");
+const navButton0Ref = useTemplateRef("navButton0");
 
 // refs
 const interactedWithNav = ref(false); // mouse enter, mouse leave, touch start affects nav open/closed
@@ -105,12 +107,9 @@ const onMouseLeave = () => {
 };
 
 const onTouch = () => {
-  console.log("touched!");
   if (interactedWithNav.value === false && isNavActive.value === false && !wentToPage) {
-    console.log("if 1");
     interactedWithNav.value = true;
   } else if (wentToPage) {
-    console.log("if 2");
     wentToPage = false;
   }
 };

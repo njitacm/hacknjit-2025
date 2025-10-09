@@ -61,7 +61,7 @@ html {
   color: white;
   box-sizing: border-box;
   z-index: -100;
-  overflow-x: auto;
+  overflow-x: hidden;
   background-image: linear-gradient(to bottom, black, var(--hacknjit-sixth),
       var(--hacknjit-fifth),
       var(--hacknjit-fourth),

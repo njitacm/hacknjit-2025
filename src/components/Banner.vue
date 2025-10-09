@@ -1,23 +1,22 @@
 <template>
   <div class="Banner" id="HackNJIT" ref="sectionRef" :style="{ background: gradient }">
     <!-- <NotifSignup id="NotifSignup" /> -->
-    <div class="title-super-container">
-      <div class="title-container">
-        <h1 class="title">HackNJIT</h1>
-        <img src="..\assets\globe-half-of-the-earth.png" class="earth">
-        <div class="content">
-          <TheCountdown />
-          <RouterLink to="/registration" class="router-link pill register-button">Register Now</RouterLink>
-        </div>
-      </div>
+    <h1 class="title">HackNJIT</h1>
+    <div class="earth-container">
+      <img src="..\assets\globe.svg" class="earth">
     </div>
-    <div class="view-hint">
-      <RouterLink :to="{ hash: '#Past-Pics' }" class="router-link">View last year's photos</RouterLink>
-      <br />
-      <br />
-      <RouterLink :to="{ hash: '#Past-Pics' }">
-        <img src="../assets/icons/down_arrow.svg" style="width: 25px; height: 25px" />
-      </RouterLink>
+    <div class="spacer"></div>
+    <div class="content">
+      <TheCountdown />
+      <RouterLink to="/registration" class="router-link pill register-button">Register Now</RouterLink>
+      <div class="view-hint">
+        <RouterLink :to="{ hash: '#Past-Pics' }" class="router-link">View last year's photos</RouterLink>
+        <br />
+        <br />
+        <RouterLink :to="{ hash: '#Past-Pics' }">
+          <img src="../assets/icons/down_arrow.svg" style="width: 25px; height: 25px" />
+        </RouterLink>
+      </div>
     </div>
   </div>
 </template>
@@ -49,23 +48,8 @@ export default {
 .Banner {
   min-height: 100svh;
   height: fit-content;
+  display: grid;
   grid-template-rows: 1fr auto;
-  gap: 1rem;
-  position: relative;
-  overflow-x: hidden;
-}
-
-.title-super-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.title-container {
-  position: relative;
-  top: 128px;
-  /* transform: translateY(50%); */
-  /* transform-origin: 50% 50%; */
 }
 
 .title {
@@ -76,19 +60,27 @@ export default {
   text-align: center;
 }
 
-.earth {
+.earth-container {
+  display: inline-block;  
   width: 1000px;
-  position: relative;
-  transform-origin: 50% 50%;
-  margin: 0;
+  position: absolute;
+  overflow: hidden;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -999;
+}
+
+.earth {
+  z-index: -999;
+  object-fit: cover; /* Ensures the image fills the container */
+  -webkit-mask-image: -webkit-linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0)); /* For Webkit browsers */
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 20%, rgba(0,0,0,0)); /* Standard syntax */
 }
 
 .content {
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
-  position: absolute;
   display: grid;
+  justify-content: center;
   justify-items: center;
   gap: 32px;
 }
@@ -99,10 +91,10 @@ export default {
 
 .view-hint {
   width: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 32px;
-  position: absolute;
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+  /* bottom: 32px; */
+  /* position: absolute; */
   align-content: center;
 }
 
@@ -119,6 +111,7 @@ export default {
     font-size: 4em;
     top: 95px;
   }
+
   .register-button {
     font-size: 1.75em;
   }

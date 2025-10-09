@@ -42,6 +42,7 @@ export default {
   display: grid;
   grid-template-rows: 1fr auto;
   padding-bottom: 32px;
+  overflow: hidden;
 }
 
 .title {
@@ -55,20 +56,22 @@ export default {
 }
 
 .earth-container {
-  display: inline-block;
-  width: 1000px;
-  position: absolute;
-  overflow: hidden;
+  max-width: 100vw;
+  position: relative;
   top: -100px;
-  left: 50%;
-  transform: translateX(-50%);
   z-index: -1;
+  left: 50vw;
+  transform: translateX(-50%);
 }
 
 .earth {
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  width: 1000px;
   object-fit: cover;
-  -webkit-mask-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 75%);
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 75%);
+  -webkit-mask-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 60%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 60%);
 }
 
 .content {

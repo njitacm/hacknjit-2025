@@ -68,6 +68,8 @@ onBeforeUnmount(() => {
   flex-grow: 1;
   flex-shrink: 0;
   padding: 32px;
+  display: flex;
+  justify-content: center;
   align-content: center;
   background: #B7EBDA;
   border-radius: var(--border-radius);

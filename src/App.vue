@@ -151,6 +151,7 @@ button {
   margin-bottom: 16px;
 }
 
+a.pill,
 .router-link {
   color: white;
   text-decoration: none;
@@ -167,10 +168,15 @@ button {
   border-radius: 1000px;
   border: none;
   padding: 8px 24px;
-  font-weight: bold;
   cursor: pointer;
   background: var(--bkg);
+  font-size: 1em;
   transition: transform 250ms ease, filter 500ms ease;
+}
+
+.pill,
+.pill span {
+  font-weight: bold;
 }
 
 @media(hover: hover) and (pointer: fine) {

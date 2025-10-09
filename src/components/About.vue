@@ -4,13 +4,32 @@
     <div class="container">
       <img src="../assets/past_pics/hacknjit2022_1.jpg" class="main-img" />
       <div class="text-content">
-        <p>HackNJIT is a 24-hour hackathon hosted anually at the New Jersey Institute of Technology. We're open to all, whether you're a beginner or pro. Our goal is to empower students to be creative, learn new things outside the classroom, and share memorable experiences.</p>
+        <p>HackNJIT is a 24-hour hackathon hosted anually at the New Jersey Institute of Technology. We're open to all,
+          whether you're a beginner or pro. Our goal is to empower students to be creative, learn new things outside the
+          classroom, and share memorable experiences.</p>
         <div class="key-info-container">
-          <p class="key-info-header"><img src="../assets/icons/date.svg" class="icon" /><span>When?</span></p>
+          <div class="key-info-header">
+            <div class="title">
+              <img src="../assets/icons/date.svg" class="icon" /><span>When?</span>
+            </div>
+            <a target="_blank" class="action pill"
+              href="https://www.google.com/calendar/render?action=TEMPLATE&text=HackNJIT%202025&dates=20251108T090000/20251109T170000&ctz=America/New_York&details=HackNJIT%20is%20NJIT's%20annual%20student-run%20hackathon.%20Join%20us%20for%20a%20weekend%20of%20innovation,%20learning,%20and%20fun!&location=Campus%20Center,%20150%20Bleecker%20St%20%231982,%20Newark,%20NJ%2007102,%20USA">
+              <span>Add to calendar</span>
+              <img class="icon" src="../assets/icons/external_link.svg" />
+            </a>
+          </div>
           <p class="key-info">November 8, 2025 - November 9, 2025</p>
         </div>
         <div class="key-info-container">
-          <p class="key-info-header"><img src="../assets/icons/location.svg" class="icon" /><span>Where?</span></p>
+          <div class="key-info-header">
+            <div class="title">
+              <img src="../assets/icons/location.svg" class="icon" /><span>Where?</span>
+            </div>
+            <a target="_blank" class="action pill" href="https://maps.app.goo.gl/zpCuGThyr5TocsMe6">
+              <span>View map</span>
+              <img class="icon" src="../assets/icons/external_link.svg" />
+            </a>
+          </div>
           <p class="key-info">150 Bleeker St #1982, Newark, NJ 07102 (Campus Center Ballrooms)</p>
         </div>
       </div>
@@ -51,12 +70,21 @@ export default {
   border-radius: var(--border-radius);
 }
 
-.key-info-container {
-  display: grid;
-  gap: 8px;
+.icon {
+  height: 1.25em;
 }
 
 .key-info-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.key-info-container {
+  display: grid;
+  gap: 16px;
+}
+
+.title {
   background-color: white;
   color: var(--hacknjit-primary);
   border-radius: var(--border-radius);
@@ -65,14 +93,18 @@ export default {
   gap: 8px;
   align-items: center;
   width: fit-content;
-}
-
-.key-info-header span {
   font-weight: bold;
 }
 
-.icon {
-  height: 1em;
+.action {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title span {
+  font-weight: bold;
 }
 
 .key-info {

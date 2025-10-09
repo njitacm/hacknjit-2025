@@ -31,8 +31,8 @@ export default {
   --hacknjit-secondary: #8B6B4F;
   --hacknjit-tertiary: #57cc99;
   --hacknjit-fourth: #5BA36A;
-  --hacknjit-fifth: #3FA7A3;
-  --hacknjit-sixth: #6EC1E4;
+  --hacknjit-fifth: #3990b5;
+  --hacknjit-sixth: #307c7a;
 
   --main-bg-color: #274029;
   --main-fg-color: #8f5f49;

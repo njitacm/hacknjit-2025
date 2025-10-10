@@ -208,8 +208,11 @@ function getItemStyle(index) {
     const obj = {
       opacity: 1,
       transform: 'translateY(0)',
-      transition: `opacity 0.3s ease ${(index + 1) * 50}ms, transform 0.3s ease ${(index + 1) * 50}ms`
     };
+
+    if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+      obj.transition = `opacity 0.3s ease ${(index + 1) * 50}ms, transform 0.3s ease ${(index + 1) * 50}ms`;
+    }
 
     // section header that shows even with nav bar closed
     if (index === 0) {
@@ -230,9 +233,7 @@ function getItemStyle(index) {
 
     return obj;
   } else {
-    const obj = {
-      transition: 'opacity 0s, transform 0s'
-    };
+    const obj = {};
 
     // section header that shows even with nav bar closed
     if (index === 0) {
@@ -265,11 +266,9 @@ header {
   z-index: 50;
   display: grid;
   justify-items: center;
-  transition: gap 250ms ease;
   padding: 8px;
   border-radius: 1000px;
   width: fit-content;
-  transition: transform 250ms ease;
 }
 
 header.active {
@@ -287,7 +286,6 @@ nav {
   line-height: 1em;
   border-radius: 2lh;
   overflow: hidden;
-  transition: width 750ms ease, height 500ms ease;
   justify-self: center;
 }
 
@@ -356,10 +354,21 @@ header.active .icon {
   width: 0px;
 }
 
+@media(prefers-reduced-motion: no-preference) {
+  nav {
+    transition: width 750ms ease, height 500ms ease;
+  }
+}
+
+@media(prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .nav-link {
+    transition: background-color 250ms ease;
+  }
+}
+
 /* move nav toward the left to avoid collision with MLH banner */
 /* TOCHANGE - adjust max-width depending on nav bar overlap with MLH banner */
 @media(max-width: 1100px) {
-
   header,
   nav {
     justify-self: left;
@@ -375,11 +384,6 @@ header.active .icon {
 
 /* desktop */
 @media(hover: hover) and (pointer: fine) {
-  .nav-link {
-    transition: background-color 250ms ease;
-
-  }
-
   .nav-link:hover {
     background-color: #ffffff10
   }

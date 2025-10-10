@@ -279,7 +279,7 @@ nav {
   --expanded-touch-width: calc(90vw - 50px - 16px);
   --border-width: 1px;
   border: var(--border-width) solid #ffffff33;
-  background-color: #00250435;
+  background-color: #00250475;
   backdrop-filter: blur(25px);
   align-content: center;
   position: relative;
@@ -287,6 +287,13 @@ nav {
   border-radius: 2lh;
   overflow: hidden;
   justify-self: center;
+  
+  @media(prefers-reduced-transparency: reduce) {
+    & {
+      background-color: #002504;
+      backdrop-filter: none;
+    }
+  }
 }
 
 ul {

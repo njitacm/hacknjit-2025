@@ -261,11 +261,10 @@ function getItemStyle(index) {
 
 <style scoped>
 header {
-  justify-self: center;
   position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 50;
-  display: grid;
-  justify-items: center;
   padding: 8px;
   border-radius: 1000px;
   width: fit-content;
@@ -286,8 +285,8 @@ nav {
   line-height: 1em;
   border-radius: 2lh;
   overflow: hidden;
-  justify-self: center;
-  
+  margin-inline: auto;
+
   @media(prefers-reduced-transparency: reduce) {
     & {
       background-color: #002504;
@@ -376,9 +375,13 @@ header.active .icon {
 /* move nav toward the left to avoid collision with MLH banner */
 /* TOCHANGE - adjust max-width depending on nav bar overlap with MLH banner */
 @media(max-width: 1100px) {
-  header,
+  header {
+    left: 0;
+    transform: none;
+  }
+
   nav {
-    justify-self: left;
+    margin-inline: 0;
   }
 }
 

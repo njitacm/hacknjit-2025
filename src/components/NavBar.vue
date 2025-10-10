@@ -356,7 +356,7 @@ header.active .icon {
 
 @media(prefers-reduced-motion: no-preference) {
   nav {
-    transition: width 750ms ease, height 500ms ease;
+    transition: width 375ms ease, height 375ms ease;
   }
 }
 

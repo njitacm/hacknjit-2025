@@ -82,9 +82,11 @@ export default {
 }
 
 .key-info-container {
+  --gap: 32px;
+  --cols: 2;
   display: grid;
-  grid-template-columns: auto auto;
-  gap: 32px;
+  grid-template-columns: repeat(var(--cols), calc(50% - var(--gap) / var(--cols)));
+  gap: var(--gap);
   align-items: start;
 }
 
@@ -121,7 +123,7 @@ export default {
 
 @media(max-width: 750px) {
   .key-info-container {
-    grid-template-columns: auto;
+    grid-template-columns: 100%;
   }
 }
 

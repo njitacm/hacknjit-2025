@@ -78,6 +78,10 @@ onMounted(() => {
   overflow: hidden;
 }
 
+.countdown, .date {
+  text-align: center;
+}
+
 .countdown {
   font-size: 3em ;
   white-space: nowrap;

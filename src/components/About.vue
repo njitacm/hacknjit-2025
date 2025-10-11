@@ -68,6 +68,7 @@ export default {
 
 .key-info-header {
   display: flex;
+  gap: 16px;
   justify-content: space-between;
 }
 
@@ -80,11 +81,10 @@ export default {
   background-color: white;
   color: var(--hacknjit-primary);
   border-radius: var(--border-radius);
-  padding: 0 12px;
+  padding: 8px 12px;
   display: flex;
   gap: 8px;
   align-items: center;
-  width: fit-content;
   font-weight: bold;
 }
 
@@ -101,5 +101,11 @@ export default {
 
 .key-info {
   padding: 0 8px;
+}
+
+@media(max-width: 400px) {
+  .key-info-header {
+    flex-direction: column;
+  }
 }
 </style>

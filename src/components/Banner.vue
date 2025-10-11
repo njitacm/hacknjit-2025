@@ -1,6 +1,7 @@
 <template>
   <div class="Banner" id="HackNJIT" ref="sectionRef" :style="{ background: gradient }">
     <!-- <h1 class="title">HackNJIT</h1> -->
+    <CurvedText />
     <div class="earth-container">
       <img src="..\assets\globe.svg" class="earth">
     </div>
@@ -15,6 +16,7 @@
 
 <script>
 import TheCountdown from "./TheCountdown.vue";
+import CurvedText from "./CurvedText.vue";
 import { useIntersectionObserver } from '../composables/useIntersectionObserver';
 const { observe, unobserve } = useIntersectionObserver();
 
@@ -23,7 +25,7 @@ export default {
     gradient: String
   },
   components: {
-    TheCountdown
+    TheCountdown, CurvedText
   },
   mounted() {
     observe(this.$refs.sectionRef);

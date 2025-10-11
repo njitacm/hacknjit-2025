@@ -1,9 +1,5 @@
 <template>
   <div class="curved-text-container">
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/The_Blue_Marble_%28remastered%29.jpg/600px-The_Blue_Marble_%28remastered%29.jpg"
-      alt="Earth" class="center-image" />
-
     <div class="curved-text-wrapper">
       <div v-for="(char, index) in text" :key="index" class="char-container" :style="getCharContainerStyle(index)">
         <span class="char" :style="{ animationDelay: index * 0.08 + 's' }">

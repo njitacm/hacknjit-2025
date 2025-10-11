@@ -62,6 +62,10 @@
     "Question": "Can a member of our team be at the event virtually?",
     "Answer":
       "No, all team members are required to check in at the start of the event."
+  },
+  {
+    "Question": "Can I serve as a judge?",
+    "Answer": "We generally do not allow non-NJIT-affiliated judges. However, HackNJIT allows more judges through sponsorships. That is, if your affiliated company sponsors HackNJIT and creates a new challenge or category for our participants, you are free to judge entries submitted there. Our sponsorship challenges are very flexible. If you would like to pursue this further, reach out to us!"
   }
 ],
 "In-Person Logistics": [{

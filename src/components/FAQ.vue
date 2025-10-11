@@ -4,7 +4,7 @@
     <Accordion class="faq-container">
       <div v-for="(topicFaqs, topic, index1) in faqs" :key="index1" class="faq-topic-container">
         <h3 class="faq-topic">{{ topic }}</h3>
-        <AccordionPanel v-for="(faq, index2) in topicFaqs" :key="index2" :value="index1 * topicFaqs.length + index2">
+        <AccordionPanel v-for="(faq, index2) in topicFaqs" :key="index2" :value="faq.Answer">
           <AccordionHeader>{{ faq.Question }}</AccordionHeader>
           <AccordionContent>
             <p class="m-0">{{ faq.Answer }}</p>

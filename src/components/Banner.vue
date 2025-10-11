@@ -62,6 +62,10 @@ export default {
 }
 
 .earth {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   left: 50%;
   transform: translateX(-50%);
   position: absolute;

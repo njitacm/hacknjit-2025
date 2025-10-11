@@ -1,5 +1,5 @@
 <template>
-  <div class="PastPics section">
+  <div class="PastPics">
     <Galleria v-bind="slideshowProps" :value="images">
       <template #item="slotProps">
         <img :src="slotProps.item.src" :alt="`HackNJIT ${slotProps.item.year} photo`" style="width: 100%" />

@@ -50,6 +50,7 @@ export default {
   width: 100%;
   text-align: center;
   z-index: -2;
+  animation: title-anim 1s ease forwards;
 }
 
 .earth-container {
@@ -93,6 +94,18 @@ export default {
   /* bottom: 32px; */
   /* position: absolute; */
   align-content: center;
+}
+
+@keyframes title-anim {
+  from {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+  
+  to {
+    transform: none;
+    opacity: 1;
+  }
 }
 
 @media(max-width: 1000px) {

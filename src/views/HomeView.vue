@@ -15,7 +15,7 @@ import NavBar from "../components/NavBar.vue";
 import Banner from "../components/Banner.vue";
 import About from "../components/About.vue";
 import TheSponsors from "../components/Sponsors.vue";
-import TheFAQ from "../components/TheFAQ.vue";
+import TheFAQ from "../components/FAQ.vue";
 import PastPics from "../components/PastPics.vue";
 import Tracks from "../components/Tracks.vue";
 import Modal from "../components/Modal.vue";

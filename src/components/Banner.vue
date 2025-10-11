@@ -35,6 +35,9 @@ export default {
 
 <style scoped>
 .Banner {
+  /* from the base of top: 250px for .title (arbritrary value that was previously used); 
+  tweaking --top-offset will position title and globe for all media queries accordingly */
+  --top-offset: -100px;
   min-height: 900px;
   display: grid;
   grid-template-rows: 1fr auto;
@@ -43,7 +46,7 @@ export default {
 }
 
 .title {
-  top: 250px;
+  top: calc(250px + var(--top-offset));
   font-weight: bold;
   font-size: 10em;
   position: absolute;
@@ -56,7 +59,7 @@ export default {
 .earth-container {
   max-width: 100vw;
   position: relative;
-  top: -100px;
+  top: calc(-100px + var(--top-offset));
   z-index: -1;
   left: 50vw;
   transform: translateX(-50%);
@@ -101,7 +104,7 @@ export default {
     transform: translateY(25px);
     opacity: 0;
   }
-  
+
   to {
     transform: none;
     opacity: 1;
@@ -111,7 +114,7 @@ export default {
 @media(max-width: 1000px) {
   .title {
     font-size: 6em;
-    top: 310px;
+    top: calc(310px + var(--top-offset));
   }
 
 }
@@ -119,7 +122,7 @@ export default {
 @media(max-width: 600px) {
   .title {
     font-size: 4em;
-    top: 345px;
+    top: calc(345px + var(--top-offset));
   }
 
   .register-button {

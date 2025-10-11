@@ -61,7 +61,6 @@ const navItems = [
   { label: 'About', hash: '#About' },
   { label: 'Sponsors', hash: '#Sponsors' },
   { label: "FAQ", hash: '#FAQ' },
-  { label: "Past Pics", hash: "#Past-Pics" },
   // { label: 'Contact', hash: '#Contact' },
   { label: "Register", path: "/registration" },
 ];

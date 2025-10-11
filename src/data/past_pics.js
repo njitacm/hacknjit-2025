@@ -1,3 +1,4 @@
+// all paths are relative to /src/assets/past_pics
 export default [
     {
         year: 2024,
@@ -14,5 +15,9 @@ export default [
     {
         year: 2024,
         src: "hacknjit2024_4.jpg",
+    },
+    {
+        year: 222,
+        src: "hacknjit2022_1.jpg",
     },
 ];

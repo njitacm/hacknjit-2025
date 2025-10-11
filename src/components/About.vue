@@ -2,7 +2,6 @@
   <div class="About section" ref="sectionRef" id="About">
     <h2 class="section-title">About</h2>
     <div class="container">
-      <img src="../assets/past_pics/hacknjit2022_1.jpg" class="main-img" />
       <div class="text-content">
         <p>HackNJIT is a 24-hour hackathon hosted anually at the New Jersey Institute of Technology. We're open to all,
           whether you're a beginner or pro. Our goal is to empower students to be creative, learn new things outside the
@@ -33,15 +32,18 @@
           <p class="key-info">150 Bleeker St #1982, Newark, NJ 07102 (Campus Center Ballrooms)</p>
         </div>
       </div>
+      <PastPics />
     </div>
   </div>
 </template>
 
 <script>
 import { useIntersectionObserver } from "../composables/useIntersectionObserver";
+import PastPics from "./PastPics.vue";
 const { observe, unobserve } = useIntersectionObserver();
 
 export default {
+  components: { PastPics },
   mounted() {
     observe(this.$refs.sectionRef);
   },
@@ -53,21 +55,11 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  display: flex;
-  gap: 16px;
-}
-
 .text-content {
   display: grid;
   align-content: space-between;
   gap: 16px;
   text-align: left;
-}
-
-.main-img {
-  width: 500px;
-  border-radius: var(--border-radius);
 }
 
 .icon {
@@ -109,16 +101,5 @@ export default {
 
 .key-info {
   padding: 0 8px;
-}
-
-@media(max-width: 900px) {
-  .container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .main-img {
-    width: 100%;
-  }
 }
 </style>

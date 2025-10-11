@@ -1,5 +1,5 @@
 <template>
-  <div class="TheFAQ section" id="FAQ" ref="sectionRef">
+  <div class="FAQ section" id="FAQ" ref="sectionRef">
     <h2 class="section-title">FAQ</h2>
     <Accordion class="faq-container">
       <div v-for="(topicFaqs, topic, index1) in faqs" :key="index1" class="faq-topic-container">
@@ -40,7 +40,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-.TheFAQ {
+.FAQ {
   display: flex;
   flex-direction: column;
   align-items: center;

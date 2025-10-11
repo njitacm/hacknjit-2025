@@ -30,11 +30,15 @@ const sectionRef = useTemplateRef("sectionRef");
 
 // life cycle hooks
 onMounted(() => {
-  if (sectionRef.value) observe(sectionRef.value);
+  if (sectionRef.value) {
+    observe(sectionRef.value);
+  }
 });
 
 onBeforeUnmount(() => {
-  if (sectionRef.value) unobserve(sectionRef.value);
+  if (sectionRef.value) {
+    nobserve(sectionRef.value);
+  }
 });
 
 </script>

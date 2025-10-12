@@ -5,16 +5,19 @@
       <defs>
         <path :id="pathId" :d="pathDefinition"></path>
       </defs>
-      <text v-for="(char, index) in text" :key="index" class="char-text"
-        :style="{ animationDelay: index * 0.08 + 's' }">
-        <!-- <textPath :href="`#${pathId}`" :startOffset="getLetterOffset(index)"> -->
+      <text>
         <textPath :href="`#${pathId}`">
-          {{ char }}
+          {{ props.text }}
         </textPath>
       </text>
+      <!-- <text v-for="(char, index) in text" :key="index" class="char-text"
+        :style="{ animationDelay: index * 0.08 + 's' }">
+        <!-- <textPath :href="`#${pathId}`" :startOffset="getLetterOffset(index)"> -->
+
+      </text> -->
       <path v-if="props.debug" id="debug-path" :d="debugPath" stroke="red" stroke-width="1" fill="none"></path>
       <circle v-if="props.debug" id="debug-circle" :cx="props.centerX" :cy="props.centerY" :r="props.radius"
-        z-index="1000" fill="none" stroke="red" stroke-width="1"></circle>
+        z-index="1000" fill="none" stroke="blue" stroke-width="1"></circle>
     </svg>
   </div>
 </template>
@@ -30,6 +33,8 @@ const props = defineProps({
   debug: { type: Boolean, default: false },
   centerX: { type: String, default: "50%" },
   centerY: { type: String, default: "50%" },
+  centerOffsetX: { type: Number, default: 0 },
+  centerOffsetY: { type: Number, default: 0 },
 });
 
 const pathId = `curved-text-path-${Math.random().toString(36).substring(2, 9)}`;
@@ -56,16 +61,17 @@ const pathDefinition = computed(() => {
   const endRad = (endAngle - 90) * (Math.PI / 180);
 
   // Note that we now use .value because centerY is a computed ref
-  const x1 = props.radius * Math.cos(startRad);
-  const y1 = props.radius * Math.sin(startRad);
-  const x2 = props.radius * Math.cos(endRad);
-  const y2 = props.radius * Math.sin(endRad);
+  const x1 = centerX + props.radius * Math.cos(startRad);
+  const y1 = centerY.value + props.radius * Math.sin(startRad);
+  const x2 = centerX + props.radius * Math.cos(endRad);
+  const y2 = centerY.value + props.radius * Math.sin(endRad);
 
   const largeArcFlag = props.arc > 180 ? 1 : 0;
   // const largeArcFlag = 0;
 
+  console.log(props.centerOffsetY);
   //d="M 336 6 A 150 150 20 0 0 85 17" 
-  return `M calc(${props.centerX} + ${x1}px) ${y1} A ${props.radius} ${props.radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`;
+  return `M ${x1 + props.centerOffsetX} ${y1 + props.centerOffsetY} A ${props.radius} ${props.radius} 0 ${largeArcFlag} 1 ${x2 + props.centerOffsetX} ${y2 + props.centerOffsetY}`;
 });
 
 

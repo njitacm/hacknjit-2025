@@ -4,7 +4,7 @@
     <!-- <CurvedText class="title" :radius="500" :arc="100" /> -->
     <!-- <CurveText class="curved-title">HackNJIT</CurveText> -->
     <CurvedText class="curved-title" :radius="radius" :arc="arc" text="HackNJIT" :rotation="rotation" :debug="true"
-      :center-offset-x="6" :center-offset-y="-20" />
+      center-x="calc(50% + 6px)" center-y="calc(100% - 20px)" :center-offset-x="6" :center-offset-y="12" />
     <div class="earth-container">
       <img src="..\assets\globe.svg" class="earth">
     </div>
@@ -34,7 +34,7 @@ export default {
     return {
       rotation: -10,
       interval: null,
-      radius: 200,
+      radius: 196,
       arc: 90,
     };
   },

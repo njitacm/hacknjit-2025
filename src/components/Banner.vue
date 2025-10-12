@@ -68,7 +68,7 @@ export default {
   font-weight: bold;
   fill: #ffffff;
   font-family: monospace;
-  text-shadow: 0 0 5px #00aaff, 0 0 10px #00aaff;
+  text-shadow: 0 0 15px var(--hacknjit-tertiary), 0 0 5px white;
   opacity: 0;
   animation: fade-in 2s linear forwards;
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="Banner" id="HackNJIT" ref="sectionRef">
-    <CurvedText class="curved-title" text="HackNJIT" :radius="245" :arc="90" :view-box-size-x="500" :view-box-size-y="500"
-    center-y="calc(100% - 20px)" :debug="false" :center-offset-x="0" :center-offset-y="23.5"
+    <CurvedText class="curved-title" text="HackNJIT" :radius="240" :arc="90" :view-box-size-x="500" :view-box-size-y="500"
+    center-y="calc(100% - 20px)" :debug="false" :center-offset-x="0" :center-offset-y="25"
     text-class="curved-title-text" svg-class="curved-title-svg" />
     <div class="earth-container">
       <img src="..\assets\globe.svg" class="earth">
@@ -51,11 +51,11 @@ export default {
 .curved-title {
   position: absolute;
   left: 50%;
-  transform: translateX(calc(-50% + var(--offset-x)));
+  transform: translateX(calc(-50% + var(--offset-x))) rotate(0.5deg);
   top: calc(-65px + var(--top-offset));
   height: 1000px;
   width: 1000px;
-  max-width: calc(100vw - 2 * var(--offset-x));
+  max-width: calc(100vw - 5 * var(--offset-x));
   z-index: -20;
   overflow: hidden;
 }
@@ -99,7 +99,7 @@ export default {
   height: 100%;
   object-fit: cover;
   transform-origin: 50% 64%;
-  transform: rotate(50deg);
+  animation: keep-rotating 300s linear infinite;
 }
 
 .content {
@@ -113,18 +113,6 @@ export default {
   font-size: 2em;
 }
 
-@keyframes title-anim {
-  from {
-    transform: translateY(25px);
-    opacity: 0;
-  }
-
-  to {
-    transform: none;
-    opacity: 1;
-  }
-}
-
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -132,6 +120,15 @@ export default {
 
   to {
     opacity: 1;
+  }
+}
+
+@keyframes keep-rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -152,9 +149,9 @@ export default {
 }
 
 @media(max-width: 1050px) {
-  .Banner {
+  /* .Banner {
     --offset-x: 7px;
-  }
+  } */
 
   :deep(.curved-title-text) {
     font-size: 4em;

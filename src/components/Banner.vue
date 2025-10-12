@@ -1,10 +1,8 @@
 <template>
   <div class="Banner" id="HackNJIT" ref="sectionRef">
-    <div class="curved-text-container">
-      <CurvedText text="HackNJIT" :radius="245" :arc="90" :view-box-size-x="500" :view-box-size-y="500"
-        center-y="calc(100% - 20px)" :debug="false" :center-offset-x="0" :center-offset-y="23.5"
-        text-class="curved-title-text" svg-class="curved-title-svg" />
-    </div>
+    <CurvedText class="curved-title" text="HackNJIT" :radius="245" :arc="90" :view-box-size-x="500" :view-box-size-y="500"
+    center-y="calc(100% - 20px)" :debug="false" :center-offset-x="0" :center-offset-y="23.5"
+    text-class="curved-title-text" svg-class="curved-title-svg" />
     <div class="earth-container">
       <img src="..\assets\globe.svg" class="earth">
     </div>
@@ -48,7 +46,7 @@ export default {
   overflow: hidden;
 }
 
-.curved-text-container {
+.curved-title {
   position: absolute;
   left: 50%;
   transform: translateX(calc(-50% + var(--offset-x)));

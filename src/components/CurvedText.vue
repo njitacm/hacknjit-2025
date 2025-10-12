@@ -74,13 +74,6 @@ const debugPath = computed(() => {
 </script>
 
 <style scoped>
-.CurvedText {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  max-width: 100vw;
-}
-
 svg {
   left: 50%;
   transform: translateX(50%);

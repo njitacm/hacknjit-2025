@@ -1,7 +1,7 @@
 <template>
   <div class="Banner" id="HackNJIT" ref="sectionRef" :style="{ background: gradient }">
     <!-- <h1 class="title">HackNJIT</h1> -->
-    <CurvedText />
+    <CurvedText class="title" :radius="500" :arc="100" />
     <div class="earth-container">
       <img src="..\assets\globe.svg" class="earth">
     </div>
@@ -48,24 +48,26 @@ export default {
   overflow: hidden;
 }
 
-#canv {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: calc(250px + var(--top-offset));
-  width: 600px;
-  height: 250px;
-}
 
 .title {
-  top: calc(250px + var(--top-offset));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* min-height: 400px;
+  min-width: 400px; */
+  border-radius: 10px;
+  /* overflow: hidden; */
+  /* Center the wrapper and pull it up by the radius to align the rotation axis */
+  left: 50%;
+  transform: translateY(-50%);
+  top: calc(500px + var(--top-offset));
   font-weight: bold;
   font-size: 10em;
   position: absolute;
   width: 100%;
   text-align: center;
   z-index: -2;
-  animation: title-anim 1s ease forwards;
+  /* animation: title-anim 1s ease forwards; */
 }
 
 .earth-container {

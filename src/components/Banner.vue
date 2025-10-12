@@ -96,7 +96,7 @@ export default {
   top: calc(-65px + var(--top-offset));
   height: 1000px;
   width: 1000px;
-  max-width: 100vw;
+  max-width: calc(100vw - 2 * var(--offset-x));
   z-index: -20;
   overflow: hidden;
 }
@@ -165,12 +165,23 @@ export default {
 @media(max-width: 1050px) {
   .Banner {
     --title-font-size: 4em;
+    --offset-x: 7px;
   }
 }
 
 @media(max-width: 600px) {
+  .Banner {
+    --title-font-size: 3em;
+  }
+
   .register-button {
     font-size: 1.75em;
+  }
+}
+
+@media(max-width: 400px) {
+  .Banner {
+    --title-font-size: 2.5em;
   }
 }
 </style>

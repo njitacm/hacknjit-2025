@@ -39,6 +39,7 @@ export default {
   --top-offset: -100px;
   /* small offset to line up the curved text with the Earth */
   --offset-x: 15px;
+  /* directly from the Earth SVG's viewbox */
   --earth-aspect-ratio: calc(134.067933682390503/208.32275390625);
   min-height: 900px;
   display: grid;
@@ -94,8 +95,6 @@ export default {
   -moz-user-select: none;
   -ms-user-select: none;
   position: absolute;
-  left: 0;
-  right: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;

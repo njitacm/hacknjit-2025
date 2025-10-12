@@ -49,7 +49,7 @@ const centerY = computed(() => {
 
 // This path definition now uses the new dynamic `centerY`
 const pathDefinition = computed(() => {
-  const startAngle = -props.arc / 2 + (props.arc / props.text.length);
+  const startAngle = -props.arc / 2 + 8;
   const endAngle = props.arc / 2;
 
   const startRad = (startAngle - 90) * (Math.PI / 180);
@@ -81,7 +81,7 @@ const getLetterOffset = (index) => {
   align-items: center; */
   /* position: relative; */
   /* border-radius: 10px; */
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 svg {
@@ -93,10 +93,10 @@ svg {
 }
 
 .char-text {
-  font-size: 2.8rem;
-  font-weight: 700;
-  font-family: 'Montserrat', sans-serif;
+  font-size: 5em;
+  font-weight: bold;
   fill: #ffffff;
+  font-family: monospace;
   /* Use 'fill' instead of 'color' for SVG text */
   text-shadow: 0 0 5px #00aaff, 0 0 10px #00aaff;
 

@@ -1,7 +1,7 @@
 <template>
   <div class="Banner" id="HackNJIT" ref="sectionRef" :style="{ background: gradient }">
     <!-- <h1 class="title">HackNJIT</h1> -->
-    <CurvedText class="curved-title" :radius="300" :arc="50" text="HackNJIT" />
+    <CurvedText class="curved-title" :radius="200" :arc="100" text="HackNJIT" />
     <!-- <CurvedText class="title" :radius="500" :arc="100" /> -->
     <!-- <CurveText class="curved-title">HackNJIT</CurveText> -->
     <div class="earth-container">
@@ -54,9 +54,9 @@ export default {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: calc(-60px + var(--top-offset));
+  top: calc(10px + var(--top-offset));
   min-height: 1000px;
-  min-width: 700px;
+  min-width: 1000px;
   z-index: -20;
 }
 

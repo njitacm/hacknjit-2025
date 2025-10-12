@@ -1,7 +1,8 @@
 <template>
   <div class="Banner" id="HackNJIT" ref="sectionRef" :style="{ background: gradient }">
     <!-- <h1 class="title">HackNJIT</h1> -->
-    <CurvedText class="title" :radius="500" :arc="100" />
+    <!-- <CurvedText class="title" :radius="500" :arc="100" /> -->
+    <!-- <CurveText class="curved-title">HackNJIT</CurveText> -->
     <div class="earth-container">
       <img src="..\assets\globe.svg" class="earth">
     </div>
@@ -16,16 +17,17 @@
 
 <script>
 import TheCountdown from "./TheCountdown.vue";
-import CurvedText from "./CurvedText.vue";
+// import CurvedText from "./CurvedText.vue";
 import { useIntersectionObserver } from '../composables/useIntersectionObserver';
 const { observe, unobserve } = useIntersectionObserver();
+import { CurveText } from "@inotom/vue-curve-text";
 
 export default {
   props: {
     gradient: String
   },
   components: {
-    TheCountdown, CurvedText
+    TheCountdown, CurveText
   },
   mounted() {
     observe(this.$refs.sectionRef);
@@ -48,6 +50,12 @@ export default {
   overflow: hidden;
 }
 
+.curved-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(500px + var(--top-offset));
+}
 
 .title {
   display: flex;

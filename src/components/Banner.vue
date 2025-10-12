@@ -5,8 +5,8 @@
     <!-- <CurveText class="curved-title">HackNJIT</CurveText> -->
     <div class="curved-text-container">
       <CurvedText text="HackNJIT" :radius="radius" :arc="arc" view-box-size-x="500"
-        view-box-size-y="500" center-y="calc(100% - 20px)" :rotation="rotation" :debug="true" :center-offset-x="0"
-        :center-offset-y="23" />
+        view-box-size-y="500" center-y="calc(100% - 20px)" :rotation="rotation" :debug="false" :center-offset-x="0"
+        :center-offset-y="23.5" />
     </div>
     <div class="earth-container">
       <img src="..\assets\globe.svg" class="earth">

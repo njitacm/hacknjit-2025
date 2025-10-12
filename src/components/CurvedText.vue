@@ -5,16 +5,11 @@
       <defs>
         <path :id="pathId" :d="pathDefinition"></path>
       </defs>
-      <text>
-        <textPath :href="`#${pathId}`">
+      <text class="char-text">
+        <textPath :href="`#${pathId}`" startOffset="50%" text-anchor="middle">
           {{ props.text }}
         </textPath>
       </text>
-      <!-- <text v-for="(char, index) in text" :key="index" class="char-text"
-        :style="{ animationDelay: index * 0.08 + 's' }">
-        <!-- <textPath :href="`#${pathId}`" :startOffset="getLetterOffset(index)"> -->
-
-      </text> -->
       <path v-if="props.debug" id="debug-path" :d="debugPath" stroke="red" stroke-width="1" fill="none"></path>
       <circle v-if="props.debug" id="debug-circle" :cx="props.centerX" :cy="props.centerY" :r="props.radius"
         z-index="1000" fill="none" stroke="blue" stroke-width="1"></circle>
@@ -100,16 +95,6 @@ svg {
   fill: #ffffff;
   font-family: monospace;
   text-shadow: 0 0 5px #00aaff, 0 0 10px #00aaff;
-  text-anchor: middle;
-  opacity: 0;
-  /* transform: translateY(20px); */
-  animation: fadeIn 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    /* transform: translateY(0); */
-  }
+  /* text-anchor: middle; */
 }
 </style>

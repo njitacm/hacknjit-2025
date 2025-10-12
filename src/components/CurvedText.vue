@@ -1,15 +1,20 @@
 <template>
   <div class="svg-curved-text-container">
-    <svg :viewBox="`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`" style="transform: rotate(-2deg)">
+    <!-- <svg :viewBox="`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`" style="transform: rotate(-2deg)"> -->
+    <svg :viewBox="`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`">
       <defs>
         <path :id="pathId" :d="pathDefinition"></path>
       </defs>
       <text v-for="(char, index) in text" :key="index" class="char-text"
         :style="{ animationDelay: index * 0.08 + 's' }">
-        <textPath :href="`#${pathId}`" :startOffset="getLetterOffset(index)">
+        <!-- <textPath :href="`#${pathId}`" :startOffset="getLetterOffset(index)"> -->
+        <textPath :href="`#${pathId}`">
           {{ char }}
         </textPath>
       </text>
+      <path v-if="props.debug" id="debug-path" :d="debugPath" stroke="red" stroke-width="1" fill="none"></path>
+      <circle v-if="props.debug" id="debug-circle" :cx="props.centerX" :cy="props.centerY" :r="props.radius"
+        z-index="1000" fill="none" stroke="red" stroke-width="1"></circle>
     </svg>
   </div>
 </template>
@@ -21,7 +26,10 @@ const props = defineProps({
   text: { type: String, default: 'HackNJIT' },
   radius: { type: Number, default: 160 },
   arc: { type: Number, default: 100 },
-  rotation: { type: Number, default: -2 }
+  rotation: { type: Number, default: -2 },
+  debug: { type: Boolean, default: false },
+  centerX: { type: String, default: "50%" },
+  centerY: { type: String, default: "50%" },
 });
 
 const pathId = `curved-text-path-${Math.random().toString(36).substring(2, 9)}`;
@@ -41,21 +49,28 @@ const centerY = computed(() => {
 });
 
 const pathDefinition = computed(() => {
-  const startAngle = -props.arc / 2 + props.rotation;
+  const startAngle = -props.arc / 2;
   const endAngle = props.arc / 2;
 
   const startRad = (startAngle - 90) * (Math.PI / 180);
   const endRad = (endAngle - 90) * (Math.PI / 180);
 
   // Note that we now use .value because centerY is a computed ref
-  const x1 = centerX + props.radius * Math.cos(startRad);
-  const y1 = centerY.value + props.radius * Math.sin(startRad);
-  const x2 = centerX + props.radius * Math.cos(endRad);
-  const y2 = centerY.value + props.radius * Math.sin(endRad);
+  const x1 = props.radius * Math.cos(startRad);
+  const y1 = props.radius * Math.sin(startRad);
+  const x2 = props.radius * Math.cos(endRad);
+  const y2 = props.radius * Math.sin(endRad);
 
   const largeArcFlag = props.arc > 180 ? 1 : 0;
+  // const largeArcFlag = 0;
 
-  return `M ${x1} ${y1} A ${props.radius} ${props.radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`;
+  //d="M 336 6 A 150 150 20 0 0 85 17" 
+  return `M calc(${props.centerX} + ${x1}px) ${y1} A ${props.radius} ${props.radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`;
+});
+
+
+const debugPath = computed(() => {
+  return pathDefinition.value;
 });
 
 const getLetterOffset = (index) => {

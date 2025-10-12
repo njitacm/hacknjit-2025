@@ -1,9 +1,10 @@
 <template>
   <div class="Banner" id="HackNJIT" ref="sectionRef" :style="{ background: gradient }">
     <!-- <h1 class="title">HackNJIT</h1> -->
-    <CurvedText class="curved-title" :radius="radius" :arc="arc" text="HackNJIT" :rotation="rotation" />
     <!-- <CurvedText class="title" :radius="500" :arc="100" /> -->
     <!-- <CurveText class="curved-title">HackNJIT</CurveText> -->
+    <CurvedText class="curved-title" :radius="radius" :arc="arc" text="HackNJIT" :rotation="rotation" :debug="true"
+      :center-offset-x="6" :center-offset-y="-20" />
     <div class="earth-container">
       <img src="..\assets\globe.svg" class="earth">
     </div>
@@ -34,26 +35,26 @@ export default {
       rotation: -10,
       interval: null,
       radius: 200,
-      arc: 80,
+      arc: 90,
     };
   },
   created() {
-    this.mqList1000 = window.matchMedia(`(max-width: 1000px)`);
+    // this.mqList1000 = window.matchMedia(`(max-width: 1000px)`);
   },
   mounted() {
     observe(this.$refs.sectionRef);
-    this.mqList1000.addEventListener("change", this.onMediaQuery1000Change);
-    this.interval = () => {
-      if (this.rotation < 8) {
-        this.rotation += 0.1;
-      } else {
-        clearInterval(this.interval);
-      }
-    };
+    // this.mqList1000.addEventListener("change", this.onMediaQuery1000Change);
+    // this.interval = () => {
+    //   if (this.rotation < 8) {
+    //     this.rotation += 0.1;
+    //   } else {
+    //     clearInterval(this.interval);
+    //   }
+    // };
     setInterval(this.interval, 5);
   },
   beforeUnmount() {
-    this.mqList1000.removeEventListener("change", this.onMediaQuery1000Change);
+    // this.mqList1000.removeEventListener("change", this.onMediaQuery1000Change);
     unobserve(this.$refs.sectionRef);
   },
   methods: {
@@ -88,10 +89,10 @@ export default {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: calc(-25px + var(--top-offset));
+  top: calc(-50px + var(--top-offset));
   min-height: 1000px;
   min-width: 1000px;
-  z-index: -20;
+  /* z-index: -20; */
 }
 
 .earth-container {
@@ -150,15 +151,14 @@ export default {
 }
 
 @media(max-width: 1000px) {
-  .Banner {
+  /* .Banner {
     --title-font-size: 3em;
   }
 
   .curved-title {
     min-width: 600px;
     top: calc(-70px + var(--top-offset));
-  }
-
+  } */
 }
 
 @media(max-width: 600px) {

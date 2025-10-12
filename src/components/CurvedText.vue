@@ -1,7 +1,7 @@
 <template>
-  <div class="svg-curved-text-container">
+  <div class="CurvedText">
     <!-- <svg :viewBox="`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`" style="transform: rotate(-2deg)"> -->
-    <svg :viewBox="`0 0 ${props.viewBoxSizeX} ${props.viewBoxSizeY}`">
+    <svg :viewBox="`0 0 ${props.viewBoxSizeX} ${props.viewBoxSizeY}`" :style="`width: ${2 * props.viewBoxSizeX}`">
       <defs>
         <path :id="pathId" :d="pathDefinition"></path>
       </defs>
@@ -84,10 +84,21 @@ const getLetterOffset = (index) => {
 </script>
 
 <style scoped>
-svg {
-  position: absolute;
+.CurvedText {
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
+  position: absolute;
+  max-width: 100vw;
+}
+
+svg {
+  left: 50%;
+  transform: translateX(50%);
+  width: 100%;
+  margin-left: -500px;
+  height: 100%;
+  position: absolute;
+  transform-origin: center;
   overflow: hidden;
   transform-origin: bottom;
   animation: rotate-in 1s ease forwards;

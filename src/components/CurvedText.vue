@@ -1,10 +1,10 @@
 <template>
   <div class="CurvedText">
-    <svg :viewBox="`0 0 ${props.viewBoxSizeX} ${props.viewBoxSizeY}`" :style="`width: ${2 * props.viewBoxSizeX}; margin-left: -${props.viewBoxSizeX}px`">
+    <svg :viewBox="`0 0 ${props.viewBoxSizeX} ${props.viewBoxSizeY}`" :style="`width: ${2 * props.viewBoxSizeX}; margin-left: -${props.viewBoxSizeX}px`" :class="props.svgClass">
       <defs>
         <path :id="pathId" :d="pathDefinition"></path>
       </defs>
-      <text class="text">
+      <text class="text" :class="props.textClass">
         <textPath :href="`#${pathId}`" startOffset="50%" text-anchor="middle">
           {{ props.text }}
         </textPath>
@@ -25,6 +25,8 @@ const props = defineProps({
   arc: { type: Number, default: 100 },
   viewBoxSizeX: { type: Number, default: 400 },
   viewBoxSizeY: { type: Number, default: 400 },
+  textClass: { type: String, default: "" },
+  svgClass: { type: String, default: "" },
   debug: { type: Boolean, default: false },
   centerX: { type: String, default: "50%" },
   centerY: { type: String, default: "50%" },
@@ -87,38 +89,5 @@ svg {
   position: absolute;
   transform-origin: center;
   overflow: hidden;
-  transform-origin: bottom;
-  animation: rotate-in 1s ease forwards;
-}
-
-.text {
-  transform-origin: 50% 100%;
-  font-size: var(--title-font-size);
-  font-weight: bold;
-  fill: #ffffff;
-  font-family: monospace;
-  text-shadow: 0 0 5px #00aaff, 0 0 10px #00aaff;
-  opacity: 0;
-  animation: fade-in 2s linear forwards;
-}
-
-@keyframes rotate-in {
-  from {
-    transform: rotate(-10deg);
-  }
-
-  to {
-    transform: none;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
 }
 </style>

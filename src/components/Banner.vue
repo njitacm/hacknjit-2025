@@ -2,7 +2,8 @@
   <div class="Banner" id="HackNJIT" ref="sectionRef">
     <div class="curved-text-container">
       <CurvedText text="HackNJIT" :radius="245" :arc="90" :view-box-size-x="500" :view-box-size-y="500"
-        center-y="calc(100% - 20px)" :debug="false" :center-offset-x="0" :center-offset-y="23.5" />
+        center-y="calc(100% - 20px)" :debug="false" :center-offset-x="0" :center-offset-y="23.5"
+        text-class="curved-title-text" svg-class="curved-title-svg" />
     </div>
     <div class="earth-container">
       <img src="..\assets\globe.svg" class="earth">
@@ -38,7 +39,6 @@ export default {
   /* from the base of top: 250px for .title (arbritrary value that was previously used); 
   tweaking --top-offset will position title and globe for all media queries accordingly */
   --top-offset: -100px;
-  --title-font-size: 5em;
   /* small offset to line up the curved text with the Earth */
   --offset-x: 15px;
   min-height: 900px;
@@ -58,6 +58,21 @@ export default {
   max-width: calc(100vw - 2 * var(--offset-x));
   z-index: -20;
   overflow: hidden;
+}
+
+:deep(.curved-title-svg) {
+  transform-origin: bottom;
+  animation: rotate-in 1s ease forwards;
+}
+
+:deep(.curved-title-text) {
+  font-size: 5em;
+  font-weight: bold;
+  fill: #ffffff;
+  font-family: monospace;
+  text-shadow: 0 0 5px #00aaff, 0 0 10px #00aaff;
+  opacity: 0;
+  animation: fade-in 2s linear forwards;
 }
 
 .earth-container {
@@ -106,6 +121,26 @@ export default {
   }
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate-in {
+  from {
+    transform: rotate(-10deg);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
 @media(pointer: coarse) {
   .Banner {
     --offset-x: 7px;
@@ -114,14 +149,17 @@ export default {
 
 @media(max-width: 1050px) {
   .Banner {
-    --title-font-size: 4em;
     --offset-x: 7px;
+  }
+
+  :deep(.curved-title-text) {
+    font-size: 4em;
   }
 }
 
 @media(max-width: 600px) {
-  .Banner {
-    --title-font-size: 3em;
+  :deep(.curved-title-text) {
+    font-size: 3em;
   }
 
   .register-button {
@@ -130,8 +168,8 @@ export default {
 }
 
 @media(max-width: 400px) {
-  .Banner {
-    --title-font-size: 2.5em;
+  :deep(.curved-title-text) {
+    font-size: 2.5em;
   }
 }
 </style>

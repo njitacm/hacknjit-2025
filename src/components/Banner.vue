@@ -3,8 +3,8 @@
     <!-- <h1 class="title">HackNJIT</h1> -->
     <!-- <CurvedText class="title" :radius="500" :arc="100" /> -->
     <!-- <CurveText class="curved-title">HackNJIT</CurveText> -->
-    <CurvedText class="curved-title" :radius="radius" :arc="arc" text="HackNJIT" :rotation="rotation" :debug="true"
-      :center-offset-x="0" :center-offset-y="35" />
+    <CurvedText class="curved-title" text="HackNJIT" :radius="radius" :arc="arc" view-box-size-x="500"
+      view-box-size-y="500" center-y="calc(100% - 20px)" :rotation="rotation" :debug="true" :center-offset-x="0" :center-offset-y="23" />
     <div class="earth-container">
       <img src="..\assets\globe.svg" class="earth">
     </div>
@@ -34,7 +34,7 @@ export default {
     return {
       rotation: -10,
       interval: null,
-      radius: 196,
+      radius: 245,
       arc: 90,
     };
   },
@@ -90,8 +90,7 @@ export default {
   position: absolute;
   left: 50%;
   transform: translateX(calc(-50% + var(--offset-x)));
-  top: calc(395px + var(--top-offset));
-  height: 1000px;
+  top: calc(-65px + var(--top-offset));
   width: 1000px;
   max-width: 100vw;
   z-index: -20;

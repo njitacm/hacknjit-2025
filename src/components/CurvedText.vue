@@ -1,7 +1,7 @@
 <template>
   <div class="svg-curved-text-container">
     <!-- <svg :viewBox="`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`" style="transform: rotate(-2deg)"> -->
-    <svg :viewBox="`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`">
+    <svg :viewBox="`0 0 ${props.viewBoxSizeX} ${props.viewBoxSizeY}`">
       <defs>
         <path :id="pathId" :d="pathDefinition"></path>
       </defs>
@@ -24,6 +24,8 @@ const props = defineProps({
   text: { type: String, default: 'HackNJIT' },
   radius: { type: Number, default: 160 },
   arc: { type: Number, default: 100 },
+  viewBoxSizeX: { type: Number, default: 400 },
+  viewBoxSizeY: { type: Number, default: 400 },
   rotation: { type: Number, default: -2 },
   debug: { type: Boolean, default: false },
   centerX: { type: String, default: "50%" },
@@ -34,8 +36,9 @@ const props = defineProps({
 
 const pathId = `curved-text-path-${Math.random().toString(36).substring(2, 9)}`;
 
-const VIEWBOX_SIZE = 400;
-const centerX = VIEWBOX_SIZE / 2;
+const centerX = computed(() => {
+  return props.viewBoxSizeX / 2;
+})
 
 const centerY = computed(() => {
   const angleInRad = (props.arc / 2) * (Math.PI / 180);
@@ -44,7 +47,7 @@ const centerY = computed(() => {
 
   const arcMidpoint = (yTop + yBottom) / 2;
 
-  const viewboxCenter = 0;
+  const viewboxCenter = props.viewBoxSizeY / 2;
   return viewboxCenter - arcMidpoint;
 });
 
@@ -56,9 +59,9 @@ const pathDefinition = computed(() => {
   const endRad = (endAngle - 90) * (Math.PI / 180);
 
   // Note that we now use .value because centerY is a computed ref
-  const x1 = centerX + props.radius * Math.cos(startRad);
+  const x1 = centerX.value + props.radius * Math.cos(startRad);
   const y1 = centerY.value + props.radius * Math.sin(startRad);
-  const x2 = centerX + props.radius * Math.cos(endRad);
+  const x2 = centerX.value + props.radius * Math.cos(endRad);
   const y2 = centerY.value + props.radius * Math.sin(endRad);
 
   const largeArcFlag = props.arc > 180 ? 1 : 0;
@@ -83,11 +86,11 @@ const getLetterOffset = (index) => {
 <style scoped>
 svg {
   position: absolute;
-  /* width: 100%; */
-  height: 100%;
-  overflow: visible;
+  width: 100%;
+  /* height: 100%; */
+  overflow: hidden;
+  transform-origin: bottom;
   animation: rotate-in 1s ease forwards;
-  /* max-width: 100vw; */
 }
 
 .char-text {

@@ -44,7 +44,7 @@ const centerY = computed(() => {
 
   const arcMidpoint = (yTop + yBottom) / 2;
 
-  const viewboxCenter = VIEWBOX_SIZE / 2;
+  const viewboxCenter = 0;
   return viewboxCenter - arcMidpoint;
 });
 
@@ -69,7 +69,6 @@ const pathDefinition = computed(() => {
   return `M ${x1 + props.centerOffsetX} ${y1 + props.centerOffsetY} A ${props.radius} ${props.radius} 0 ${largeArcFlag} 1 ${x2 + props.centerOffsetX} ${y2 + props.centerOffsetY}`;
 });
 
-
 const debugPath = computed(() => {
   return pathDefinition.value;
 });
@@ -87,14 +86,38 @@ svg {
   width: 100%;
   height: 100%;
   overflow: visible;
+  animation: rotate-in 1s ease forwards;
 }
 
 .char-text {
+  transform-origin: 50% 100%;
   font-size: var(--title-font-size);
   font-weight: bold;
   fill: #ffffff;
   font-family: monospace;
   text-shadow: 0 0 5px #00aaff, 0 0 10px #00aaff;
   /* text-anchor: middle; */
+  opacity: 0;
+  animation: fade-in 2s linear forwards;
+}
+
+@keyframes rotate-in {
+  from {
+    transform: rotate(-10deg);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 </style>

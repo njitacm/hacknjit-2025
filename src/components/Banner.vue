@@ -4,7 +4,7 @@
     <!-- <CurvedText class="title" :radius="500" :arc="100" /> -->
     <!-- <CurveText class="curved-title">HackNJIT</CurveText> -->
     <CurvedText class="curved-title" :radius="radius" :arc="arc" text="HackNJIT" :rotation="rotation" :debug="true"
-      center-x="calc(50% + 6px)" center-y="calc(100% - 20px)" :center-offset-x="6" :center-offset-y="12" />
+      :center-offset-x="0" :center-offset-y="35" />
     <div class="earth-container">
       <img src="..\assets\globe.svg" class="earth">
     </div>
@@ -88,11 +88,11 @@ export default {
 .curved-title {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
-  top: calc(-50px + var(--top-offset));
+  transform: translateX(calc(-50% + 15px));
+  top: calc(395px + var(--top-offset));
   min-height: 1000px;
   min-width: 1000px;
-  /* z-index: -20; */
+  z-index: -20;
 }
 
 .earth-container {
@@ -150,23 +150,9 @@ export default {
   }
 }
 
-@media(max-width: 1000px) {
-  /* .Banner {
-    --title-font-size: 3em;
-  }
-
-  .curved-title {
-    min-width: 600px;
-    top: calc(-70px + var(--top-offset));
-  } */
-}
+@media(max-width: 1000px) {}
 
 @media(max-width: 600px) {
-  .title {
-    font-size: 4em;
-    top: calc(345px + var(--top-offset));
-  }
-
   .register-button {
     font-size: 1.75em;
   }

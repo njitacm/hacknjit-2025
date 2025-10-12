@@ -83,10 +83,11 @@ const getLetterOffset = (index) => {
 <style scoped>
 svg {
   position: absolute;
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
   overflow: visible;
   animation: rotate-in 1s ease forwards;
+  /* max-width: 100vw; */
 }
 
 .char-text {

@@ -78,6 +78,7 @@ export default {
   tweaking --top-offset will position title and globe for all media queries accordingly */
   --top-offset: -100px;
   --title-font-size: 5em;
+  --offset-x: 15px;
   min-height: 900px;
   display: grid;
   grid-template-rows: 1fr auto;
@@ -88,11 +89,13 @@ export default {
 .curved-title {
   position: absolute;
   left: 50%;
-  transform: translateX(calc(-50% + 15px));
+  transform: translateX(calc(-50% + var(--offset-x)));
   top: calc(395px + var(--top-offset));
-  min-height: 1000px;
-  min-width: 1000px;
+  height: 1000px;
+  width: 1000px;
+  max-width: 100vw;
   z-index: -20;
+  /* overflow: hidden; */
 }
 
 .earth-container {
@@ -150,7 +153,17 @@ export default {
   }
 }
 
-@media(max-width: 1000px) {}
+@media(pointer: coarse) {
+  .Banner {
+    --offset-x: 7px;
+  }
+}
+
+@media(max-width: 1050px) {
+  .Banner {
+    --title-font-size: 4em;
+  }
+}
 
 @media(max-width: 600px) {
   .register-button {

@@ -1,7 +1,7 @@
 <template>
   <div class="Banner" id="HackNJIT" ref="sectionRef" :style="{ background: gradient }">
     <!-- <h1 class="title">HackNJIT</h1> -->
-    <CurvedText class="curved-title" />
+    <CurvedText class="curved-title" :radius="300" :arc="50" text="HackNJIT" />
     <!-- <CurvedText class="title" :radius="500" :arc="100" /> -->
     <!-- <CurveText class="curved-title">HackNJIT</CurveText> -->
     <div class="earth-container">
@@ -21,7 +21,6 @@ import TheCountdown from "./TheCountdown.vue";
 import CurvedText from "./CurvedText.vue";
 import { useIntersectionObserver } from '../composables/useIntersectionObserver';
 const { observe, unobserve } = useIntersectionObserver();
-// import { CurveText } from "@inotom/vue-curve-text";
 
 export default {
   props: {
@@ -55,30 +54,10 @@ export default {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: calc(250px + var(--top-offset));
-  min-height: 800px;
-  min-width: 1000px;
-}
-
-.title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* min-height: 400px;
-  min-width: 400px; */
-  border-radius: 10px;
-  /* overflow: hidden; */
-  /* Center the wrapper and pull it up by the radius to align the rotation axis */
-  left: 50%;
-  transform: translateY(-50%);
-  top: calc(500px + var(--top-offset));
-  font-weight: bold;
-  font-size: 10em;
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  z-index: -2;
-  /* animation: title-anim 1s ease forwards; */
+  top: calc(-60px + var(--top-offset));
+  min-height: 1000px;
+  min-width: 700px;
+  z-index: -20;
 }
 
 .earth-container {

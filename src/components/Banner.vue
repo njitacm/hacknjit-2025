@@ -1,7 +1,7 @@
 <template>
   <div class="Banner" id="HackNJIT" ref="sectionRef" :style="{ background: gradient }">
     <!-- <h1 class="title">HackNJIT</h1> -->
-    <CurvedText class="curved-title" :radius="200" :arc="100" text="HackNJIT" />
+    <CurvedText class="curved-title" :radius="radius" :arc="arc" text="HackNJIT" :rotation="rotation" />
     <!-- <CurvedText class="title" :radius="500" :arc="100" /> -->
     <!-- <CurveText class="curved-title">HackNJIT</CurveText> -->
     <div class="earth-container">
@@ -29,12 +29,45 @@ export default {
   components: {
     TheCountdown, CurvedText
   },
+  data() {
+    return {
+      rotation: -10,
+      interval: null,
+      radius: 200,
+      arc: 80,
+    };
+  },
+  created() {
+    this.mqList1000 = window.matchMedia(`(max-width: 1000px)`);
+  },
   mounted() {
     observe(this.$refs.sectionRef);
+    this.mqList1000.addEventListener("change", this.onMediaQuery1000Change);
+    this.interval = () => {
+      if (this.rotation < 8) {
+        this.rotation += 0.1;
+      } else {
+        clearInterval(this.interval);
+      }
+    };
+    setInterval(this.interval, 5);
   },
   beforeUnmount() {
+    this.mqList1000.removeEventListener("change", this.onMediaQuery1000Change);
     unobserve(this.$refs.sectionRef);
   },
+  methods: {
+    onMediaQuery1000Change(e) {
+      if (e.matches) {
+        console.log("below 1000px");
+        this.radius = 375;
+        this.arc = 50;
+      } else {
+        this.radius = 200;
+        this.arc = 80;
+      }
+    }
+  }
 }
 </script>
 
@@ -43,6 +76,7 @@ export default {
   /* from the base of top: 250px for .title (arbritrary value that was previously used); 
   tweaking --top-offset will position title and globe for all media queries accordingly */
   --top-offset: -100px;
+  --title-font-size: 5em;
   min-height: 900px;
   display: grid;
   grid-template-rows: 1fr auto;
@@ -54,7 +88,7 @@ export default {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: calc(10px + var(--top-offset));
+  top: calc(-25px + var(--top-offset));
   min-height: 1000px;
   min-width: 1000px;
   z-index: -20;
@@ -79,8 +113,8 @@ export default {
   position: absolute;
   width: 1000px;
   object-fit: cover;
-  -webkit-mask-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 60%);
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 60%);
+  -webkit-mask-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 60%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 60%);
 }
 
 .content {
@@ -116,9 +150,13 @@ export default {
 }
 
 @media(max-width: 1000px) {
-  .title {
-    font-size: 6em;
-    top: calc(310px + var(--top-offset));
+  .Banner {
+    --title-font-size: 3em;
+  }
+
+  .curved-title {
+    min-width: 600px;
+    top: calc(-70px + var(--top-offset));
   }
 
 }

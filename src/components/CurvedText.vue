@@ -21,6 +21,7 @@ const props = defineProps({
   text: { type: String, default: 'HackNJIT' },
   radius: { type: Number, default: 160 },
   arc: { type: Number, default: 100 },
+  rotation: { type: Number, default: -2 }
 });
 
 const pathId = `curved-text-path-${Math.random().toString(36).substring(2, 9)}`;
@@ -40,7 +41,7 @@ const centerY = computed(() => {
 });
 
 const pathDefinition = computed(() => {
-  const startAngle = -props.arc / 2 + 8;
+  const startAngle = -props.arc / 2 + props.rotation;
   const endAngle = props.arc / 2;
 
   const startRad = (startAngle - 90) * (Math.PI / 180);
@@ -73,21 +74,21 @@ svg {
 }
 
 .char-text {
-  font-size: 5em;
+  font-size: var(--title-font-size);
   font-weight: bold;
   fill: #ffffff;
   font-family: monospace;
   text-shadow: 0 0 5px #00aaff, 0 0 10px #00aaff;
   text-anchor: middle;
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+  /* transform: translateY(20px); */
+  animation: fadeIn 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
 }
 
 @keyframes fadeIn {
   to {
     opacity: 1;
-    transform: translateY(0);
+    /* transform: translateY(0); */
   }
 }
 </style>

@@ -39,6 +39,7 @@ export default {
   --top-offset: -100px;
   /* small offset to line up the curved text with the Earth */
   --offset-x: 15px;
+  --earth-aspect-ratio: calc(134.067933682390503/208.32275390625);
   min-height: 900px;
   display: grid;
   grid-template-rows: 1fr auto;
@@ -74,12 +75,17 @@ export default {
 }
 
 .earth-container {
-  max-width: 100vw;
+  /* max-width: 100vw; */
   position: relative;
   top: calc(-100px + var(--top-offset));
+  width: 1000px;
+  aspect-ratio: var(--earth-aspect-ratio);
   z-index: -1;
   left: 50vw;
   transform: translateX(-50%);
+  overflow: hidden;
+  -webkit-mask-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 60%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 60%);
 }
 
 .earth {
@@ -87,13 +93,14 @@ export default {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  left: 50%;
-  transform: translateX(-50%);
   position: absolute;
-  width: 1000px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  -webkit-mask-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 60%);
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 60%);
+  transform-origin: 50% 64%;
+  transform: rotate(50deg);
 }
 
 .content {

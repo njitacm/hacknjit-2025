@@ -1,6 +1,5 @@
 <template>
-  <div class="PastPics section" ref="sectionRef" id="Past-Pics">
-    <h2 class="section-title">Past Pictures</h2>
+  <div class="PastPics">
     <Galleria v-bind="slideshowProps" :value="images">
       <template #item="slotProps">
         <img :src="slotProps.item.src" :alt="`HackNJIT ${slotProps.item.year} photo`" style="width: 100%" />
@@ -12,9 +11,7 @@
 <script>
 import Galleria from 'primevue/galleria';
 import images from '../data/past_pics';
-import { useIntersectionObserver } from '../composables/useIntersectionObserver';
 import { getImageUrl } from '../util';
-const { observe, unobserve } = useIntersectionObserver();
 
 export default {
   components: { Galleria },
@@ -34,7 +31,6 @@ export default {
     };
   },
   async mounted() {
-    observe(this.$refs.sectionRef);
     const newPaths = JSON.parse(JSON.stringify(images));
 
     for (let i = 0; i < newPaths.length; i++) {
@@ -42,9 +38,6 @@ export default {
     }
 
     this.images = newPaths;
-  },
-  beforeUnmount() {
-    unobserve(this.$refs.sectionRef);
   }
 }
 </script>

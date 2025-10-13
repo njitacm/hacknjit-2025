@@ -2,6 +2,7 @@
   <main class="body-container">
     <NavBar />
     <MLHBanner />
+    <div class="gradient"></div>
     <RouterView></RouterView>
     <TheFooter />
   </main>
@@ -63,17 +64,46 @@ html {
   box-sizing: border-box;
   z-index: -100;
   overflow-x: hidden;
+  width: 100%;
+}
+
+@keyframes gradient-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.body-container {
+  position: relative;
+}
+
+.gradient {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  position: absolute;
+  z-index: -9999;
+}
+
+.gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background-image: linear-gradient(to bottom, black 50svh, var(--hacknjit-sixth),
       var(--hacknjit-fifth),
       var(--hacknjit-fourth),
       var(--hacknjit-tertiary),
       var(--hacknjit-secondary),
       var(--hacknjit-primary));
-  width: 100%;
-}
-
-body.modal-open {
-  overflow: hidden;
+  animation: gradient-fade-in 2.5s linear forwards;
 }
 
 * {

@@ -1,10 +1,10 @@
 <template>
-  <div class="TheFAQ section" id="FAQ" ref="sectionRef">
+  <div class="FAQ section" id="FAQ" ref="sectionRef">
     <h2 class="section-title">FAQ</h2>
     <Accordion class="faq-container">
       <div v-for="(topicFaqs, topic, index1) in faqs" :key="index1" class="faq-topic-container">
         <h3 class="faq-topic">{{ topic }}</h3>
-        <AccordionPanel v-for="(faq, index2) in topicFaqs" :key="index2" :value="index1 * topicFaqs.length + index2">
+        <AccordionPanel v-for="(faq, index2) in topicFaqs" :key="index2" :value="faq.Answer">
           <AccordionHeader>{{ faq.Question }}</AccordionHeader>
           <AccordionContent>
             <p class="m-0">{{ faq.Answer }}</p>
@@ -30,17 +30,21 @@ const sectionRef = useTemplateRef("sectionRef");
 
 // life cycle hooks
 onMounted(() => {
-  if (sectionRef.value) observe(sectionRef.value);
+  if (sectionRef.value) {
+    observe(sectionRef.value);
+  }
 });
 
 onBeforeUnmount(() => {
-  if (sectionRef.value) unobserve(sectionRef.value);
+  if (sectionRef.value) {
+    nobserve(sectionRef.value);
+  }
 });
 
 </script>
 
 <style scoped>
-.TheFAQ {
+.FAQ {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,7 +87,8 @@ onBeforeUnmount(() => {
 }
 
 .p-accordioncontent-content p {
-  font-size: 1em;
+  font-size: 1.1em;
+  font-weight: bold;
 }
 
 .p-accordion button {

@@ -6,7 +6,6 @@
     <About />
     <TheSponsors />
     <TheFAQ />
-    <PastPics />
   </div>
 </template>
 
@@ -15,8 +14,7 @@ import NavBar from "../components/NavBar.vue";
 import Banner from "../components/Banner.vue";
 import About from "../components/About.vue";
 import TheSponsors from "../components/Sponsors.vue";
-import TheFAQ from "../components/TheFAQ.vue";
-import PastPics from "../components/PastPics.vue";
+import TheFAQ from "../components/FAQ.vue";
 import Tracks from "../components/Tracks.vue";
 import Modal from "../components/Modal.vue";
 
@@ -28,7 +26,6 @@ export default {
     About,
     TheSponsors,
     TheFAQ,
-    PastPics,
     Tracks,
     Modal,
   }

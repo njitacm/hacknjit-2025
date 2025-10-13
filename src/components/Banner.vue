@@ -1,6 +1,8 @@
 <template>
-  <div class="Banner" id="HackNJIT" ref="sectionRef" :style="{ background: gradient }">
-    <h1 class="title">HackNJIT</h1>
+  <div class="Banner" id="HackNJIT" ref="sectionRef">
+    <CurvedText class="curved-title" text="HackNJIT" :radius="240" :arc="90" :view-box-size-x="500" :view-box-size-y="500"
+    center-y="calc(100% - 20px)" :debug="false" :center-offset-x="0" :center-offset-y="25"
+    text-class="curved-title-text" svg-class="curved-title-svg" />
     <div class="earth-container">
       <img src="..\assets\globe.svg" class="earth">
     </div>
@@ -14,27 +16,31 @@
 
 <script>
 import TheCountdown from "./TheCountdown.vue";
+import CurvedText from "./CurvedText.vue";
 import { useIntersectionObserver } from '../composables/useIntersectionObserver';
 const { observe, unobserve } = useIntersectionObserver();
 
 export default {
-  props: {
-    gradient: String
-  },
-  components: {
-    TheCountdown
-  },
+  components: { TheCountdown, CurvedText },
   mounted() {
     observe(this.$refs.sectionRef);
+    setInterval(this.interval, 5);
   },
   beforeUnmount() {
     unobserve(this.$refs.sectionRef);
-  }
+  },
 }
 </script>
 
 <style scoped>
 .Banner {
+  /* from the base of top: 250px for .title (arbritrary value that was previously used); 
+  tweaking --top-offset will position title and globe for all media queries accordingly */
+  --top-offset: -100px;
+  /* small offset to line up the curved text with the Earth */
+  --offset-x: 15px;
+  /* directly from the Earth SVG's viewbox */
+  --earth-aspect-ratio: calc(134.067933682390503/208.32275390625);
   min-height: 900px;
   display: grid;
   grid-template-rows: 1fr auto;
@@ -42,33 +48,58 @@ export default {
   overflow: hidden;
 }
 
-.title {
-  top: 250px;
-  font-weight: bold;
-  font-size: 10em;
+.curved-title {
   position: absolute;
-  width: 100%;
-  text-align: center;
-  z-index: -2;
+  left: 50%;
+  transform: translateX(calc(-50% + var(--offset-x))) rotate(0.5deg);
+  top: calc(-65px + var(--top-offset));
+  height: 1000px;
+  width: 1000px;
+  max-width: calc(100vw - 5 * var(--offset-x));
+  z-index: -20;
+  overflow: hidden;
+}
+
+:deep(.curved-title-svg) {
+  transform-origin: bottom;
+  animation: rotate-in 1s ease forwards;
+}
+
+:deep(.curved-title-text) {
+  font-size: 5em;
+  font-weight: bold;
+  fill: #ffffff;
+  font-family: monospace;
+  text-shadow: 0 0 15px var(--hacknjit-tertiary), 0 0 5px white;
+  opacity: 0;
+  animation: fade-in 2s linear forwards;
 }
 
 .earth-container {
-  max-width: 100vw;
+  /* max-width: 100vw; */
   position: relative;
-  top: -100px;
+  top: calc(-100px + var(--top-offset));
+  width: 1000px;
+  aspect-ratio: var(--earth-aspect-ratio);
   z-index: -1;
   left: 50vw;
   transform: translateX(-50%);
+  overflow: hidden;
+  -webkit-mask-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 60%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 60%);
 }
 
 .earth {
-  left: 50%;
-  transform: translateX(-50%);
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   position: absolute;
-  width: 1000px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  -webkit-mask-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 60%);
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 60%);
+  transform-origin: 50% 64%;
+  animation: keep-rotating 300s linear infinite;
 }
 
 .content {
@@ -82,31 +113,64 @@ export default {
   font-size: 2em;
 }
 
-.view-hint {
-  width: 100%;
-  /* left: 50%; */
-  /* transform: translateX(-50%); */
-  /* bottom: 32px; */
-  /* position: absolute; */
-  align-content: center;
-}
-
-@media(max-width: 1000px) {
-  .title {
-    font-size: 6em;
-    top: 310px;
+@keyframes fade-in {
+  from {
+    opacity: 0;
   }
 
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes keep-rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate-in {
+  from {
+    transform: rotate(-10deg);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@media(pointer: coarse) {
+  .Banner {
+    --offset-x: 7px;
+  }
+}
+
+@media(max-width: 1050px) {
+  /* .Banner {
+    --offset-x: 7px;
+  } */
+
+  :deep(.curved-title-text) {
+    font-size: 4em;
+  }
 }
 
 @media(max-width: 600px) {
-  .title {
-    font-size: 4em;
-    top: 345px;
+  :deep(.curved-title-text) {
+    font-size: 3em;
   }
 
   .register-button {
     font-size: 1.75em;
+  }
+}
+
+@media(max-width: 400px) {
+  :deep(.curved-title-text) {
+    font-size: 2.5em;
   }
 }
 </style>

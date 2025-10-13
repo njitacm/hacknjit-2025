@@ -40,7 +40,7 @@ export default {
   /* small offset to line up the curved text with the Earth */
   --offset-x: 15px;
   /* directly from the Earth SVG's viewbox */
-  --earth-aspect-ratio: calc(134.067933682390503/208.32275390625);
+  --earth-aspect-ratio: calc(1/1);
   min-height: 900px;
   display: grid;
   grid-template-rows: 1fr auto;
@@ -78,7 +78,7 @@ export default {
 .earth-container {
   /* max-width: 100vw; */
   position: relative;
-  top: calc(-100px + var(--top-offset));
+  top: calc(407px + var(--top-offset));
   width: 1000px;
   aspect-ratio: var(--earth-aspect-ratio);
   z-index: -1;
@@ -98,11 +98,12 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform-origin: 50% 64%;
+  /* transform-origin: 50% 64%; */
   animation: keep-rotating 300s linear infinite;
 }
 
 .content {
+  max-width: 100vw;
   display: grid;
   justify-content: center;
   justify-items: center;

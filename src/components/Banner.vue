@@ -40,11 +40,13 @@ export default {
   --offset-x: 15px;
   /* directly from the Earth SVG's viewbox */
   --earth-aspect-ratio: calc(1/1);
-  height: 100svh;
-  min-height: 600px;
-  max-height: 1250px;
-  display: grid;
-  grid-template-rows: 75% 25%;
+  /* heights for Banner (used in Earth fade gradient, too) */
+  --height: 100svh;
+  --min-height: 600px;
+  --max-height: 1250px;
+  height: var(--height);
+  min-height: var(--min-height);
+  max-height: var(--max-height);
   padding-bottom: 32px;
   overflow: hidden;
   position: relative;
@@ -86,7 +88,7 @@ export default {
   transform: translateX(-50%);
   overflow: hidden;
   -webkit-mask-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 60%);
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 60%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) calc(min(max(var(--height), var(--min-height)), var(--max-height)) - 400px));
 }
 
 .earth {
@@ -105,7 +107,7 @@ export default {
   left: 50%;
   transform: translateX(-50%);
   position: absolute;
-  bottom: 0;
+  bottom: 16px;
   height: fit-content;
   max-width: 100vw;
   display: grid;

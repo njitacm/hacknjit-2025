@@ -6,7 +6,6 @@
     <div class="earth-container">
       <img src="..\assets\globe.svg" class="earth">
     </div>
-    <div class="spacer"></div>
     <div class="content">
       <RouterLink to="/registration" class="router-link pill register-button">Register Now</RouterLink>
       <TheCountdown />
@@ -41,11 +40,14 @@ export default {
   --offset-x: 15px;
   /* directly from the Earth SVG's viewbox */
   --earth-aspect-ratio: calc(1/1);
-  min-height: 900px;
+  height: 100svh;
+  min-height: 600px;
+  max-height: 1250px;
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 75% 25%;
   padding-bottom: 32px;
   overflow: hidden;
+  position: relative;
 }
 
 .curved-title {
@@ -75,7 +77,6 @@ export default {
 }
 
 .earth-container {
-  /* max-width: 100vw; */
   position: relative;
   top: calc(407px + var(--top-offset));
   width: 1000px;
@@ -97,16 +98,22 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* transform-origin: 50% 64%; */
   animation: keep-rotating 300s linear infinite;
 }
 
 .content {
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  bottom: 0;
+  height: fit-content;
   max-width: 100vw;
   display: grid;
   justify-content: center;
   justify-items: center;
+  align-content: space-between;
   gap: 32px;
+  z-index: 10;
 }
 
 .register-button {

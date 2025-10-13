@@ -38,6 +38,7 @@ type RegistrationForm struct {
 	Race                string
 	ResumePath          string // path to saved PDF
 	LinkedIn            string
+	RegistrationTime    string // Time registration was processed; Formatted using TIMEFORMAT
 }
 
 // Arguments
@@ -46,6 +47,8 @@ var port *int
 
 var logger *log.Logger
 var logDir string = "./logs"
+
+var TIMEFORMAT = time.RFC850 // "Monday, 02-Jan-06 15:04:05 MST"
 
 var csvWriter *csv.Writer
 var csvFile *os.File
@@ -82,7 +85,7 @@ func setup() {
 
 	csvWriter = csv.NewWriter(csvFile)
 
-	err = writeRow([]string{"FirstName", "LastName", "PreferredName", "Age", "Phone", "Email", "Country", "Uni", "LvlOfStudy", "FirstHack", "Major", "ShirtSize", "DietaryRestrictions", "MLH Checkbox 0", "MLH Checkbox 1", "MLH Checkbox 2", "Minority", "Gender", "Race", "ResumePath", "LinkedIn"})
+	err = writeRow([]string{"FirstName", "LastName", "PreferredName", "Age", "Phone", "Email", "Country", "Uni", "LvlOfStudy", "FirstHack", "Major", "ShirtSize", "DietaryRestrictions", "MLH Checkbox 0", "MLH Checkbox 1", "MLH Checkbox 2", "Minority", "Gender", "Race", "ResumePath", "LinkedIn", "RegistrationTime"})
 	if err != nil {
 		logger.Fatalf("[FATAL] Failed to write headers for csv file %s: %s\n", csvFilePath, err)
 	}
@@ -118,25 +121,26 @@ func handleFormSubmission(w http.ResponseWriter, r *http.Request) {
 	}
 
 	form := RegistrationForm{
-		FirstName:     r.PostFormValue("first_name"),
-		LastName:      r.PostFormValue("last_name"),
-		PreferredName: r.PostFormValue("preferred_name"),
-		Age:           r.PostFormValue("age"),
-		Phone:         r.PostFormValue("phone"),
-		Email:         r.PostFormValue("email"),
-		Country:       r.PostFormValue("country"),
-		Uni:           r.PostFormValue("uni"),
-		LvlOfStudy:    r.PostFormValue("lvlofstudy"),
-		FirstHack:     r.PostFormValue("firsthack"),
-		Major:         r.PostFormValue("major"),
-		ShirtSize:     r.PostFormValue("shirtsize"),
-		MLHCheckbox0:  r.PostFormValue("mlh_checkbox_0") != "",
-		MLHCheckbox1:  r.PostFormValue("mlh_checkbox_1") != "",
-		MLHCheckbox2:  r.PostFormValue("mlh_checkbox_2") != "",
-		Minority:      r.PostFormValue("minority"),
-		Gender:        r.PostFormValue("gender"),
-		Race:          r.PostFormValue("race"),
-		LinkedIn:      r.PostFormValue("linkedin"),
+		FirstName:        r.PostFormValue("first_name"),
+		LastName:         r.PostFormValue("last_name"),
+		PreferredName:    r.PostFormValue("preferred_name"),
+		Age:              r.PostFormValue("age"),
+		Phone:            r.PostFormValue("phone"),
+		Email:            r.PostFormValue("email"),
+		Country:          r.PostFormValue("country"),
+		Uni:              r.PostFormValue("uni"),
+		LvlOfStudy:       r.PostFormValue("lvlofstudy"),
+		FirstHack:        r.PostFormValue("firsthack"),
+		Major:            r.PostFormValue("major"),
+		ShirtSize:        r.PostFormValue("shirtsize"),
+		MLHCheckbox0:     r.PostFormValue("mlh_checkbox_0") != "",
+		MLHCheckbox1:     r.PostFormValue("mlh_checkbox_1") != "",
+		MLHCheckbox2:     r.PostFormValue("mlh_checkbox_2") != "",
+		Minority:         r.PostFormValue("minority"),
+		Gender:           r.PostFormValue("gender"),
+		Race:             r.PostFormValue("race"),
+		LinkedIn:         r.PostFormValue("linkedin"),
+		RegistrationTime: time.Now().Format(TIMEFORMAT),
 	}
 
 	// Hacky fix because I can't figure out the proper way of getting checkboxes
@@ -193,6 +197,7 @@ func saveRegistrationToCSV(form RegistrationForm) error {
 		form.Race,
 		form.ResumePath,
 		form.LinkedIn,
+		form.RegistrationTime,
 	}
 
 	csvRow := []string{}

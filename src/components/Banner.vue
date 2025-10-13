@@ -56,7 +56,6 @@ export default {
   height: 1000px;
   width: 1000px;
   max-width: calc(100vw - 5 * var(--offset-x));
-  z-index: -20;
   overflow: hidden;
 }
 

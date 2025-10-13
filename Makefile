@@ -14,13 +14,11 @@ hacknjit-server: front-end
 # Install Node.js and golang packages 
 install:
 	npm install 
-	npm update
+	go install
 
 # Install & Update Node.js and golang dependencies
 update: install
-	npm install 
 	npm update
-	go install
 	go get -u ./
 
 # Clean build artifacts

@@ -195,6 +195,7 @@ a.pill,
   --bkg: conic-gradient(var(--hacknjit-fourth),
       var(--hacknjit-fifth) 135deg 225deg,
       var(--hacknjit-fourth));
+  height: fit-content;
   border-radius: 1000px;
   border: none;
   padding: 8px 24px;

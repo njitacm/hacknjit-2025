@@ -6,7 +6,6 @@
     <div class="earth-container">
       <img src="..\assets\globe.svg" class="earth">
     </div>
-    <div class="spacer"></div>
     <div class="content">
       <RouterLink to="/registration" class="router-link pill register-button">Register Now</RouterLink>
       <TheCountdown />
@@ -41,11 +40,16 @@ export default {
   --offset-x: 15px;
   /* directly from the Earth SVG's viewbox */
   --earth-aspect-ratio: calc(1/1);
-  min-height: 900px;
-  display: grid;
-  grid-template-rows: 1fr auto;
+  /* heights for Banner (used in Earth fade gradient, too) */
+  --height: 100svh;
+  --min-height: 600px;
+  --max-height: 1250px;
+  height: var(--height);
+  min-height: var(--min-height);
+  max-height: var(--max-height);
   padding-bottom: 32px;
   overflow: hidden;
+  position: relative;
 }
 
 .curved-title {
@@ -56,7 +60,6 @@ export default {
   height: 1000px;
   width: 1000px;
   max-width: calc(100vw - 5 * var(--offset-x));
-  z-index: -20;
   overflow: hidden;
 }
 
@@ -76,7 +79,6 @@ export default {
 }
 
 .earth-container {
-  /* max-width: 100vw; */
   position: relative;
   top: calc(407px + var(--top-offset));
   width: 1000px;
@@ -86,7 +88,7 @@ export default {
   transform: translateX(-50%);
   overflow: hidden;
   -webkit-mask-image: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 60%);
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 60%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) calc(min(max(var(--height), var(--min-height)), var(--max-height)) - 400px));
 }
 
 .earth {
@@ -98,16 +100,22 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* transform-origin: 50% 64%; */
   animation: keep-rotating 300s linear infinite;
 }
 
 .content {
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  bottom: 16px;
+  height: fit-content;
   max-width: 100vw;
   display: grid;
   justify-content: center;
   justify-items: center;
+  align-content: space-between;
   gap: 32px;
+  z-index: 10;
 }
 
 .register-button {

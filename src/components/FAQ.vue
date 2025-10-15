@@ -37,7 +37,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   if (sectionRef.value) {
-    nobserve(sectionRef.value);
+    unobserve(sectionRef.value);
   }
 });
 

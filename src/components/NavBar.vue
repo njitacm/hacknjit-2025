@@ -267,6 +267,7 @@ header {
   padding: 8px;
   border-radius: 1000px;
   width: fit-content;
+  max-height: 50svh;
 }
 
 header.active {

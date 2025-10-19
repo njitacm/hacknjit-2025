@@ -311,6 +311,7 @@ li {
 }
 
 .nav-link {
+  color: white;
   font-size: 1em;
   cursor: pointer;
   background: transparent;

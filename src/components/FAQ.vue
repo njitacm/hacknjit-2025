@@ -58,6 +58,7 @@ onBeforeUnmount(() => {
   --p-accordion-content-padding: 16px;
   --p-accordion-header-hover-background: white;
   --p-accordion-header-hover-color: var(--hacknjit-primary);
+  --p-accordion-header-active-hover-color: white;
   --p-accordion-header-active-hover-background: var(--hacknjit-primary);
   --p-accordion-header-active-background: var(--hacknjit-primary);
   --p-accordion-header-active-color: white;
@@ -89,6 +90,7 @@ onBeforeUnmount(() => {
 .p-accordioncontent-content p {
   font-size: 1.1em;
   font-weight: bold;
+  color: white;
 }
 
 .p-accordion button {

@@ -132,11 +132,11 @@ h1 {
 }
 
 h2 {
-  font-size: 3em;
+  font-size: 4em;
 }
 
 h3 {
-  font-size: 1.5em;
+  font-size: 2.5em;
 }
 
 .View {
@@ -151,11 +151,11 @@ h3 {
   }
 
   h2 {
-    font-size: 2em;
+    font-size: 3em;
   }
 
   h3 {
-    font-size: 1.25em;
+    font-size: 2em;
   }
 
   p,

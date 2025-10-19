@@ -1,9 +1,9 @@
 <!-- values that need to be manually depending on nav size adjusted are denoted with `TOCHANGE` -->
 <template>
-  <header v-on="mouseEventListeners" @touchend.passive="isTouch ? onTouch() : null" ref="header"
-    :class="{ active: isNavActive }">
-    <nav :style="{ width: navSize.width, height: navSize.height }">
-      <ul ref="ul">
+  <header v-on="mouseEventListeners" ref="header" :class="{ active: isNavActive }">
+    <nav :style="{ width: navSize.width, height: navSize.height, overflow: isNavActive && navOverflow ? 'auto' : 'hidden' }"
+      @touchmove.passive="onTouchMove" @touchend.passive="onTouchEnd">
+      <ul ref="ul" :style="{ height: navSize.height }">
         <!-- visible even when nav is active -->
         <li :style="getItemStyle(0)">
           <!-- touch devices when nav is closed: disbable the link by turning it into a span -->
@@ -15,7 +15,7 @@
         <!-- hidden when nav is closed -->
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index + 1)">
           <button tabindex="-1" class="nav-link" @click="!isTouch ? goToPage(item) : null"
-            @touchend.passive="() => goToPage(item)">
+            @touchend.passive="() => !scrolling && goToPage(item)">
             {{ item.label }}
           </button>
         </li>
@@ -30,7 +30,7 @@ import { storeToRefs } from "pinia";
 import { useNavigationStore } from '../stores/navigation';
 import { useIsTouch } from '../composables/useIsTouch';
 import { useTouchStartOutside } from '../composables/useTouchStartOutside';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 import downArrow from "../assets/icons/down_arrow.svg";
 
 // composables and stores
@@ -43,13 +43,14 @@ const { activeSectionId } = storeToRefs(navigationStore);
 // template refs
 const headerRef = useTemplateRef("header");
 const ulRef = useTemplateRef("ul");
-const navButton0Ref = useTemplateRef("navButton0");
 
 // refs
 const interactedWithNav = ref(false); // mouse enter, mouse leave, touch start affects nav open/closed
 const scrollLock = ref(true);         // if true, will force the nav bar to be open
 const screenSize = ref("large");      // small or large depending on screen size
 const currentPage = ref("Home");
+const scrolling = ref(false);         // if user is scrolling the nav on touch screens
+const navOverflow = ref(false);       // whether the (expanded / active) nav is taller than the screen
 
 // vars
 const heightEmFactor = 4;             // em
@@ -105,14 +106,6 @@ const onMouseLeave = () => {
   interactedWithNav.value = false;
 };
 
-const onTouch = () => {
-  if (interactedWithNav.value === false && isNavActive.value === false && !wentToPage) {
-    interactedWithNav.value = true;
-  } else if (wentToPage) {
-    wentToPage = false;
-  }
-};
-
 const onScroll = () => {
   // scroll lock functionality (force nav open if at top)
   if (window.scrollY > 50) {
@@ -122,7 +115,25 @@ const onScroll = () => {
   }
 };
 
-const onMediaQueryChange = (e) => {
+const onTouchMove = () => {
+  if (isTouch.value === true && scrolling.value === false) {
+    scrolling.value = true;
+  }
+};
+
+const onTouchEnd = () => {
+  if (isTouch.value === true && scrolling.value === true) {
+    scrolling.value = false;
+  }
+
+  if (interactedWithNav.value === false && isNavActive.value === false && !wentToPage) {
+    interactedWithNav.value = true;
+  } else if (wentToPage) {
+    wentToPage = false;
+  }
+};
+
+const onWidthMqChange = (e) => {
   const isSmallScreen = e.matches;
 
   if (isSmallScreen) {
@@ -131,6 +142,16 @@ const onMediaQueryChange = (e) => {
   } else {
     screenSize.value = "large";
     ulRef.value.style.flexDirection = "row";
+  }
+};
+
+const onHeightMqChange = (e) => {
+  const isSmallHeight = e.matches;
+
+  if (isSmallHeight) {
+    navOverflow.value = true;
+  } else {
+    navOverflow.value = false;
   }
 };
 
@@ -164,20 +185,28 @@ const mouseEventListeners = computed(() => {
 });
 
 // query for for large vs small screens
-const mqList = window.matchMedia(`(max-width: ${screenSizeThreshold}px)`);
+const widthMq = window.matchMedia(`(max-width: ${screenSizeThreshold}px)`);
+const heightMq = window.matchMedia(`(max-height: ${(navItems.length + 1) * heightEmFactor}em)`);
 
 // life cycle hooks
 onMounted(() => {
-  if (mqList.matches) {
-    onMediaQueryChange({ matches: true });
+  if (widthMq.matches) {
+    onWidthMqChange({ matches: true });
   }
+
+  if (heightMq.matches) {
+    onHeightMqChange({ matches: true });
+  }
+
   window.addEventListener("scroll", onScroll);
-  mqList.addEventListener("change", onMediaQueryChange);
+  widthMq.addEventListener("change", onWidthMqChange);
+  heightMq.addEventListener("change", onHeightMqChange);
 });
 
 onUnmounted(() => {
   window.removeEventListener("scroll", onScroll);
-  mqList.removeEventListener("change", onMediaQueryChange);
+  widthMq.removeEventListener("change", onWidthMqChange);
+  heightMq.addEventListener("change", onHeightMqChange);
 });
 
 // link touch start outside handler to the composable
@@ -267,6 +296,7 @@ header {
   padding: 8px;
   border-radius: 1000px;
   width: fit-content;
+  max-height: 50svh;
 }
 
 header.active {
@@ -283,8 +313,9 @@ nav {
   position: relative;
   line-height: 1em;
   border-radius: 2lh;
-  overflow: hidden;
   margin-inline: auto;
+  max-height: 100svh;
+  overflow: hidden;
 
   @media(prefers-reduced-transparency: reduce) {
     & {
@@ -302,6 +333,7 @@ ul {
   margin: 0;
   line-height: inherit;
   list-style: none;
+  overflow: hidden;
 }
 
 li {
@@ -311,6 +343,7 @@ li {
 }
 
 .nav-link {
+  color: white;
   font-size: 1em;
   cursor: pointer;
   background: transparent;

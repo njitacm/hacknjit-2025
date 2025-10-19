@@ -60,7 +60,6 @@ export default {
   height: 1000px;
   width: 1000px;
   max-width: calc(100vw - 5 * var(--offset-x));
-  overflow: hidden;
 }
 
 :deep(.curved-title-svg) {
@@ -109,6 +108,7 @@ export default {
   position: absolute;
   bottom: 16px;
   height: fit-content;
+  width: max-content;
   max-width: 100vw;
   display: grid;
   justify-content: center;

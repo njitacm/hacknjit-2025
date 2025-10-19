@@ -2,7 +2,7 @@
 <template>
   <header v-on="mouseEventListeners" @touchend.passive="isTouch ? onTouch() : null" ref="header"
     :class="{ active: isNavActive }">
-    <nav :style="{ width: navSize.width, height: navSize.height }">
+    <nav :style="{ width: navSize.width, height: navSize.height }" @scroll="onNavScroll" @scrollend="onNavScrollEnd">
       <ul ref="ul" :style="{ height: navSize.height }">
         <!-- visible even when nav is active -->
         <li :style="getItemStyle(0)">
@@ -15,7 +15,7 @@
         <!-- hidden when nav is closed -->
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index + 1)">
           <button tabindex="-1" class="nav-link" @click="!isTouch ? goToPage(item) : null"
-            @touchend.passive="() => goToPage(item)">
+            @touchend.passive="() => !scrolling && goToPage(item)">
             {{ item.label }}
           </button>
         </li>
@@ -43,13 +43,13 @@ const { activeSectionId } = storeToRefs(navigationStore);
 // template refs
 const headerRef = useTemplateRef("header");
 const ulRef = useTemplateRef("ul");
-const navButton0Ref = useTemplateRef("navButton0");
 
 // refs
 const interactedWithNav = ref(false); // mouse enter, mouse leave, touch start affects nav open/closed
 const scrollLock = ref(true);         // if true, will force the nav bar to be open
 const screenSize = ref("large");      // small or large depending on screen size
 const currentPage = ref("Home");
+const scrolling = ref(false);         // if user is scrolling the nav on touch screens
 
 // vars
 const heightEmFactor = 4;             // em
@@ -121,6 +121,18 @@ const onScroll = () => {
     scrollLock.value = true;
   }
 };
+
+const onNavScroll = () => {
+  if (isTouch.value === true && scrolling.value === false) {
+    scrolling.value = true;
+  }
+}
+
+const onNavScrollEnd = () => {
+  if (isTouch.value === true && scrolling.value === true) {
+    scrolling.value = false;
+  }
+}
 
 const onMediaQueryChange = (e) => {
   const isSmallScreen = e.matches;

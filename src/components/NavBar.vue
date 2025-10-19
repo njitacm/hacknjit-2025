@@ -1,8 +1,9 @@
 <!-- values that need to be manually depending on nav size adjusted are denoted with `TOCHANGE` -->
 <template>
-  <header v-on="mouseEventListeners" @touchend.passive="isTouch ? onTouch() : null" ref="header"
+  <header v-on="mouseEventListeners" ref="header"
     :class="{ active: isNavActive }">
-    <nav :style="{ width: navSize.width, height: navSize.height }" @scroll="onNavScroll" @scrollend="onNavScrollEnd">
+    <nav :style="{ width: navSize.width, height: navSize.height }" @touchmove.passive="onTouchMove"
+      @touchend.passive="onTouchEnd">
       <ul ref="ul" :style="{ height: navSize.height }">
         <!-- visible even when nav is active -->
         <li :style="getItemStyle(0)">
@@ -105,14 +106,6 @@ const onMouseLeave = () => {
   interactedWithNav.value = false;
 };
 
-const onTouch = () => {
-  if (interactedWithNav.value === false && isNavActive.value === false && !wentToPage) {
-    interactedWithNav.value = true;
-  } else if (wentToPage) {
-    wentToPage = false;
-  }
-};
-
 const onScroll = () => {
   // scroll lock functionality (force nav open if at top)
   if (window.scrollY > 50) {
@@ -122,17 +115,23 @@ const onScroll = () => {
   }
 };
 
-const onNavScroll = () => {
+const onTouchMove = () => {
   if (isTouch.value === true && scrolling.value === false) {
     scrolling.value = true;
   }
-}
+};
 
-const onNavScrollEnd = () => {
+const onTouchEnd = () => {
   if (isTouch.value === true && scrolling.value === true) {
     scrolling.value = false;
   }
-}
+
+  if (interactedWithNav.value === false && isNavActive.value === false && !wentToPage) {
+    interactedWithNav.value = true;
+  } else if (wentToPage) {
+    wentToPage = false;
+  }
+};
 
 const onMediaQueryChange = (e) => {
   const isSmallScreen = e.matches;

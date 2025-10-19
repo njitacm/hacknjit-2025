@@ -1,9 +1,8 @@
 <!-- values that need to be manually depending on nav size adjusted are denoted with `TOCHANGE` -->
 <template>
-  <header v-on="mouseEventListeners" ref="header"
-    :class="{ active: isNavActive }">
-    <nav :style="{ width: navSize.width, height: navSize.height }" @touchmove.passive="onTouchMove"
-      @touchend.passive="onTouchEnd">
+  <header v-on="mouseEventListeners" ref="header" :class="{ active: isNavActive }">
+    <nav :style="{ width: navSize.width, height: navSize.height, overflow: isNavActive && navOverflow ? 'auto' : 'hidden' }"
+      @touchmove.passive="onTouchMove" @touchend.passive="onTouchEnd">
       <ul ref="ul" :style="{ height: navSize.height }">
         <!-- visible even when nav is active -->
         <li :style="getItemStyle(0)">
@@ -31,7 +30,7 @@ import { storeToRefs } from "pinia";
 import { useNavigationStore } from '../stores/navigation';
 import { useIsTouch } from '../composables/useIsTouch';
 import { useTouchStartOutside } from '../composables/useTouchStartOutside';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 import downArrow from "../assets/icons/down_arrow.svg";
 
 // composables and stores
@@ -51,6 +50,7 @@ const scrollLock = ref(true);         // if true, will force the nav bar to be o
 const screenSize = ref("large");      // small or large depending on screen size
 const currentPage = ref("Home");
 const scrolling = ref(false);         // if user is scrolling the nav on touch screens
+const navOverflow = ref(false);       // whether the (expanded / active) nav is taller than the screen
 
 // vars
 const heightEmFactor = 4;             // em
@@ -133,7 +133,7 @@ const onTouchEnd = () => {
   }
 };
 
-const onMediaQueryChange = (e) => {
+const onWidthMqChange = (e) => {
   const isSmallScreen = e.matches;
 
   if (isSmallScreen) {
@@ -142,6 +142,16 @@ const onMediaQueryChange = (e) => {
   } else {
     screenSize.value = "large";
     ulRef.value.style.flexDirection = "row";
+  }
+};
+
+const onHeightMqChange = (e) => {
+  const isSmallHeight = e.matches;
+
+  if (isSmallHeight) {
+    navOverflow.value = true;
+  } else {
+    navOverflow.value = false;
   }
 };
 
@@ -175,20 +185,28 @@ const mouseEventListeners = computed(() => {
 });
 
 // query for for large vs small screens
-const mqList = window.matchMedia(`(max-width: ${screenSizeThreshold}px)`);
+const widthMq = window.matchMedia(`(max-width: ${screenSizeThreshold}px)`);
+const heightMq = window.matchMedia(`(max-height: ${(navItems.length + 1) * heightEmFactor}em)`);
 
 // life cycle hooks
 onMounted(() => {
-  if (mqList.matches) {
-    onMediaQueryChange({ matches: true });
+  if (widthMq.matches) {
+    onWidthMqChange({ matches: true });
   }
+
+  if (heightMq.matches) {
+    onHeightMqChange({ matches: true });
+  }
+
   window.addEventListener("scroll", onScroll);
-  mqList.addEventListener("change", onMediaQueryChange);
+  widthMq.addEventListener("change", onWidthMqChange);
+  heightMq.addEventListener("change", onHeightMqChange);
 });
 
 onUnmounted(() => {
   window.removeEventListener("scroll", onScroll);
-  mqList.removeEventListener("change", onMediaQueryChange);
+  widthMq.removeEventListener("change", onWidthMqChange);
+  heightMq.addEventListener("change", onHeightMqChange);
 });
 
 // link touch start outside handler to the composable
@@ -297,7 +315,7 @@ nav {
   border-radius: 2lh;
   margin-inline: auto;
   max-height: 100svh;
-  overflow: auto;
+  overflow: hidden;
 
   @media(prefers-reduced-transparency: reduce) {
     & {

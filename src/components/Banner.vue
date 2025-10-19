@@ -109,6 +109,7 @@ export default {
   position: absolute;
   bottom: 16px;
   height: fit-content;
+  width: max-content;
   max-width: 100vw;
   display: grid;
   justify-content: center;

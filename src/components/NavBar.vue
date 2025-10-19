@@ -2,8 +2,9 @@
 <template>
   <header v-on="mouseEventListeners" @touchend.passive="isTouch ? onTouch() : null" ref="header"
     :class="{ active: isNavActive }">
-    <nav :style="{ width: navSize.width, height: navSize.height }">
-      <ul ref="ul">
+    <!-- <div class="nav-container"> -->
+    <nav :style="{ width: navSize.width }">
+      <ul ref="ul" :style="{ height: navSize.height }">
         <!-- visible even when nav is active -->
         <li :style="getItemStyle(0)">
           <!-- touch devices when nav is closed: disbable the link by turning it into a span -->
@@ -21,6 +22,7 @@
         </li>
       </ul>
     </nav>
+    <!-- </div> -->
   </header>
 </template>
 
@@ -274,6 +276,13 @@ header.active {
   width: 100%;
 }
 
+/* .nav-container {
+  width: fit-content;
+  height: fit-content;
+  max-height: 100svh;
+  overflow: auto;
+} */
+
 nav {
   --expanded-touch-width: calc(90vw - 50px - 16px);
   --border-width: 1px;
@@ -284,8 +293,9 @@ nav {
   position: relative;
   line-height: 1em;
   border-radius: 2lh;
-  overflow: hidden;
   margin-inline: auto;
+  max-height: 100svh;
+  overflow: auto;
 
   @media(prefers-reduced-transparency: reduce) {
     & {
@@ -303,6 +313,7 @@ ul {
   margin: 0;
   line-height: inherit;
   list-style: none;
+  overflow: hidden;
 }
 
 li {

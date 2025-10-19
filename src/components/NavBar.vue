@@ -2,8 +2,7 @@
 <template>
   <header v-on="mouseEventListeners" @touchend.passive="isTouch ? onTouch() : null" ref="header"
     :class="{ active: isNavActive }">
-    <!-- <div class="nav-container"> -->
-    <nav :style="{ width: navSize.width }">
+    <nav :style="{ width: navSize.width, height: navSize.height }">
       <ul ref="ul" :style="{ height: navSize.height }">
         <!-- visible even when nav is active -->
         <li :style="getItemStyle(0)">
@@ -22,7 +21,6 @@
         </li>
       </ul>
     </nav>
-    <!-- </div> -->
   </header>
 </template>
 
@@ -275,13 +273,6 @@ header {
 header.active {
   width: 100%;
 }
-
-/* .nav-container {
-  width: fit-content;
-  height: fit-content;
-  max-height: 100svh;
-  overflow: auto;
-} */
 
 nav {
   --expanded-touch-width: calc(90vw - 50px - 16px);

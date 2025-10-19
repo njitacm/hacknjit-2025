@@ -76,6 +76,7 @@ onMounted(() => {
   width: fit-content;
   position: relative;
   overflow: hidden;
+	text-align: center;
 }
 
 .countdown, .date {

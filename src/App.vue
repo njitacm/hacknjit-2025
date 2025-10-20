@@ -53,6 +53,9 @@ export default {
 
   --border-radius: 10px;
   --max-content-width: 1000px;
+
+  --hover-scale: 1.05;
+  --press-scale: 0.95;
 }
 
 html {
@@ -217,13 +220,13 @@ a.pill,
   .pill:hover {
     background: var(--bkg-hov-act);
     filter: drop-shadow(0px 10px 10px #00000033);
-    transform: scale(1.05);
+    transform: scale(var(--hover-scale));
   }
 }
 
 @media(pointer: coarse) {
   .pill:active {
-    transform: scale(0.95);
+    transform: scale(var(--press-scale));
     background: var(--bkg-hov-act);
   }
 }

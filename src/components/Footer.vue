@@ -87,6 +87,10 @@ footer {
   width: 200px;
 }
 
+.socials-container a {
+  transition: transform 250ms ease;
+}
+
 .socials-container img {
   width: 50px;
   height: 50px;
@@ -111,12 +115,20 @@ footer {
     background-color: var(--hov-act-col);
     border: var(--hov-act-bord);
   }
+
+  .socials-container a:hover {
+    transform: scale(var(--hover-scale));
+  }
 }
 
 @media (pointer: coarse) {
   .links-container a:active {
     background-color: var(--hov-act-col);
     border: var(--hov-act-bord);
+  }
+
+  .socials-container a:active {
+    transform: scale(var(--press-scale));
   }
 }
 
@@ -125,7 +137,7 @@ footer {
     width: 100%;
     padding-bottom: 0;
   }
-  
+
   footer {
     border-radius: 0;
   }

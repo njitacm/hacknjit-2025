@@ -3,7 +3,7 @@
     <h2>Tracks</h2>
     <div class="container">
       <button v-for="(track, index) in tracks" :key="index" class="track-btn"
-        :style="{ backgroundImage: 'url(' + images[index] + ')' }">
+        :style="{ backgroundImage: images[index] }">
         <h3>{{ track.name }}</h3>
         <p>{{ track.desc }}</p>
       </button>
@@ -24,9 +24,8 @@ export default {
   },
   async mounted() {
     for (const track of tracks) {
-      this.images.push(await getImageUrl(`../assets/tracks/${track.bkgSrc}`));
+      this.images.push('url("' + await getImageUrl(`tracks/${track.bkgSrc}`) + '")');
     }
-    // return 'url("' + await getImageUrl(`../assets/tracks/${track.bkgSrc}`) + '")';
   }
 }
 </script>

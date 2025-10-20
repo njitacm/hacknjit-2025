@@ -11,23 +11,19 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { onMounted, ref } from "vue";
 import tracks from "../data/tracks";
 import { getImageUrl } from "../util";
 
-export default {
-  data() {
-    return {
-      tracks: tracks,
-      images: []
-    }
-  },
-  async mounted() {
-    for (const track of tracks) {
-      this.images.push('url("' + await getImageUrl(`tracks/${track.bkgSrc}`) + '")');
-    }
+// refs
+const images = ref([]);
+
+onMounted(async () => {
+  for (const track of tracks) {
+    images.value.push('url("' + await getImageUrl(`tracks/${track.bkgSrc}`) + '")');
   }
-}
+});
 </script>
 
 <style scoped>
@@ -39,6 +35,7 @@ export default {
 .track-btn {
   position: relative;
   border-radius: var(--border-radius);
+  background-size: 25px;
   width: 100%;
   cursor: pointer;
   border: none;
@@ -53,6 +50,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  z-index: 0;
+  border-radius: var(--border-radius);
 }
 </style>

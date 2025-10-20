@@ -3,7 +3,7 @@
     <NavBar />
     <MLHBanner />
     <div class="gradient"></div>
-    <RouterView></RouterView>
+    <RouterView class="router-view"></RouterView>
     <Footer />
   </main>
 </template>
@@ -89,6 +89,10 @@ body.modal-open {
   position: relative;
   display: grid;
   grid-template-rows: 1fr auto;
+}
+
+.router-view {
+  width: 100vw;
 }
 
 .gradient {

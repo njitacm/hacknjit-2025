@@ -104,11 +104,11 @@ body.modal-open {
   position: absolute;
   inset: 0;
   background-image: linear-gradient(to bottom, black 50svh, var(--hacknjit-sixth) 100svh,
-      var(--hacknjit-fifth),
-      var(--hacknjit-fourth),
-      var(--hacknjit-tertiary),
-      var(--hacknjit-secondary),
-      var(--hacknjit-primary));
+      var(--hacknjit-fifth) 150svh,
+      var(--hacknjit-fourth) 200svh,
+      var(--hacknjit-tertiary) 250svh,
+      var(--hacknjit-secondary) 300svh,
+      var(--hacknjit-primary) 350svh);
   animation: gradient-fade-in 2.5s linear forwards;
 }
 

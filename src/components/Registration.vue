@@ -1,20 +1,16 @@
 <template>
   <div class="Registration section">
-    <Vueform v-if="response.status == -1" v-bind="vueform" @success="handleResponse" @error="handleError" />
-    <div v-else-if="response.status == 200" class="form-submitted">
+    <Vueform v-if="false && response.status == -1" v-bind="vueform" @success="handleResponse" @error="handleError" />
+    <div v-else-if="true || response.status == 200" class="form-submitted">
       <h1>Successfully Registered!</h1>
       <p>Thank you for registering for HackNJIT 2025. We'll be in touch soon!</p>
-      <RouterLink to="/" class="nav-link">
-        <button class="vf-btn vf-btn-primary">Return Home</button>
-      </RouterLink>
+      <RouterLink to="/" class="nav-link pill return-btn">Return Home</RouterLink>
     </div>
     <div v-else class="form-submitted">
       <h1>Failed to register!</h1>
       <p>We could not register you for HackNJIT 2025 at this time. We may be having some technical difficulties. Check
         back in later.</p>
-      <RouterLink to="/" class="nav-link">
-        <button class="vf-btn vf-btn-primary">Return Home</button>
-      </RouterLink>
+      <RouterLink to="/" class="nav-link pill return-btn">Return Home</RouterLink>
     </div>
   </div>
 </template>
@@ -764,10 +760,10 @@ export default {
   top: var(--top-offset);
   background-color: white;
   color: black;
-  padding: 16px;
-  margin: auto;
+  padding: 32px;
   margin-bottom: var(--top-offset);
   border-radius: var(--border-radius);
+  height: fit-content;
 }
 
 .vf-registration *,
@@ -1091,6 +1087,16 @@ export default {
   border-radius: var(--border-radius);
 }
 
+.form-submitted {
+  display: grid;
+  gap: 32px;
+  justify-items: center;
+}
+
+.return-btn {
+  font-size: 1.5em;
+}
+
 .vf-registration *,
 .form-submitted * {
   font-family: sans-serif;
@@ -1102,7 +1108,7 @@ export default {
 
 .form-submitted p {
   font-size: var(--vf-font-size);
-  margin-bottom: 24px;
+  font-size: 1.25em;
 }
 
 .vf-element-layout-outer-wrapper {

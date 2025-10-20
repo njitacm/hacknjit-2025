@@ -44,7 +44,7 @@ export default {};
 
 footer {
   border-radius: var(--border-radius);
-  background-color: var(--hacknjit-secondary);
+  border: white 2px solid;
   color: var(--text-color);
   display: grid;
   justify-content: center;
@@ -87,13 +87,19 @@ footer {
   width: 200px;
 }
 
+.socials-container a {
+  transition: transform 250ms ease;
+}
+
 .socials-container img {
   width: 50px;
   height: 50px;
 }
 
 .links-container a {
-  --hov-act-col: var(--hacknjit-primary);
+  --hov-act-col: #ffffff25;
+  --hov-act-bord: solid 1px #ffffff33;
+  border: 1px transparent solid;
   width: 100%;
   border-radius: var(--border-radius);
   color: white;
@@ -107,12 +113,22 @@ footer {
 @media (hover: hover) and (pointer: fine) {
   .links-container a:hover {
     background-color: var(--hov-act-col);
+    border: var(--hov-act-bord);
+  }
+
+  .socials-container a:hover {
+    transform: scale(var(--hover-scale));
   }
 }
 
 @media (pointer: coarse) {
   .links-container a:active {
     background-color: var(--hov-act-col);
+    border: var(--hov-act-bord);
+  }
+
+  .socials-container a:active {
+    transform: scale(var(--press-scale));
   }
 }
 
@@ -121,8 +137,9 @@ footer {
     width: 100%;
     padding-bottom: 0;
   }
-  
+
   footer {
+    border: none;
     border-radius: 0;
   }
 }

@@ -3,14 +3,14 @@
     <NavBar />
     <MLHBanner />
     <div class="gradient"></div>
-    <RouterView></RouterView>
-    <TheFooter />
+    <RouterView class="router-view"></RouterView>
+    <Footer />
   </main>
 </template>
 
 <script>
 import MLHBanner from "./components/MLHBanner.vue";
-import TheFooter from "./components/TheFooter.vue";
+import Footer from "./components/Footer.vue";
 import Banner from "./components/Banner.vue";
 import NavBar from "./components/NavBar.vue";
 
@@ -18,7 +18,7 @@ export default {
   name: "HackNJIT",
   components: {
     MLHBanner,
-    TheFooter,
+    Footer,
     NavBar,
     Banner,
   }
@@ -53,6 +53,9 @@ export default {
 
   --border-radius: 10px;
   --max-content-width: 1000px;
+
+  --hover-scale: 1.05;
+  --press-scale: 0.95;
 }
 
 html {
@@ -82,7 +85,14 @@ body.modal-open {
 }
 
 .body-container {
+  min-height: 100svh;
   position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.router-view {
+  width: 100vw;
 }
 
 .gradient {
@@ -97,12 +107,12 @@ body.modal-open {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(to bottom, black 50svh, var(--hacknjit-sixth),
-      var(--hacknjit-fifth),
-      var(--hacknjit-fourth),
-      var(--hacknjit-tertiary),
-      var(--hacknjit-secondary),
-      var(--hacknjit-primary));
+  background-image: linear-gradient(to bottom, black 50svh, var(--hacknjit-sixth) 100svh,
+      var(--hacknjit-fifth) 150svh,
+      var(--hacknjit-fourth) 200svh,
+      var(--hacknjit-tertiary) 250svh,
+      var(--hacknjit-secondary) 300svh,
+      var(--hacknjit-primary) 350svh);
   animation: gradient-fade-in 2.5s linear forwards;
 }
 
@@ -214,13 +224,13 @@ a.pill,
   .pill:hover {
     background: var(--bkg-hov-act);
     filter: drop-shadow(0px 10px 10px #00000033);
-    transform: scale(1.05);
+    transform: scale(var(--hover-scale));
   }
 }
 
 @media(pointer: coarse) {
   .pill:active {
-    transform: scale(0.95);
+    transform: scale(var(--press-scale));
     background: var(--bkg-hov-act);
   }
 }

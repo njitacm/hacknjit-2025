@@ -39,6 +39,7 @@ onMounted(async () => {
   width: 100%;
   cursor: pointer;
   border: none;
+  padding: 16px;
 }
 
 /* semi-transparent overlay */

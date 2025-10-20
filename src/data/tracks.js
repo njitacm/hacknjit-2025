@@ -6,15 +6,15 @@ const tracks = [
         desc: "Description",
     },
     {
-        name: "Pollution",
+        name: "Public Healthcare",
         src: "Image src",
-        bkgSrc: "",
+        bkgSrc: "public_healthcare.svg",
         desc: "Description",
     },
     {
         name: "Conservation",
         src: "Image src",
-        bkgSrc: "",
+        bkgSrc: "conservation.svg",
         desc: "Description",
     },
 ];

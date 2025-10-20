@@ -3,7 +3,7 @@
     <h2>Tracks</h2>
     <div class="container">
       <button v-for="(track, index) in tracks" :key="index" class="track-btn"
-        :style="{ backgroundImage: getImage(track) }">
+        :style="{ backgroundImage: 'url(' + images[index] + ')' }">
         <h3>{{ track.name }}</h3>
         <p>{{ track.desc }}</p>
       </button>
@@ -18,13 +18,15 @@ import { getImageUrl } from "../util";
 export default {
   data() {
     return {
-      tracks: tracks
+      tracks: tracks,
+      images: []
     }
   },
-  methods: {
-    getImage(tracks) {
-      return `url(${getImageUrl('../assets/tracks/' + tracks.bkgSrc)}`;
+  async mounted() {
+    for (const track of tracks) {
+      this.images.push(await getImageUrl(`../assets/tracks/${track.bkgSrc}`));
     }
+    // return 'url("' + await getImageUrl(`../assets/tracks/${track.bkgSrc}`) + '")';
   }
 }
 </script>
@@ -36,7 +38,6 @@ export default {
 }
 
 .track-btn {
-  background-image: url("../assets/tracks/climate_change.svg");
   border-radius: var(--border-radius);
   width: 100%;
   cursor: pointer;

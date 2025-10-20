@@ -100,7 +100,7 @@ body.modal-open {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(to bottom, black 50svh, var(--hacknjit-sixth),
+  background-image: linear-gradient(to bottom, black 50svh, var(--hacknjit-sixth) 100svh,
       var(--hacknjit-fifth),
       var(--hacknjit-fourth),
       var(--hacknjit-tertiary),

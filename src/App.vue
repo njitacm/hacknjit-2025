@@ -67,6 +67,10 @@ html {
   width: 100%;
 }
 
+html, body, #app, .body-container {
+  min-height: 100svh;
+}
+
 @keyframes gradient-fade-in {
   from {
     opacity: 0;
@@ -83,6 +87,8 @@ body.modal-open {
 
 .body-container {
   position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
 }
 
 .gradient {

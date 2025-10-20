@@ -139,6 +139,7 @@ footer {
   }
 
   footer {
+    border: none;
     border-radius: 0;
   }
 }

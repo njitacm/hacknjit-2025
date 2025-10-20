@@ -4,13 +4,13 @@
     <MLHBanner />
     <div class="gradient"></div>
     <RouterView></RouterView>
-    <TheFooter />
+    <Footer />
   </main>
 </template>
 
 <script>
 import MLHBanner from "./components/MLHBanner.vue";
-import TheFooter from "./components/TheFooter.vue";
+import Footer from "./components/Footer.vue";
 import Banner from "./components/Banner.vue";
 import NavBar from "./components/NavBar.vue";
 
@@ -18,7 +18,7 @@ export default {
   name: "HackNJIT",
   components: {
     MLHBanner,
-    TheFooter,
+    Footer,
     NavBar,
     Banner,
   }

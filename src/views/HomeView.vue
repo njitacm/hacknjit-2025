@@ -3,7 +3,7 @@
     <!-- <Banner gradient="radial-gradient(yellow, green)" /> -->
     <Banner />
     <About />
-    <!-- <Tracks/> -->
+    <Tracks/>
     <TheSponsors />
     <TheFAQ />
   </div>

@@ -1,17 +1,19 @@
 <template>
   <div class="Tracks section">
     <h2>Tracks</h2>
-    <div class="container">
-      <button v-for="(track, index) in tracks" :key="index" class="track-btn"
-        :style="{ backgroundImage: images[index] }">
-        <h3>{{ track.name }}</h3>
-        <p>{{ track.desc }}</p>
-      </button>
-    </div>
+    <Carousel :value="tracks" :numVisible="1" :numScroll="1">
+      <template #item="{data, index}">
+        <button class="track-btn" :style="{ backgroundImage: images[index] }">
+          <h3>{{ data.name }}</h3>
+          <p>{{ data.desc }}</p>
+        </button>
+      </template>
+    </Carousel>
   </div>
 </template>
 
 <script setup>
+import Carousel from 'primevue/carousel';
 import { onMounted, ref } from "vue";
 import tracks from "../data/tracks";
 import { getImageUrl } from "../util";

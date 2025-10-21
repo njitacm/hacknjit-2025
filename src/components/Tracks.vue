@@ -1,12 +1,13 @@
 <template>
   <div class="Tracks section">
     <h2>Tracks</h2>
-    <Carousel :value="tracks" :numVisible="1" :numScroll="1" :circular="true" orientation="vertical" :showIndicators="false">
-      <template #item="{data, index}">
-        <button class="track-btn" :style="{ backgroundImage: images[index] }">
+    <Carousel :value="tracks" :numVisible="1" :numScroll="1" :circular="true" :showIndicators="false">
+      <template #item="{ data, index }">
+        <div class="container">
+          <div :style="{ backgroundImage: images[index] }" class="bkg-img"></div>
           <h3>{{ data.name }}</h3>
           <p>{{ data.desc }}</p>
-        </button>
+        </div>
       </template>
     </Carousel>
   </div>
@@ -30,30 +31,24 @@ onMounted(async () => {
 
 <style scoped>
 .container {
-  display: grid;
-  gap: 32px;
-}
-
-.track-btn {
   position: relative;
   border-radius: var(--border-radius);
-  background-size: 25px;
   width: 100%;
   cursor: pointer;
   border: none;
   padding: 16px;
+  display: grid;
+  justify-content: center;
+  background-color: #00000075;
 }
 
-/* semi-transparent overlay */
-.track-btn::before {
-  content: "";
+.container .bkg-img {
   position: absolute;
+  background-size: 25px;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 0;
-  border-radius: var(--border-radius);
+  z-index: -1;
 }
 </style>

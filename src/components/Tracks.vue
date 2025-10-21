@@ -1,7 +1,7 @@
 <template>
   <div class="Tracks section">
     <h2>Tracks</h2>
-    <Carousel :value="tracks" :numVisible="1" :numScroll="1">
+    <Carousel :value="tracks" :numVisible="1" :numScroll="1" :circular="true" orientation="vertical" :showIndicators="false">
       <template #item="{data, index}">
         <button class="track-btn" :style="{ backgroundImage: images[index] }">
           <h3>{{ data.name }}</h3>

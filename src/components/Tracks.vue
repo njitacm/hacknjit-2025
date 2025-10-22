@@ -1,16 +1,16 @@
 <template>
   <div class="Tracks section">
     <h2>Tracks</h2>
-    <Carousel :value="tracks" :numVisible="1" :numScroll="1" :circular="true" :autoplayInterval="3000">
-      <!-- hello -->
-      <div v-for="(track, index) in tracks" :key="index" class="item track-sub-container">
-        <div :style="{ backgroundImage: images[index] }" class="bkg-img"></div>
-        <h3>{{ track.name }}</h3>
-        <p>{{ track.desc }}</p>
-      </div>
-      <div>
-        
-      </div>
+    <Carousel :items="tracks" :numVisible="1" :numScroll="1" :circular="true" :autoplayInterval="3000">
+      <template #item="{ data, index }">
+        <div class="track-container">
+          <div class="track-sub-container">
+            <div :style="{ backgroundImage: images[index] }" class="bkg-img"></div>
+            <h3>{{ data.name }}</h3>
+            <p>{{ data.desc }}</p>
+          </div>
+        </div>
+      </template>
     </Carousel>
   </div>
 </template>

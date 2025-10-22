@@ -58,19 +58,21 @@ const slots = useSlots();
 const totalItems = computed(() => {
   if (!slots.default) return 0;
   const nodes = slots.default();
+  let len = 0;
+  console.log(nodes);
 
   // Handle v-for fragment
-  if (nodes.length === 1 && nodes[0].type.toString() === 'Symbol(Fragment)') {
-    // Filter out comments from fragment children
-    return nodes[0].children.filter(child => child.type.toString() !== 'Symbol(Comment)').length;
+  for (const node of nodes) {
+    if (node.type.toString() === 'Symbol(v-fgt)') {
+      // Filter out comments from fragment children
+      len += node.children.filter(child => child.type.toString() !== 'Symbol(v-cmt)').length;
+    } else if (node.type.toString() !== 'Symbol(v-cmt)') {
+      len += 1;
+    }
   }
 
-  // Handle individual items
-  // Filter out comments/text nodes from direct children
-  return nodes.filter(node =>
-    (typeof node.type === 'object' || typeof node.type === 'string') &&
-    node.type.toString() !== 'Symbol(Comment)'
-  ).length;
+  console.log(len);
+  return len;
 });
 
 // --- Computed Properties for Logic & Styling ---

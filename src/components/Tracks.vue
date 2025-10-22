@@ -1,23 +1,22 @@
 <template>
   <div class="Tracks section">
     <h2>Tracks</h2>
-    <Carousel :value="tracks" :numVisible="1" :numScroll="1" :circular="true" :showIndicators="false"
-      containerClass="carousel-container" contentClass="carousel-container">
-      <template #item="{ data, index }">
-        <div class="track-container">
-          <div class="track-sub-container">
-            <div :style="{ backgroundImage: images[index] }" class="bkg-img"></div>
-            <h3>{{ data.name }}</h3>
-            <p>{{ data.desc }}</p>
-          </div>
-        </div>
-      </template>
+    <Carousel :value="tracks" :numVisible="1" :numScroll="1" :circular="true" :autoplayInterval="3000">
+      <!-- hello -->
+      <div v-for="(track, index) in tracks" :key="index" class="item track-sub-container">
+        <div :style="{ backgroundImage: images[index] }" class="bkg-img"></div>
+        <h3>{{ track.name }}</h3>
+        <p>{{ track.desc }}</p>
+      </div>
+      <div>
+        
+      </div>
     </Carousel>
   </div>
 </template>
 
 <script setup>
-import Carousel from 'primevue/carousel';
+import Carousel from './Carousel.vue';
 import { onMounted, ref } from "vue";
 import tracks from "../data/tracks";
 import { getImageUrl } from "../util";
@@ -33,13 +32,25 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.p-carousel-next-button {
-  transform: scale(1.5) !important;
+/* These styles are in the parent, not 'scoped' */
+#app-container {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  text-align: center;
+  color: #2c3e50;
+  margin: 60px auto;
+  max-width: 900px;
 }
 
-.carousel-container,
-.p-carousel-viewport {
-  border-radius: var(--border-radius);
+/* This is the class we gave our items */
+.item {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #555;
+  border-radius: 8px;
 }
 
 .track-container {

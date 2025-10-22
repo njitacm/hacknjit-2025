@@ -5,7 +5,7 @@
       <template #item="{ data, index }">
         <div class="track-container">
           <div class="track-sub-container">
-            <div :style="(() => { console.log(index); return { backgroundImage: images[index] } })()" class="bkg-img"></div>
+            <div :style="{ backgroundImage: images[index] }" class="bkg-img"></div>
             <h3>{{ data.name }}</h3>
             <p>{{ data.desc }}</p>
           </div>

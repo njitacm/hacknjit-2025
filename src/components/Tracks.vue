@@ -1,7 +1,7 @@
 <template>
   <div class="Tracks section">
     <h2>Tracks</h2>
-    <Carousel :items="tracks" :numVisible="1" :numScroll="1" :circular="true" :autoplayInterval="3000">
+    <Carousel :items="tracks" :numVisible="1" :numScroll="1" :circular="true">
       <template #item="{ data, index }">
         <div class="track-container">
           <div class="track-sub-container">

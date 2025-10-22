@@ -11,16 +11,18 @@
     </div>
 
     <button class="carousel-nav prev" @click="prev" aria-label="Previous slide">
-      ‹
+      <PrevArrow fill-color="var(--hov-act-col)" />
     </button>
     <button class="carousel-nav next" @click="next" aria-label="Next slide">
-      ›
+      <NextArrow fill-color="var(--hov-act-col)" />
     </button>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
+import PrevArrow from './svg/PrevArrow.vue';
+import NextArrow from './svg/NextArrow.vue';
 
 // --- Props ---
 const props = defineProps({
@@ -204,6 +206,7 @@ const itemWidthCSS = computed(() => `${100 / props.numVisible}%`);
 }
 
 .carousel-nav {
+  --hov-act-col: var(--hacknjit-primary);
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -217,14 +220,18 @@ const itemWidthCSS = computed(() => `${100 / props.numVisible}%`);
   font-weight: bold;
   color: #333;
   cursor: pointer;
-  transition: all 0.2s ease;
   z-index: 10;
 }
 
-.carousel-nav:hover {
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  transform: translateY(-50%) scale(1.05);
+@media (hover: hover) and (pointer: fine) {
+  .carousel-nav:hover {
+    --hov-act-col: white;
+    background-color: var(--hacknjit-secondary);
+  }
+
+  .carousel-nav:hover svg path {
+    fill: white;
+  }
 }
 
 .carousel-nav.prev {

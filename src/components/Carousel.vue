@@ -66,13 +66,13 @@ const transitionName = computed(() => {
 const originalIndexMap = computed(() => {
   const map = new Map();
   props.items.forEach((item, index) => {
-    map.set(item, index);
+    map.set(item.__carousel_key, index);
   });
   return map;
 });
 
 const getItemIndex = (item) => {
-  return originalIndexMap.value.get(item);
+  return originalIndexMap.value.get(item.__carousel_key);
 };
 
 // --- Navigation Functions ---

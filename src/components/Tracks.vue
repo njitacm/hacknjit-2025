@@ -1,12 +1,15 @@
 <template>
   <div class="Tracks section">
     <h2>Tracks</h2>
-    <Carousel :value="tracks" :numVisible="1" :numScroll="1" :circular="true" :showIndicators="false">
+    <Carousel :value="tracks" :numVisible="1" :numScroll="1" :circular="true" :showIndicators="false"
+      containerClass="carousel-container" contentClass="carousel-container">
       <template #item="{ data, index }">
-        <div class="container">
-          <div :style="{ backgroundImage: images[index] }" class="bkg-img"></div>
-          <h3>{{ data.name }}</h3>
-          <p>{{ data.desc }}</p>
+        <div class="track-container">
+          <div class="track-sub-container">
+            <div :style="{ backgroundImage: images[index] }" class="bkg-img"></div>
+            <h3>{{ data.name }}</h3>
+            <p>{{ data.desc }}</p>
+          </div>
         </div>
       </template>
     </Carousel>
@@ -30,7 +33,21 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.container {
+.p-carousel-next-button {
+  transform: scale(1.5) !important;
+}
+
+.carousel-container,
+.p-carousel-viewport {
+  border-radius: var(--border-radius);
+}
+
+.track-container {
+  padding: 32px;
+
+}
+
+.track-sub-container {
   position: relative;
   border-radius: var(--border-radius);
   width: 100%;
@@ -42,7 +59,8 @@ onMounted(async () => {
   background-color: #00000075;
 }
 
-.container .bkg-img {
+.track-sub-container .bkg-img {
+  border-radius: inherit;
   position: absolute;
   background-size: 25px;
   top: 0;

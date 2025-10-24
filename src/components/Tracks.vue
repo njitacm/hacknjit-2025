@@ -54,8 +54,7 @@ onMounted(async () => {
 }
 
 .track-container {
-  padding: 32px;
-
+  padding: 64px;
 }
 
 .track-sub-container {
@@ -73,7 +72,8 @@ onMounted(async () => {
 .track-sub-container .bkg-img {
   border-radius: inherit;
   position: absolute;
-  background-size: 25px;
+  filter: blur(25px);
+  background-position: 50% 50%;
   top: 0;
   left: 0;
   width: 100%;

@@ -1,6 +1,6 @@
 <template>
-  <div class="deque-carousel" @mouseenter="stopAutoplay" @mouseleave="startAutoplay">
-    <div class="carousel-viewport" ref="viewport">
+  <div class="deque-carousel" @mouseenter="stopAutoplay" @mouseleave="startAutoplay" ref="carouselRootRef">
+    <div class="carousel-viewport" :style="{height: `${currentMinHeight}px`}" ref="viewport">
       <TransitionGroup tag="div" :name="transitionName" class="carousel-items-container">
         <div v-for="item in visibleItems" :key="item.__carousel_key ?? item" class="carousel-item">
           <slot name="item" :data="item" :index="getItemIndex(item)">
@@ -8,6 +8,12 @@
           </slot>
         </div>
       </TransitionGroup>
+    </div>
+
+    <div ref="measurementContainerRef" class="measurement-container" v-show="isMeasuring">
+      <div v-for="(item, index) in items" :key="index" class="carousel-item">
+        <slot name="item" :data="item" :index="index"></slot>
+      </div>
     </div>
 
     <button class="carousel-nav prev" @click="prev" aria-label="Previous slide">
@@ -20,7 +26,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, useTemplateRef } from 'vue';
+import { ref, computed, onMounted, onUnmounted, useTemplateRef, nextTick } from 'vue';
 import PrevArrow from './svg/PrevArrow.vue';
 import NextArrow from './svg/NextArrow.vue';
 
@@ -52,6 +58,14 @@ const props = defineProps({
 const localItems = ref([...props.items]); // A mutable copy of the items
 const direction = ref('next'); // Controls animation direction
 let autoplayTimer = null;
+const currentMinHeight = ref(0);
+const carouselRootRef = ref(null); // Ref for the root
+const measurementContainerRef = ref(null);
+let heightObserver = null;
+let debounceTimer = null;
+// 3. We change isMeasuring to false *after* the first measurement.
+//    v-show="false" will just hide it.
+const isMeasuring = ref(true);
 
 // --- Computed Properties ---
 
@@ -75,6 +89,31 @@ const originalIndexMap = computed(() => {
   return map;
 });
 
+// 4. This is the core logic. We can call this anytime.
+const updateMaxHeight = () => {
+  if (measurementContainerRef.value) {
+    let maxHeight = 0;
+    const items = measurementContainerRef.value.children;
+    for (const item of items) {
+      // Use getBoundingClientRect for more precise height
+      const height = item.getBoundingClientRect().height;
+      if (height > maxHeight) {
+        maxHeight = height;
+      }
+    }
+    console.log(maxHeight);
+    currentMinHeight.value = maxHeight;
+  }
+};
+
+// 5. This is the debounced wrapper. We'll call this from the observer.
+//    It waits 200ms after the user stops resizing, then fires *once*.
+const debouncedUpdateMaxHeight = () => {
+  clearTimeout(debounceTimer);
+  console.log("changed");
+  debounceTimer = setTimeout(updateMaxHeight, 200); // 200ms delay
+};
+
 const getItemIndex = (item) => {
   return originalIndexMap.value.get(item.__carousel_key);
 };
@@ -87,8 +126,8 @@ const next = () => {
   const itemsToMove = localItems.value.splice(0, props.numScroll);
   // 2. Push them onto the end
   localItems.value.push(...itemsToMove);
-  
-  
+
+
 };
 
 const prev = () => {
@@ -97,8 +136,6 @@ const prev = () => {
   const itemsToMove = localItems.value.splice(-props.numScroll);
   // 2. Unshift them onto the beginning
   localItems.value.unshift(...itemsToMove);
-  console.log(localItems.value);
-
 };
 
 // --- Autoplay (Unchanged) ---
@@ -113,8 +150,36 @@ const stopAutoplay = () => {
 };
 
 // --- Lifecycle (Unchanged) ---
-onMounted(startAutoplay);
-onUnmounted(stopAutoplay);
+onMounted(async () => {
+  
+  startAutoplay();
+  
+  // 6. Run the initial measurement immediately on mount.
+  await nextTick(); // Wait for v-show to render
+  console.log("mounted");
+  updateMaxHeight();
+  // isMeasuring.value = false; // Hide the measurement div
+
+  // 7. Set up the ResizeObserver
+  if (window.ResizeObserver && carouselRootRef.value) {
+    heightObserver = new ResizeObserver(() => {
+      console.log("observe");
+      // When the root element's size changes,
+      // call the debounced measurement function.
+      debouncedUpdateMaxHeight();
+    });
+    
+    heightObserver.observe(measurementContainerRef.value);
+  }
+});
+onUnmounted(() => {
+  stopAutoplay();
+  // 8. Clean up the observer and timer
+  if (heightObserver) {
+    heightObserver.disconnect();
+  }
+  clearTimeout(debounceTimer);
+});
 
 // --- CSS v-bind ---
 const itemWidthCSS = computed(() => `${100 / props.numVisible}%`);
@@ -122,6 +187,19 @@ const itemWidthCSS = computed(() => `${100 / props.numVisible}%`);
 </script>
 
 <style scoped>
+/* 9. Update the measurement-container style for v-show */
+.measurement-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  visibility: hidden; /* Hides it */
+  pointer-events: none; /* Disables interaction */
+  z-index: -1;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .deque-carousel {
   position: relative;
   width: 100%;

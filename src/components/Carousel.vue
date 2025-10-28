@@ -10,7 +10,7 @@
       </TransitionGroup>
     </div>
 
-    <div ref="measurementContainerRef" class="measurement-container" v-show="isMeasuring">
+    <div ref="measurementContainerRef" class="measurement-container">
       <div v-for="(item, index) in items" :key="index" class="carousel-item">
         <slot name="item" :data="item" :index="index"></slot>
       </div>
@@ -63,9 +63,6 @@ const carouselRootRef = ref(null); // Ref for the root
 const measurementContainerRef = ref(null);
 let heightObserver = null;
 let debounceTimer = null;
-// 3. We change isMeasuring to false *after* the first measurement.
-//    v-show="false" will just hide it.
-const isMeasuring = ref(true);
 
 // --- Computed Properties ---
 
@@ -101,7 +98,6 @@ const updateMaxHeight = () => {
         maxHeight = height;
       }
     }
-    console.log(maxHeight);
     currentMinHeight.value = maxHeight;
   }
 };
@@ -110,7 +106,6 @@ const updateMaxHeight = () => {
 //    It waits 200ms after the user stops resizing, then fires *once*.
 const debouncedUpdateMaxHeight = () => {
   clearTimeout(debounceTimer);
-  console.log("changed");
   debounceTimer = setTimeout(updateMaxHeight, 200); // 200ms delay
 };
 
@@ -156,14 +151,11 @@ onMounted(async () => {
   
   // 6. Run the initial measurement immediately on mount.
   await nextTick(); // Wait for v-show to render
-  console.log("mounted");
   updateMaxHeight();
-  // isMeasuring.value = false; // Hide the measurement div
 
   // 7. Set up the ResizeObserver
   if (window.ResizeObserver && carouselRootRef.value) {
     heightObserver = new ResizeObserver(() => {
-      console.log("observe");
       // When the root element's size changes,
       // call the debounced measurement function.
       debouncedUpdateMaxHeight();
@@ -220,7 +212,7 @@ const itemWidthCSS = computed(() => `${100 / props.numVisible}%`);
 .carousel-viewport,
 .carousel-items-container,
 .carousel-item {
-  transition: all 1s linear;
+  transition: all 1s linear, height 250ms ease;
 }
 
 /* This styles the items passed in via the slot */

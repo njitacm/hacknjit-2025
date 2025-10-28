@@ -59,8 +59,8 @@ const localItems = ref([...props.items]); // A mutable copy of the items
 const direction = ref('next'); // Controls animation direction
 let autoplayTimer = null;
 const currentMinHeight = ref(0);
-const carouselRootRef = ref(null); // Ref for the root
-const measurementContainerRef = ref(null);
+const carouselRootRef = useTemplateRef("carouselRootRef");
+const measurementContainerRef = useTemplateRef("measurementContainerRef");
 let heightObserver = null;
 let debounceTimer = null;
 

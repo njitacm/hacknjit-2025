@@ -2,7 +2,7 @@
   <div class="deque-carousel" @mouseenter="stopAutoplay" @mouseleave="startAutoplay">
     <div class="carousel-viewport">
       <TransitionGroup tag="div" :name="transitionName" class="carousel-items-container">
-        <div v-for="item in visibleItems" :key="item.__carousel_key ?? item" class="carousel-item">
+        <div v-for="item in visibleItems" :key="item.__carousel_key ?? item" class="carousel-item" ref="item">
           <slot name="item" :data="item" :index="getItemIndex(item)">
             <div class="default-item">{{ item }}</div>
           </slot>
@@ -20,9 +20,11 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted, useTemplateRef } from 'vue';
 import PrevArrow from './svg/PrevArrow.vue';
 import NextArrow from './svg/NextArrow.vue';
+
+const itemRef = useTemplateRef("item");
 
 // --- Props ---
 const props = defineProps({
@@ -85,6 +87,13 @@ const next = () => {
   const itemsToMove = localItems.value.splice(0, props.numScroll);
   // 2. Push them onto the end
   localItems.value.push(...itemsToMove);
+  
+  // console.log(localItems.value);
+  console.log(visibleItems.value);
+  console.log(itemRef.value[0].childNodes);
+  const item = Array.from(itemRef.value[0].childNodes).find((item) => item.classList?.contains("track-container"));
+  console.log(item);
+  console.log(item.getBoundingClientRect());
 };
 
 const prev = () => {
@@ -93,6 +102,13 @@ const prev = () => {
   const itemsToMove = localItems.value.splice(-props.numScroll);
   // 2. Unshift them onto the beginning
   localItems.value.unshift(...itemsToMove);
+  console.log(localItems.value);
+
+  console.log(visibleItems.value);
+  console.log(itemRef.value[0].childNodes);
+  const item = Array.from(itemRef.value[0].childNodes).find((item) => item.classList?.contains("track-container"));
+  console.log(item);
+  console.log(item.getBoundingClientRect());
 };
 
 // --- Autoplay (Unchanged) ---
@@ -130,6 +146,13 @@ const itemWidthCSS = computed(() => `${100 / props.numVisible}%`);
   display: flex;
   position: relative;
   /* Required for TransitionGroup animations */
+}
+
+.deque-carousel,
+.carousel-viewport,
+.carousel-items-container,
+.carousel-item {
+  transition: all 1s linear;
 }
 
 /* This styles the items passed in via the slot */

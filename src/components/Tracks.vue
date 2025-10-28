@@ -3,7 +3,7 @@
     <h2>Tracks</h2>
     <Carousel :items="tracks" :numVisible="1" :numScroll="1" :circular="true">
       <template #item="{ data, index }">
-        <div class="track-container">
+        <div class="track-container" :class="data.name">
           <div class="track-sub-container">
             <div :style="{ backgroundImage: images[index] }" class="bkg-img"></div>
             <h3>{{ data.name }}</h3>

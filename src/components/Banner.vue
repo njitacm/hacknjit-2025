@@ -8,7 +8,8 @@
     </div>
     <div class="content">
       <RouterLink to="/registration" class="router-link pill register-button">Register Now</RouterLink>
-      <TheCountdown />
+      <p class="general-date">Coming in Spring 2026</p>
+      <!-- <TheCountdown /> -->
     </div>
   </div>
 </template>

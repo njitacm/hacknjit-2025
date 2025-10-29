@@ -52,18 +52,27 @@ onBeforeUnmount(() => {
 }
 
 .p-accordion {
+  --p-accordion-content-padding: 16px;
+
   --p-accordion-header-background: var(--semi-transparent-white);
   --p-accordion-header-color: var(--hacknjit-primary);
+
   --p-accordion-content-background: transparent;
-  --p-accordion-content-padding: 16px;
+
   --p-accordion-header-hover-background: white;
   --p-accordion-header-hover-color: var(--hacknjit-primary);
-  --p-accordion-header-active-hover-color: white;
-  --p-accordion-header-active-hover-background: var(--hacknjit-primary);
-  --p-accordion-header-active-background: var(--hacknjit-primary);
+
+  --p-accordion-header-active-background: var(--hacknjit-secondary);
   --p-accordion-header-active-color: white;
-  --p-accordion-header-toggle-icon-color: var(--hacknjit-primary);
-  --p-accordion-header-toggle-icon-hover-color: var(--hacknjit-primary);
+
+  --p-accordion-header-active-hover-background: var(--p-accordion-header-active-background);
+  --p-accordion-header-active-hover-color: var(--p-accordion-header-active-color);
+
+
+  --p-accordion-header-toggle-icon-color: var(--p-accordion-header-color);
+  --p-accordion-header-toggle-icon-hover-color: var(--p-accordion-header-hover-color);
+  --p-accordion-header-toggle-icon-active-color: var(--p-accordion-header-active-color);
+  --p-accordion-header-toggle-icon-active-hover-color: var(--p-accordion-header-active-hover-color);
 
   @media(pointer: coarse) {
     & {

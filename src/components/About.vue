@@ -14,13 +14,14 @@
               <div class="title">
                 <img src="../assets/icons/date.svg" class="icon" /><span>When?</span>
               </div>
-              <a target="_blank" class="action pill"
+              <!-- <a target="_blank" class="action pill"
                 href="https://www.google.com/calendar/render?action=TEMPLATE&text=HackNJIT%202025&dates=20251108T090000/20251109T170000&ctz=America/New_York&details=HackNJIT%20is%20NJIT's%20annual%20student-run%20hackathon.%20Join%20us%20for%20a%20weekend%20of%20innovation,%20learning,%20and%20fun!&location=Campus%20Center,%20150%20Bleecker%20St%20%231982,%20Newark,%20NJ%2007102,%20USA">
                 <span>Add to calendar</span>
                 <img class="icon" src="../assets/icons/external_link.svg" />
-              </a>
+              </a> -->
             </div>
-            <p class="key-info">November 8, 2025 - November 9, 2025</p>
+            <!-- <p class="key-info">November 8, 2025 - November 9, 2025</p> -->
+            <p class="key-info">Spring 2026 (Stay tuned for more details!)</p>
           </div>
           <div class="key-info-sub-container">
             <div class="key-info-header">

@@ -59,8 +59,9 @@ let wentToPage = false;               // a "lock" - ensures the nav closes when 
 const navItems = [
   // required: label, optional: hash, path
   { label: "Home" },
-  { label: 'About', hash: '#About' },
-  { label: 'Sponsors', hash: '#Sponsors' },
+  { label: "About", hash: '#About' },
+  { label: "Tracks", hash: '#Tracks' },
+  { label: "Sponsors", hash: '#Sponsors' },
   { label: "FAQ", hash: '#FAQ' },
   // { label: 'Contact', hash: '#Contact' },
   { label: "Register", path: "/registration" },

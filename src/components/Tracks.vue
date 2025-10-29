@@ -1,5 +1,5 @@
 <template>
-  <div class="Tracks section">
+  <div class="Tracks section" id="Tracks" ref="sectionRef">
     <h2>Tracks</h2>
     <Carousel :items="tracks" :numVisible="1" :numScroll="1" :circular="true">
       <template #item="{ data, index }">
@@ -17,17 +17,26 @@
 
 <script setup>
 import Carousel from './Carousel.vue';
-import { onMounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, useTemplateRef } from "vue";
 import tracks from "../data/tracks";
 import { getImageUrl } from "../util";
+import { useIntersectionObserver } from '../composables/useIntersectionObserver';
+
+const { observe, unobserve } = useIntersectionObserver();
+const sectionRef = useTemplateRef("sectionRef");
 
 // refs
 const images = ref([]);
 
 onMounted(async () => {
+  observe(sectionRef.value);
   for (const track of tracks) {
     images.value.push('url("' + await getImageUrl(`tracks/${track.bkgSrc}`) + '")');
   }
+});
+
+onUnmounted(() => {
+  unobserve(sectionRef.value);
 });
 </script>
 

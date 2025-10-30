@@ -27,7 +27,7 @@ useIntersectionObserver(container, ([{ isIntersecting }]) => {
   containerIsVisible.value = isIntersecting;
 });
 
-const targetDate = new Date(`2025/11/8 12:00:00`);
+const targetDate = new Date(`2026/03/07 12:00:00`);
 const days = ref(0);
 const hours = ref(0);
 const minutes = ref(0);

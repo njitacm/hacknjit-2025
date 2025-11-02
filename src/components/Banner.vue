@@ -55,7 +55,7 @@ export default {
 .curved-title {
   position: absolute;
   left: 50%;
-  transform: translateX(calc(-50% + var(--offset-x))) rotate(0.5deg);
+  transform: translateX(calc(-50% + var(--offset-x))) rotate(2deg);
   top: calc(-65px + var(--top-offset));
   height: 1000px;
   width: 1000px;

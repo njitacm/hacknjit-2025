@@ -22,10 +22,12 @@ export default {
   name: "HackNJIT",
   components: { MLHBanner, Footer, NavBar, Modal },
   mounted() {
-    openModal({
-      title: "Notice",
-      component: NewDateNotice,
-    });
+    if (!localStorage.getItem("hideNewDateNotice")) {
+      openModal({
+        title: "HackNJIT's New Date",
+        component: NewDateNotice,
+      });
+    }
   }
 }
 </script>
@@ -210,6 +212,7 @@ a.pill,
   --bkg: conic-gradient(var(--hacknjit-fourth),
       var(--hacknjit-fifth) 135deg 225deg,
       var(--hacknjit-fourth));
+  color: white;
   height: fit-content;
   border-radius: 1000px;
   border: none;

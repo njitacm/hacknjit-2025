@@ -70,7 +70,7 @@ strong {
 
 .actions {
   display: flex;
-  gap: 32px;
+  gap: 16px;
   justify-content: space-between;
 }
 
@@ -89,5 +89,11 @@ a {
 
 button.pill {
   font-size: 1.25em;
+}
+
+@media (max-width: 500px) {
+  .actions {
+    flex-direction: column;
+  }
 }
 </style>

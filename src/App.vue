@@ -87,7 +87,7 @@ html {
   }
 }
 
-body.modal-open {
+html:has(body.modal-open), body.modal-open {
   overflow: hidden;
 }
 

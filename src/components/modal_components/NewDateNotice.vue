@@ -58,7 +58,6 @@ export default {
 <style scoped>
 .NewDateNotice {
   width: 100%;
-  max-width: 500px;
   padding: 32px;
   display: grid;
   gap: 32px;

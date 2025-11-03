@@ -43,10 +43,8 @@ const { modalStack, closeModal } = useModal();
 
 .Modal .container {
   transform-origin: top center;
-  max-width: 90%;
-  max-height: 95%;
-  width: fit-content;
-  height: fit-content;
+  width: calc(100% - 32px);
+  max-width: 500px;
   margin: 0 auto;
   background-color: white;
   color: black;
@@ -93,8 +91,6 @@ const { modalStack, closeModal } = useModal();
 
   .Modal .container {
     box-sizing: border-box;
-    max-width: none;
-    width: 100%;
   }
 }
 

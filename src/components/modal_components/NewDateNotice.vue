@@ -1,6 +1,9 @@
 <template>
   <div class="NewDateNotice">
     <p>
+      Due to budgetary concerns and scheduling issues, HackNJIT has been moved to the spring.
+      <br/>
+      <br/>
       HackNJIT will now be held on <strong>March 7 - March 8, 2026</strong>.
       <br />
       <br />

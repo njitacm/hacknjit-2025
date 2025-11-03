@@ -21,7 +21,22 @@
 <script setup>
 import { vOnClickOutside } from "@vueuse/components"
 import { useModal } from "../composables/useModal";
+import { onMounted, onUnmounted } from "vue";
 const { modalStack, closeModal } = useModal();
+
+const onKeyDown = (e) => {
+  if (e.key === 'Escape') {
+    closeModal();
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('keydown', onKeyDown);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('keydown', onKeyDown);
+});
 </script>
 
 <style scoped>

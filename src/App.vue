@@ -5,24 +5,29 @@
     <div class="gradient"></div>
     <RouterView class="router-view"></RouterView>
     <Footer />
+    <Modal />
   </main>
 </template>
 
 <script>
 import MLHBanner from "./components/MLHBanner.vue";
 import Footer from "./components/Footer.vue";
-import Banner from "./components/Banner.vue";
 import NavBar from "./components/NavBar.vue";
+import Modal from "./components/Modal.vue";
+import NewDateNotice from "./components/modal_components/NewDateNotice.vue";
+import { useModal } from "./composables/useModal";
+const { openModal } = useModal();
 
 export default {
   name: "HackNJIT",
-  components: {
-    MLHBanner,
-    Footer,
-    NavBar,
-    Banner,
+  components: { MLHBanner, Footer, NavBar, Modal },
+  mounted() {
+    openModal({
+      title: "Notice",
+      component: NewDateNotice,
+    });
   }
-};
+}
 </script>
 
 <style>

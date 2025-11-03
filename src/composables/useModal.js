@@ -1,4 +1,4 @@
-import { ref, readonly, shallowRef } from "vue";
+import { ref, readonly, shallowRef, markRaw } from "vue";
 
 const modalStack = ref([]);
 
@@ -10,7 +10,7 @@ export function useModal() {
         modalStack.value.push({
             id,
             title: options.title,
-            component: shallowRef(options.component),
+            component: markRaw(options.component),
             props: options.props || {},
         });
     };

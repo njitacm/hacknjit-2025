@@ -1,5 +1,5 @@
 <template>
-  <div class="Footer section">
+  <div class="Footer">
     <footer>
       <div class="socials-container">
         <!-- <a href="https://discord.com" target="_blank"
@@ -37,14 +37,8 @@ export default {};
 </script>
 
 <style scoped>
-.Footer {
-  padding-bottom: 32px;
-  margin-bottom: 0px;
-}
-
 footer {
-  border-radius: var(--border-radius);
-  border: white 2px solid;
+  background: linear-gradient(transparent, #00000075);
   color: var(--text-color);
   display: grid;
   justify-content: center;
@@ -60,14 +54,17 @@ footer {
 }
 
 .links-container {
-  --gap: 8px;
-  --cols: 2;
   display: grid;
-  grid-template-columns: repeat(var(--cols), calc(100% / var(--cols) - var(--gap) / (var(--cols) - 1)));
-  gap: var(--gap);
+  grid-template-columns: 100%;
+  gap: 8px;
   align-content: center;
   align-items: center;
   width: 100%;
+}
+
+.links-container a {
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 
 .NJIT_logos {
@@ -132,33 +129,10 @@ footer {
   }
 }
 
-@media(max-width: 1000px) {
-  .Footer {
-    width: 100%;
-    padding-bottom: 0;
-  }
-
-  footer {
-    border: none;
-    border-radius: 0;
-  }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 400px) {
   .socials-container img {
     width: 40px;
     height: 40px;
-  }
-
-  .links-container {
-    --cols: 1;
-    grid-template-columns: repeat(var(--cols), calc(100% / var(--cols)));
-  }
-}
-
-@media (max-width: 500px) {
-  .socials-container img {
-    width: 35px;
   }
 }
 </style>

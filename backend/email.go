@@ -97,11 +97,13 @@ func sendConfirmationEmail(name string, email string) {
 }
 
 func init() {
+	log.Println("Enabling email service...")
 	ctx := context.Background()
 	b, err := os.ReadFile("credentials.json")
 	if err != nil {
 		log.Fatalf("Unable to read client secret file: %v", err)
 	}
+	log.Println("\tClient secrets read...")
 
 	// If modifying these scopes, delete your previously saved token.json.
 	config, err := google.ConfigFromJSON(b, gmail.GmailSendScope)
@@ -109,9 +111,11 @@ func init() {
 		log.Fatalf("Unable to parse client secret file to config: %v", err)
 	}
 	client := getClient(config)
+	log.Println("\tHTTP Client configured...")
 
 	MailSrv, err = gmail.NewService(ctx, option.WithHTTPClient(client))
 	if err != nil {
 		log.Fatalf("Unable to retrieve Gmail client: %v", err)
 	}
+	log.Println("\tMail Client Successfully Configured")
 }

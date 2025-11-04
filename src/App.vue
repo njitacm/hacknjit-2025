@@ -5,24 +5,31 @@
     <div class="gradient"></div>
     <RouterView class="router-view"></RouterView>
     <Footer />
+    <Modal />
   </main>
 </template>
 
 <script>
 import MLHBanner from "./components/MLHBanner.vue";
 import Footer from "./components/Footer.vue";
-import Banner from "./components/Banner.vue";
 import NavBar from "./components/NavBar.vue";
+import Modal from "./components/Modal.vue";
+import NewDateNotice from "./components/modal_components/NewDateNotice.vue";
+import { useModal } from "./composables/useModal";
+const { openModal } = useModal();
 
 export default {
   name: "HackNJIT",
-  components: {
-    MLHBanner,
-    Footer,
-    NavBar,
-    Banner,
+  components: { MLHBanner, Footer, NavBar, Modal },
+  mounted() {
+    if (!localStorage.getItem("hideNewDateNotice") && Date.now() < new Date("Nov 9, 2025")) {
+      openModal({
+        title: "HackNJIT's New Date",
+        component: NewDateNotice,
+      });
+    }
   }
-};
+}
 </script>
 
 <style>
@@ -80,7 +87,7 @@ html {
   }
 }
 
-body.modal-open {
+html:has(body.modal-open), body.modal-open {
   overflow: hidden;
 }
 
@@ -205,6 +212,7 @@ a.pill,
   --bkg: conic-gradient(var(--hacknjit-fourth),
       var(--hacknjit-fifth) 135deg 225deg,
       var(--hacknjit-fourth));
+  color: white;
   height: fit-content;
   border-radius: 1000px;
   border: none;

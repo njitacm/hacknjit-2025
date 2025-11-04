@@ -308,7 +308,7 @@ nav {
   --expanded-touch-width: calc(90vw - 50px - 16px);
   --border-width: 1px;
   border: var(--border-width) solid #ffffff33;
-  background-color: #00250475;
+  background-color: #00000075;
   backdrop-filter: blur(25px);
   align-content: center;
   position: relative;

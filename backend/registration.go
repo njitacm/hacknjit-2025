@@ -125,6 +125,11 @@ func HandleFormSubmission(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	log.Printf("[INFO] Finished saving form: %+v\n", form)
+	if form.PreferredName != "" {
+		sendConfirmationEmail(form.PreferredName, form.Email)
+	} else {
+		sendConfirmationEmail(form.FirstName, form.Email)
+	}
 
 	// Automatically returns 200 success code
 	_, err = w.Write([]byte("Successfully Processed Form"))

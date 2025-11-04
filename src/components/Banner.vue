@@ -15,7 +15,7 @@
 
 <script>
 import TheCountdown from "./TheCountdown.vue";
-import CurvedText from "./CurvedText.vue";
+import CurvedText from "./svg/CurvedText.vue";
 import { useIntersectionObserver } from '../composables/useIntersectionObserver';
 const { observe, unobserve } = useIntersectionObserver();
 

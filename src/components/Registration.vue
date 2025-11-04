@@ -1,7 +1,7 @@
 <template>
   <div class="Registration section">
-    <Vueform v-if="false && response.status == -1" v-bind="vueform" @success="handleResponse" @error="handleError" />
-    <div v-else-if="true || response.status == 200" class="form-submitted">
+    <Vueform v-if="response.status == -1" v-bind="vueform" @success="handleResponse" @error="handleError" />
+    <div v-else-if="response.status == 200" class="form-submitted">
       <h1>Successfully Registered!</h1>
       <p>Thank you for registering for HackNJIT 2025. We'll be in touch soon!</p>
       <RouterLink to="/" class="nav-link pill return-btn">Return Home</RouterLink>

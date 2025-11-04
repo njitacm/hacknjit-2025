@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -29,7 +30,7 @@ func setup() {
 		if err != nil {
 			log.Fatalf("Failed to create log: %s\n", err)
 		}
-		log.SetOutput(logFile)
+		log.SetOutput(io.MultiWriter(os.Stdout, logFile))
 		log.SetFlags(log.LstdFlags)
 	}
 }

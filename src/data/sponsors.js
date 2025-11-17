@@ -2,7 +2,7 @@
 export default {
     // "platinum": [ ]
     // "gold": [ ]
-    "silver": [
+    "Bronze": [
         {
             "name": "GitHub",
             "imgSrc": "github.png",
@@ -13,8 +13,13 @@ export default {
             "imgSrc": "merck.png",
             "link": "https://www.merck.com/"
         },
+        {
+            "name": "Tekstream",
+            "imgSrc": "tekstream.png",
+            "link": "https://www.tekstream.com/"
+        },
     ],
-    "bronze": [
+    "Gift in Kind": [
         {
             "name": "Pure Buttons",
             "imgSrc": "pure_buttons.svg",

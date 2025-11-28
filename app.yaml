@@ -1,0 +1,22 @@
+alerts:
+- rule: DEPLOYMENT_FAILED
+- rule: DOMAIN_FAILED
+ingress:
+  rules:
+  - component:
+      name: hacknjit-2025
+    match:
+      path:
+        prefix: /
+name: hacknjit-website
+region: nyc
+static_sites:
+- environment_slug: node-js
+  error_document: index.html
+  github:
+    branch: main
+    deploy_on_push: true
+    repo: njitacm/hacknjit-2025
+  index_document: index.html
+  name: hacknjit-2025
+  source_dir: /

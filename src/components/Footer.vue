@@ -32,16 +32,11 @@
   </div>
 </template>
 
-<script>
-export default {};
-</script>
-
 <style scoped>
 footer {
   background: linear-gradient(transparent, #00000075);
   color: var(--text-color);
   display: grid;
-  justify-content: center;
   gap: 16px;
   padding: 32px;
 }
@@ -55,16 +50,11 @@ footer {
 
 .links-container {
   display: grid;
-  grid-template-columns: 100%;
   gap: 8px;
-  align-content: center;
+  justify-content: center;
   align-items: center;
+  grid-template-columns: repeat(3, 1fr);
   width: 100%;
-}
-
-.links-container a {
-  flex-grow: 1;
-  flex-shrink: 1;
 }
 
 .NJIT_logos {
@@ -72,7 +62,7 @@ footer {
   align-content: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 16px;
 }
 
 #acm-logo {
@@ -126,6 +116,18 @@ footer {
 
   .socials-container a:active {
     transform: scale(var(--press-scale));
+  }
+}
+
+@media(max-width: 1225px) {
+  .links-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 700px) {
+  .links-container {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 

@@ -1,11 +1,15 @@
 {
   "General": [
     {
+      "Question": "Why should I compete in a hackathon?",
+      "Answer": "Hackathons are a great way to learn new skills, meet new people, and have fun. They're also the perfect opportunity to show your technical, collaborative, and problem-solving skills to potential employers!"
+    },
+    {
       "Question": "How big is HackNJIT?",
       "Answer": "We're pretty big! Each year, 400 - 500 students attend HackNJIT!"
     },
     {
-      "Question": "I don't have any programming experience, can I still compete?",
+      "Question": "I don't have any coding experience, can I still compete?",
       "Answer": "Of course! HackNJIT is an amazing opportunity to learn more about programming and we heavily encourage you attend regardless of your skill level. Even if you don't submit a project, we will be hosting numerous educational workshops that you can attend to pick up new skills."
     },
     {

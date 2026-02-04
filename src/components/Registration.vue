@@ -720,7 +720,7 @@ export default {
         },
         resume: {
           type: 'file',
-          label: 'Resume (Attach your resume as a PDF',
+          label: 'Resume (Attach your resume as a PDF)',
           accept: 'pdf,application/pdf',
           rules: [
             'max:10000',

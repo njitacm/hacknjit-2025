@@ -36,3 +36,5 @@ responses/
 # Email Credentials
 credentials.json
 token.json
+
+.env

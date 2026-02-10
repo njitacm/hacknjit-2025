@@ -115,6 +115,7 @@ export default {
 
 .title span {
   font-weight: bold;
+  font-size: 1.25em;
 }
 
 .key-info {

@@ -1,7 +1,7 @@
 <template>
   <div id="Tracks" ref="sectionRef">
     <h2>Tracks</h2>
-    <div class="tracks_section"> 
+    <div class="tracks_section flex"> 
       <Card style="width: 25rem; overflow: hidden" v-for="track in tracks" :key="tracks.name">
           <template #header>
             <img class="card_image" :alt="track.name" :src="track.imgSrc" />
@@ -48,11 +48,16 @@ onUnmounted(() => {
 
 <style scoped>
 
+#Tracks {
+  margin: 0% 5%;
+}
+
 .tracks_section {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
-  margin: 0% 5%;
+  gap: 1em;
 }
 
 .card_image {

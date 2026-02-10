@@ -1,22 +1,32 @@
 <template>
-  <div class="Tracks section" id="Tracks" ref="sectionRef">
+  <div id="Tracks" ref="sectionRef">
     <h2>Tracks</h2>
-    <Carousel :items="tracks" :numVisible="1" :numScroll="1" :circular="true">
-      <template #item="{ data, index }">
-        <div class="track-container" :class="data.name">
-          <div class="track-sub-container">
-            <div :style="{ backgroundImage: images[index] }" class="bkg-img"></div>
-            <h3>{{ data.name }}</h3>
-            <p>{{ data.desc }}</p>
-          </div>
-        </div>
-      </template>
-    </Carousel>
+    <div class="tracks_section"> 
+      <Card style="width: 25rem; overflow: hidden" v-for="track in tracks" :key="tracks.name">
+          <template #header>
+              <img alt="user header" src="../assets/logos/discord.svg" />
+          </template>
+          <template #title>{{ track.name }}</template>
+          <template #subtitle>{{ track.name }}</template>
+          <template #content>
+              <p class="m-0">
+                  {{ track.desc }}
+              </p>
+          </template>
+          <template #footer>
+              <div class="flex gap-4 mt-1">
+                  <Button label="Cancel" severity="secondary" variant="outlined" class="w-full" />
+                  <Button label="Save" class="w-full" />
+              </div>
+          </template>
+      </Card>
+    </div>
   </div>
 </template>
 
 <script setup>
-import Carousel from './Carousel.vue';
+import Card from 'primevue/card';
+import Button from 'primevue/button';
 import { onMounted, onUnmounted, ref, useTemplateRef } from "vue";
 import tracks from "../data/tracks";
 import { getImageUrl } from "../util";
@@ -41,52 +51,12 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* These styles are in the parent, not 'scoped' */
-#app-container {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  text-align: center;
-  color: #2c3e50;
-  margin: 60px auto;
-  max-width: 900px;
-}
 
-/* This is the class we gave our items */
-.item {
-  height: 200px;
+.tracks_section {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: #555;
-  border-radius: 8px;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0% 5%;
 }
 
-.track-container {
-  padding: 64px;
-}
-
-.track-sub-container {
-  position: relative;
-  border-radius: var(--border-radius);
-  width: 100%;
-  cursor: pointer;
-  border: none;
-  padding: 16px;
-  display: grid;
-  justify-content: center;
-  background-color: #00000075;
-}
-
-.track-sub-container .bkg-img {
-  border-radius: inherit;
-  position: absolute;
-  filter: blur(25px);
-  background-position: 50% 50%;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
 </style>

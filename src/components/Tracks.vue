@@ -15,16 +15,22 @@
           </template>
           <template #footer>
               <div class="tracks_footer">
-                  <Button label="Learn More" class="w-full" />
+                  <Button label="Learn More" class="w-full" @click="createModal(track)"/>
               </div>
           </template>
       </Card>
     </div>
+    <Dialog v-model:visible="modal_visible" modal :header="modal_title" :style="{ width: '50rem' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
+      <p class="mb-8">
+            {{ modal_p1 }}
+      </p>
+    </Dialog>
   </div>
 </template>
 
 <script setup>
 import Card from 'primevue/card';
+import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
 import { onMounted, onUnmounted, ref, useTemplateRef } from "vue";
 import tracks from "../data/tracks";
@@ -34,8 +40,9 @@ import { useIntersectionObserver } from '../composables/useIntersectionObserver'
 const { observe, unobserve } = useIntersectionObserver();
 const sectionRef = useTemplateRef("sectionRef");
 
-// refs
-const images = ref([]);
+const modal_visible = ref(false);
+const modal_title = ref("");
+const modal_p1 = ref("");
 
 onMounted(async () => {
   observe(sectionRef.value);
@@ -44,6 +51,12 @@ onMounted(async () => {
 onUnmounted(() => {
   unobserve(sectionRef.value);
 });
+
+function createModal(track) {
+  modal_visible.value = true;
+  modal_title.value = track.name;
+  modal_p1.value = track.desc;
+}
 </script>
 
 <style scoped>

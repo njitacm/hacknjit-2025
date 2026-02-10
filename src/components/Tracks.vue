@@ -4,7 +4,7 @@
     <div class="tracks_section"> 
       <Card style="width: 25rem; overflow: hidden" v-for="track in tracks" :key="tracks.name">
           <template #header>
-              <img alt="user header" src="../assets/logos/discord.svg" />
+            <img class="card_image" :alt="track.name" :src="track.imgSrc" />
           </template>
           <template #title>{{ track.name }}</template>
           <template #subtitle>{{ track.name }}</template>
@@ -14,9 +14,8 @@
               </p>
           </template>
           <template #footer>
-              <div class="flex gap-4 mt-1">
-                  <Button label="Cancel" severity="secondary" variant="outlined" class="w-full" />
-                  <Button label="Save" class="w-full" />
+              <div class="tracks_footer">
+                  <Button label="Learn More" class="w-full" />
               </div>
           </template>
       </Card>
@@ -40,9 +39,6 @@ const images = ref([]);
 
 onMounted(async () => {
   observe(sectionRef.value);
-  for (const track of tracks) {
-    images.value.push('url("' + await getImageUrl(`tracks/${track.bkgSrc}`) + '")');
-  }
 });
 
 onUnmounted(() => {
@@ -59,4 +55,13 @@ onUnmounted(() => {
   margin: 0% 5%;
 }
 
+.card_image {
+  width: 80%;
+  margin: 10%;
+}
+
+.tracks_footer {
+  display: flex; 
+  justify-content: center; 
+}
 </style>

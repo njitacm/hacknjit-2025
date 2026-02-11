@@ -60,7 +60,7 @@ const navItems = [
   // required: label, optional: hash, path
   { label: "Home" },
   { label: "About", hash: '#About' },
-  // { label: "Tracks", hash: '#Tracks' },
+  { label: "Tracks", hash: '#Tracks' },
   { label: "Sponsors", hash: '#Sponsors' },
   { label: "FAQ", hash: '#FAQ' },
   // { label: 'Contact', hash: '#Contact' },
@@ -439,3 +439,4 @@ header.active .icon {
   }
 }
 </style>
+

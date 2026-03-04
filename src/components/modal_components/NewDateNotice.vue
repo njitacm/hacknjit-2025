@@ -1,25 +1,25 @@
 <template>
   <div class="NewDateNotice">
     <p>
-      Due to budgetary concerns and scheduling issues, HackNJIT has been moved to the spring.
-      <br/>
-      <br/>
-      HackNJIT will now be held on <strong>March 7 - March 8, 2026</strong>.
+      Due to budgetary issues, HackNJIT has been moved from March 7-8 to November 2026 (Exact date TBD). 
+      However, we will still be holding a 24 hour hackathon: BattleSnake! 
+      Join the BattleSnake 2026 Discord server 
+      <a href="https://discord.gg/2NK5g63M">https://discord.gg/2NK5g63M</a> 
+      for updates!
       <br />
       <br />
-      This was not an easy decision to make, as we know many of you were excited for this event, but we felt it
-      necessary
-      in order to ensure we can host the best possible experience for everyone.
+      Postponing HackNJIT was not an easy decision to make, as we know many of you were excited for the hackathon, but we felt it 
+      necessary in order to ensure we can host the best possible experience for everyone.
       <br />
       <br />
       If you have any questions or concerns, email us at 
-      <a href="mailto:acm@njit.edu" @click="copyToClipboard">acm@njit.edu</a> 
+      <a href="mailto:hacknjit@njit.edu" @click="copyToClipboard">hacknjit@njit.edu</a> 
       for more information.
     </p>
     <p v-if="showCopiedMsg" class="copiedMsg">
       Email copied to clipboard!
     </p
-    <hr />
+    <br />
     <div class="actions">
       <button class="pill" @click="closeForever">Don't show again</button>
       <button class="pill" @click="closeModal">OK</button>

@@ -22,7 +22,7 @@ export default {
   name: "HackNJIT",
   components: { MLHBanner, Footer, NavBar, Modal },
   mounted() {
-    if (!localStorage.getItem("hideNewDateNotice") && Date.now() < new Date("Nov 9, 2025")) {
+    if (!localStorage.getItem("hideNewDateNotice") && Date.now() < new Date("Nov 9, 2026")) {
       openModal({
         title: "HackNJIT's New Date",
         component: NewDateNotice,

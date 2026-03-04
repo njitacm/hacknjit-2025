@@ -20,7 +20,7 @@
                 <img class="icon" src="../assets/icons/external_link.svg" />
               </a>
             </div>
-            <p class="key-info">March 7, 2026 - March 8, 2026</p>
+            <p class="key-info">November 2026 - Exact date TBD</p>
           </div>
           <div class="key-info-sub-container">
             <div class="key-info-header">

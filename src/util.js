@@ -7,11 +7,11 @@ const IMAGES = import.meta.glob(
     ],
     // The 'eager: true' option loads all images at once,
     // which might cause performance issues for many images.
-    { eager: false, query: '?url', import: 'default' }
+    { eager: true, query: '?url', import: 'default' }
 );
 
 async function getImageUrl(name) {
-    const imagePath = `/src/assets/${name}`;
+    const imagePath = `${name}`;
 
     // Check if the image exists in our glob import
     if (!IMAGES[imagePath]) {

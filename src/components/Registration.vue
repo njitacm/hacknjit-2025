@@ -223,7 +223,7 @@ export default {
               wrapper: 12,
             },
           },
-          fieldName: 'Email (School email preferred.',
+          fieldName: 'Email (School email preferred.)',
         },
         country: {
           label: "Country of Residence",

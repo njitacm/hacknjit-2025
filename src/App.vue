@@ -132,7 +132,6 @@ html:has(body.modal-open), body.modal-open {
 }
 
 p,
-span,
 a {
   font-size: 1.25em;
 }

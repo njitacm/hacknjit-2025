@@ -2,10 +2,6 @@
   <div class="NewDateNotice">
     <p>
       Due to budgetary issues, HackNJIT has been moved from March 7-8 to November 2026 (Exact date TBD). 
-      However, we will still be holding a 24 hour hackathon: BattleSnake! 
-      Join the BattleSnake 2026 Discord server 
-      <a href="https://discord.gg/2NK5g63M">https://discord.gg/2NK5g63M</a> 
-      for updates!
       <br />
       <br />
       Postponing HackNJIT was not an easy decision to make, as we know many of you were excited for the hackathon, but we felt it 

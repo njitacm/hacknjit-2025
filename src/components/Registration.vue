@@ -3,12 +3,12 @@
     <Vueform v-if="response.status == -1" v-bind="vueform" @success="handleResponse" @error="handleError" />
     <div v-else-if="response.status == 200" class="form-submitted">
       <h1>Successfully Registered!</h1>
-      <p>Thank you for registering for HackNJIT 2025. We'll be in touch soon!</p>
+      <p>Thank you for registering for HackNJIT 2026. We'll be in touch soon!</p>
       <RouterLink to="/" class="nav-link pill return-btn">Return Home</RouterLink>
     </div>
     <div v-else class="form-submitted">
       <h1>Failed to register!</h1>
-      <p>We could not register you for HackNJIT 2025 at this time. We may be having some technical difficulties. Check
+      <p>We could not register you for HackNJIT 2026 at this time. We may be having some technical difficulties. Check
         back in later.</p>
       <RouterLink to="/" class="nav-link pill return-btn">Return Home</RouterLink>
     </div>

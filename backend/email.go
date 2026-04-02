@@ -77,9 +77,9 @@ func sendConfirmationEmail(name string, email string) {
 	// Create email message in HTML format
 	fromLine := "From: hacknjit@njit.edu\r\n"
 	toLine := fmt.Sprintf("To: %s\r\n", email)
-	subjectLine := "Subject: HackNJIT 2025 Registration Confirmation\r\n"
+	subjectLine := "Subject: HackNJIT 2026 Registration Confirmation\r\n"
 	headerLine := "Content-Type: text/html; charset=UTF-8\r\n\r\n"
-	messageBody := fmt.Sprintf("<html><body><p>Hello %s,</p><p>Thank you for registering for HackNJIT!</p><p>This email serves as confirmation of your registration. There is nothing further you need to do right now; all updates will be on the HackNJIT website, hacknjit.org, and we will continue to send updates via email before the event. We will also email you again closer to the new date with a guide to attending in-person.</p><p>Thank you again, and we look forward to seeing you at HackNJIT on <b>March 7-8th, 2026</b>!</p><p>Sincerely,<br/>The HackNJIT Team</p></body></html>", name)
+	messageBody := fmt.Sprintf("<html><body><p>Hello %s,</p><p>Thank you for registering for HackNJIT!</p><p>This email serves as confirmation of your registration. There is nothing further you need to do right now; all updates will be on the HackNJIT website, hacknjit.org, and we will continue to send updates via email before the event. We will also email you again closer to the new date with a guide to attending in-person.</p><p>Thank you again, and we look forward to seeing you at HackNJIT on <b>March 14-15th, 2026</b>!</p><p>Sincerely,<br/>The HackNJIT Team</p></body></html>", name)
 	messageStr := []byte(fromLine + toLine + subjectLine + headerLine +
 		messageBody)
 

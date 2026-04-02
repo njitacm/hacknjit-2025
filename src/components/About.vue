@@ -20,7 +20,7 @@
                 <img class="icon" src="../assets/icons/external_link.svg" />
               </a>
             </div>
-            <p class="key-info">November 2026 - Exact date TBD</p>
+            <p class="key-info">November 14-15, 2026</p>
           </div>
           <div class="key-info-sub-container">
             <div class="key-info-header">

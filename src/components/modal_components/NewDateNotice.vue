@@ -1,7 +1,7 @@
 <template>
   <div class="NewDateNotice">
     <p>
-      Due to budgetary issues, HackNJIT has been moved from March 7-8 to November 2026 (Exact date TBD). 
+      Due to budgetary issues, HackNJIT has been moved from March 7-8 to November 14-15, 2026. 
       <br />
       <br />
       Postponing HackNJIT was not an easy decision to make, as we know many of you were excited for the hackathon, but we felt it 

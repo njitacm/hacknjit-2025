@@ -25,10 +25,13 @@ main
 *.njsproj
 *.sln
 *.sw?
+.direnv/
+.envrc
 
 # local env files
 .env.local
 .env.*.local
+.env
 
 # Form Responses
 responses/
@@ -36,5 +39,3 @@ responses/
 # Email Credentials
 credentials.json
 token.json
-
-.env

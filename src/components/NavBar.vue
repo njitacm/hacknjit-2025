@@ -2,7 +2,7 @@
 <template>
   <header v-on="mouseEventListeners" ref="header" :class="{ active: isNavActive }">
     <nav :style="{ width: navSize.width, height: navSize.height, overflow: isNavActive && navOverflow ? 'auto' : 'hidden' }"
-      @touchmove.passive="onTouchMove" @touchend.passive="onTouchEnd">
+      @touchend.passive="onTouchEnd">
       <ul ref="ul" :style="{ height: navSize.height }">
         <!-- visible even when nav is active -->
         <li :style="getItemStyle(0)">
@@ -14,10 +14,10 @@
         </li>
         <!-- hidden when nav is closed -->
         <li v-for="(item, index) in navItems" :key="index" :style="getItemStyle(index + 1)">
-          <button tabindex="-1" class="nav-link" @click="!isTouch ? goToPage(item) : null"
-            @touchend.passive="() => !scrolling && goToPage(item)">
+          <RouterLink :to="{ path: item.path ?? '/', hash: item.hash ?? '' }" :tabindex="isNavActive ? 0 : -1"
+            class="nav-link" @click="isTouch && (interactedWithNav = false)">
             {{ item.label }}
-          </button>
+          </RouterLink>
         </li>
       </ul>
     </nav>
@@ -49,13 +49,11 @@ const interactedWithNav = ref(false); // mouse enter, mouse leave, touch start a
 const scrollLock = ref(true);         // if true, will force the nav bar to be open
 const screenSize = ref("large");      // small or large depending on screen size
 const currentPage = ref("Home");
-const scrolling = ref(false);         // if user is scrolling the nav on touch screens
 const navOverflow = ref(false);       // whether the (expanded / active) nav is taller than the screen
 
 // vars
 const heightEmFactor = 4;             // em
 const screenSizeThreshold = 925;      // px - TOCHANGE - manually adjust based on number of nav items
-let wentToPage = false;               // a "lock" - ensures the nav closes when touch user taps on nav link
 const navItems = [
   // required: label, optional: hash, path
   { label: "Home" },
@@ -116,21 +114,9 @@ const onScroll = () => {
   }
 };
 
-const onTouchMove = () => {
-  if (isTouch.value === true && scrolling.value === false) {
-    scrolling.value = true;
-  }
-};
-
 const onTouchEnd = () => {
-  if (isTouch.value === true && scrolling.value === true) {
-    scrolling.value = false;
-  }
-
-  if (interactedWithNav.value === false && isNavActive.value === false && !wentToPage) {
+  if (interactedWithNav.value === false && isNavActive.value === false) {
     interactedWithNav.value = true;
-  } else if (wentToPage) {
-    wentToPage = false;
   }
 };
 
@@ -218,17 +204,6 @@ function getSectionHeader() {
     return activeSectionId.value.replace("-", " ");
   }
   return currentPage.value;
-}
-
-function goToPage(item) {
-  if (isNavActive.value === true) {
-    router.push({ path: item.path ?? '/', hash: item.hash ?? '' });
-
-    if (isTouch.value === true) {
-      wentToPage = true;
-      interactedWithNav.value = false;
-    }
-  }
 }
 
 // style for each list item
@@ -346,6 +321,8 @@ li {
 .nav-link {
   color: white;
   font-size: 1em;
+  text-align: center;
+  text-decoration: none;
   cursor: pointer;
   background: transparent;
   border: none;

@@ -11,39 +11,22 @@
           </template>
           <!-- <template #subtitle>{{ track.name }}</template> -->
           <template #content>
-              <text-clamp :text='track.desc' :max-lines='max_lines' class="text-clamp"/>
-          </template>
-          <template #footer>
-              <div class="tracks_footer">
-                  <Button style="margin-top: 5%;" label="Learn More" class="w-full" @click="createModal(track)"/>
-              </div>
+              <p class="track_desc">{{ track.desc }}</p>
           </template>
       </Card>
     </div>
-    <Dialog class="tracks_dialog" v-model:visible="modal_visible" modal :header="modal_title" :style="{ width: '50rem',   background: 'cadetblue' }" :draggable="false" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
-      <p class="mb-8">
-            {{ modal_p1 }}
-      </p>
-    </Dialog>
   </div>
 </template>
 
 <script setup>
 import Card from 'primevue/card';
-import Dialog from 'primevue/dialog';
-import Button from 'primevue/button';
-import { onMounted, onUnmounted, ref, useTemplateRef, computed} from "vue";
+import { onMounted, onUnmounted, useTemplateRef } from "vue";
 import tracks from "../data/tracks";
 import { getImageUrl } from "../util";
 import { useIntersectionObserver } from '../composables/useIntersectionObserver';
-import TextClamp from 'vue3-text-clamp';
 
 const { observe, unobserve } = useIntersectionObserver();
 const sectionRef = useTemplateRef("sectionRef");
-
-const modal_visible = ref(false);
-const modal_title = ref("");
-const modal_p1 = ref("");
 
 onMounted(async () => {
   observe(sectionRef.value);
@@ -52,21 +35,6 @@ onMounted(async () => {
 onUnmounted(() => {
   unobserve(sectionRef.value);
 });
-
-const max_lines = computed(() => {
-  if (window.innerHeight > 800) {
-      return 4;
-  } else if (window.innerHeight > 650) { 
-      return 3;
-  }
-  return 2;
-})
-
-function createModal(track) {
-  modal_visible.value = true;
-  modal_title.value = track.name;
-  modal_p1.value = track.desc;
-}
 </script>
 
 <style scoped>
@@ -75,7 +43,7 @@ function createModal(track) {
   margin: 0% 5%;
 }
 
-.text-clamp {
+.track_desc {
   font-size: 1em;
 }
 
@@ -98,32 +66,17 @@ function createModal(track) {
   text-align: center;
 }
 
-.text-clamp {
-  height: 6rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-} 
-
 .track_image {
   width: 80%;
   max-height: 275px;
   margin: 5% 10%;
 }
 
-.tracks_dialog {
-  background-color: rgba(204, 255, 255, .4);
-}
-
-.tracks_footer {
-  display: flex; 
-  justify-content: center; 
-}
-
 @media (max-width: 1350px) { 
   .track_card_title { 
     font-size: 1.25em;
   }
-  .text-clamp {
+  .track_desc {
     font-size: 0.9em;
   }
   .track_image {
@@ -138,26 +91,17 @@ function createModal(track) {
   }
 }
 
-@media (max-width: 1100px) { 
-  .text-clamp {
-    height: 8rem;
-  } 
-}
-
 @media (max-width: 1000px) { 
   .track_card_title { 
     font-size: 1em;
   }
-  .text-clamp {
-    height: 8rem;
-  } 
   .track_image {
     max-height: 150px;
   }
 }
 
 @media (max-width: 850px) { 
-  .text-clamp {
+  .track_desc {
     font-size: 0.9em;
   } 
 }
@@ -169,9 +113,8 @@ function createModal(track) {
   .track_card_title { 
     font-size: 1.5em;
   }
-  .text-clamp {
+  .track_desc {
     font-size: 1.15em;
-    height: 8rem;
   } 
   .track_image {
     max-height: unset;
@@ -181,7 +124,7 @@ function createModal(track) {
 }
 
 @media (max-width: 500px) { 
-  .text-clamp {
+  .track_desc {
     font-size: 1.1em;
   } 
 }

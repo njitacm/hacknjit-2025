@@ -7,6 +7,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path"
+	"strings"
 	"time"
 
 	"acm.njit.edu/m/v2/backend"
@@ -39,11 +41,29 @@ func main() {
 	setup()
 	defer backend.CsvFile.Close()
 
-	http.Handle("/", http.FileServer(http.Dir("./dist")))
+	http.Handle("/", spaHandler("./dist"))
 	http.HandleFunc("/api/register", backend.HandleFormSubmission)
 
 	portStr := fmt.Sprintf(":%d", *port)
 
 	log.Printf("[INFO] Server running on %s\n", portStr)
 	log.Fatal(http.ListenAndServe(portStr, nil))
+}
+
+func spaHandler(distDir string) http.Handler {
+	files := http.FileServer(http.Dir(distDir))
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		name := strings.TrimPrefix(path.Clean("/"+r.URL.Path), "/")
+		if _, err := os.Stat(path.Join(distDir, name)); err == nil {
+			files.ServeHTTP(w, r)
+			return
+		}
+
+		if strings.HasPrefix(r.URL.Path, "/api/") || path.Ext(name) != "" {
+			http.NotFound(w, r)
+			return
+		}
+
+		http.ServeFile(w, r, path.Join(distDir, "index.html"))
+	})
 }

@@ -15,7 +15,7 @@
                 <img src="../assets/icons/date.svg" class="icon" /><span>When?</span>
               </div>
               <a target="_blank" class="action pill"
-                href="https://www.google.com/calendar/render?action=TEMPLATE&text=HackNJIT&dates=20261121T090000/20261122T170000&ctz=America/New_York&details=HackNJIT%20is%20NJIT's%20annual%20student-run%20hackathon.%20Join%20us%20for%20a%20weekend%20of%20innovation,%20learning,%20and%20fun!&location=56%20Lock%20St%2C%20Newark%2C%20NJ%2007103%2C%20USA">
+                href="https://www.google.com/calendar/render?action=TEMPLATE&text=HackNJIT&dates=20261121T090000/20261122T170000&ctz=America/New_York&details=HackNJIT%20is%20NJIT's%20annual%20student-run%20hackathon.%20Join%20us%20for%20a%20weekend%20of%20innovation,%20learning,%20and%20fun!&location=56%20Lock%20St%2C%20Newark%2C%20NJ%2007102%2C%20USA">
                 <span>Add to calendar</span>
                 <img class="icon" src="../assets/icons/external_link.svg" />
               </a>
@@ -32,7 +32,7 @@
                 <img class="icon" src="../assets/icons/external_link.svg" />
               </a>
             </div>
-            <p class="key-info">56 Lock St #1982, Newark, NJ 07102 (Niamoli)</p>
+            <p class="key-info">56 Lock St #1982, Newark, NJ 07102 (Niamoli Center)</p>
           </div>
         </div>
       </div>

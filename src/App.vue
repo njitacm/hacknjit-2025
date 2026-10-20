@@ -1,7 +1,6 @@
 <template>
   <main class="body-container">
     <NavBar />
-    <MLHBanner />
     <div class="gradient"></div>
     <RouterView class="router-view"></RouterView>
     <Footer />
@@ -10,7 +9,6 @@
 </template>
 
 <script>
-import MLHBanner from "./components/MLHBanner.vue";
 import Footer from "./components/Footer.vue";
 import NavBar from "./components/NavBar.vue";
 import Modal from "./components/Modal.vue";
@@ -20,7 +18,7 @@ const { openModal } = useModal();
 
 export default {
   name: "HackNJIT",
-  components: { MLHBanner, Footer, NavBar, Modal },
+  components: { Footer, NavBar, Modal },
   mounted() {
     if (!localStorage.getItem("hideNewDateNotice") && Date.now() < new Date("Mar 9, 2026")) {
       openModal({

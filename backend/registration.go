@@ -49,6 +49,7 @@ var csvMutex sync.Mutex
 var outputDir string = "./responses"
 var resumeDir string = fmt.Sprintf("%s/resumes", outputDir) // Must be a subdirectory of outputDir
 var csvFilePath string = fmt.Sprintf("%s/registrations-%d.csv", outputDir, time.Now().UnixNano())
+const registrationOpen = false
 
 func init() {
 	// Create output directories (if they do not exist) and csv file
@@ -70,6 +71,10 @@ func init() {
 func HandleFormSubmission(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	if !registrationOpen {
+		http.Error(w, "Registration is closed", http.StatusGone)
 		return
 	}
 

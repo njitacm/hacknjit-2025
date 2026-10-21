@@ -32,7 +32,7 @@
                 <img class="icon" src="../assets/icons/external_link.svg" />
               </a>
             </div>
-            <p class="key-info">56 Lock St #1982, Newark, NJ 07102 (Niamoli)</p>
+            <p class="key-info">56 Lock St #1982, Newark, NJ 07103 (Niamoli Center)</p>
           </div>
         </div>
       </div>

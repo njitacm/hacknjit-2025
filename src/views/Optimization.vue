@@ -23,10 +23,10 @@
         </p>
 
         <div class="hero-actions">
-          <a href="#challenge" class="primary-btn">
+          <a href="#challenge" class="pill primary-btn">
             Explore challenge
           </a>
-          <a href="#about" class="secondary-btn">
+          <a href="#about" class="pill primary-btn">
             Discover event
           </a>
         </div>
@@ -222,7 +222,7 @@
 
       <p>Take an existing process and find a better way to run it.</p>
 
-      <a href="#about" class="primary-btn">
+      <a href="#about" class="pill primary-btn">
         EXPLORE OPTIMIZATION ↑
       </a>
 
@@ -235,6 +235,7 @@
 </template>
 
 <style scoped>
+
 /* PAGE */
 .optimization-page {
   width: 100%;
@@ -293,7 +294,15 @@
   margin-left: 10px;
 }
 
-.accent {
+.hero h1 {
+  font-size: clamp(3rem, 9vw, 6em);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.accent,
+.capstone h2 span,
+.closing h2 span {
   color: var(--hacknjit-tertiary);
 }
 
@@ -321,29 +330,20 @@
 .primary-btn,
 .secondary-btn {
   display: inline-block;
-  padding: 12px 24px;
-  border-radius: 1000px;
   text-decoration: none;
-  color: white;
   font-size: 1rem;
   font-weight: bold;
   transition: transform 250ms ease, filter 300ms ease;
 }
 
-.primary-btn {
-  background: linear-gradient(
-    120deg,
-    var(--hacknjit-fourth),
-    var(--hacknjit-fifth)
-  );
-}
-
 .secondary-btn {
+  padding: 8px 24px;
   border: 1px solid var(--hacknjit-secondary);
+  border-radius: 1000px;
   background: var(--hacknjit-primary-transparent);
+  color: white;
 }
 
-.primary-btn:hover,
 .secondary-btn:hover {
   transform: scale(var(--hover-scale));
   filter: drop-shadow(0 8px 10px #00000055);
@@ -489,7 +489,6 @@
 }
 
 .tag {
-  display: block;
   color: var(--hacknjit-tertiary);
   font-size: 0.7rem;
   margin-top: auto;
@@ -499,7 +498,7 @@
 
 /* CAPSTONE */
 .capstone {
-  max-width: 1100px;
+  max-width: var(--max-content-width);
   width: calc(100% - 40px);
   margin: 50px auto;
   background: var(--hacknjit-primary-transparent);
@@ -510,10 +509,6 @@
 
 .capstone h2 {
   margin: 15px 0 20px;
-}
-
-.capstone h2 span {
-  color: var(--hacknjit-tertiary);
 }
 
 .capstone p {
@@ -594,10 +589,6 @@
 
 .closing h2 {
   margin: 20px 0;
-}
-
-.closing h2 span {
-  color: var(--hacknjit-tertiary);
 }
 
 .closing p {

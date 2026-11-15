@@ -42,6 +42,7 @@ const formattedHours = computed(() => String(Math.floor(hours.value)).padStart(2
 const formattedMinutes = computed(() => String(Math.floor(minutes.value)).padStart(2, "0"));
 const formattedSeconds = computed(() => String(Math.floor(seconds.value)).padStart(2, "0"));
 
+/*
 function updateCountdown() {
   var timeLeft = targetDate - new Date();
   days.value = timeLeft / 8.64e7;
@@ -49,10 +50,12 @@ function updateCountdown() {
   minutes.value = (timeLeft / 60000) % 60;
   seconds.value = (timeLeft / 1000) % 60;
 }
+*/
 
 onMounted(() => {
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+  
+  //updateCountdown();
+  //setInterval(updateCountdown, 1000);
 
   gsap.to(tweened_year, { value: targetDate.getFullYear(), duration: 4.5, ease: "expo" });
   gsap.to(tweened_month, { value: targetDate.getMonth() + 1, duration: 4.5, ease: "expo" });

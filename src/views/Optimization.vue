@@ -12,7 +12,7 @@
         </div>
 
         <h1>
-          OPTIMI<span class="accent">Z</span>ATION
+          LOAD BEAR OPTIMIZATION
           <span class="hero-subtitle">PUSHING TECHNOLOGY TO ITS LIMITS.</span>
         </h1>
 

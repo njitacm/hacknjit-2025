@@ -1,7 +1,6 @@
 
 <template>
   <div class="optimization-page">
-    <!-- HERO -->
     <section class="hero">
       <div class="hero-grid"></div>
 
@@ -54,7 +53,6 @@
       </div>
     </section>
 
-    <!-- EVENT INTRO -->
     <section id="about" class="section intro">
       <div class="section-index">Main Idea</div>
 
@@ -74,7 +72,6 @@
       </div>
     </section>
 
-    <!-- CHALLENGE -->
     <section id="challenge" class="section challenge">
       <div class="section-index">Challenge</div>
 
@@ -131,7 +128,6 @@
       </div>
     </section>
 
-    <!-- CAPSTONE -->
     <section class="capstone">
       <div class="capstone-content">
         <div class="section-index">ENGINEERING FUNDAMENTALS</div>
@@ -159,7 +155,6 @@
       </div>
     </section>
 
-    <!-- FORMAT -->
     <section class="section format">
       <div class="section-index">HOW IT WORKS</div>
 
@@ -205,45 +200,40 @@
           <span>05</span>
           <div>
             <h3>FINAL PRESENTATION</h3>
-            <p>Show the final solution and explain what improved and why.</p>
+            <p>Show the final solution, explain what improved and why.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
     <section class="closing">
-      <div class="section-index">THE NEXT CHALLENGE</div>
+      <div class="section-index">The next challenge</div>
 
       <h2>
         BUILD IT.<br />
         <span>MAKE IT BETTER.</span>
       </h2>
 
-      <p>Take an existing process and find a better way to run it.</p>
+      <p>
+        Join us December 21, 2026, from 11 AM – 3 PM
+        at NJIT Faculty Dining. Compete for $250 in prizes.
+      </p>
 
       <a href="#about" class="pill primary-btn">
         EXPLORE OPTIMIZATION ↑
       </a>
-
-      <div class="closing-footer">
-        <span>NJIT ACM · OPTIMIZATION 2026</span>
-        <span>MOORE'S LAW IS GONE.</span>
-      </div>
     </section>
   </div>
 </template>
 
 <style scoped>
 
-/* PAGE */
 .optimization-page {
   width: 100%;
   overflow: hidden;
   color: var(--text-color);
 }
 
-/* HERO */
 .hero {
   position: relative;
   min-height: 85vh;
@@ -319,6 +309,28 @@
   color: #ddd;
 }
 
+<div class="event-details">
+  <div class="event-detail">
+    <span class="detail-label">DATE</span>
+    <strong>DECEMBER 21, 2026</strong>
+  </div>
+
+  <div class="event-detail">
+    <span class="detail-label">TIME</span>
+    <strong>11:00 AM – 3:00 PM</strong>
+  </div>
+
+  <div class="event-detail">
+    <span class="detail-label">LOCATION</span>
+    <strong>FACULTY DINING - NJIT</strong>
+  </div>
+
+  <div class="event-detail prize-detail">
+    <span class="detail-label">TOTAL PRIZES</span>
+    <strong>$250</strong>
+  </div>
+</div>
+
 .hero-actions {
   display: flex;
   justify-content: center;
@@ -358,7 +370,6 @@
   letter-spacing: 0.12em;
 }
 
-/* HERO ORBIT */
 .hero-visual {
   position: absolute;
   top: 18%;
@@ -415,7 +426,6 @@
   right: 0;
 }
 
-/* INTRO */
 .intro {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -440,7 +450,6 @@
   color: #ddd;
 }
 
-/* CHALLENGE */
 .challenge {
   padding-top: 45px;
   padding-bottom: 70px;
@@ -496,7 +505,6 @@
   letter-spacing: 0.08em;
 }
 
-/* CAPSTONE */
 .capstone {
   max-width: var(--max-content-width);
   width: calc(100% - 40px);
@@ -542,7 +550,6 @@
   letter-spacing: 0.08em;
 }
 
-/* FORMAT */
 .format {
   padding-top: 70px;
   padding-bottom: 70px;
@@ -581,7 +588,6 @@
   font-size: 0.95rem;
 }
 
-/* CLOSING */
 .closing {
   text-align: center;
   padding: 100px 24px 35px;
@@ -608,7 +614,6 @@
   letter-spacing: 0.12em;
 }
 
-/* RESPONSIVE */
 @media (max-width: 900px) {
   .challenge-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -662,6 +667,58 @@
   .closing-footer {
     justify-content: center;
     text-align: center;
+  }
+}
+
+.event-details {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 35px auto;
+  max-width: 850px;
+}
+
+.event-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 22px;
+  min-width: 150px;
+  background: var(--hacknjit-primary-transparent);
+  border: 1px solid var(--edge-colors);
+  border-radius: var(--border-radius);
+}
+
+.detail-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--hacknjit-tertiary);
+}
+
+.event-detail strong {
+  font-size: 0.9rem;
+}
+
+.prize-detail strong {
+  color: var(--hacknjit-tertiary);
+  font-size: 1.4rem;
+}
+
+@media (max-width: 550px) {
+  .event-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .event-detail {
+    min-width: 0;
+    padding: 14px 10px;
+  }
+
+  .event-detail strong {
+    font-size: 0.8rem;
   }
 }
 </style>

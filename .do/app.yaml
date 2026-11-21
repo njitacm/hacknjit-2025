@@ -12,7 +12,7 @@ name: hacknjit-website
 region: nyc
 static_sites:
 - environment_slug: node-js
-  error_document: index.html
+  catchall_document: index.html
   github:
     branch: main
     deploy_on_push: true

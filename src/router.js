@@ -3,7 +3,6 @@ import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
 import HomeView from './views/HomeView.vue'
 import RegisterView from './views/RegisterView.vue'
 import PageNotFoundView from './views/PageNotFoundView.vue'
-import Optimization from './views/Optimization.vue';
 
 const routes = [
   {
@@ -17,11 +16,6 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     component: PageNotFoundView,
-  },
-  {
-    path: '/optimization',
-    name: 'Optimization',
-    component: Optimization
   }
 ]
 

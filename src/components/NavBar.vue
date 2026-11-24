@@ -65,7 +65,6 @@ const navItems = [
   { label: "FAQ", hash: '#FAQ' },
   // { label: 'Contact', hash: '#Contact' },
   { label: "Register", path: "/registration" },
-  { label: "Optimization", path: "/optimization" },
 ];
 
 const navSizes = {
@@ -162,9 +161,8 @@ router.beforeEach((to) => {
     currentPage.value = "Registration";
   } else if (to.path === "/") {
     currentPage.value = "Home";
-  } else if (to.path === "/optimization") {
-  currentPage.value = "Optimization";
-}});
+  }
+});
 
 // computed properties
 const isNavActive = computed(() => (
